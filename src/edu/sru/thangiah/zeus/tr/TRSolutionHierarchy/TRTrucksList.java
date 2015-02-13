@@ -379,38 +379,38 @@ public double getDistanceTravelledMiles() {
 
 
 @Override
+public boolean setHeadNext(final ObjectInList nextHead) {
+	if(this.getHead().getNext() == this.getTail()) {
+		return false;
+	}
+	this.getHead().setNext(nextHead);
+	return true;
+
+}
+
+
+
+
+@Override
+public boolean setTailPrevious(final ObjectInList nextTail) {
+	if(this.getTail().getPrevious() == this.getHead()) {
+		return false;
+	}
+	this.getTail().setPrevious(nextTail);
+	return true;
+
+}
+
+
+
+
+@Override
 public void setUpHeadTail(final ObjectInList head, final ObjectInList tail) {
 	this.head = (TRTruck) head;
 	this.tail = (TRTruck) tail;
 	//	setHead(head);
 	//	setTail(tail);
 	linkHeadTail();
-}
-
-
-
-
-public TRTrucksList(final TRTrucksList copyMe) {
-	setHead((ObjectInList) new TRTruck(copyMe.getHead()));
-	setTail((ObjectInList) new TRTruck(copyMe.getTail()));
-	setAttributes(new TRAttributes(copyMe.getAttributes()));
-
-	TRTruck theCopyMeDepot = copyMe.getHead();
-	TRTruck newDepot = getHead();
-	while(theCopyMeDepot.getNext() != copyMe.getTail()) {
-		theCopyMeDepot = theCopyMeDepot.getNext();
-		newDepot.insertAfterCurrent(new TRTruck(theCopyMeDepot));
-		newDepot = newDepot.getNext();
-	}
-}
-
-
-
-
-//METHOD
-//used by the gui to show problem information
-public String getSolutionString() {
-	return "Trucks Used = " + TRProblemInfo.noOfVehs + " | " + this.attributes.toDetailedString();
 }
 
 //METHOD
@@ -734,24 +734,28 @@ public void writeOutData(FileOutputStream out)
 
 
 
-@Override
-public boolean setHeadNext(final ObjectInList nextHead) {
-	if(this.getHead().getNext() == this.getTail()){
-		return false;
-	}
-	this.getHead().setNext((ObjectInList) nextHead);
-	return true;
 
+public TRTrucksList(final TRTrucksList copyMe) {
+	setHead((ObjectInList) new TRTruck(copyMe.getHead()));
+	setTail((ObjectInList) new TRTruck(copyMe.getTail()));
+	setAttributes(new TRAttributes(copyMe.getAttributes()));
+
+	TRTruck theCopyMeDepot = copyMe.getHead();
+	TRTruck newDepot = getHead();
+	while(theCopyMeDepot.getNext() != copyMe.getTail()) {
+		theCopyMeDepot = theCopyMeDepot.getNext();
+		newDepot.insertAfterCurrent(new TRTruck(theCopyMeDepot));
+		newDepot = newDepot.getNext();
+	}
 }
 
-@Override
-public boolean setTailPrevious(final ObjectInList nextTail){
-	if(this.getTail().getPrevious() == this.getHead()){
-		return false;
-	}
-	this.getTail().setPrevious((ObjectInList) nextTail);
-	return true;
 
+
+
+//METHOD
+//used by the gui to show problem information
+public String getSolutionString() {
+	return "Trucks Used = " + TRProblemInfo.noOfVehs + " | " + this.attributes.toDetailedString();
 }
 
 }

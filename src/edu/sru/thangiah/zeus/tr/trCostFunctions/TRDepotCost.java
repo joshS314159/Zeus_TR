@@ -39,7 +39,21 @@ public class TRDepotCost
 
 
 //GETTER
-public double getTotalCost(Object o) {
+public double getTotalDistance(Object o) {
+	setTotalDistance(o);
+
+	return ((TRDepot) o).getAttributes().getTotalDistance();
+}//GETTER
+
+
+
+
+//SETTER
+public void setTotalDistance(Object o) {
+	TRDepot theDepot = (TRDepot) o;
+	theDepot.getAttributes()
+			.setTotalDistance((float) ProblemInfo.truckLLLevelCostF.getTotalDistance(theDepot.getSubList()));
+}//GETTERpublic double getTotalCost(Object o) {
 	setTotalCost(o);
 
 	return ((TRDepot) o).getAttributes().getTotalCost();
@@ -48,7 +62,16 @@ public double getTotalCost(Object o) {
 
 
 
-//GETTER
+//CONSTRUCTOR
+public void calculateTotalsStats(Object o) {
+	//	setTotalDemand(o);
+	setTotalDistance(o);
+	//	setTotalCost(o);
+}
+
+
+
+
 public float getTotalDemand(Object o) {
 	setTotalDemand(o);
 
@@ -58,12 +81,7 @@ public float getTotalDemand(Object o) {
 
 
 
-//GETTER
-public double getTotalDistance(Object o) {
-	setTotalDistance(o);
 
-	return ((TRDepot) o).getAttributes().getTotalDistance();
-}
 
 
 
@@ -85,22 +103,4 @@ public void setTotalDemand(Object o) {
 }
 
 
-
-
-//SETTER
-public void setTotalDistance(Object o) {
-	TRDepot theDepot = (TRDepot) o;
-	theDepot.getAttributes()
-			.setTotalDistance((float) ProblemInfo.truckLLLevelCostF.getTotalDistance(theDepot.getMainTrucks()));
-}
-
-
-
-
-//CONSTRUCTOR
-public void calculateTotalsStats(Object o) {
-//	setTotalDemand(o);
-	setTotalDistance(o);
-//	setTotalCost(o);
-}
 }

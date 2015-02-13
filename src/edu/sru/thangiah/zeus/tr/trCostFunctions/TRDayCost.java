@@ -38,6 +38,27 @@ public class TRDayCost
 
 //GETTER
 @Override
+public double getTotalDistance(Object o) {
+	setTotalDistance(o);
+
+	return ((TRDay) o).getAttributes().getTotalDistance();
+}//GETTER
+
+
+
+
+//SETTER
+@Override
+public void setTotalDistance(Object o) {
+	TRDay day = (TRDay) o;
+	day.getAttributes().setTotalDistance((float) ProblemInfo.nodesLLLevelCostF.
+																					  getTotalDistance(
+																							  day.getSubList()));
+}//GETTER@Override
+
+
+
+
 public double getTotalCost(Object o) {
 	setTotalCost(o);
 
@@ -47,7 +68,17 @@ public double getTotalCost(Object o) {
 
 
 
-//GETTER
+//CONSTRUCTOR
+@Override
+public void calculateTotalsStats(Object o) {
+	//	setTotalDemand(o);
+	setTotalDistance(o);
+	//	setTotalCost(o);
+}
+
+
+
+
 @Override
 public float getTotalDemand(Object o) {
 	setTotalDemand(o);
@@ -58,13 +89,7 @@ public float getTotalDemand(Object o) {
 
 
 
-//GETTER
-@Override
-public double getTotalDistance(Object o) {
-	setTotalDistance(o);
 
-	return ((TRDay) o).getAttributes().getTotalDistance();
-}
 
 
 
@@ -83,32 +108,10 @@ public void setTotalCost(Object o) {
 @Override
 public void setTotalDemand(Object o) {
 	TRDay day = (TRDay) o;
-	day.getAttributes().setTotalDemand((int) TRProblemInfo.nodesLLLevelCostF.getTotalDemand(day.getNodesLinkedList()));
+	day.getAttributes().setTotalDemand((int) TRProblemInfo.nodesLLLevelCostF.getTotalDemand(day.getSubList()));
 
 
 }
 
 
-
-
-//SETTER
-@Override
-public void setTotalDistance(Object o) {
-	TRDay day = (TRDay) o;
-	day.getAttributes().setTotalDistance((float) ProblemInfo.nodesLLLevelCostF.
-																					  getTotalDistance(
-																							  day.getNodesLinkedList
-																									  ()));
-}
-
-
-
-
-//CONSTRUCTOR
-@Override
-public void calculateTotalsStats(Object o) {
-//	setTotalDemand(o);
-	setTotalDistance(o);
-//	setTotalCost(o);
-}
 }

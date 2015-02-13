@@ -80,16 +80,16 @@ public void setIsTruckOnRoad(final boolean isTruckOnRoad) {
 
 
 @Override
-public TRTruckType getTruckType() {
-	return truckType;
+public TRDaysList getSubList() {
+	return this.daysSubList;
 }
 
 
 
 
 @Override
-public TRDaysList getSubList() {
-	return this.daysSubList;
+public void setSubList(final DoublyLinkedList subList) {
+	this.daysSubList = (TRDaysList) subList;
 }
 
 
@@ -110,9 +110,48 @@ public void setHomeDepotCoordinates(final TRCoordinates homeDepotCoordinates) {
 
 
 @Override
-public void setSubList(final DoublyLinkedList subList) {
-	this.daysSubList = (TRDaysList) subList;
+public TRTruckType getTruckType() {
+	return truckType;
 }
+
+
+
+
+public TRTruck(final TRCoordinates homeDepotCoordinates) {
+	setAttributes(new TRAttributes());
+	setHomeDepotCoordinates(homeDepotCoordinates);
+}
+
+
+
+
+//CONSTRUCTOR
+public TRTruck() {
+	setAttributes(new TRAttributes());
+}
+
+
+
+
+public void setTruckType(final TRTruckType truckType) {
+	this.truckType = truckType;
+}
+
+
+
+
+public boolean insertShipment(final TRShipment theShipment) {
+	boolean status = false;
+
+	return this.getSubList().insertShipment(theShipment);
+}//END INSERT_SHIPMENT *********<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<public TRTruck
+
+
+// getNext() {
+
+
+//return this.next;
+//}
 
 
 
@@ -131,31 +170,9 @@ public void setAttributes(final TRAttributes attributes) {
 
 
 
-public TRTruck getNext(){
+
+public TRTruck getNext() {
 	return this.next;
-}
-// getNext() {
-
-
-
-
-//return this.next;
-//}
-
-
-
-
-@Override
-public boolean insertAfterCurrent(final ObjectInList insertMe) {
-	if(this.getNext() != null) {
-		(insertMe).setPrevious(this);
-		(insertMe).setNext(this.getNext());
-
-		(this).setNext(insertMe);
-		(insertMe).getNext().setPrevious(insertMe);
-		return true;
-	}
-	return false;
 }
 
 
@@ -170,11 +187,27 @@ public void setNext(final ObjectInList next) {
 
 
 @Override
+public boolean insertAfterCurrent(final ObjectInList insertMe) {
+	if(this.getNext() != null) {
+		insertMe.setPrevious(this);
+		insertMe.setNext(this.getNext());
+
+		this.setNext(insertMe);
+		insertMe.getNext().setPrevious(insertMe);
+		return true;
+	}
+	return false;
+}
+
+
+
+
+@Override
 public void linkAsHeadTail(final ObjectInList linkTwo) {
 	this.setNext(linkTwo);
-	(linkTwo).setPrevious(this);
+	linkTwo.setPrevious(this);
 	this.setPrevious(null);    //nothing comes before the head
-	(linkTwo).setNext(null);        //nothing comes after the tail
+	linkTwo.setNext(null);        //nothing comes after the tail
 }
 
 
@@ -184,8 +217,8 @@ public void linkAsHeadTail(final ObjectInList linkTwo) {
 public boolean removeThisObject() {
 	if(this.getNext() != null || this.getPrevious() != null) {
 
-		(this.getPrevious()).setNext(this.getNext());
-		(this.getNext()).setPrevious(this.getPrevious());
+		this.getPrevious().setNext(this.getNext());
+		this.getNext().setPrevious(this.getPrevious());
 
 		this.setPrevious(null);
 		this.setNext((ObjectInList) null);
@@ -228,38 +261,6 @@ public boolean isSubListEmpty() {
 public double getDistanceTravelledMiles() {
 	return 0;
 }
-
-
-
-
-public void setTruckType(final TRTruckType truckType) {
-	this.truckType = truckType;
-}
-
-
-
-
-public TRTruck(final TRCoordinates homeDepotCoordinates) {
-	setAttributes(new TRAttributes());
-	setHomeDepotCoordinates(homeDepotCoordinates);
-}
-
-
-
-
-//CONSTRUCTOR
-public TRTruck() {
-	setAttributes(new TRAttributes());
-}
-
-
-
-
-public boolean insertShipment(final TRShipment theShipment) {
-	boolean status = false;
-
-	return this.getSubList().insertShipment(theShipment);
-}//END INSERT_SHIPMENT *********<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<public TRTruck
 
 
 }

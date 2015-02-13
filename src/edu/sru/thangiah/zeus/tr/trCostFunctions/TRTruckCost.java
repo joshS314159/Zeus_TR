@@ -39,7 +39,20 @@ public class TRTruckCost
 
 
 //GETTER
-public double getTotalCost(Object o) {
+public double getTotalDistance(Object o) {
+	setTotalDistance(o);
+
+	return ((TRTruck) o).getAttributes().getTotalDistance();
+}//GETTER
+
+
+
+
+//SETTER
+public void setTotalDistance(Object o) {
+	TRTruck truck = (TRTruck) o;
+	truck.getAttributes().setTotalDistance(TRProblemInfo.daysLLLevelCostF.getTotalDistance(truck.getSubList()));
+}//GETTERpublic double getTotalCost(Object o) {
 	setTotalCost(o);
 
 	return ((TRTruck) o).getAttributes().getTotalCost();
@@ -48,7 +61,16 @@ public double getTotalCost(Object o) {
 
 
 
-//GETTER
+//CONSTRUCTOR
+public void calculateTotalsStats(Object o) {
+	//	setTotalDemand(o);
+	setTotalDistance(o);
+	//	setTotalCost(o);
+}
+
+
+
+
 public float getTotalDemand(Object o) {
 	setTotalDemand(o);
 
@@ -58,12 +80,7 @@ public float getTotalDemand(Object o) {
 
 
 
-//GETTER
-public double getTotalDistance(Object o) {
-	setTotalDistance(o);
 
-	return ((TRTruck) o).getAttributes().getTotalDistance();
-}
 
 
 
@@ -71,7 +88,7 @@ public double getTotalDistance(Object o) {
 //SETTER
 public void setTotalCost(Object o) {
 	TRTruck truck = (TRTruck) o;
-	truck.getAttributes().setTotalCost(TRProblemInfo.daysLLLevelCostF.getTotalCost(truck.getMainDays()));
+	truck.getAttributes().setTotalCost(TRProblemInfo.daysLLLevelCostF.getTotalCost(truck.getSubList()));
 }
 
 
@@ -84,21 +101,4 @@ public void setTotalDemand(Object o) {
 }
 
 
-
-
-//SETTER
-public void setTotalDistance(Object o) {
-	TRTruck truck = (TRTruck) o;
-	truck.getAttributes().setTotalDistance(TRProblemInfo.daysLLLevelCostF.getTotalDistance(truck.getMainDays()));
-}
-
-
-
-
-//CONSTRUCTOR
-public void calculateTotalsStats(Object o) {
-//	setTotalDemand(o);
-	setTotalDistance(o);
-//	setTotalCost(o);
-}
 }
