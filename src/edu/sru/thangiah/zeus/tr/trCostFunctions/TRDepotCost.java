@@ -2,6 +2,7 @@ package edu.sru.thangiah.zeus.tr.trCostFunctions;
 
 
 import edu.sru.thangiah.zeus.core.ProblemInfo;
+import edu.sru.thangiah.zeus.tr.TRProblemInfo;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRDepot;
 
 
@@ -52,12 +53,15 @@ public double getTotalDistance(Object o) {
 public void setTotalDistance(Object o) {
 	TRDepot theDepot = (TRDepot) o;
 	theDepot.getAttributes()
-			.setTotalDistance((float) ProblemInfo.truckLLLevelCostF.getTotalDistance(theDepot.getSubList()));
-}//GETTERpublic double getTotalCost(Object o) {
-	setTotalCost(o);
-
-	return ((TRDepot) o).getAttributes().getTotalCost();
+			.setTotalDistance((float) TRProblemInfo.truckLLLevelCostF.getTotalDistance(theDepot.getSubList()));
 }
+
+//GETTERpublic double getTotalCost(Object o) {
+//	setTotalCost(o);
+
+//	return ((TRDepot) o).getAttributes().getTotalCost();
+//}
+//
 
 
 
@@ -77,11 +81,6 @@ public float getTotalDemand(Object o) {
 
 	return (int) ((TRDepot) o).getAttributes().getTotalDemand();
 }
-
-
-
-
-
 
 
 

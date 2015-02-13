@@ -53,11 +53,11 @@ public void setTotalDistance(Object o) {
 	TRTruck truck = (TRTruck) o;
 	truck.getAttributes().setTotalDistance(TRProblemInfo.daysLLLevelCostF.getTotalDistance(truck.getSubList()));
 }//GETTERpublic double getTotalCost(Object o) {
-	setTotalCost(o);
+//	setTotalCost(o);
 
-	return ((TRTruck) o).getAttributes().getTotalCost();
-}
-
+//	return ((TRTruck) o).getAttributes().getTotalCost();
+//}
+//
 
 
 

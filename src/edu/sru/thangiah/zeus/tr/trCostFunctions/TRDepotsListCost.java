@@ -2,6 +2,7 @@ package edu.sru.thangiah.zeus.tr.trCostFunctions;
 
 
 import edu.sru.thangiah.zeus.core.ProblemInfo;
+import edu.sru.thangiah.zeus.tr.TRProblemInfo;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRDepot;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRDepotsList;
 
@@ -40,30 +41,47 @@ public class TRDepotsListCost
 
 
 //GETTER
-public double getTotalCost(Object o) {
-	setTotalCost(o);
-
-	return ((TRDepotsList) o).getAttributes().getTotalCost();
-}
-
-
-
-
-//GETTER
-public float getTotalDemand(Object o) {
-	setTotalDemand(o);
-
-	return (int) ((TRDepotsList) o).getAttributes().getTotalDemand();
-}
-
-
-
-
-//GETTER
 public double getTotalDistance(Object o) {
 	setTotalDistance(o);
 
 	return ((TRDepotsList) o).getAttributes().getTotalDistance();
+}//GETTER
+
+
+
+
+//SETTER
+public void setTotalDistance(Object o) {
+	TRDepotsList depotList = (TRDepotsList) o;
+	TRDepot theDepot = depotList.getFirst();
+
+	depotList.getAttributes().setTotalDistance(0);
+
+
+	while(theDepot != depotList.getTail()) {
+		depotList.getAttributes().setTotalDistance(depotList.getAttributes().getTotalDistance() +
+												   (float) TRProblemInfo.depotLevelCostF.getTotalDistance(theDepot));
+		theDepot = theDepot.getNext();
+	}
+}//GETTERpublic double getTotalCost(Object o) {
+
+
+
+
+//CONSTRUCTOR
+public void calculateTotalsStats(Object o) {
+	//	setTotalDemand(o);
+	setTotalDistance(o);
+	//	setTotalCost(o);
+}
+
+
+
+
+public float getTotalDemand(Object o) {
+	setTotalDemand(o);
+
+	return (int) ((TRDepotsList) o).getAttributes().getTotalDemand();
 }
 
 
@@ -91,45 +109,20 @@ public void setTotalCost(Object o) {
 //SETTER
 public void setTotalDemand(Object o) {
 	TRDepotsList depotList = (TRDepotsList) o;
-	TRDepot theDepot = depotList.getHead();
+	TRDepot theDepot = depotList.getFirst();
 
 	depotList.getAttributes().setTotalDemand(0);
 
 
-	while(theDepot.getNext() != depotList.getTail()) {
-		theDepot = theDepot.getNext();
+	while(theDepot != depotList.getTail()) {
+
 		depotList.getAttributes().setTotalDemand(
 				depotList.getAttributes().getTotalDemand() + ProblemInfo.depotLevelCostF.getTotalDemand(theDepot));
-	}
-}
 
-
-
-
-//SETTER
-public void setTotalDistance(Object o) {
-	TRDepotsList depotList = (TRDepotsList) o;
-	TRDepot theDepot = depotList.getHead();
-
-	depotList.getAttributes().setTotalDistance(0);
-
-
-	while(theDepot != depotList.getTail()) {
-		depotList.getAttributes()
-				 .setTotalDistance(depotList.getAttributes().getTotalDistance() + (float) ProblemInfo.depotLevelCostF.
-																															 getTotalDistance(
-																																	 theDepot));
 		theDepot = theDepot.getNext();
 	}
+
 }
 
 
-
-
-//CONSTRUCTOR
-public void calculateTotalsStats(Object o) {
-//	setTotalDemand(o);
-	setTotalDistance(o);
-//	setTotalCost(o);
-}
 }

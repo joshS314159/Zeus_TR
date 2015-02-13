@@ -2,6 +2,7 @@ package edu.sru.thangiah.zeus.tr.trCostFunctions;
 
 
 import edu.sru.thangiah.zeus.core.ProblemInfo;
+import edu.sru.thangiah.zeus.tr.TRProblemInfo;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRTruck;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRTrucksList;
 
@@ -40,30 +41,54 @@ public class TRTrucksListCost
 
 
 //GETTER
-public double getTotalCost(Object o) {
-	setTotalCost(o);
-
-	return ((TRTrucksList) o).getAttributes().getTotalCost();
-}
-
-
-
-
-//GETTER
-public float getTotalDemand(Object o) {
-	setTotalDemand(o);
-
-	return (int) ((TRTrucksList) o).getAttributes().getTotalDemand();
-}
-
-
-
-
-//GETTER
 public double getTotalDistance(Object o) {
 	setTotalDistance(o);
 
 	return ((TRTrucksList) o).getAttributes().getTotalDistance();
+}//GETTER
+
+
+
+
+//SETTER
+public void setTotalDistance(Object o) {
+	TRTrucksList truckList = (TRTrucksList) o;
+	TRTruck theTruck = truckList.getFirst();
+
+	truckList.getAttributes().getTotalDistance();
+
+	while(theTruck != truckList.getTail()) {
+
+		if(!theTruck.isSubListEmpty()) {
+			truckList.getAttributes()
+					 .setTotalDistance(truckList.getAttributes().getTotalDistance() + TRProblemInfo.truckLevelCostF.
+																														   getTotalDistance(
+																																   theTruck));
+		}
+		theTruck = theTruck.getNext();
+
+	}
+}//GETTERpublic double getTotalCost(Object o) {
+
+
+
+
+
+
+//CONSTRUCTOR
+public void calculateTotalsStats(Object o) {
+	//	setTotalDemand(o);
+	setTotalDistance(o);
+	//	setTotalCost(o);
+}
+
+
+
+
+public float getTotalDemand(Object o) {
+	setTotalDemand(o);
+
+	return (int) ((TRTrucksList) o).getAttributes().getTotalDemand();
 }
 
 
@@ -94,52 +119,23 @@ public void setTotalCost(Object o) {
 //SETTER
 public void setTotalDemand(Object o) {
 	TRTrucksList truckList = (TRTrucksList) o;
-	TRTruck theTruck = truckList.getHead();
+	TRTruck theTruck = truckList.getFirst();
 
 	truckList.getAttributes().getTotalDemand();
 
-	while(theTruck.getNext() != truckList.getTail()) {
-		theTruck = theTruck.getNext();
+	while(theTruck != truckList.getTail()) {
+
 		if(!theTruck.isEmptyMainDays()) {
 			truckList.getAttributes()
 					 .setTotalDemand(truckList.getAttributes().getTotalDemand() + ProblemInfo.truckLevelCostF.
 																													 getTotalDemand(
 																															 theTruck));
 		}
-
-	}
-
-}
-
-
-
-
-//SETTER
-public void setTotalDistance(Object o) {
-	TRTrucksList truckList = (TRTrucksList) o;
-	TRTruck theTruck = truckList.getHead();
-
-	truckList.getAttributes().getTotalDistance();
-
-	while(theTruck.getNext() != truckList.getTail()) {
 		theTruck = theTruck.getNext();
-		if(!theTruck.isSubListEmpty()) {
-			truckList.getAttributes()
-					 .setTotalDistance(truckList.getAttributes().getTotalDistance() + ProblemInfo.truckLevelCostF.
-																														 getTotalDistance(
-																																 theTruck));
-		}
 
 	}
+
 }
 
 
-
-
-//CONSTRUCTOR
-public void calculateTotalsStats(Object o) {
-//	setTotalDemand(o);
-	setTotalDistance(o);
-//	setTotalCost(o);
-}
 }

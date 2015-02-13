@@ -106,7 +106,7 @@ public void setTotalDemand(Object o) {
 public void setTotalDistance(Object o) {
 	TRNodesList nodesList = (TRNodesList) o;
 	TRNode leftNode = null;
-	TRNode rightNode = nodesList.getHead();
+	TRNode rightNode = nodesList.getFirst();
 
 	if(nodesList == null) {
 		System.out.println();
