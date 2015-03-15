@@ -153,6 +153,7 @@ public boolean setHead(final ObjectInList head) {
 @Override
 public TRShipment getFirst() {
 	if(isEmpty() || !isValidHeadTail()) {
+        System.out.println("ERROR: getFirst() is null/invalid");
 		return null;
 	}
 	return getHead().getNext();

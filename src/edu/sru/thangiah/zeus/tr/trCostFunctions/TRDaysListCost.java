@@ -53,13 +53,12 @@ public double getTotalDistance(Object o) {
 public void setTotalDistance(Object o) {
 	TRDaysList daysList = (TRDaysList) o;
 	TRDay theDay = daysList.getFirst();
-	daysList.getAttributes().getTotalDistance();
+//	daysList.getAttributes().getTotalDistance();
+    daysList.getAttributes().setTotalDistance(0);
 
 	while(theDay != daysList.getTail()) {
-
 		if(!theDay.isSubListEmpty()) {
-			daysList.getAttributes().setTotalDistance(daysList.getAttributes().getTotalDistance() +
-													  TRProblemInfo.daysLevelCostF.getTotalDistance(theDay));
+			daysList.getAttributes().setTotalDistance(daysList.getAttributes().getTotalDistance() + TRProblemInfo.daysLevelCostF.getTotalDistance(theDay));
 		}
 		theDay = theDay.getNext();
 	}

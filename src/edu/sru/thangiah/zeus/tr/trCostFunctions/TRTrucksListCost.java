@@ -55,15 +55,13 @@ public void setTotalDistance(Object o) {
 	TRTrucksList truckList = (TRTrucksList) o;
 	TRTruck theTruck = truckList.getFirst();
 
-	truckList.getAttributes().getTotalDistance();
+//	truckList.getAttributes().getTotalDistance();
+    truckList.getAttributes().setTotalDistance(0);
+
 
 	while(theTruck != truckList.getTail()) {
-
 		if(!theTruck.isSubListEmpty()) {
-			truckList.getAttributes()
-					 .setTotalDistance(truckList.getAttributes().getTotalDistance() + TRProblemInfo.truckLevelCostF.
-																														   getTotalDistance(
-																																   theTruck));
+			truckList.getAttributes().setTotalDistance(truckList.getAttributes().getTotalDistance() + TRProblemInfo.truckLevelCostF.getTotalDistance(theTruck));
 		}
 		theTruck = theTruck.getNext();
 

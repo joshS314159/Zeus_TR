@@ -105,22 +105,32 @@ public void setTotalDemand(Object o) {
 //SETTER
 public void setTotalDistance(Object o) {
 	TRNodesList nodesList = (TRNodesList) o;
-	TRNode leftNode = null;
+	TRNode leftNode = nodesList.getHead();
 	TRNode rightNode = nodesList.getFirst();
 
 	if(nodesList == null) {
 		System.out.println();
 	}
 
-	float distance = 0;
-	do {
-		leftNode = rightNode;
-		rightNode = rightNode.getNext();
+    float distance = 0;
 
-		distance += (float) leftNode.getCoordinates().calculateDistanceThisMiles(rightNode.getCoordinates());
+    while(rightNode != null){
+        distance += leftNode.getCoordinates().calculateDistanceThisMiles(rightNode.getCoordinates());
+
+        leftNode = rightNode;
+        rightNode = rightNode.getNext();
+    }
 
 
-	} while(rightNode != nodesList.getTail() && rightNode != null);
+//	float distance = 0;
+//	do {
+//		leftNode = rightNode;
+//		rightNode = rightNode.getNext();
+//
+//		distance += (float) leftNode.getCoordinates().calculateDistanceThisMiles(rightNode.getCoordinates());
+//
+//
+//	} while(rightNode != nodesList.getTail() && rightNode != null);
 
 	nodesList.getAttributes().setTotalDistance(distance);
 }

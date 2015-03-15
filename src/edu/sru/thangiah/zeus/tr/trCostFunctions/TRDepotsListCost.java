@@ -58,12 +58,17 @@ public void setTotalDistance(Object o) {
 	depotList.getAttributes().setTotalDistance(0);
 
 
-	while(theDepot != depotList.getTail()) {
-		depotList.getAttributes().setTotalDistance(depotList.getAttributes().getTotalDistance() +
-												   (float) TRProblemInfo.depotLevelCostF.getTotalDistance(theDepot));
+	while(theDepot != depotList.getTail()){
+        if(!theDepot.isSubListEmpty()) {
+            depotList.getAttributes().setTotalDistance(depotList.getAttributes().getTotalDistance() + (float) TRProblemInfo.depotLevelCostF.getTotalDistance(theDepot));
+        }
 		theDepot = theDepot.getNext();
 	}
-}//GETTERpublic double getTotalCost(Object o) {
+}
+
+
+
+//GETTERpublic double getTotalCost(Object o) {
 
 
 

@@ -52,8 +52,12 @@ public double getTotalDistance(Object o) {
 //SETTER
 public void setTotalDistance(Object o) {
 	TRDepot theDepot = (TRDepot) o;
-	theDepot.getAttributes()
-			.setTotalDistance((float) TRProblemInfo.truckLLLevelCostF.getTotalDistance(theDepot.getSubList()));
+
+    float totalDistance = (float) TRProblemInfo.truckLLLevelCostF.getTotalDistance(theDepot.getSubList());
+    System.out.println("Total Distance:\t" + totalDistance);
+    theDepot.getAttributes().setTotalDistance(totalDistance);
+
+//	theDepot.getAttributes().setTotalDistance((float) TRProblemInfo.truckLLLevelCostF.getTotalDistance(theDepot.getSubList()));
 }
 
 //GETTERpublic double getTotalCost(Object o) {

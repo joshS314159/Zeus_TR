@@ -51,9 +51,7 @@ public double getTotalDistance(Object o) {
 @Override
 public void setTotalDistance(Object o) {
 	TRDay day = (TRDay) o;
-	day.getAttributes().setTotalDistance((float) TRProblemInfo.nodesLLLevelCostF.
-																					  getTotalDistance(
-																							  day.getSubList()));
+	day.getAttributes().setTotalDistance((float) TRProblemInfo.nodesLLLevelCostF.getTotalDistance(day.getSubList()));
 }//GETTER@Override
 
 
