@@ -4,6 +4,13 @@ package edu.sru.thangiah.zeus.tr.TRSolutionHierarchy;
 import edu.sru.thangiah.zeus.core.ShipmentLinkedList;
 import edu.sru.thangiah.zeus.tr.TRAttributes;
 import edu.sru.thangiah.zeus.tr.TRProblemInfo;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 
 /**
@@ -781,6 +788,88 @@ public boolean setTailPrevious(final ObjectInList nextTail){
 	return true;
 
 }
+
+
+    //WRITE_PVRP_SHIPMENTS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    public void writeShipments(FileOutputStream out)
+            throws IOException {
+
+        //VARIABLES
+        //		Shipment ship = super.getHead();		//the linked list head
+        //
+        //		PVRPShipment PVRPShip;
+
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet sheet = workbook.createSheet("Customer Data");    //create a worksheet
+
+
+        int rowCounter = 0;        //tracks our rows
+        int previousGetIndex = -10;
+
+        Row row = sheet.createRow(rowCounter);
+        rowCounter++;
+        Cell cell = row.createCell(0);
+        cell.setCellValue(getNumShipments());
+
+        //        ship = ship.getNext();								//get the next shipment
+        //        PVRPShip = (PVRPShipment) ship;
+
+        TRShipment theShipment = this.getFirst();
+        while(theShipment != getTail())                                //while we aren'numberOfDays at the tail of the doubly linked list
+        {
+
+
+            //            PVRPShip = (PVRPShipment) ship;
+
+
+            row = sheet.createRow(rowCounter);        //make a new row
+            int cellTracker = 0;                        //tracks which cell we are currently at
+
+
+            while(cellTracker != 5)                    //while we haven'numberOfDays written all the cells for the given
+            // row
+            {
+                cell = row.createCell(cellTracker);    //create new cell number X
+                switch(cellTracker)                        //SWITCH statement
+                {
+                    case 0:
+                        cell.setCellValue(
+                                theShipment.getNodeNumber());    //set each cell value to the correct value from the linked list
+                        break;
+                    case 1:
+                        cell.setCellValue(theShipment.getCoordinates().getLongitude());
+                        break;
+                    case 2:
+                        cell.setCellValue(theShipment.getCoordinates().getLatitude());
+
+                        break;
+                    case 3:
+//                        cell.setCellValue(theShipment.getDemand());
+                        break;
+                    case 4:
+                        cell.setCellValue(theShipment.getFrequency());
+                        break;
+                    /**        case 5:								??????????????????????????MUST IMPLEMENT FOR ALL
+                     * VARIABLES OF PVRP
+                     cell.setCellValue(PVRPShip.getExtraVariable());
+                     break;
+                     case 6:
+                     cell.setCellValue(PVRPShip.getIndex());
+                     break;
+                     case 7:*/
+                }
+                cellTracker++;            //increment our cell tracker
+            }
+            rowCounter++;                //move onto the next row
+            theShipment = theShipment.getNext();                                //get the next shipment
+
+        }
+
+        workbook.write(out);
+        out.close();
+
+    }
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 }
 

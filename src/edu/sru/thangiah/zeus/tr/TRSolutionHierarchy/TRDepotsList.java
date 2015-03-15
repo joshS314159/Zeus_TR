@@ -514,7 +514,7 @@ public void writeOutData(FileOutputStream out)
 	Row row;
 	Cell cell;
 	int columnCounter = 0;            //counts our columns
-	final int NULL_VALUE = -1;        //a null value for would-be empty cellss
+	final String NULL_VALUE = "-";        //a null value for would-be empty cellss
 
 
 	//CREATE THE HEADER ROWS
@@ -527,13 +527,13 @@ public void writeOutData(FileOutputStream out)
 	cell.setCellValue("1_INDEX");
 
 	cell = row.createCell(columnCounter++);        //C2
-	cell.setCellValue("2_X");
+	cell.setCellValue("2_LONG");
 
 	cell = row.createCell(columnCounter++);        //C3
-	cell.setCellValue("3_Y");
+	cell.setCellValue("3_LAT");
 
 	cell = row.createCell(columnCounter++);        //C4
-	cell.setCellValue("4_DEMAND");
+	cell.setCellValue("COST");
 
 	cell = row.createCell(columnCounter++);        //C5
 	cell.setCellValue("5_DISTANCE");
@@ -607,7 +607,7 @@ public void writeOutData(FileOutputStream out)
 		cell.setCellValue(theDepot.getCoordinates().getLatitude());
 
 		cell = row.createCell(columnCounter++);
-		cell.setCellValue(theDepot.getAttributes().getTotalDemand());
+		cell.setCellValue(theDepot.getAttributes().getTotalCost());
 
 		cell = row.createCell(columnCounter++);
 		cell.setCellValue(theDepot.getAttributes().getTotalDistance());
@@ -727,18 +727,18 @@ public void writeOutData(FileOutputStream out)
 
 					cell = row.createCell(columnCounter++);    //create new cell number X
 					cell.setCellValue(
-							theShipment.getIndex());    //set each cell value to the correct value from the linked list
+							theShipment.getNodeNumber());    //set each cell value to the correct value from the linked list
 
 					cell = row.createCell(columnCounter++);
-					cell.setCellValue(theShipment.getxCoord());
-
-
-					cell = row.createCell(columnCounter++);
-					cell.setCellValue(theShipment.getyCoord());
+					cell.setCellValue(theShipment.getCoordinates().getLongitude());
 
 
 					cell = row.createCell(columnCounter++);
-					cell.setCellValue(theShipment.getDemand());
+					cell.setCellValue(theShipment.getCoordinates().getLatitude());
+
+
+					cell = row.createCell(columnCounter++);
+					cell.setCellValue(NULL_VALUE);
 
 					cell = row.createCell(columnCounter++);
 					cell.setCellValue(NULL_VALUE);

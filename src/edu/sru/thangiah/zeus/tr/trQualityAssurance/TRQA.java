@@ -105,13 +105,12 @@ public TRQA(TRDepotsList mainDepots, TRShipmentsList mainShipments)
 //it writes the list of shipments and the current solution
 //then QA reads them back in for when doing data comparisons, etc.
 public void writeTempFiles() {
-	FileOutputStream out = null;
+    FileOutputStream out = null;
 	try {
 		//prepare to print out our TEMP shipment file
 		shipmentFile = new File(ProblemInfo.tempFileLocation + "/Temp_TR_Shipments.xlsx");
-		out = new FileOutputStream(shipmentFile);
-		//@todo
-		//		mainShipments.writeShipments(out);            //write the shipments list
+        out = new FileOutputStream(shipmentFile);
+        mainShipments.writeShipments(out);            //write the shipments list
 
 
 		//prepare to print out our TEMP solution file
@@ -143,6 +142,7 @@ public void writeTempFiles() {
 public void readShipmentFile()
 		throws IOException {
 	//VARIABLES
+    System.out.println(String.valueOf(shipmentFile) + "\t\t$#T^$%YH$%%^UY$%^HUY$^%UY%&^U$%^UJ%^HJU%^&JU%^&YHJU%^");
 	FileInputStream file = new FileInputStream(new File(String.valueOf(shipmentFile)));
 	XSSFWorkbook workbook = new XSSFWorkbook(file);        //create a workbook
 	XSSFSheet sheet = workbook.getSheetAt(0);            //get a worksheet

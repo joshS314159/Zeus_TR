@@ -32,7 +32,7 @@ private boolean isPickupOrder;
 private int     nodeNumber;
 private boolean isAssigned;
 private int     demand;
-private int     visitFrequency;
+private int     visitFrequency = 0;
 private String  pickupPointName;
 private int     requiredPreviousPickupPoint;
 

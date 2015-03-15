@@ -762,7 +762,7 @@ public void writeShortSolution(String file)
 		}
 	}
 	else {
-		out = new FileOutputStream(new File(ProblemInfo.outputPath + "short_solution_" + file));
+		out = new FileOutputStream(new File(ProblemInfo.outputPath + "TR_short_solution_" + file));
 		workbook = new XSSFWorkbook();
 		sheet = workbook.createSheet(file);
 	}
