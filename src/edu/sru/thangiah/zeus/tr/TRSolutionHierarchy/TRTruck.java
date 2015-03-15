@@ -46,7 +46,7 @@ private boolean isTruckOnRoad = false;
 private TRTruckType  truckType;
 private TRTruck      next;
 private TRTruck      previous;
-private TRAttributes attributes;
+    private TRAttributes  attributes = new TRAttributes();
 private TRDaysList daysSubList = new TRDaysList();
 private TRCoordinates homeDepotCoordinates;
 

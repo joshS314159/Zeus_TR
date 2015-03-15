@@ -4,6 +4,7 @@ package edu.sru.thangiah.zeus.tr.trCostFunctions;
 import edu.sru.thangiah.zeus.core.ProblemInfo;
 import edu.sru.thangiah.zeus.tr.TRProblemInfo;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRDay;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRDepot;
 
 
 /**
@@ -51,6 +52,7 @@ public double getTotalDistance(Object o) {
 @Override
 public void setTotalDistance(Object o) {
 	TRDay day = (TRDay) o;
+    float tempTest = (float) TRProblemInfo.nodesLLLevelCostF.getTotalDistance(day.getSubList());
 	day.getAttributes().setTotalDistance((float) TRProblemInfo.nodesLLLevelCostF.getTotalDistance(day.getSubList()));
 }//GETTER@Override
 
@@ -62,16 +64,16 @@ public void setTotalDistance(Object o) {
 public void calculateTotalsStats(Object o) {
 	//	setTotalDemand(o);
 	setTotalDistance(o);
-	//	setTotalCost(o);
+		setTotalCost(o);
 }
 
 
 
 
 public double getTotalCost(Object o) {
-	setTotalCost(o);
+    setTotalCost(o);
 
-	return ((TRDay) o).getAttributes().getTotalCost();
+    return ((TRDay) o).getAttributes().getTotalCost();
 }
 
 
@@ -96,7 +98,7 @@ public float getTotalDemand(Object o) {
 @Override
 public void setTotalCost(Object o) {
 	TRDay day = (TRDay) o;
-	day.getAttributes().setTotalCost(ProblemInfo.nodesLLLevelCostF.getTotalCost(day.getNodesLinkedList()));
+	day.getAttributes().setTotalCost(TRProblemInfo.nodesLLLevelCostF.getTotalCost(day.getSubList()));
 }
 
 

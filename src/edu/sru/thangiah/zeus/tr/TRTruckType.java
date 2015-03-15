@@ -106,6 +106,13 @@ public TRTruckType(int typeNumber, float maxDistance, float maxCapacity, String 
 
 	setFixedCost(getMaxCapacity());
 	setVariableCost((double) getMaxCapacity() / 1000);
+    setVariableCost(10000000);
 }//END CONSTRUCTOR *******************<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+//    public double getVariableCost() {
+//        return this.variableCost;
+//    }
 
 }

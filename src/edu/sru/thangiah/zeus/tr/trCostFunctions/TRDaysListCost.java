@@ -53,8 +53,8 @@ public double getTotalDistance(Object o) {
 public void setTotalDistance(Object o) {
 	TRDaysList daysList = (TRDaysList) o;
 	TRDay theDay = daysList.getFirst();
-//	daysList.getAttributes().getTotalDistance();
-    daysList.getAttributes().setTotalDistance(0);
+	daysList.getAttributes().getTotalDistance();
+//    daysList.getAttributes().setTotalDistance(0);
 
 	while(theDay != daysList.getTail()) {
 		if(!theDay.isSubListEmpty()) {
@@ -69,9 +69,9 @@ public void setTotalDistance(Object o) {
 
 
 public double getTotalCost(Object o) {
-	setTotalCost(o);
+    setTotalCost(o);
 
-	return ((TRDaysList) o).getAttributes().getTotalCost();
+    return ((TRDaysList) o).getAttributes().getTotalCost();
 }
 
 
@@ -82,7 +82,7 @@ public double getTotalCost(Object o) {
 public void calculateTotalsStats(Object o) {
 	//	setTotalDemand(o);
 	setTotalDistance(o);
-	//	setTotalCost(o);
+		setTotalCost(o);
 }
 
 
@@ -107,12 +107,13 @@ public float getTotalDemand(Object o) {
 @Override
 public void setTotalCost(Object o) {
 	TRDaysList daysList = (TRDaysList) o;
-	TRDay theDay = ((TRDaysList) o).getHead();
+	TRDay theDay = ((TRDaysList) o).getFirst();
 	double cost = 0;
 
-	while(theDay.getNext() != daysList.getTail()) {
-		theDay = theDay.getNext();
+	while(theDay != daysList.getTail()) {
+
 		cost += TRProblemInfo.daysLevelCostF.getTotalCost(theDay);
+        theDay = theDay.getNext();
 	}
 
 	daysList.getAttributes().setTotalCost(cost);

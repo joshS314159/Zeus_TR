@@ -15,7 +15,7 @@ public class TRNode
 private TRShipment theShipment = new TRShipment();
 private TRNode        next;
 private TRNode        previous;
-private TRAttributes  attributes;
+    private TRAttributes  attributes = new TRAttributes();
 private TRCoordinates homeDepotCoordinates;
 
 

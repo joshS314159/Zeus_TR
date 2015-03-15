@@ -70,13 +70,18 @@ public void setTotalDistance(Object o) {
 public void calculateTotalsStats(Object o) {
 	//	setTotalDemand(o);
 	setTotalDistance(o);
-	//	setTotalCost(o);
+		setTotalCost(o);
 }
 
 
+    @Override
+    public double getTotalCost(Object o) {
+        setTotalCost(o);
 
+        return ((TRTruck) o).getAttributes().getTotalCost();
+    }
 
-public float getTotalDemand(Object o) {
+    public float getTotalDemand(Object o) {
 	setTotalDemand(o);
 
 	return (int) ((TRTruck) o).getAttributes().getTotalDemand();

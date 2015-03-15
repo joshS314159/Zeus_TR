@@ -12,7 +12,7 @@ public class TRTrucksList
 		extends TruckLinkedList
 		implements java.io.Serializable, Cloneable, DoublyLinkedList {
 
-private TRAttributes attributes;
+    private TRAttributes  attributes = new TRAttributes();
 private TRTruck      head;
 private TRTruck      tail;
 
@@ -247,6 +247,36 @@ public boolean isValidHeadTail() {
 
 @Override
 public boolean insertShipment(final TRShipment theShipment) {
+//    boolean status = false;
+//    final int LARGE_INT = 999999999;
+//    int lowestDistance = LARGE_INT;
+//    TRTruck lowestTruck = null;
+//
+//    TRTruck theTruck = this.getFirst();
+//
+//
+//    while(theTruck != this.getTail()){
+//        TRTruck copyTruck = new TRTruck(theTruck);
+//
+//        if(copyTruck.insertShipment(theShipment)){
+//            TRProblemInfo.truckLLLevelCostF.calculateTotalsStats(this);
+//            final int DEPOT_DISTANCE = (int) copyTruck.getAttributes().getTotalDistance();
+//            if(DEPOT_DISTANCE < lowestDistance){
+//                lowestDistance = DEPOT_DISTANCE;
+//                lowestTruck = theTruck;
+//            }
+//        }
+//
+//        theTruck = theTruck.getNext();
+//    }
+//
+//    if(lowestDistance != LARGE_INT && lowestTruck != null){
+//        lowestTruck.insertShipment(theShipment);
+//        return true;
+//    }
+//    return false;
+//
+//
 	boolean status = false;
 
 	TRTruck theTruck = this.getFirst();

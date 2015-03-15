@@ -20,7 +20,7 @@ private TRTruckType truckType;
 private TRFeasibility feasibility = new TRFeasibility();
 private TRNode       head;
 private TRNode       tail;
-private TRAttributes attributes;
+    private TRAttributes  attributes = new TRAttributes();
 
 
 
@@ -274,7 +274,9 @@ public boolean isValidHeadTail() {
 }
 
 
-
+public boolean insertShipmentLast(final TRShipment theShipment){
+    return this.insertAfterLastIndex(new TRNode(theShipment));
+}
 
 //@Override
 public boolean insertShipment(final TRShipment theShipment) {

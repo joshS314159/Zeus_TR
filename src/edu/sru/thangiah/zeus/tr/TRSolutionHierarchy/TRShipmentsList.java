@@ -24,7 +24,7 @@ public class TRShipmentsList
 
 private TRShipment   head;
 private TRShipment   tail;
-private TRAttributes attributes;
+    private TRAttributes  attributes = new TRAttributes();
 
 
 

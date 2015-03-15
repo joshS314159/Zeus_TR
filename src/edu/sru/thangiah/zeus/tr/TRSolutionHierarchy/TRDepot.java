@@ -32,7 +32,7 @@ public class TRDepot
 private TRDepot next;
 private TRDepot previous;
 private TRTrucksList trucksSubList = new TRTrucksList();
-private TRAttributes  attributes;
+private TRAttributes  attributes = new TRAttributes();
 private TRCoordinates coordinates;
 //private int depotNumber;
 

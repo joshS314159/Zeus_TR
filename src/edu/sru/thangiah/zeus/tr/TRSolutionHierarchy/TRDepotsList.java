@@ -4,6 +4,7 @@ package edu.sru.thangiah.zeus.tr.TRSolutionHierarchy;
 import edu.sru.thangiah.zeus.core.DepotLinkedList;
 import edu.sru.thangiah.zeus.tr.TRAttributes;
 import edu.sru.thangiah.zeus.tr.TRProblemInfo;
+//import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Insertion.TRGreedyInsertionRevised;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -24,7 +25,7 @@ public class TRDepotsList
 //VARIABLES
 private TRDepot      head;     //takes precedence over the base class head and tail
 private TRDepot      tail;
-private TRAttributes attributes;     //takes precedence over the base class attributes
+    private TRAttributes  attributes = new TRAttributes();     //takes precedence over the base class attributes
 
 
 
@@ -236,18 +237,57 @@ public boolean isValidHeadTail() {
 //inserts a shipment
 @Override
 public boolean insertShipment(final TRShipment theShipment) {
-	boolean status = false;
+    return false;
 
-	TRDepot theDepot = this.getFirst();
+//    TRGreedyInsertionRevised insertion = new TRGreedyInsertionRevised();
+//
+//    insertion.getInsertShipment(this, theShipment);
+//
+//    return true;
+//	boolean status = false;
+//    final int LARGE_INT = 999999999;
+//    int lowestDistance = LARGE_INT;
+//    TRDepot lowestDepot = null;
+//
+//	TRDepot theDepot = this.getFirst();
+//
+//
+//    while(theDepot != this.getTail()){
+//        TRDepot copyDepot = new TRDepot(theDepot);
+//
+//        if(copyDepot.insertShipment(theShipment)){
+//            TRProblemInfo.depotLLLevelCostF.calculateTotalsStats(this);
+//            final int DEPOT_DISTANCE = (int) copyDepot.getAttributes().getTotalDistance();
+//            if(DEPOT_DISTANCE < lowestDistance){
+//               lowestDistance = DEPOT_DISTANCE;
+//                lowestDepot = theDepot;
+//            }
+//        }
+//
+//        theDepot = theDepot.getNext();
+//    }
+//
+//    if(lowestDistance != LARGE_INT && lowestDepot != null){
+//        lowestDepot.insertShipment(theShipment);
+//        return true;
+//    }
+//    return false;
+//
+//
+//
+//
+//	while(theDepot != this.getTail()) {
+//		if(theDepot.insertShipment(theShipment)) {
+//            if(theDepot.getAttributes().getTotalDistance() < lowestDistance){
+//                lowestDistance = (int) theDepot.getAttributes().getTotalDistance();
+//                lowestDepot = theDepot;
+//            }
+//            theDepot.
+//		}
+//		theDepot = theDepot.getNext();
+//	}
 
-	while(theDepot != this.getTail()) {
-		if(theDepot.insertShipment(theShipment)) {
-			return true;
-		}
-		theDepot = theDepot.getNext();
-	}
-
-	return false;
+//	return false;
 
 	/*
 	boolean status = false;
@@ -623,7 +663,7 @@ public void writeOutData(FileOutputStream out)
 
 			cell = row.createCell(columnCounter++);
 			/** @todo fix this...numberOfDays have a random -2 in here*/
-			cell.setCellValue(theTruck.getMainDays().getSize() - 2);
+			cell.setCellValue(theTruck.getSubList().getSize() - 2);
 
 			cell = row.createCell(9);
 			cell.setCellValue(NULL_VALUE);

@@ -38,6 +38,9 @@ public class TRAttributes
 		extends Attributes
 		implements java.io.Serializable, Cloneable {
 
+
+    private float totalDistance;
+
 public TRAttributes(final TRAttributes copyMe) {
 	setTotalDemand(copyMe.getTotalDemand());
 	setTotalDistance(copyMe.getTotalDistance());
@@ -58,6 +61,14 @@ public TRAttributes(final TRAttributes copyMe) {
 
 public TRAttributes() {
 }
+
+
+//    public boolean setTotalDistance(final float theTotalDistance){
+//        if(theTotalDistance >= 0) {
+//            this.totalDistance = theTotalDistance;
+//        }
+//        return false;
+//    }
 
 
 }

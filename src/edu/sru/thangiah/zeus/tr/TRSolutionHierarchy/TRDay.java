@@ -12,7 +12,7 @@ public class TRDay
 
 
 //VARIABLES
-private TRAttributes attributes;            //takes precedence over the base class attributes type
+private TRAttributes  attributes = new TRAttributes();            //takes precedence over the base class attributes type
 private TRDay        previous;    //takes precedence over the base class previous and next type
 private TRDay        next;
 private TRNodesList nodesSubList = new TRNodesList();

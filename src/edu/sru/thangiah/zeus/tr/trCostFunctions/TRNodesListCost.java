@@ -40,9 +40,9 @@ public class TRNodesListCost
 
 //GETTER
 public double getTotalCost(Object o) {
-	setTotalCost(o);
+    setTotalCost(o);
 
-	return ((TRNodesList) o).getAttributes().getTotalCost();
+    return ((TRNodesList) o).getAttributes().getTotalCost();
 }
 
 
@@ -73,8 +73,9 @@ public void setTotalCost(Object o) {
 	TRNodesList nodesList = (TRNodesList) o;
 	double cost = 0;
 
-	if(nodesList.getHead().getNext() != nodesList.getTail()) {
+	if(nodesList.getFirst() != nodesList.getTail()) {
 		cost = nodesList.getTruckType().getFixedCost();
+//        System.out.println("\n\nVARIABLE COST#$#$#$#$#$#$\t\t" + nodesList.getTruckType().getVariableCost());
 		cost += (nodesList.getTruckType().getVariableCost() * getTotalDistance(o));
 	}
 
@@ -142,6 +143,6 @@ public void setTotalDistance(Object o) {
 public void calculateTotalsStats(Object o) {
 //	setTotalDemand(o);
 	setTotalDistance(o);
-//	setTotalCost(o);
+	setTotalCost(o);
 }
 }

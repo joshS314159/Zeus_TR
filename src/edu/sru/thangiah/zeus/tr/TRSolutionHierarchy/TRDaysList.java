@@ -12,7 +12,7 @@ public class TRDaysList
 
 private TRDay        head;
 private TRDay        tail;
-private TRAttributes attributes;
+    private TRAttributes  attributes = new TRAttributes();
 private int          dayNumber;
 
 
@@ -239,6 +239,43 @@ public boolean isValidHeadTail() {
 
 @Override
 public boolean insertShipment(final TRShipment theShipment) {
+//    boolean status = false;
+//    final int LARGE_INT = 999999999;
+//    int lowestDistance = LARGE_INT;
+//    TRDay lowestDay = null;
+//
+//    TRDay theDay = this.getFirst();
+//
+//
+//    while(theDay != this.getTail()){
+//        TRDay copyDay = new TRDay(theDay);
+//
+//        if(copyDay.insertShipment(theShipment)){
+//            copyDay.getAttributes().getTotalDistance();
+//            TRProblemInfo.daysLLLevelCostF.calculateTotalsStats(this);
+//            final int DEPOT_DISTANCE = (int) copyDay.getAttributes().getTotalDistance();
+//            if(DEPOT_DISTANCE < lowestDistance){
+//                lowestDistance = DEPOT_DISTANCE;
+//                lowestDay = theDay;
+//            }
+//        }
+//
+//        theDay = theDay.getNext();
+//    }
+//
+//    if(lowestDistance != LARGE_INT && lowestDay != null){
+//        lowestDay.insertShipment(theShipment);
+//        return true;
+//    }
+//    return false;
+//
+//
+//
+//
+//
+//
+//
+//
 	boolean status = false;
 
 	TRDay theDay = this.getFirst();

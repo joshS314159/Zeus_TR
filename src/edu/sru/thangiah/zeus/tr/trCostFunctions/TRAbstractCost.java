@@ -106,10 +106,10 @@ public void setTotalScore(Object o) {
 
 
 //GETTER
-public void setTotalCost(Object o) {}
+//public void setTotalCost(Object o) {}
 
 
-public double getTotalCost(Object o) { return -1; }
+//public double getTotalCost(Object o) { return -1; }
 
 
 }

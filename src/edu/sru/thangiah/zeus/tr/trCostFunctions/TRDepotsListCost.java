@@ -77,13 +77,18 @@ public void setTotalDistance(Object o) {
 public void calculateTotalsStats(Object o) {
 	//	setTotalDemand(o);
 	setTotalDistance(o);
-	//	setTotalCost(o);
+		setTotalCost(o);
 }
 
 
+    @Override
+    public double getTotalCost(Object o) {
+        setTotalCost(o);
 
+        return ((TRDepotsList) o).getAttributes().getTotalCost();
+    }
 
-public float getTotalDemand(Object o) {
+    public float getTotalDemand(Object o) {
 	setTotalDemand(o);
 
 	return (int) ((TRDepotsList) o).getAttributes().getTotalDemand();
@@ -95,7 +100,7 @@ public float getTotalDemand(Object o) {
 //SETTER
 public void setTotalCost(Object o) {
 	TRDepotsList depotList = (TRDepotsList) o;
-	TRDepot theDepot = depotList.getHead();
+	TRDepot theDepot = depotList.getFirst();
 
 	double cost = 0;
 

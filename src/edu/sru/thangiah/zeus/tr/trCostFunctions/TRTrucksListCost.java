@@ -55,8 +55,8 @@ public void setTotalDistance(Object o) {
 	TRTrucksList truckList = (TRTrucksList) o;
 	TRTruck theTruck = truckList.getFirst();
 
-//	truckList.getAttributes().getTotalDistance();
-    truckList.getAttributes().setTotalDistance(0);
+	truckList.getAttributes().getTotalDistance();
+//    truckList.getAttributes().setTotalDistance(0);
 
 
 	while(theTruck != truckList.getTail()) {
@@ -77,13 +77,18 @@ public void setTotalDistance(Object o) {
 public void calculateTotalsStats(Object o) {
 	//	setTotalDemand(o);
 	setTotalDistance(o);
-	//	setTotalCost(o);
+		setTotalCost(o);
 }
 
 
+    @Override
+    public double getTotalCost(Object o) {
+        setTotalCost(o);
 
+        return ((TRTrucksList) o).getAttributes().getTotalCost();
+    }
 
-public float getTotalDemand(Object o) {
+    public float getTotalDemand(Object o) {
 	setTotalDemand(o);
 
 	return (int) ((TRTrucksList) o).getAttributes().getTotalDemand();
@@ -95,14 +100,14 @@ public float getTotalDemand(Object o) {
 //GETTER
 public void setTotalCost(Object o) {
 	TRTrucksList truckList = (TRTrucksList) o;
-	TRTruck theTruck = truckList.getHead();
+	TRTruck theTruck = truckList.getFirst();
 
 	truckList.getAttributes().setTotalCost(0);
 
 	while(theTruck != truckList.getTail()) {
-		if(!theTruck.isEmptyMainDays()) {
+		if(!theTruck.isSubListEmpty()) {
 			truckList.getAttributes()
-					 .setTotalCost(truckList.getAttributes().getTotalCost() + ProblemInfo.truckLevelCostF.
+					 .setTotalCost(truckList.getAttributes().getTotalCost() + TRProblemInfo.truckLevelCostF.
 																												 getTotalCost(
 																														 theTruck));
 		}

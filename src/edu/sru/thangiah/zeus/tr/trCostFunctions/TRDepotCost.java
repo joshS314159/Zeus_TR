@@ -2,8 +2,10 @@ package edu.sru.thangiah.zeus.tr.trCostFunctions;
 
 
 import edu.sru.thangiah.zeus.core.ProblemInfo;
+import edu.sru.thangiah.zeus.tr.TRAttributes;
 import edu.sru.thangiah.zeus.tr.TRProblemInfo;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRDepot;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRDepotsList;
 
 
 /**
@@ -55,7 +57,9 @@ public void setTotalDistance(Object o) {
 
     float totalDistance = (float) TRProblemInfo.truckLLLevelCostF.getTotalDistance(theDepot.getSubList());
     System.out.println("Total Distance:\t" + totalDistance);
-    theDepot.getAttributes().setTotalDistance(totalDistance);
+    TRAttributes depotAttributes = theDepot.getAttributes();
+    depotAttributes.setTotalDistance(totalDistance);
+//    theDepot.getAttributes().setTotalDistance(totalDistance);
 
 //	theDepot.getAttributes().setTotalDistance((float) TRProblemInfo.truckLLLevelCostF.getTotalDistance(theDepot.getSubList()));
 }
@@ -74,13 +78,18 @@ public void setTotalDistance(Object o) {
 public void calculateTotalsStats(Object o) {
 	//	setTotalDemand(o);
 	setTotalDistance(o);
-	//	setTotalCost(o);
+		setTotalCost(o);
 }
 
 
+    @Override
+    public double getTotalCost(Object o) {
+        setTotalCost(o);
 
+        return ((TRDepot) o).getAttributes().getTotalCost();
+    }
 
-public float getTotalDemand(Object o) {
+    public float getTotalDemand(Object o) {
 	setTotalDemand(o);
 
 	return (int) ((TRDepot) o).getAttributes().getTotalDemand();
@@ -92,7 +101,9 @@ public float getTotalDemand(Object o) {
 //SETTER
 public void setTotalCost(Object o) {
 	TRDepot theDepot = (TRDepot) o;
-	theDepot.getAttributes().setTotalCost(ProblemInfo.truckLLLevelCostF.getTotalCost(theDepot.getMainTrucks()));
+	theDepot.getAttributes().setTotalCost(TRProblemInfo.truckLLLevelCostF.getTotalCost(theDepot.getSubList()));
+
+    System.out.println("Total COST:\t" + theDepot.getAttributes().getTotalCost());
 }
 
 

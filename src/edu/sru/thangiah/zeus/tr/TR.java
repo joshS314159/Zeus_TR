@@ -368,6 +368,7 @@ public int readDataFromFile(final String TRFileName)
 	TRDaysList daysList = theTruck.getSubList();
 	for(int x = 0; x < TRProblemInfo.NUMBER_DAYS_SERVICED; x++) {
 		TRDay temporaryDay = new TRDay();
+        temporaryDay.setDayNumber(x);
 		temporaryDay.getSubList().setStartEndDepot(theDepot, theDepot);
 		temporaryDay.getSubList().setTruckType(new TRTruckType());
 		daysList.insertAfterLastIndex(temporaryDay);
@@ -455,7 +456,8 @@ public void createInitialRoutes()
 			System.out.print("");
 		}
 		*/
-		if(!mainDepots.insertShipment(theShipment)) {
+//		if(!mainDepots.insertShipment(theShipment)) {
+        if(!insertShipment(mainDepots, theShipment)){
 			//The selected shipment couldn't be inserted in the selected location
 			Settings.printDebug(Settings.COMMENT, "The Shipment: <" + theShipment.getNodeNumber() +
 												  "> cannot be routed " +
@@ -482,11 +484,75 @@ public void createInitialRoutes()
 // HERE*********<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
+    private boolean insertShipment(TRDepotsList depotsList, TRShipment insertMe){
+        stepThroughDepots(depotsList, insertMe);
+        return true;
+    }
+
+    private void stepThroughDepots(TRDepotsList depotsList, TRShipment insertMe) {
+        TRDepot theDepot = depotsList.getFirst();
+
+        while (theDepot != depotsList.getTail()) {
+            stepThroughTrucks(theDepot.getSubList(), insertMe);
+            theDepot = theDepot.getNext();
+        }
+    }
+
+
+    private void stepThroughTrucks(TRTrucksList trucksList, TRShipment insertMe) {
+        TRTruck theTruck = trucksList.getFirst();
+
+        while (theTruck != trucksList.getTail()) {
+            stepThroughDays(theTruck.getSubList(), insertMe);
+            theTruck = theTruck.getNext();
+        }
+    }
+
+    private void stepThroughDays(TRDaysList daysList, TRShipment insertMe) {
+
+        for(int i = 0; i < daysList.getSize(); i++){
+            if(insertMe.getDaysVisited()[i]){
+                appendShipment((TRNodesList) daysList.getAtIndex(i).getSubList(), insertMe);
+            }
+        }
+    }
+
+    private void appendShipment(TRNodesList nodesList, TRShipment insertMe){
+        nodesList.insertShipment(insertMe);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //METHOD
 //this prints all the routes to the console
-public void printRoutesToConsole() {
+public void printPVRPRoutesToConsole() {
 
 	//VARIABLES
 	int dayCount;
@@ -558,7 +624,7 @@ public void printRoutesToConsole() {
 					theShipment = theNode.getShipment();
 					//get the shipment
 
-					System.out.print(theShipment.getIndex() + "-");
+					System.out.print(theShipment.getNodeNumber() + "-");
 					//print the index
 					nodeCount++;
 				}
@@ -570,9 +636,52 @@ public void printRoutesToConsole() {
 	}
 }//PRINT ROUTES TO CONSOLE ENDS
 // HERE*******************<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-// HERE*******************<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
+
+public void printRoutesToConsole(){
+    System.out.println("\n|_____THE ROUTE___________________________________________\n");
+
+    final TRDepotsList depotsList = mainDepots;
+    final TRDepot depotTail = depotsList.getTail();
+    TRDepot depotStepper = depotsList.getFirst();
+
+    while(depotStepper != depotTail){
+        System.out.println("DEPOT #" + depotStepper.getDepotNum());
+
+        final TRTrucksList truckList = depotStepper.getSubList();
+        final TRTruck truckTail = truckList.getTail();
+        TRTruck truckStepper = truckList.getFirst();
+
+        while(truckStepper != truckTail){
+            System.out.println("\tTRUCK #" + truckStepper.getTruckNum());
+
+            final TRDaysList daysList = truckStepper.getSubList();
+            final TRDay dayTail = daysList.getTail();
+            TRDay dayStepper = daysList.getFirst();
+
+            while(dayStepper != dayTail){
+                System.out.println("\t\tDAY #" + dayStepper.getDayNumber());
+
+                final TRNodesList nodesList = dayStepper.getSubList();
+                final TRNode nodeTail = nodesList.getTail();
+                TRNode nodeStepper = nodesList.getFirst();
+
+                System.out.print("\t\t\t");
+                while(nodeStepper != nodeTail && nodeStepper != null) {
+                    System.out.print(nodeStepper.getShipment().getNodeNumber() + "-");
+                    nodeStepper = nodeStepper.getNext();
+                }
+                System.out.println();
+                dayStepper = dayStepper.getNext();
+            }
+            truckStepper = truckStepper.getNext();
+        }
+        depotStepper = depotStepper.getNext();
+    }
+
+
+}
 
 
 //METHOD

@@ -19,7 +19,7 @@ private TRShipment previous;
 private TRShipment next;
 private int        customerIndex;
 private boolean canBeRouted = false;
-private TRAttributes  attributes;
+    private TRAttributes  attributes = new TRAttributes();
 private TRCoordinates homeDepotCoordinates;
 private TRCoordinates coordinates;
 private int           numberOfBins;
