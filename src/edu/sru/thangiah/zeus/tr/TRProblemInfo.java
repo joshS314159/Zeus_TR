@@ -47,56 +47,58 @@ import edu.sru.thangiah.zeus.core.ProblemInfo;
 
 //CLASS
 public class TRProblemInfo
-		extends ProblemInfo {
+        extends ProblemInfo {
 
 
-public final static int NUMBER_DAYS_SERVICED            = 6;
-public final static int NUMBER_TRUCKS                   = 2;
-public final static int WORK_HOURS_PER_DAY              = 8;
-public static final int MAX_COMBINATIONS                = 1;
-public static final int NUMBER_DEPOTS                   = 1;
-public static final int NUMBER_COMBINATIONS             = 1;
-public static final int TRUCKS_OPERATING_SIMULTANEOUSLY = 1;
+    public final static int NUMBER_DAYS_SERVICED            = 6;
+    public final static int NUMBER_TRUCKS                   = 2;
+    public final static int WORK_HOURS_PER_DAY              = 8;
+    public static final int MAX_COMBINATIONS                = 1;
+    public static final int NUMBER_DEPOTS                   = 1;
+    public static final int NUMBER_COMBINATIONS             = 1;
+    public static final int TRUCKS_OPERATING_SIMULTANEOUSLY = 1;
 //NEEDED TO OVERRIDE THE DEFAULT VALUE (PVRP HAD VALUES GREATER
 //THAN VRP BY DR. SAM) -- WHAT THIS IS BASED ON
-/**
- * STATIC JUSTIFICATION
- * There is a cost function for each object
- * used in the hierarchy in base CostFunctions
- * but days the dayLinkedList didn't have one
- * <p/>
- * All file input and output paths and some file-
- * names are put here by default, so when adding
- * some inputs and outputs for comparison and long
- * solution it made sense to use it here
- * <p/>
- * We had to change the MAX_HORIZON simple because
- * our PVRP problems had a higher maximum horizon.
- */
+    /**
+     * STATIC JUSTIFICATION
+     * There is a cost function for each object
+     * used in the hierarchy in base CostFunctions
+     * but days the dayLinkedList didn't have one
+     * <p/>
+     * All file input and output paths and some file-
+     * names are put here by default, so when adding
+     * some inputs and outputs for comparison and long
+     * solution it made sense to use it here
+     * <p/>
+     * We had to change the MAX_HORIZON simple because
+     * our PVRP problems had a higher maximum horizon.
+     */
 
 //VARIABLES
-public static CostFunctions daysLLLevelCostF;
-//EACH OBJECT IN THE DEPOT HIERARCHY HAS ONE OF THESE
+    public static CostFunctions daysLLLevelCostF;
+    //EACH OBJECT IN THE DEPOT HIERARCHY HAS ONE OF THESE
 //EXCEPT, OUT OF WHAT WE USED, DAYS
-public static CostFunctions daysLevelCostF;
-//CONTAINS THE PATH TO OUR COMPARE-TO FILE
-public static String compareToInputPath      = new String();
-//CONTAINS THE PATH TO OUR COMPARE-TO FILENAME
-public static String compareToInputFile      = new String();
-//CONTAINS THE FILENAME OF OUR COMPARISON TO US OUTPUT
-public static String comparisonOutputFile    = new String();
-//CONTAINS THE NAME OF THE SHORT SOLUTION OUTPUT FILE
-public static String shortSolutionOutputFile = new String();
-//CONTAINS THE NAME OF THE SHORT SOLUTION INPUT FILE
-public static String longSolutionOutputFile  = new String();
+    public static CostFunctions daysLevelCostF;
+    //CONTAINS THE PATH TO OUR COMPARE-TO FILE
+    public static String compareToInputPath      = new String();
+    //CONTAINS THE PATH TO OUR COMPARE-TO FILENAME
+    public static String compareToInputFile      = new String();
+    //CONTAINS THE FILENAME OF OUR COMPARISON TO US OUTPUT
+    public static String comparisonOutputFile    = new String();
+    //CONTAINS THE NAME OF THE SHORT SOLUTION OUTPUT FILE
+    public static String shortSolutionOutputFile = new String();
+    //CONTAINS THE NAME OF THE SHORT SOLUTION INPUT FILE
+    public static String longSolutionOutputFile  = new String();
+
+    public static String penaltiesInputFile = new String();
 
 
 
 
-TRProblemInfo() {
+    TRProblemInfo() {
 
 
-}
+    }
 
 
 }
