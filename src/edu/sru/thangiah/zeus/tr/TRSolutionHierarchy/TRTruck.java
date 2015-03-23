@@ -130,7 +130,10 @@ public TRTruck() {
 	setAttributes(new TRAttributes());
 }
 
-
+    public String toString() {
+        String s = "#" + 1 + " "/* + " Time" + this.truckType.getMaxCapacity() + " Max Dist =" + this.truckType.getMaxDistance()*/;
+        return s;
+    }
 
 
 public void setTruckType(final TRTruckType truckType) {

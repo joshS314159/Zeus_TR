@@ -38,6 +38,12 @@ public TRCoordinates getHomeDepotCoordinates() {
 }
 
 
+    public String toString()
+    {
+        String s = "#" + this.dayNumber;
+
+        return s;
+    }
 
 
 public void setHomeDepotCoordinates(final TRCoordinates homeDepotCoordinates) {

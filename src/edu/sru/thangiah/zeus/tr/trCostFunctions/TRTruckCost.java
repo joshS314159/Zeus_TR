@@ -1,6 +1,7 @@
 package edu.sru.thangiah.zeus.tr.trCostFunctions;
 
 
+import edu.sru.thangiah.zeus.tr.TRAttributes;
 import edu.sru.thangiah.zeus.tr.TRProblemInfo;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRTruck;
 
@@ -45,16 +46,26 @@ public double getTotalDistance(Object o) {
 	return ((TRTruck) o).getAttributes().getTotalDistance();
 }//GETTER
 
+    @Override
+    public double getTotalTravelTime(Object o) {
+        setTotalTravelTime(o);
+
+        return ((TRTruck) o).getAttributes().getTotalTravelTime();
+    }
 
 
-
-//SETTER
+    //SETTER
 public void setTotalDistance(Object o) {
 	TRTruck truck = (TRTruck) o;
 	truck.getAttributes().setTotalDistance(TRProblemInfo.daysLLLevelCostF.getTotalDistance(truck.getSubList()));
 
 }
 
+    @Override
+    public void setTotalTravelTime(Object o) {
+        TRTruck theTruck = (TRTruck) o;
+        theTruck.getAttributes().setTotalTravelTime(TRProblemInfo.daysLLLevelCostF.getTotalTravelTime(theTruck.getSubList()));
+    }
 
 
 //GETTERpublic double getTotalCost(Object o) {

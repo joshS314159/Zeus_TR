@@ -2,6 +2,7 @@ package edu.sru.thangiah.zeus.tr.trCostFunctions;
 
 
 import edu.sru.thangiah.zeus.core.CostFunctions;
+import edu.sru.thangiah.zeus.tr.TRPenaltiesList;
 
 
 /**
@@ -35,6 +36,7 @@ import edu.sru.thangiah.zeus.core.CostFunctions;
 abstract public class TRAbstractCost
 		implements CostFunctions {
 
+    private TRPenaltiesList penaltiesList;
 /**
  * Methods not used by TR in the computation of cost can be declared
  * here with dummy methods. Then have the cost functions in the TR
@@ -42,12 +44,10 @@ abstract public class TRAbstractCost
  */
 
 
-public double getTotalTravelTime(Object o) {
-
-	return -1;
-}
-
-
+//public double getTotalTravelTime(Object o) {
+//
+//	return -1;
+//}
 
 
 public double getMaxTravelTime(Object o) {
@@ -55,8 +55,17 @@ public double getMaxTravelTime(Object o) {
 	return -1;
 }
 
+public void setPenaltiesList(final TRPenaltiesList penaltiesList){
+    this.penaltiesList = penaltiesList;
+}
 
-//SETTER
+public TRPenaltiesList getPenaltiesList(){
+        return this.penaltiesList;
+    }
+
+
+
+    //SETTER
 public void setTotalDemand(Object o) {
 
 }
@@ -82,9 +91,9 @@ public float getTotalScore(Object o) {
 
 
 
-public void setTotalTravelTime(Object o) {
-
-}
+//public void setTotalTravelTime(Object o) {
+//
+//}
 
 
 

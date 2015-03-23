@@ -2,6 +2,7 @@ package edu.sru.thangiah.zeus.tr.trCostFunctions;
 
 
 import edu.sru.thangiah.zeus.core.ProblemInfo;
+import edu.sru.thangiah.zeus.tr.TRPenaltiesList;
 import edu.sru.thangiah.zeus.tr.TRProblemInfo;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRDepot;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRDepotsList;
@@ -47,10 +48,15 @@ public double getTotalDistance(Object o) {
 	return ((TRDepotsList) o).getAttributes().getTotalDistance();
 }//GETTER
 
+    @Override
+    public double getTotalTravelTime(Object o) {
+        setTotalTravelTime(o);
+
+        return ((TRDepotsList) o).getAttributes().getTotalTravelTime();
+    }
 
 
-
-//SETTER
+    //SETTER
 public void setTotalDistance(Object o) {
 	TRDepotsList depotList = (TRDepotsList) o;
 	TRDepot theDepot = depotList.getFirst();
@@ -66,6 +72,20 @@ public void setTotalDistance(Object o) {
 	}
 }
 
+    @Override
+    public void setTotalTravelTime(Object o) {
+        TRDepotsList depotsList = (TRDepotsList) o;
+        TRDepot theDepot = depotsList.getFirst();
+
+        depotsList.getAttributes().setTotalTravelTime(0);
+
+        while(theDepot != depotsList.getTail()){
+            if(!theDepot.isSubListEmpty()){
+                depotsList.getAttributes().setTotalTravelTime(depotsList.getAttributes().getTotalTravelTime() + (float) TRProblemInfo.depotLevelCostF.getTotalTravelTime(theDepot));
+            }
+            theDepot = theDepot.getNext();
+        }
+    }
 
 
 //GETTERpublic double getTotalCost(Object o) {
@@ -78,6 +98,16 @@ public void calculateTotalsStats(Object o) {
 	//	setTotalDemand(o);
 	setTotalDistance(o);
 		setTotalCost(o);
+    setTotalTravelTime(o);
+}
+
+
+//CONSTRUCTOR
+public void calculateTotalsStats(Object o, final TRPenaltiesList penaltiesList) {
+    //	setTotalDemand(o);
+    setTotalDistance(o);
+    setTotalCost(o);
+    setPenaltiesList(penaltiesList);
 }
 
 

@@ -8,6 +8,7 @@ import java.util.*;
 import com.brunchboy.util.swing.relativelayout.*;
 import edu.sru.thangiah.zeus.core.*;
 import edu.sru.thangiah.zeus.pvrp.*;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.*;
 
 import java.io.File;
 
@@ -87,7 +88,7 @@ public class DepotFrame extends JInternalFrame {
             });
         toolbar.add(rdisplay);
 
-        tree = makeTree((PVRPDepotLinkedList) mainDepots);
+        tree = makeTree((TRDepotsList) mainDepots);
         depotScrollPane = new JScrollPane(tree);
 
         this.getContentPane().add(toolbar, "toolbar");
@@ -118,51 +119,51 @@ public class DepotFrame extends JInternalFrame {
      * @param d the depot linked list
      * @return a tree of the depot linked list
      */
-    private JTree makeTree(PVRPDepotLinkedList d) {
+    private JTree makeTree(TRDepotsList d) {
         DefaultMutableTreeNode root = new DefaultMutableTreeNode(
                 "The Depot Linked List");
-        PVRPDepot tempDepot = d.getHead().getNext();
+        TRDepot tempDepot = d.getFirst();
         String pointInfo = "";
         int nextIndex = 0, prevIndex = 0;
 
 
         while (tempDepot != d.getTail()) {
             DefaultMutableTreeNode tempDNode = new DefaultMutableTreeNode(tempDepot.toString());
-            PVRPTruck tempTruck = tempDepot.getMainTrucks().getHead().getNext();
+            TRTruck tempTruck = tempDepot.getSubList().getFirst();
 
-            while (tempTruck != tempDepot.getMainTrucks().getTail()) {
+            while (tempTruck != tempDepot.getSubList().getTail()) {
 	            DefaultMutableTreeNode tempTNode = new DefaultMutableTreeNode(tempTruck.toString());
-                if (!tempTruck.isEmptyMainDays()) {
+                if (!tempTruck.isSubListEmpty()) {
+                    TRDaysList daysList = tempTruck.getSubList();
+	                TRDay tempDay = daysList.getFirst();
 
-	                PVRPDay tempDay = tempTruck.getMainDays().getHead().getNext();
-
-	                while(tempDay != tempTruck.getMainDays().getTail()) {
+	                while(tempDay != tempTruck.getSubList().getTail()) {
 		                DefaultMutableTreeNode tempDayNode = new DefaultMutableTreeNode(tempDay.toString());
 
 
-		                PVRPNodes point = tempDay.getNodesLinkedList().getHead();
-		                int dayNumber = tempDay.getIndex();
+		                TRNode point = tempDay.getSubList().getHead();
+		                int dayNumber = daysList.getIndexOfObject(tempDay);
 
 		                while (true) {
-			                if (point.getPrev() == tempDay.getNodesLinkedList().getHead())
+			                if (point.getPrev() == tempDay.getSubList().getHead())
 				                prevIndex = 0;
-			                else if (point.getNext() == tempDay.getNodesLinkedList().getTail())
+			                else if (point.getNext() == tempDay.getSubList().getTail())
 				                nextIndex = -1;
-			                else if (point == tempDay.getNodesLinkedList().getHead()){
-				                nextIndex = point.getNext().getIndex();
+			                else if (point == tempDay.getSubList().getHead()){
+				                nextIndex = point.getNext().getShipment().getCustomerIndex();
 				                prevIndex = -1;
 			                }
-			                else if (point == tempDay.getNodesLinkedList().getTail()){
+			                else if (point == tempDay.getSubList().getTail()){
 				                nextIndex = 0;
-				                prevIndex = point.getPrev().getIndex();
+				                prevIndex = ((TRNode) point.getPrevious()).getIndex();
 			                }
 			                else {
 				                nextIndex = point.getNext().getIndex();
-				                prevIndex = point.getPrev().getIndex();
+				                prevIndex = ((TRNode) point.getPrevious()).getIndex();
 			                }
 
-			                pointInfo = "#" + point.getIndex() + " | Demand: " +
-					                point.getDemand() + " | Prev: " + prevIndex +
+			                pointInfo = "#" + point.getShipment().getCustomerIndex() + /*" | Demand: " +
+					                point.getDemand() +*/ " | Prev: " + prevIndex +
 					                " | Next: " + nextIndex;
 
 			                DefaultMutableTreeNode tempPNode = new DefaultMutableTreeNode(pointInfo);
@@ -171,7 +172,7 @@ public class DepotFrame extends JInternalFrame {
 //			                DefaultMutableTreeNode tempPNode = new DefaultMutableTreeNode(pointInfo);
 //			                tempTNode.add(tempPNode);
 
-			                if(point == tempDay.getNodesLinkedList().getTail()){
+			                if(point == tempDay.getSubList().getTail()){
 				                break;
 			                }
 
@@ -193,7 +194,7 @@ public class DepotFrame extends JInternalFrame {
 
         JTree tree = new JTree(root);
 
-        //tree.setCellRenderer(new CustomCellRenderer());
+        tree.setCellRenderer(new CustomCellRenderer());
         return tree;
     }
 
@@ -240,7 +241,7 @@ public class DepotFrame extends JInternalFrame {
      */
     public void refreshDisplay(DepotLinkedList mD) {
         mainDepots = mD;
-        tree = makeTree((PVRPDepotLinkedList) mainDepots);
+        tree = makeTree((TRDepotsList) mainDepots);
         depotScrollPane.setViewportView(tree);
     }
 }

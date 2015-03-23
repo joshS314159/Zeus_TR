@@ -45,21 +45,30 @@ public double getTotalDistance(Object o) {
 	return ((TRDay) o).getAttributes().getTotalDistance();
 }//GETTER
 
+    @Override
+    public double getTotalTravelTime(Object o) {
+        setTotalTravelTime(o);
+
+        return ((TRDay) o).getAttributes().getTotalTravelTime();
+    }
 
 
-
-//SETTER
+    //SETTER
 @Override
 public void setTotalDistance(Object o) {
 	TRDay day = (TRDay) o;
-    float tempTest = (float) TRProblemInfo.nodesLLLevelCostF.getTotalDistance(day.getSubList());
 	day.getAttributes().setTotalDistance((float) TRProblemInfo.nodesLLLevelCostF.getTotalDistance(day.getSubList()));
 }//GETTER@Override
 
+    @Override
+    public void setTotalTravelTime(Object o) {
+        TRDay theDay = (TRDay) o;
+        theDay.getAttributes().setTotalTravelTime(TRProblemInfo.nodesLLLevelCostF.getTotalTravelTime(theDay.getSubList()));
+
+    }
 
 
-
-//CONSTRUCTOR
+    //CONSTRUCTOR
 @Override
 public void calculateTotalsStats(Object o) {
 	//	setTotalDemand(o);

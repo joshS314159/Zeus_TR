@@ -5,6 +5,10 @@ import com.brunchboy.util.swing.relativelayout.*;
 import edu.sru.thangiah.zeus.core.*;
 import edu.sru.thangiah.zeus.gui.checkboxtree.CheckTreeNode;
 import edu.sru.thangiah.zeus.gui.checkboxtree.JCheckTree;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRDay;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRDepot;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRDepotsList;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRTruck;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -166,10 +170,10 @@ public class ZRDMouseMotionListener
  * @param mainDepots depot linked list to show
  * @return the jtree
  */
-private JCheckTree createTree(DepotLinkedList mainDepots) {
+private JCheckTree createTree(TRDepotsList mainDepots) {
 	CheckTreeNode root = new CheckTreeNode(mainDepots, true);
 
-	Depot depot = mainDepots.getHead().getNext();
+	TRDepot depot = mainDepots.getFirst();
 	int colorCounter = 0;
 
 	while (depot != mainDepots.getTail()) {
@@ -181,13 +185,13 @@ private JCheckTree createTree(DepotLinkedList mainDepots) {
 			}
 		});
 
-		Truck truck = depot.getMainTrucks().getHead().getNext();
+		TRTruck truck = depot.getSubList().getFirst();
 
-		while (truck != depot.getMainTrucks().getTail()) {
+		while (truck != depot.getSubList().getTail()) {
 			CheckTreeNode tnode = new CheckTreeNode(truck, true);
 
 
-			Day day = truck.getMainDays().getHead().getNext();
+			TRDay day = truck.getSubList().getFirst();
 			Color truckColor = new Color(Color.HSBtoRGB(
 					(float) colorCounter++ / (float) mainDepots.getNumTrucksUsed(),
 					1, 1));
@@ -197,7 +201,7 @@ private JCheckTree createTree(DepotLinkedList mainDepots) {
 					RDFPanel.repaint();
 				}
 			});
-			while (day != truck.getMainDays().getTail()) {
+			while (day != truck.getSubList().getTail()) {
 				CheckTreeNode dynode = new CheckTreeNode(day, true);
 
 //				dynode.setColor(truckColor);

@@ -1,6 +1,8 @@
 package edu.sru.thangiah.zeus.tr.trCostFunctions;
 
 
+import edu.sru.thangiah.zeus.tr.TRPenaltiesList;
+import edu.sru.thangiah.zeus.tr.TRProblemInfo;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRNode;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRNodesList;
 
@@ -46,6 +48,11 @@ public double getTotalCost(Object o) {
 }
 
 
+    public void setPenaltiesList(final TRPenaltiesList penaltiesList){
+        this.setPenaltiesList(penaltiesList);
+    }
+
+
 
 
 //GETTER
@@ -65,10 +72,15 @@ public double getTotalDistance(Object o) {
 	return ((TRNodesList) o).getAttributes().getTotalDistance();
 }
 
+    @Override
+    public double getTotalTravelTime(Object o) {
+        setTotalTravelTime(o);
+
+        return ((TRNodesList) o).getAttributes().getTotalTravelTime();
+    }
 
 
-
-//SETTER
+    //SETTER
 public void setTotalCost(Object o) {
 	TRNodesList nodesList = (TRNodesList) o;
 	double cost = 0;
@@ -122,24 +134,96 @@ public void setTotalDistance(Object o) {
         rightNode = rightNode.getNext();
     }
 
-
-//	float distance = 0;
-//	do {
-//		leftNode = rightNode;
-//		rightNode = rightNode.getNext();
-//
-//		distance += (float) leftNode.getCoordinates().calculateDistanceThisMiles(rightNode.getCoordinates());
-//
-//
-//	} while(rightNode != nodesList.getTail() && rightNode != null);
-
 	nodesList.getAttributes().setTotalDistance(distance);
 }
 
+    @Override
+    public void setTotalTravelTime(Object o) {
+        TRNodesList nodesList = (TRNodesList) o;
+        TRNode leftNode = nodesList.getHead();
+        TRNode rightNode = nodesList.getFirst();
+        TRPenaltiesList penaltiesListCopy = new TRPenaltiesList(TRProblemInfo.mainPenalties);
+
+        int totalDelay = 0;
+
+        if(nodesList == null) {
+            System.out.println();
+        }
+
+        float distance = 0;
+
+        while(rightNode != null){
+            distance += leftNode.getCoordinates().calculateDistanceThisMiles(rightNode.getCoordinates());
+
+            leftNode = rightNode;
+            rightNode = rightNode.getNext();
+
+
+            if(TRProblemInfo.addPenaltyPerBin) {
+                totalDelay += (leftNode.getShipment().getDelayType().getDelayTimeInMinutes() * leftNode.getShipment().getNumberOfBins());
+            }
+            else{
+                totalDelay += (leftNode.getShipment().getDelayType().getDelayTimeInMinutes());
+            }
+        }
+
+//        nodesList.getAttributes().setTotalDistance(distance);
+
+        int totalTravelTime = (int) (distance / (TRProblemInfo.averageVelocity / 60.0));
+
+
+        int startTimeInMinutes = (TRProblemInfo.startHour * 60) + TRProblemInfo.startMinute;
+        int endTimeInMinutes = startTimeInMinutes + totalTravelTime + totalDelay;
+
+        System.out.println("Total travel time without time-range penalties and delays:\t" + (totalTravelTime) + " minutes");
+        System.out.println("Total travel time without time-range penalties:\t" + (endTimeInMinutes - startTimeInMinutes) + " minutes");
+
+        int endHourTime = endTimeInMinutes / 60;
+        int endMinuteTime = endTimeInMinutes % 60;
+
+        int totalPenalty = penaltiesListCopy.getPenaltyTimeForRange(TRProblemInfo.startHour, TRProblemInfo.startMinute, endHourTime, endMinuteTime);
+
+
+        int penalty = -1;
+        int startHourTime = -1;
+        int startMinuteTime = -1;
+        while(penalty != 0){
+            startTimeInMinutes = endTimeInMinutes + 1;
+            endTimeInMinutes = startTimeInMinutes + totalPenalty;
+
+            startHourTime = startTimeInMinutes / 60;
+            startMinuteTime = startTimeInMinutes % 60;
+
+            endHourTime = endTimeInMinutes / 60;
+            endMinuteTime = endTimeInMinutes % 60;
+
+
+            penalty = penaltiesListCopy.getPenaltyTimeForRange(startHourTime, startMinuteTime, endHourTime, endMinuteTime);
+            totalPenalty += penalty;
+        }
+
+        startHourTime = TRProblemInfo.startHour;
+        startMinuteTime = TRProblemInfo.startMinute;
+        startTimeInMinutes = (startHourTime * 60) + startMinuteTime;
+
+        endTimeInMinutes = startTimeInMinutes + totalPenalty + totalDelay + totalTravelTime;
+
+        totalTravelTime = endTimeInMinutes - startTimeInMinutes;
+
+
+        System.out.println("Total travel time:\t" + totalTravelTime + " minutes");
+        nodesList.getAttributes().setTotalTravelTime(totalTravelTime);
 
 
 
-//CONSTRUCTOR
+    }
+
+
+
+
+
+
+    //CONSTRUCTOR
 public void calculateTotalsStats(Object o) {
 //	setTotalDemand(o);
 	setTotalDistance(o);

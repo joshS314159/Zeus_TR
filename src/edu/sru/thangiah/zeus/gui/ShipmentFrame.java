@@ -2,6 +2,9 @@ package edu.sru.thangiah.zeus.gui;
 
 import com.borland.jbcl.layout.*;
 import edu.sru.thangiah.zeus.core.*;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRShipment;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRShipmentsList;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -31,7 +34,7 @@ public class ShipmentFrame
    * Constructor
    * @param mS the shipment linked list to display
    */
-  public ShipmentFrame(ShipmentLinkedList mS) {
+  public ShipmentFrame(TRShipmentsList mS) {
     super(ZeusGuiInfo.shipmentPaneTitle, true, false, false, true);
     mainShipments = mS;
 
@@ -48,7 +51,7 @@ public class ShipmentFrame
    * @throws Exception error
    */
   private void jbInit() throws Exception {
-    tree = makeTree(mainShipments);
+    tree = makeTree((TRShipmentsList) mainShipments);
     treeScrollPane = new JScrollPane(tree);
     this.getContentPane().add(treeScrollPane, BorderLayout.CENTER);
     this.setSize(400, 600);
@@ -59,26 +62,26 @@ public class ShipmentFrame
    * @param s the shipment linked list
    * @return a tree of the depot linked list
    */
-  private JTree makeTree(ShipmentLinkedList s) {
+  private JTree makeTree(TRShipmentsList s) {
     DefaultMutableTreeNode root = new DefaultMutableTreeNode(
         "The Shipment Linked List");
-    Shipment shipment = s.getHead();
+    TRShipment shipment = s.getHead();
     String shipInfo = "";
     int nextIndex = 0, prevIndex = 0;
 
-    while (shipment != null) {
-      if(shipment.getPrev() == null)
+    while (shipment != s.getTail()) {
+      if(shipment.getPrevious() == null)
         prevIndex = -1;
       else if(shipment.getNext() == null)
         nextIndex = -1;
       else {
-        nextIndex = shipment.getNext().getIndex();
-        prevIndex = shipment.getPrev().getIndex();
+        nextIndex = ((TRShipment) shipment.getNext()).getNodeNumber();
+         prevIndex = ((TRShipment) shipment.getPrevious()).getNodeNumber();
+//          prevIndex = shipment.getPrevious().get
       }
 
-      shipInfo = "#" + shipment.getIndex() + "(" + shipment.getXCoord() + "," +
-          shipment.getYCoord() + ") | Demand: " +
-          shipment.getDemand() + " | Prev: " + prevIndex +
+      shipInfo = "#" + shipment.getIndex() + "(" + shipment.getCoordinates().getLongitude() + "," +
+          shipment.getCoordinates().getLatitude() + ") |  Prev: " + prevIndex +
           " | Next: " + nextIndex;
       DefaultMutableTreeNode ship = new DefaultMutableTreeNode(shipInfo);
       root.add(ship);

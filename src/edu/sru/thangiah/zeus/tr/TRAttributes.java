@@ -39,7 +39,7 @@ public class TRAttributes
 		implements java.io.Serializable, Cloneable {
 
 
-    private float totalDistance;
+    private int totalPenaltiesTime;
 
 public TRAttributes(final TRAttributes copyMe) {
 	setTotalDemand(copyMe.getTotalDemand());
@@ -61,6 +61,20 @@ public TRAttributes(final TRAttributes copyMe) {
 
 public TRAttributes() {
 }
+
+
+    public boolean setTotalPenaltiesTime(final int totalPenaltiesTime){
+        if(totalPenaltiesTime >= 0){
+            this.totalPenaltiesTime = totalPenaltiesTime;
+            return true;
+        }
+        return false;
+    }
+
+    public int getTotalPenaltiesTime(){
+        return totalPenaltiesTime;
+    }
+
 
 
 //    public boolean setTotalDistance(final float theTotalDistance){

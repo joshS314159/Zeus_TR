@@ -52,7 +52,9 @@ public TRCoordinates getCoordinates() {
 	return this.coordinates;
 }
 
-
+    public String toString() {
+        return "#" + 1 + " (" + this.getCoordinates().getLongitude() + ", " + this.getCoordinates().getLatitude() + ")" + this.attributes;
+    }
 
 
 private void setCoordinates(final TRCoordinates coordinates) {

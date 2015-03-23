@@ -5,6 +5,7 @@ package edu.sru.thangiah.zeus.tr;
 
 import edu.sru.thangiah.zeus.core.ProblemInfo;
 import edu.sru.thangiah.zeus.core.Settings;
+import edu.sru.thangiah.zeus.gui.ZeusGui;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Insertion.TRGreedyInsertion;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.*;
 import edu.sru.thangiah.zeus.tr.trQualityAssurance.TRQA;
@@ -16,6 +17,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
+import java.text.DecimalFormat;
 import java.util.Iterator;
 import java.util.Vector;
 
@@ -62,8 +64,9 @@ public class TR {
     private TRShipmentsList mainShipments = new TRShipmentsList();
 
     private TRDepotsList mainDepots = new TRDepotsList();
+    private TRDelayTypeList mainDelays = new TRDelayTypeList();
 
-    private TRPenaltiesList mainPenalties = new TRPenaltiesList();
+//    private TRPenaltiesList mainPenalties = new TRPenaltiesList();
 //depots linked list for the VRP problem
 
     private boolean isMakeSeparateFile;
@@ -88,12 +91,17 @@ public class TR {
         //Truck types are placed into a vector
 
         //READ DATA
-        readDataFromFile(TRProblemInfo.inputPath + dataFile);                          //reads data from file
-        Settings.printDebug(Settings.COMMENT,
-                "Read Data File: " + TRProblemInfo.inputPath + dataFile);    //store some debug data
+
         printDataToConsole();
         //prints the routes to the console
+        System.out.println("reading penalties");
         readPenaltiesFromFile();
+        System.out.println("reading delays");
+        readDelayTypesFromFile();
+
+        Settings.printDebug(Settings.COMMENT,
+                "Read Data File: " + TRProblemInfo.inputPath + dataFile);    //store some debug data
+        readDataFromFile(TRProblemInfo.inputPath + dataFile);                          //reads data from file
 
 
         //PROCESS PREPARATION
@@ -175,13 +183,13 @@ public class TR {
         //long solution is far more detailed than short solution; both can be useful
 
 
-        compareResults(dataFile);
+//        compareResults(dataFile);
         //writes an Excel file that compares our results to some results
         //from various research papers
 
         //	System.out.println("\nLAUNCHING GUI\n");
         //
-        //			new ZeusGui(mainDepots, mainShipments);
+        			new ZeusGui(mainDepots, mainShipments);
 
 
     } //PVRP ENDS
@@ -189,6 +197,38 @@ public class TR {
 
 
 //public PVRP(String dataFile, boolean isMakeSeparateFile, Object selectionTypeObject, int moreStuffHere){}
+
+    public void readDelayTypesFromFile() throws IOException {
+        final int DELAY_NAME = 0;
+        final int DELAY_LENGTH = 1;
+
+        final FileInputStream file = new FileInputStream(new File(TRProblemInfo.inputPath + TRProblemInfo.delayTypesInputFile));
+
+        XSSFWorkbook workbook = new XSSFWorkbook(file);
+        XSSFSheet sheet = workbook.getSheetAt(0);
+        Row row;
+        Cell cell;
+
+        for (int rowCounter = 1; rowCounter < sheet.getPhysicalNumberOfRows(); rowCounter++) {
+            row = sheet.getRow(rowCounter);
+            TRDelayType theDelay = new TRDelayType();
+            for (int columnCounter = 0; columnCounter < row.getPhysicalNumberOfCells(); columnCounter++) {
+                cell = row.getCell(columnCounter);
+                switch (columnCounter) {
+                    case DELAY_NAME:
+                        cell.setCellType(Cell.CELL_TYPE_STRING);
+                        theDelay.setDelayTypeName(cell.getStringCellValue());
+                        break;
+                    case DELAY_LENGTH:
+                        cell.setCellType(Cell.CELL_TYPE_NUMERIC);
+                        theDelay.setDelayTimeInMinutes((int) cell.getNumericCellValue());
+                        break;
+                }
+
+            }
+            mainDelays.insertAfterLastIndex(theDelay);
+        }
+    }
 
 
     public void readPenaltiesFromFile() throws IOException {
@@ -216,16 +256,20 @@ public class TR {
                         thePenalty.setBuildingType(cell.getStringCellValue());
                         break;
                     case START_TIME:
-                        cell.setCellType(Cell.CELL_TYPE_STRING);
-                        String theStartTime = cell.getStringCellValue();
-                        String[] startTime = theStartTime.split(":");
-                        if(startTime.length == 2){
-                            int hour = Integer.parseInt(startTime[0]);
+                        String startTime;
+                        if(DateUtil.isCellDateFormatted(cell)) {
+                            startTime = new DataFormatter().formatCellValue(cell);
+                        } else {
+                            startTime = String.valueOf((int) (cell.getNumericCellValue()));
+                        }
+                        String[] startTimeSplit = startTime.split(":");
+                        if(startTimeSplit.length == 2){
+                            int hour = Integer.parseInt(startTimeSplit[0]);
                             if(hour >= 0 && hour <= 23){
                                 thePenalty.setStartHour(hour);
                             }
 
-                            int minute = Integer.parseInt(startTime[1]);
+                            int minute = Integer.parseInt(startTimeSplit[1]);
                             if(minute >= 0 && minute <= 59){
                                 thePenalty.setStartMinute(minute);
                             }
@@ -235,16 +279,20 @@ public class TR {
                         }
                         break;
                     case END_TIME:
-                        cell.setCellType(Cell.CELL_TYPE_STRING);
-                        String theEndTime = cell.getStringCellValue();
-                        String[] endTime = theEndTime.split(":");
-                        if(endTime.length == 2){
-                            int hour = Integer.parseInt(endTime[0]);
+                        String endTime;
+                        if(DateUtil.isCellDateFormatted(cell)) {
+                            startTime = new DataFormatter().formatCellValue(cell);
+                        } else {
+                            startTime = String.valueOf((int) (cell.getNumericCellValue()));
+                        }
+                        String[] endTimeSplit = startTime.split(":");
+                        if(endTimeSplit.length == 2){
+                            int hour = Integer.parseInt(endTimeSplit[0]);
                             if(hour >= 0 && hour <= 23){
                                 thePenalty.setEndHour(hour);
                             }
 
-                            int minute = Integer.parseInt(endTime[1]);
+                            int minute = Integer.parseInt(endTimeSplit[1]);
                             if(minute >= 0 && minute <= 59){
                                 thePenalty.setEndMinute(minute);
                             }
@@ -284,7 +332,7 @@ public class TR {
                         break;
                 }
             }
-            mainPenalties.insertAfterLastIndex(thePenalty);
+            TRProblemInfo.mainPenalties.insertAfterLastIndex(thePenalty);
         }
     }
 
@@ -342,7 +390,6 @@ public class TR {
                         cell.setCellType(Cell.CELL_TYPE_NUMERIC);
                         //					int test = (int) cell.getNumericCellValue();
                         newShipment.setNodeNumber((int) cell.getNumericCellValue());
-                        //					newShipment.setNodeNumber(test);
                         break;
                     case LATITUDE:
                         cell.setCellType(Cell.CELL_TYPE_NUMERIC);
@@ -362,11 +409,13 @@ public class TR {
                         cell.setCellType(Cell.CELL_TYPE_STRING);
                         if(cell.getStringCellValue().equals(TIP_CART)) {
                             newShipment.setIsTipCart(true);
-                            newShipment.setNumberOfBins(-1);
+                            newShipment.setDelayType((TRDelayType) mainDelays.getByDelayName("Tipcart"));
+                            newShipment.setNumberOfBins(1);
                         }
                         else {
                             newShipment.setIsTipCart(false);
                             int numberBins = Integer.parseInt(cell.getStringCellValue());
+                            newShipment.setDelayType((TRDelayType) mainDelays.getByDelayName("Bin"));
                             newShipment.setNumberOfBins(numberBins);
                         }
                         break;
@@ -420,34 +469,17 @@ public class TR {
                         break;
                 }
             }
-            //		newShipment.setVisitationCombination();
-            //		try {
+
             System.out.println("Node Counter: " + rowCounter);
             mainShipments.insertAfterLastIndex(newShipment);
-            //		}
-            //		catch(IllegalAccessException e) {
-            //			e.printStackTrace();
-            //		}
-            //		catch(InstantiationException e) {
-            //			e.printStackTrace();
-            //		}
         }
         System.out.println("Setting up depot");
 
-        //	mainShipments.getTail().getPrev().rem
         TRShipment depotShipment = mainShipments.getLast();
         TRDepot theDepot = new TRDepot(depotShipment.getCoordinates());
         mainShipments.removeByObject(depotShipment);
-        //	int position = mainShipments.getIndexOfObject(mainShipments.getLast());
-        //	mainShipments.removeByIndex(position);
-        mainDepots.insertAfterLastIndex(theDepot);
 
-        //	for(int x = 0; x < TRProblemInfo.NUMBER_TRUCKS; x++){
-        //	mainDepots.getFirst().setSubList(new TRTrucksList());
-        //	Object test = mainDepots.getFirst().getSubList();
-        //	if(test == null){
-        //		System.out.print("wtf dude");
-        //	}
+        mainDepots.insertAfterLastIndex(theDepot);
 
 
         TRTruck theTruck = new TRTruck();
@@ -543,21 +575,13 @@ public class TR {
                 //we couldn't choose shipment
                 Settings.printDebug(Settings.COMMENT, "No shipment was selected");
             }
-/*
-		if (theShipment.getIndex() == 1) {
-			System.out.print("");
-		}
-		*/
-//		if(!mainDepots.insertShipment(theShipment)) {
+
             if(!insertShipment(mainDepots, theShipment)){
                 //The selected shipment couldn't be inserted in the selected location
                 Settings.printDebug(Settings.COMMENT, "The Shipment: <" + theShipment.getNodeNumber() +
                         "> cannot be routed " +
                         "***********************************************");
-                //			theShipment.setIsAssigned(true);
-                //			theShipment.setCanBeRouted(false);
-                //just bypass this and don't come back
-                //WE NEED LOCAL OPTIMIZATION
+
             }
             else {
                 Settings.printDebug(Settings.COMMENT, "The Shipment: <" + theShipment.getNodeNumber() +// " " + theShipment +
@@ -568,6 +592,7 @@ public class TR {
 
 
         }
+
 
 
         TRProblemInfo.depotLLLevelCostF.calculateTotalsStats(mainDepots);
@@ -637,97 +662,6 @@ public class TR {
 
 
 
-
-
-
-
-
-    //METHOD
-//this prints all the routes to the console
-    public void printPVRPRoutesToConsole() {
-
-        //VARIABLES
-        int dayCount;
-        int truckCount;
-        int nodeCount;
-
-        TRDepot theDepot = mainDepots.getHead().getNext();
-        //get the first and only depot
-        TRTrucksList truckList = null;
-        TRTruck theTruck = null;
-        edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRDaysList daysList = null;
-        TRDay theDay = null;
-        TRNodesList nodesList = null;
-        TRNode theNode = null;
-        TRShipment theShipment = null;
-
-
-        while(theDepot != mainDepots.getTail()) {
-            //while there are more depots
-
-            truckList = theDepot.getSubList();
-            //get the trucks linked list inside of depot
-
-            theTruck = truckList.getHead();
-            //get the first truck from the truck linked list
-
-            truckCount = 0;
-            while(theTruck.getNext() != truckList.getTail()) {
-                //while we have more trucks
-
-                theTruck = theTruck.getNext();
-                //get the next truck
-
-                daysList = theTruck.getSubList();
-                //get the days linked list from the current truck
-
-                theDay = daysList.getHead().getNext();
-                //get the selected day from the linked list
-
-                dayCount = 0;
-                System.out.println("\nTruck " + truckCount);
-
-                while(theDay.getNext() != daysList.getTail()) {
-                    //while there are more days in the linked list
-
-                    if(dayCount != 0) {
-                        theDay = theDay.getNext();
-                        //and dayCount isn't zero we get the next day
-                    }
-
-                    nodesList = theDay.getSubList();
-                    //get the nodes linked list (the route) from the day
-
-                    theNode = nodesList.getHead().getNext();
-                    //get the first node
-
-                    nodeCount = 0;
-                    System.out.println("\nDay " + dayCount);
-                    //print the day count
-
-                    while(theNode.getNext() != nodesList.getTail()) {
-                        //while there are more nodes in the linked list
-                        if(nodeCount != 0) {
-                            //and there are more than zero nodes
-                            theNode = theNode.getNext();
-                            //get the next node
-                        }
-
-                        theShipment = theNode.getShipment();
-                        //get the shipment
-
-                        System.out.print(theShipment.getNodeNumber() + "-");
-                        //print the index
-                        nodeCount++;
-                    }
-                    dayCount++;
-                }
-                truckCount++;
-            }
-            break;
-        }
-    }//PRINT ROUTES TO CONSOLE ENDS
-// HERE*******************<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
 
@@ -861,62 +795,42 @@ public class TR {
         //START WRITING TO THE FILE
         //this get messy but is pretty simple
         theDepot = theDepot.getNext();                //get the first (only) depot
-        row = sheet.createRow(rowCounter++);        //create a row at rowCounter and increment the counter
-        cell = row.createCell(0);                //create the 0 cell/column
-        cell.setCellValue("Filename");            //set the cell to the text
 
-        cell = row.createCell(1);                //create the 1 cell/column
-        cell.setCellValue(file);                //set to the name of our problem/file
+        row = createRowNumber(sheet, rowCounter++);
+            writeToNewCell(row, 0, "Filename");
+            writeToNewCell(row, 1, file);
 
-        row = sheet.createRow(rowCounter++);        //create a new row
-        cell = row.createCell(0);                //create column at 0
-        cell.setCellValue("Selection Type");    //set value to text
-
-        cell = row.createCell(1);                //create column at zero
-        cell.setCellValue(
-                ProblemInfo.selectShipType.getClass().getCanonicalName().replace("edu.sru.thangiah.zeus.pvrp.PVRP", ""));
-        //set the value to the select shipment type while removing all the class location information
-
-        row = sheet.createRow(rowCounter++);        //create a new row
-        cell = row.createCell(0);                //create column at 0
-        cell.setCellValue("Insertion Type");    //set text
-
-        cell = row.createCell(1);                //create column at 1
-        cell.setCellValue(
-                ProblemInfo.insertShipType.getClass().getCanonicalName().replace("edu.sru.thangiah.zeus.pvrp.PVRP", ""));
-        //set cell value to the insert shipment type while removing all the class location information
+        row = createRowNumber(sheet, rowCounter++);
+            writeToNewCell(row, 0, "Selection Type");
+            writeToNewCell(row, 1, file);
 
 
-        for(int x = 0; x < 3; x++) {
-            row = sheet.createRow(rowCounter++);
-            //create three new blank/spacing rows
+        row = createRowNumber(sheet, rowCounter++);
+            writeToNewCell(row, 0, "Selection Type");
+            writeToNewCell(row, 1, ProblemInfo.selectShipType.getClass().getCanonicalName().replace("edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Selection.", ""));
+
+
+        row = createRowNumber(sheet, rowCounter++);
+            writeToNewCell(row, 0, "Insertion Type");
+            writeToNewCell(row, 1, TRProblemInfo.insertShipType.getClass().getCanonicalName().replace("edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Insertion.", ""));
+
+
+        createRowNumber(sheet, rowCounter++);
+        createRowNumber(sheet, rowCounter++);
+
+        row = createRowNumber(sheet, rowCounter++);
+        {
+            columnCounter = 0;
+            writeToNewCell(row, columnCounter++, "Depot");
+            writeToNewCell(row, columnCounter++, "Truck");
+            writeToNewCell(row, columnCounter++, "Day");
+            writeToNewCell(row, columnCounter++, "Demand");
+            writeToNewCell(row, columnCounter++, "Nodes -->");
         }
 
 
-        //Create a header for depot information
-        cell = row.createCell(columnCounter++);
-        cell.setCellValue("Depot");
 
-        //Create a header for truck information
-        cell = row.createCell(columnCounter++);
-        cell.setCellValue("Truck");
-
-        //Create header for Day information
-        cell = row.createCell(columnCounter++);
-        cell.setCellValue("Day");
-
-
-        //Create header for Demand information
-        cell = row.createCell(columnCounter++);
-        cell.setCellValue("Demand");
-
-        //Create header for all nodes on route
-        cell = row.createCell(columnCounter++);
-        cell.setCellValue("Nodes -->");
-
-
-        while(theDepot !=
-                mainDepots.getTail())                                //while we have more depots (only one in this problem)
+        while(theDepot !=  mainDepots.getTail())                                //while we have more depots (only one in this problem)
         {
 
             truckList = theDepot.getSubList();
@@ -941,7 +855,7 @@ public class TR {
                 while(theDay != daysLinkedList.getTail()) {
                     //while we have more days
                     //get the next day at the bottom of this while
-                    columnCounter = 0;
+
 
                     //				theDay.setDayNumber(dayNumberTemp++);
                     //set the day number to the counter
@@ -955,27 +869,20 @@ public class TR {
                     theShipment = theNode.getShipment();        //get the shipment for the selected node
 
 
-                    row = sheet.createRow(rowCounter++);    //create a new row
-                    cell = row.createCell(columnCounter++);        //create a new cell
-                    cell.setCellValue(theDepot.getDepotNum());    //set it to the depot number it is associated with
+                    row = createRowNumber(sheet, rowCounter++);
+                    {
+                        columnCounter = 0;
+                        writeToNewCell(row, columnCounter++, theDepot.getDepotNum());
+                        writeToNewCell(row, columnCounter++, theTruck.getTruckNum());
+                        writeToNewCell(row, columnCounter++, daysLinkedList.getIndexOfObject(theDay));
+                        writeToNewCell(row, columnCounter++, theDay.getAttributes().getTotalDemand());
+                    }
 
-                    cell = row.createCell(columnCounter++);
-                    cell.setCellValue(theTruck.getTruckNum());        //set new cell to truck number associated with
-                    //
-                    cell = row.createCell(columnCounter++);
-                    cell.setCellValue(theDay.getIndex());            //set the new cell to the day number associated with
-
-
-                    cell = row.createCell(columnCounter++);
-                    cell.setCellValue(theDay.getAttributes()
-                            .getTotalDemand());            //set the new cell to the day number associated
-                    // with
 
 
                     //PRINT THE NODES FOR THE CURRENT ROUTE
                     while(theNode != nodesList.getTail()) {
-                        cell = row.createCell(columnCounter++);    //create new cell number X
-                        cell.setCellValue(theShipment.getIndex());    //set the index of the shipment/node
+                        writeToNewCell(row, columnCounter++, theShipment.getNodeNumber());
 
                         theNode = theNode.getNext();
                         //get the next node
@@ -985,8 +892,8 @@ public class TR {
                     }
 
                     //SHOWS WE ALWAYS GO BACK TO THE DEPOT
-                    cell = row.createCell(columnCounter++);
-                    cell.setCellValue(theShipment.getIndex());
+                    writeToNewCell(row, columnCounter++, theShipment.getIndex());
+
 
 
                     theDay = theDay.getNext();        //get the next day
@@ -1002,6 +909,50 @@ public class TR {
 // HERE*******************<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
+    private Cell writeToNewCell(final Row row, final int newCellNumber, final String cellValue, final CellStyle cellStyle){
+        Cell cell = row.createCell(newCellNumber);
+        cell.setCellValue(cellValue);    //set text
+        cell.setCellStyle(cellStyle);        //set style
+        return cell;
+    }
+
+    private Cell writeToNewCell(final Row row, final int newCellNumber, final String cellValue){
+        Cell cell = row.createCell(newCellNumber);
+        cell.setCellValue(cellValue);    //set text
+        return cell;
+    }
+
+    private Cell writeToNewCell(final Row row, final int newCellNumber, final int cellValue, final CellStyle cellStyle){
+        Cell cell = row.createCell(newCellNumber);
+        cell.setCellValue(cellValue);    //set text
+        cell.setCellStyle(cellStyle);        //set style
+        return cell;
+    }
+
+    private Cell writeToNewCell(final Row row, final int newCellNumber, final int cellValue){
+        Cell cell = row.createCell(newCellNumber);
+        cell.setCellValue(cellValue);    //set text
+        return cell;
+    }
+
+
+    private Cell writeToNewCell(final Row row, final int newCellNumber, final double cellValue, final CellStyle cellStyle){
+        Cell cell = row.createCell(newCellNumber);
+        cell.setCellValue(cellValue);    //set text
+        cell.setCellStyle(cellStyle);        //set style
+        return cell;
+    }
+
+    private Cell writeToNewCell(final Row row, final int newCellNumber, final double cellValue){
+        Cell cell = row.createCell(newCellNumber);
+        cell.setCellValue(cellValue);    //set text
+        return cell;
+    }
+
+
+    private Row createRowNumber(final XSSFSheet sheet, final int rowNumber){
+        return sheet.createRow(rowNumber);
+    }
 
 
     //METHOD
@@ -1074,117 +1025,85 @@ public class TR {
 
         //CREATE CELL STYLES
         final CellStyle BOLD_STYLE = workbook.createCellStyle();
-        Font boldFont = workbook.createFont();
-        boldFont.setBoldweight(Font.BOLDWEIGHT_BOLD);
-        BOLD_STYLE.setFont(boldFont);
-        //creates a style that will bold cells
+            Font boldFont = workbook.createFont();
+            boldFont.setBoldweight(Font.BOLDWEIGHT_BOLD);
+            BOLD_STYLE.setFont(boldFont);
+            //creates a style that will bold cells
 
         final CellStyle BOLD_CENTER_STYLE = workbook.createCellStyle();
-        Font boldCenterFont = workbook.createFont();
-        boldCenterFont.setBoldweight(Font.BOLDWEIGHT_BOLD);
-        BOLD_CENTER_STYLE.setFont(boldFont);
-        BOLD_CENTER_STYLE.setAlignment(CellStyle.ALIGN_CENTER);
-        //creates a style that will bold and center cells
+            Font boldCenterFont = workbook.createFont();
+            boldCenterFont.setBoldweight(Font.BOLDWEIGHT_BOLD);
+            BOLD_CENTER_STYLE.setFont(boldFont);
+            BOLD_CENTER_STYLE.setAlignment(CellStyle.ALIGN_CENTER);
+            //creates a style that will bold and center cells
 
         final CellStyle ITALICS_STLYE = workbook.createCellStyle();
-        Font italicFont = workbook.createFont();
-        italicFont.setItalic(true);
-        ITALICS_STLYE.setFont(italicFont);
-        //creates a style that will italicize cells
+            Font italicFont = workbook.createFont();
+            italicFont.setItalic(true);
+            ITALICS_STLYE.setFont(italicFont);
+            //creates a style that will italicize cells
 
         final CellStyle CENTER_STYLE = workbook.createCellStyle();
-        CENTER_STYLE.setAlignment(CellStyle.ALIGN_CENTER);
-        //creates a style that will center cells
+            CENTER_STYLE.setAlignment(CellStyle.ALIGN_CENTER);
+            //creates a style that will center cells
 
         final CellStyle PASSED_STYLE = workbook.createCellStyle();
-        PASSED_STYLE.setFillBackgroundColor(IndexedColors.LIGHT_GREEN.getIndex());
-        PASSED_STYLE.setFillPattern(CellStyle.FINE_DOTS);
+            PASSED_STYLE.setFillBackgroundColor(IndexedColors.LIGHT_GREEN.getIndex());
+            PASSED_STYLE.setFillPattern(CellStyle.FINE_DOTS);
 
         final CellStyle FAILED_STYLE = workbook.createCellStyle();
-        FAILED_STYLE.setFillBackgroundColor(IndexedColors.RED.getIndex());
-        FAILED_STYLE.setFillPattern(CellStyle.FINE_DOTS);
+            FAILED_STYLE.setFillBackgroundColor(IndexedColors.RED.getIndex());
+            FAILED_STYLE.setFillPattern(CellStyle.FINE_DOTS);
 
 
         theDepot = theDepot.getNext();
 
         //START WRITING TO EXCEL SHEET
         //NEW ROW
-        row = sheet.createRow(rowCounter++);    //create new row
-        cell = row.createCell(0);            //create column 0
-        cell.setCellValue("Filename");        //set cell to string
-        cell.setCellStyle(ITALICS_STLYE);        //italicize this cell
-        cell.setCellStyle(CENTER_STYLE);        //center this cell
 
-        cell = row.createCell(1);
-        cell.setCellValue(file);            //set the file name
+        row = createRowNumber(sheet, rowCounter++);
+            writeToNewCell(row, 0, "Filename", ITALICS_STLYE);
+            writeToNewCell(row, 1, file);
 
-
-        //NEW ROW
-        row = sheet.createRow(rowCounter++);
-        cell = row.createCell(0);
-        cell.setCellValue("Selection Type");    //set text
-        cell.setCellStyle(ITALICS_STLYE);        //set style
-
-        cell = row.createCell(1);
-        cell.setCellValue(
-                ProblemInfo.selectShipType.getClass().getCanonicalName().replace("edu.sru.thangiah.zeus.pvrp.PVRP", ""));
-        //set text to select ship type to class name without the class location information
+        row = createRowNumber(sheet, rowCounter++);
+            writeToNewCell(row, 0, "Selection Type", ITALICS_STLYE);
+            writeToNewCell(row, 1, ProblemInfo.selectShipType.getClass().getCanonicalName().replace("edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Selection.", ""));
 
 
-        //NEW ROW
-        row = sheet.createRow(rowCounter++);
-        cell = row.createCell(0);
-        cell.setCellValue("Insertion_Type");    //set text
-        cell.setCellStyle(ITALICS_STLYE);        //set style
-
-        cell = row.createCell(1);
-        cell.setCellValue(ProblemInfo.insertShipType.getClass().getCanonicalName()
-                .replace("edu.sru.thangiah.zeus.pvrp" + ".PVRP", ""));
-        //set text to select ship type to class name without the class location information
+        row = createRowNumber(sheet, rowCounter++);
+            writeToNewCell(row, 0, "Insertion Type", ITALICS_STLYE);
+            writeToNewCell(row, 1, TRProblemInfo.insertShipType.getClass().getCanonicalName().replace("edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Insertion.", ""));
 
 
-        //NEW ROW
-        row = sheet.createRow(rowCounter++);
-        cell = row.createCell(0);
-        cell.setCellValue("Number_Depots");    //set text
-        cell.setCellStyle(ITALICS_STLYE);    //set style
+        row = createRowNumber(sheet, rowCounter++);
+            writeToNewCell(row, 0, "Number Depots", ITALICS_STLYE);
+            writeToNewCell(row, 1, TRProblemInfo.numDepots);
 
-        cell = row.createCell(1);
-        cell.setCellValue(TRProblemInfo.numDepots);
-        //get and set value
-
-
-        //NEW ROW
-        row = sheet.createRow(rowCounter++);
-        cell = row.createCell(0);
-        cell.setCellValue("Total_Distance");    //set text
-        cell.setCellStyle(ITALICS_STLYE);        //set style
-
-        cell = row.createCell(1);
-        cell.setCellValue(mainDepots.getAttributes().getTotalDistance());
-        //get and set value
+        row = createRowNumber(sheet, rowCounter++);
+            writeToNewCell(row, 0, "Total Distance", ITALICS_STLYE);
+            writeToNewCell(row, 1, (int) mainDepots.getAttributes().getTotalDistance());
+            writeToNewCell(row, 2, "miles");
 
 
-        //NEW ROW
-        row = sheet.createRow(rowCounter++);
-        cell = row.createCell(0);
-        cell.setCellValue("Total_Demand");    //set text
-        cell.setCellStyle(ITALICS_STLYE);    //set style
+        row = createRowNumber(sheet, rowCounter++);
+            writeToNewCell(row, 0, "Total Cost", ITALICS_STLYE);
+            writeToNewCell(row, 1, (int) mainDepots.getAttributes().getTotalCost());
 
-        cell = row.createCell(1);
-        cell.setCellValue(mainDepots.getAttributes().getTotalDemand());
-        //get and set value
+        row = createRowNumber(sheet, rowCounter++);
+            writeToNewCell(row, 0, "Avg. Speed");
+            writeToNewCell(row, 1, TRProblemInfo.averageVelocity);
+            writeToNewCell(row, 2, "mph");
 
+        row = createRowNumber(sheet, rowCounter++);
+            writeToNewCell(row, 0, "Total Time");
+            writeToNewCell(row, 1, (int) mainDepots.getAttributes().getTotalTravelTime());
+            writeToNewCell(row, 2, "minutes");
 
-        //NEW ROW
-        row = sheet.createRow(rowCounter++);
-        cell = row.createCell(0);
-        cell.setCellValue("Total_Cost");    //set text
-        cell.setCellStyle(ITALICS_STLYE);    //set style
+        row = createRowNumber(sheet, rowCounter++);
+            writeToNewCell(row, 0, "Start time", BOLD_STYLE);
+            DecimalFormat timeFormat = new DecimalFormat("#00");
+            writeToNewCell(row, 1, timeFormat.format(TRProblemInfo.startHour) + ":" + timeFormat.format(TRProblemInfo.startMinute), BOLD_STYLE);
 
-        cell = row.createCell(1);
-        cell.setCellValue(mainDepots.getAttributes().getTotalCost());
-        //get and set total cost
 
 
         while(theDepot != mainDepots.getTail())
@@ -1196,7 +1115,7 @@ public class TR {
             theTruck = truckList.getHead().getNext();            //get the first truck
 
 
-            row = sheet.createRow(rowCounter++);        //make a new row
+            row = createRowNumber(sheet, rowCounter++);
             while(theTruck != truckList.getTail()) {
                 //while we have more trucks
                 //get new truck at bottom of this while
@@ -1212,156 +1131,82 @@ public class TR {
                     //while we have more days in the current truck
 
                     nodesList = theDay.getSubList();
-                    for(int x = 0; x < 4; x++) {
-                        row = sheet.createRow(rowCounter++);
-                        //create four new rows
-                    }
-
-                    columnCounter = 0;    //reset counter value
-
-                    //PRINTS ALL DATA RELATED TO A SINGLE ROUTE
-                    //read early cells to get an idea of the process
-                    cell = row.createCell(columnCounter++);
-                    cell.setCellValue("Depot #:");            //set text
-                    cell.setCellStyle(BOLD_STYLE);            //set style
-
-                    cell = row.createCell(columnCounter++);
-                    cell.setCellValue(theDepot.getDepotNum());    //set number
-                    cell.setCellStyle(BOLD_CENTER_STYLE);        //set style
-
-                    cell = row.createCell(columnCounter++);
-                    cell.setCellValue("X:");                    //set text
-                    cell.setCellStyle(BOLD_STYLE);                //set style
-
-                    cell = row.createCell(columnCounter++);
-                    cell.setCellValue(theDepot.getXCoord());    //set number
-                    cell.setCellStyle(BOLD_CENTER_STYLE);        //set style
-
-                    cell = row.createCell(columnCounter++);
-                    cell.setCellValue("Y:");                    //set text
-                    cell.setCellStyle(BOLD_STYLE);                //set style
-
-                    cell = row.createCell(columnCounter++);
-                    cell.setCellValue(theDepot.getYCoord());    //set number
-                    cell.setCellStyle(BOLD_CENTER_STYLE);        //set style
+                    createRowNumber(sheet, rowCounter++);
+                    createRowNumber(sheet, rowCounter++);
+                    createRowNumber(sheet, rowCounter++);
 
 
-                    columnCounter = 0;
+                    row = createRowNumber(sheet, rowCounter++);
+                    {
+                        columnCounter = 0;    //reset counter value
 
-                    row = sheet.createRow(rowCounter++);
-                    cell = row.createCell(columnCounter++);
-                    cell.setCellValue("Day #:");                //set text
-                    cell.setCellStyle(BOLD_STYLE);            //set style
-                    //ETC ....
-                    cell = row.createCell(columnCounter++);
-                    cell.setCellValue(dayCounter);
-                    cell.setCellStyle(BOLD_CENTER_STYLE);
+                        //PRINTS ALL DATA RELATED TO A SINGLE ROUTE
+                        //read early cells to get an idea of the process
+                        writeToNewCell(row, columnCounter++, "Depot #:", BOLD_STYLE);
+                        writeToNewCell(row, columnCounter++, theDepot.getDepotNum());
+
+                        writeToNewCell(row, columnCounter++, "Longitude:", BOLD_STYLE);
+                        writeToNewCell(row, columnCounter++, theDepot.getCoordinates().getLongitude());
 
 
-                    row = sheet.createRow(rowCounter++);
-                    columnCounter = 0;
-                    cell = row.createCell(columnCounter++);
-                    cell.setCellValue("Truck #:");
-                    cell.setCellStyle(BOLD_STYLE);
-
-                    cell = row.createCell(columnCounter++);
-                    cell.setCellValue(theTruck.getTruckNum());
-                    cell.setCellStyle(BOLD_CENTER_STYLE);
-
-                    cell = row.createCell(columnCounter++);
-                    cell.setCellValue("Max Demand:");
-                    cell.setCellStyle(BOLD_STYLE);
-
-                    cell = row.createCell(columnCounter++);
-                    double maxDemand = theTruck.getTruckType().getMaxCapacity();
-                    cell.setCellValue(maxDemand);
-                    cell.setCellStyle(BOLD_CENTER_STYLE);
-
-                    cell = row.createCell(columnCounter++);
-                    cell.setCellValue("Used Demand:");
-                    cell.setCellStyle(BOLD_STYLE);
-
-                    cell = row.createCell(columnCounter++);
-                    double usedDemand = theDay.getAttributes().getTotalDemand();
-                    cell.setCellValue(usedDemand);
-                    //				cell.setCellStyle(BOLD_CENTER_STYLE);
-
-                    if(usedDemand <= maxDemand) {    //is the used demand valid?
-                        cell.setCellStyle(PASSED_STYLE);    //if so color the cell green
-                    }
-                    else {
-                        cell.setCellStyle(FAILED_STYLE);    //else, color it red
+                        writeToNewCell(row, columnCounter++, "Latitude:", BOLD_STYLE);
+                        writeToNewCell(row, columnCounter++, theDepot.getCoordinates().getLatitude());
                     }
 
 
-                    row = sheet.createRow(rowCounter++);
-                    columnCounter = 0;
-                    cell = row.createCell(columnCounter++);
-                    cell.setCellValue("Total Cost:");
-                    cell.setCellStyle(BOLD_STYLE);
 
-                    cell = row.createCell(columnCounter++);
-                    cell.setCellValue(theDay.getAttributes().getTotalCost());
-                    cell.setCellStyle(BOLD_CENTER_STYLE);
+                    row = createRowNumber(sheet, rowCounter++);
+                    {
+                        columnCounter = 0;
 
 
-                    cell = row.createCell(columnCounter++);
-                    cell.setCellValue("Max Distance:");
-                    cell.setCellStyle(BOLD_STYLE);
+                        writeToNewCell(row, columnCounter++, "Day #:", BOLD_STYLE);
+                        writeToNewCell(row, columnCounter++, dayCounter, BOLD_STYLE);
 
-                    cell = row.createCell(columnCounter++);
-                    double maxDistance = ((TRTruckType) TRProblemInfo.truckTypes.elementAt(0)).getMaxDuration();
-                    cell.setCellValue(maxDistance);
-                    cell.setCellStyle(BOLD_CENTER_STYLE);
+                        writeToNewCell(row, columnCounter++, "Truck #:", BOLD_STYLE);
+                        writeToNewCell(row, columnCounter++, theTruck.getTruckNum(), BOLD_CENTER_STYLE);
 
-                    cell = row.createCell(columnCounter++);
-                    cell.setCellValue("Used Distance:");
-                    cell.setCellStyle(BOLD_STYLE);
-
-                    cell = row.createCell(columnCounter++);
-                    double usedDistance = theDay.getAttributes().getTotalDistance();
-                    cell.setCellValue(usedDistance);
-                    //				cell.setCellStyle(BOLD_CENTER_STYLE);
-
-                    if(usedDistance <= maxDistance) {        //if used distance is valid
-                        cell.setCellStyle(PASSED_STYLE);    //color the cell green
-                    }
-                    else {
-                        cell.setCellStyle(FAILED_STYLE);    //else color the cell red
                     }
 
 
-                    columnCounter = 0;
-                    for(int x = 0; x < 2; x++) {
-                        row = sheet.createRow(rowCounter++);
+
+                    row = createRowNumber(sheet, rowCounter++);
+                    {
+                        columnCounter = 0;
+
+                        writeToNewCell(row, columnCounter++, "Total Cost:", BOLD_STYLE);
+                        writeToNewCell(row, columnCounter++, theDay.getAttributes().getTotalCost(), BOLD_CENTER_STYLE);
+
+
+                        writeToNewCell(row, columnCounter++, "Total Travel Time:", BOLD_STYLE);
+                        writeToNewCell(row, columnCounter++, theDay.getAttributes().getTotalTravelTime(), BOLD_CENTER_STYLE);
+
+                        writeToNewCell(row, columnCounter++, "Total Distance:", BOLD_STYLE);
+                        writeToNewCell(row, columnCounter++, theDay.getAttributes().getTotalDistance(), BOLD_CENTER_STYLE);
                     }
-                    cell = row.createCell(columnCounter++);    //create new cell number X
-                    cell.setCellValue("Route-Nodes");    //set each cell value to the correct value from the linked list
-
-                    cell = row.createCell(columnCounter++);    //create new cell number X
-                    cell.setCellValue("Demand");    //set each cell value to the correct value from the linked list
-
-                    cell = row.createCell(columnCounter++);    //create new cell number X
-                    cell.setCellValue(
-                            "Distance from Depot");    //set each cell value to the correct value from the linked list
 
 
-                    cell = row.createCell(columnCounter++);    //create new cell number X
-                    cell.setCellValue(
-                            "Angle from Depot");    //set each cell value to the correct value from the linked list
+                    createRowNumber(sheet, rowCounter++);
+                    row = createRowNumber(sheet, rowCounter++);
+                    {
+                        columnCounter = 0;
 
-                    cell = row.createCell(columnCounter++);    //create new cell number X
-                    cell.setCellValue(
-                            "Distance from Last Node");    //set each cell value to the correct value from the linked list
+                        writeToNewCell(row, columnCounter++, "Route-Nodes");
+                        writeToNewCell(row, columnCounter++, "Bins");
+                        writeToNewCell(row, columnCounter++, "Distance from Depot");
+                        writeToNewCell(row, columnCounter++, "Angle from Depot");
+                        writeToNewCell(row, columnCounter++, "Distance from Last Node");
+                        writeToNewCell(row, columnCounter++, "Frequency");
+                    }
 
-                    cell = row.createCell(columnCounter++);    //create new cell number X
-                    cell.setCellValue("Frequency");    //set each cell value to the correct value from t
+
+
+
 
 
                     theNode = nodesList.getHead();
 
-                    double previousX = theNode.getShipment().getXCoord();
-                    double previousY = theNode.getShipment().getYCoord();
+                    TRCoordinates previousCoordinates = theNode.getCoordinates();
 
                     //				int tempComputedDemand;
                     //				int temp
@@ -1374,46 +1219,30 @@ public class TR {
                         //distance travelled; also prints tail node which is the depot
 
 
+                        row = createRowNumber(sheet, rowCounter++);
                         columnCounter = 0;
 
-                        row = sheet.createRow(rowCounter++);
+                            theShipment = theNode.getShipment();
 
-                        theShipment = theNode.getShipment();
+                        writeToNewCell(row, columnCounter++, theShipment.getNodeNumber());
+                        {
 
+                            if (theShipment.getNumberOfBins() == 0) {
+                                writeToNewCell(row, columnCounter++, "tip-cart");
+                            }
+                            else{
+                                writeToNewCell(row, columnCounter++, theShipment.getNumberOfBins());
+                            }
 
-                        cell = row.createCell(columnCounter++);    //create new cell number X
-                        cell.setCellValue(theShipment.getIndex());    //print the node shipment index
+                            writeToNewCell(row, columnCounter++, theDepot.getCoordinates().calculateDistanceThisMiles(theShipment.getCoordinates()));
 
+                            writeToNewCell(row, columnCounter++, theDepot.getCoordinates().calculateAngleBearing(theShipment.getCoordinates()));
 
-                        cell = row.createCell(columnCounter++);
-                        cell.setCellValue(theShipment.getDemand());    //print the node shipment demand
+                            writeToNewCell(row, columnCounter++, previousCoordinates.calculateDistanceThisMiles(theShipment.getCoordinates()));
 
+                            writeToNewCell(row, columnCounter++, theShipment.getFrequency());
+                        }
 
-                        cell = row.createCell(columnCounter++);
-                        double distanceFromDepot =
-                                calculateDistance(theDepot.getXCoord(), theShipment.getxCoord(), theDepot.getYCoord(),
-                                        theShipment.getyCoord());
-                        cell.setCellValue(distanceFromDepot);
-                        //distance from depot can be a great way to show the closest euclidean distance is working
-
-
-                        cell = row.createCell(columnCounter++);
-                        double angle =
-                                calculateAngle(theShipment.getXCoord(), theDepot.getXCoord(), theShipment.getYCoord(),
-                                        theDepot.getYCoord());
-                        cell.setCellValue(angle);
-                        //distance from depot can be a great way to show the closest euclidean distance is working
-
-
-                        cell = row.createCell(columnCounter++);
-                        double distanceFromLast =
-                                calculateDistance(previousX, theShipment.getxCoord(), previousY, theShipment.getyCoord());
-                        cell.setCellValue(distanceFromLast);
-                        //show the linear distance we are from the last node
-
-
-                        cell = row.createCell(columnCounter++);
-                        cell.setCellValue(theShipment.getFrequency());    //the frequency the node wants visited
 
                         if(theNode == nodesList.getTail()) {
                             //if we are at the tail node (and have printed it already)
@@ -1421,8 +1250,8 @@ public class TR {
                             break;
                         }
 
-                        previousX = theShipment.getxCoord();
-                        previousY = theShipment.getyCoord();
+                        previousCoordinates = theShipment.getCoordinates();
+
 
                         theNode = theNode.getNext();    //grab the next node
                     }
@@ -1439,47 +1268,32 @@ public class TR {
                     String demandFormula = "SUM(B" + firstRowCalculations + ":B" + lastRowCalculations + ")";
                     String distanceFormula = "SUM(E" + firstRowCalculations + ":E" + lastRowCalculations + ")";
 
-                    row = sheet.createRow(rowCounter++);    //create a cell
-                    cell = row.createCell(0);
-                    cell.setCellType(TYPE_STRING);
-                    cell.setCellValue("Excel Summations");    //with this text
-                    cell.setCellStyle(BOLD_STYLE);
+
+                    row = createRowNumber(sheet, rowCounter++);
+                    {
+                        cell = writeToNewCell(row, 0, "Summation", BOLD_STYLE);
+                        cell.setCellType(TYPE_STRING);
+
+                        cell = row.createCell(1);            //create a cell
+                        cell.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                        cell.setCellFormula(demandFormula);    //set the demand formula
+                        cell.setCellStyle(BOLD_STYLE);
+                        //evaluation all formulas in the spreadsheet so we can compare values
+                        workbook.getCreationHelper().createFormulaEvaluator().evaluateAll();
 
 
-                    //CELL EQUATION TO DO SUMMATION OF ALL DEMAND FOR THIS ROUTE
-                    cell = row.createCell(1);            //create a cell
-                    cell.setCellType(XSSFCell.CELL_TYPE_FORMULA);
-                    cell.setCellFormula(demandFormula);    //set the demand formula
-                    cell.setCellStyle(BOLD_STYLE);
-
-                    //evaluation all formulas in the spreadsheet so we can compare values
-                    workbook.getCreationHelper().createFormulaEvaluator().evaluateAll();
-
-                    if((int) usedDemand == (int) cell.getNumericCellValue()) {
-                        //if our two demands match, then color the cell green
-                        cell.setCellStyle(PASSED_STYLE);
-                    }
-                    else {
-                        cell.setCellStyle(FAILED_STYLE);
+                        cell = row.createCell(4);
+                        cell.setCellType(XSSFCell.CELL_TYPE_FORMULA);
+                        cell.setCellFormula(distanceFormula);
+                        cell.setCellStyle(BOLD_STYLE);
+                        //evaluation all formulas in the spreadsheet so we can compare values
+                        workbook.getCreationHelper().createFormulaEvaluator().evaluateAll();
                     }
 
 
-                    //CELL EQUATION TO DO SUMMATION OF ALL DISTANCE FOR THIS ROUTE
-                    cell = row.createCell(4);
-                    cell.setCellType(XSSFCell.CELL_TYPE_FORMULA);
-                    cell.setCellFormula(distanceFormula);
-                    cell.setCellStyle(BOLD_STYLE);
 
-                    //evaluation all formulas in the spreadsheet so we can compare values
-                    workbook.getCreationHelper().createFormulaEvaluator().evaluateAll();
 
-                    if((int) usedDistance == (int) cell.getNumericCellValue()) {
-                        //if our two demands match, then color the cell green
-                        cell.setCellStyle(PASSED_STYLE);
-                    }
-                    else {
-                        cell.setCellStyle(FAILED_STYLE);
-                    }
+
 
 
                     theDay = theDay.getNext();            //grab the next day

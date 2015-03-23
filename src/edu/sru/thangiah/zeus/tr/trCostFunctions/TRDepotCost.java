@@ -48,10 +48,15 @@ public double getTotalDistance(Object o) {
 	return ((TRDepot) o).getAttributes().getTotalDistance();
 }//GETTER
 
+    @Override
+    public double getTotalTravelTime(Object o) {
+        setTotalTravelTime(o);
+
+        return ((TRDepot) o).getAttributes().getTotalTravelTime();
+    }
 
 
-
-//SETTER
+    //SETTER
 public void setTotalDistance(Object o) {
 	TRDepot theDepot = (TRDepot) o;
 
@@ -63,6 +68,17 @@ public void setTotalDistance(Object o) {
 
 //	theDepot.getAttributes().setTotalDistance((float) TRProblemInfo.truckLLLevelCostF.getTotalDistance(theDepot.getSubList()));
 }
+
+    @Override
+    public void setTotalTravelTime(Object o) {
+        TRDepot theDepot = (TRDepot) o;
+
+        float totalTravelTime = (float) TRProblemInfo.truckLLLevelCostF.getTotalTravelTime(theDepot.getSubList());
+        System.out.println("\n\nTotal travel time for week:\t" + totalTravelTime + " minutes");
+        TRAttributes depotAttributes = theDepot.getAttributes();
+        depotAttributes.setTotalTravelTime(totalTravelTime);
+
+    }
 
 //GETTERpublic double getTotalCost(Object o) {
 //	setTotalCost(o);

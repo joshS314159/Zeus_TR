@@ -15,7 +15,6 @@ private double latitude;
 
 
 
-
 public TRCoordinates(final TRCoordinates copyMe) {
 	this.longitude = copyMe.getLongitude();
 	this.latitude = copyMe.getLatitude();
@@ -40,7 +39,6 @@ public double getLatitude() {
 
 public TRCoordinates() {
 }
-
 
 
 

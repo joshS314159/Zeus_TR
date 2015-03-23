@@ -3,6 +3,8 @@ package edu.sru.thangiah.zeus.gui;
 import edu.sru.thangiah.zeus.core.*;
 import edu.sru.thangiah.zeus.pvrp.PVRPDepotLinkedList;
 import edu.sru.thangiah.zeus.pvrp.PVRPShipmentLinkedList;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRDepotsList;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRShipmentsList;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -68,7 +70,7 @@ public class ZeusGui
    * @param mD DepotLinkedList
    * @param mS ShipmentLinkedList
    */
-  public ZeusGui(PVRPDepotLinkedList mD, PVRPShipmentLinkedList mS) {
+  public ZeusGui(TRDepotsList mD, TRShipmentsList mS) {
     //run the JFrame constructor
     //super("Zeus - Unified Model for Vehicle Routing Problems");
 
@@ -101,7 +103,7 @@ public class ZeusGui
    * @param SFC double[]
    * @param info String
    */
-  public ZeusGui(PVRPDepotLinkedList mD, PVRPShipmentLinkedList mS, double[] SFC, String info) {
+  public ZeusGui(TRDepotsList mD, TRShipmentsList mS, double[] SFC, String info) {
     //run the JFrame constructor
     super("Zeus - Unified Model for Vehicle Routing Problems");
 

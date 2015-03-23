@@ -12,6 +12,19 @@ public class TRPenaltiesList implements DoublyLinkedList {
     private TRPenalty head;
     private TRPenalty tail;
 
+
+    public TRPenaltiesList(final TRPenaltiesList copyMeList) {
+        setUpHeadTail(new TRPenalty(copyMeList.getHead()), new TRPenalty(copyMeList.getTail()));
+
+        TRPenalty copyMe = copyMeList.getHead();
+        TRPenalty newPenalty = getHead();
+        while(copyMe.getNext() != copyMeList.getLast()) {
+            copyMe = copyMe.getNext();
+            newPenalty.insertAfterCurrent(new TRPenalty(copyMe));
+            newPenalty = newPenalty.getNext();
+        }
+    }
+
     public  TRPenaltiesList(){
         setUpHeadTail();
     }
@@ -96,6 +109,22 @@ public class TRPenaltiesList implements DoublyLinkedList {
             return null;
         }
         return getHead().getNext();
+    }
+
+
+    public int getPenaltyTimeForRange(final int startHour, final int startMinute, final int endHour, final int endMinute){
+        TRPenalty thePenalty = this.getFirst();
+        int totalPenalties = 0;
+        while(thePenalty != this.getTail()){
+            if(!thePenalty.isPenaltyInEffect() && thePenalty.isPenaltyApplicable(startHour, startMinute, endHour, endMinute)){
+                thePenalty.setPenaltyInEffect(true);
+                totalPenalties += thePenalty.getPenaltyInMinutes();
+            }
+            thePenalty = thePenalty.getNext();
+        }
+
+
+        return totalPenalties;
     }
 
 

@@ -35,7 +35,7 @@ private int     demand;
 private int     visitFrequency = 0;
 private String  pickupPointName;
 private int     requiredPreviousPickupPoint;
-
+    private TRDelayType delayType = new TRDelayType();
 
 
 
@@ -74,6 +74,13 @@ public TRShipment(final TRShipment copyMe) {
 //}
 
 
+    public void setDelayType(final TRDelayType delayType){
+        this.delayType = delayType;
+    }
+
+    public TRDelayType getDelayType(){
+        return this.delayType;
+    }
 
 
 public TRCoordinates getHomeDepotCoordinates() {
@@ -451,6 +458,7 @@ public void setRequiredPreviousPickupPoint(final int pickupOrder) {
 public boolean setNodeNumber(final int nodeNumber) {
 	if(nodeNumber > 0) {
 		this.nodeNumber = nodeNumber;
+        this.setIndex(nodeNumber);
 		return true;
 	}
 	return false;

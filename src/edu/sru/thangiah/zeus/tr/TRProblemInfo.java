@@ -92,6 +92,15 @@ public class TRProblemInfo
 
     public static String penaltiesInputFile = new String();
 
+    public static String delayTypesInputFile = new String();
+
+    public static int startHour;
+    public static int startMinute;
+    public static int averageVelocity;
+
+    public static TRPenaltiesList mainPenalties;
+
+    public static boolean addPenaltyPerBin;
 
 
 

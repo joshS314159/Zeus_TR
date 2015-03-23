@@ -47,10 +47,15 @@ public double getTotalDistance(Object o) {
 	return ((TRTrucksList) o).getAttributes().getTotalDistance();
 }//GETTER
 
+    @Override
+    public double getTotalTravelTime(Object o) {
+        setTotalTravelTime(o);
+
+        return ((TRTrucksList) o).getAttributes().getTotalTravelTime();
+    }
 
 
-
-//SETTER
+    //SETTER
 public void setTotalDistance(Object o) {
 	TRTrucksList truckList = (TRTrucksList) o;
 	TRTruck theTruck = truckList.getFirst();
@@ -68,12 +73,25 @@ public void setTotalDistance(Object o) {
 	}
 }//GETTERpublic double getTotalCost(Object o) {
 
+    @Override
+    public void setTotalTravelTime(Object o) {
+        TRTrucksList truckList = (TRTrucksList) o;
+        TRTruck theTruck = truckList.getFirst();
+
+        truckList.getAttributes().getTotalTravelTime();
+//        truckList.getAttributes().setTotalTravelTime(0);
 
 
+        while (theTruck != truckList.getTail()) {
+            if (!theTruck.isSubListEmpty()) {
+                truckList.getAttributes().setTotalTravelTime(truckList.getAttributes().getTotalTravelTime() + TRProblemInfo.truckLevelCostF.getTotalTravelTime(theTruck));
+            }
+            theTruck = theTruck.getNext();
+        }
+    }
 
 
-
-//CONSTRUCTOR
+    //CONSTRUCTOR
 public void calculateTotalsStats(Object o) {
 	//	setTotalDemand(o);
 	setTotalDistance(o);

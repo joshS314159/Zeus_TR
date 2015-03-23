@@ -15,8 +15,14 @@ public class TRNode
 private TRShipment theShipment = new TRShipment();
 private TRNode        next;
 private TRNode        previous;
-    private TRAttributes  attributes = new TRAttributes();
+private TRAttributes  attributes = new TRAttributes();
 private TRCoordinates homeDepotCoordinates;
+
+
+
+    private int visitationHour = -1;
+    private int visitationMinute = -1;
+
 
 
 
@@ -30,6 +36,10 @@ public TRNode(final TRNode copyMe) {
 }
 
 
+    public int getIndex(){
+        return this.getShipment().getIndex();
+    }
+
 
 
 public TRCoordinates getHomeDepotCoordinates() {
@@ -39,7 +49,25 @@ public TRCoordinates getHomeDepotCoordinates() {
 
 //final TRNode(final TR)
 
+    public int getVisitationHour() {
+        return visitationHour;
+    }
 
+    public void setVisitationHour(final int visitationHour) {
+        if(visitationHour >= 0 && visitationHour <= 23){
+            this.visitationHour = visitationHour;
+        }
+    }
+
+    public int getVisitationMinute() {
+        return visitationMinute;
+    }
+
+    public void setVisitationMinute(final int visitationMinute) {
+        if(visitationMinute >= 0 && visitationMinute <= 59){
+            this.visitationMinute = visitationMinute;
+        }
+    }
 
 
 public void setHomeDepotCoordinates(final TRCoordinates homeDepotCoordinates) {

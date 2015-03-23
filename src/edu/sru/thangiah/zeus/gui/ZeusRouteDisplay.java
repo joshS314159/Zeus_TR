@@ -7,6 +7,7 @@ import edu.sru.thangiah.zeus.core.Truck;
 import edu.sru.thangiah.zeus.gui.checkboxtree.CheckTreeNode;
 import edu.sru.thangiah.zeus.gui.checkboxtree.JCheckTree;
 import edu.sru.thangiah.zeus.pvrp.*;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -74,51 +75,51 @@ public class ZeusRouteDisplay
 		smallY = Integer.MAX_VALUE;
 
 		CheckTreeNode root = (CheckTreeNode) jCheckTree.getModel().getRoot();
-		PVRPDepotLinkedList mainDepots = (PVRPDepotLinkedList) root.getUserObject();
+		TRDepotsList mainDepots = (TRDepotsList) root.getUserObject();
 
 		for (int i = 0; i < root.getChildCount(); i++) {
 			CheckTreeNode dnode = (CheckTreeNode) root.getChildAt(i);
-			PVRPDepot depot = (PVRPDepot) dnode.getUserObject();
+			TRDepot depot = (TRDepot) dnode.getUserObject();
 
-			if (depot.getXCoord() > bigX) {
-				bigX = (int) depot.getXCoord();
+			if (depot.getCoordinates().getLongitude() > bigX) {
+				bigX = (int) Math.abs(depot.getCoordinates().getLongitude() * 100000000);
 			}
 
-			if (depot.getYCoord() > bigY) {
-				bigY = (int) depot.getYCoord();
+			if (depot.getCoordinates().getLatitude() > bigY) {
+				bigY = (int) Math.abs(depot.getCoordinates().getLatitude() * 100000000);
 			}
 
-			if (depot.getXCoord() < smallX) {
-				smallX = (int) depot.getXCoord();
+			if (depot.getCoordinates().getLongitude() < smallX) {
+				smallX = (int) Math.abs(depot.getCoordinates().getLongitude() * 100000000);
 			}
 
-			if (depot.getYCoord() > smallY) {
-				smallY = (int) depot.getYCoord();
+			if (depot.getCoordinates().getLatitude() < smallY) {
+				smallY = (int) Math.abs(depot.getCoordinates().getLatitude() * 100000000);
 			}
 
-			PVRPTruck truck = depot.getMainTrucks().getHead().getNext();
+			TRTruck truck = depot.getSubList().getFirst();
 
-			while (truck != depot.getMainTrucks().getTail()) {
-				PVRPDay day = truck.getMainDays().getHead().getNext();
+			while (truck != depot.getSubList().getTail()) {
+				TRDay day = truck.getSubList().getFirst();
 
-				while (day != truck.getMainDays().getTail()) {
-					PVRPNodes cell = day.getNodesLinkedList().getHead().getNext();
+				while (day != truck.getSubList().getTail()) {
+					TRNode cell = day.getSubList().getFirst();
 
-					while (cell != day.getNodesLinkedList().getTail()) {
-						if (cell.getShipment().getXCoord() > bigX) {
-							bigX = (int) cell.getShipment().getXCoord();
+					while (cell != day.getSubList().getTail()) {
+						if (Math.abs(cell.getShipment().getCoordinates().getLongitude()) > bigX) {
+							bigX = (int) Math.abs(cell.getShipment().getCoordinates().getLongitude() * 100000000);
 						}
 
-						if (cell.getShipment().getYCoord() > bigY) {
-							bigY = (int) cell.getShipment().getYCoord();
+						if (Math.abs(cell.getShipment().getCoordinates().getLatitude()) > bigY) {
+							bigY = (int) Math.abs(cell.getShipment().getCoordinates().getLatitude() * 100000000);
 						}
 
-						if (cell.getShipment().getXCoord() < smallX) {
-							smallX = (int) cell.getShipment().getXCoord();
+						if (Math.abs(cell.getShipment().getCoordinates().getLongitude()) < smallX) {
+							smallX = (int) Math.abs(cell.getShipment().getCoordinates().getLongitude() * 100000000);
 						}
 
-						if (cell.getShipment().getYCoord() < smallY) {
-							smallY = (int) cell.getShipment().getYCoord();
+						if (Math.abs(cell.getShipment().getCoordinates().getLatitude()) < smallY) {
+							smallY = (int) Math.abs(cell.getShipment().getCoordinates().getLatitude() * 100000000);
 						}
 
 						cell = cell.getNext();
@@ -138,9 +139,9 @@ public class ZeusRouteDisplay
 			CheckTreeNode dnode = (CheckTreeNode) root.getChildAt(i);
 
 			if (dnode.isSelected()) {
-				Depot depot = (Depot) dnode.getUserObject();
-				int x = transX((int) depot.getXCoord());
-				int y = transY((int) depot.getYCoord());
+				TRDepot depot = (TRDepot) dnode.getUserObject();
+				int x = transX((int) Math.abs(depot.getCoordinates().getLongitude() * 100000000));
+				int y = transY((int) Math.abs(depot.getCoordinates().getLatitude() * 100000000));
 				int[] xs = {
 						x, x + 7, x - 7};
 				int[] ys = {
@@ -162,7 +163,7 @@ public class ZeusRouteDisplay
 //						Day day = truck.getMainDays().getHead().getNext();
 //						while (day != truck.getMainDays().getTail()) {
 							CheckTreeNode dyNode = (CheckTreeNode) tnode.getChildAt(k);
-							Day day = (Day) dyNode.getUserObject();
+							TRDay day = (TRDay) dyNode.getUserObject();
 //							Random rand = new Random();
 //							g.setColor(new Color(rand.nextFloat(), rand.nextFloat(), rand.nextFloat()));
 //							g.setColor(Color.orange);
@@ -174,27 +175,27 @@ public class ZeusRouteDisplay
 //															g.setColor(Color.black);
 
 							if (dyNode.isSelected()) {
-								Nodes cell = day.getNodesLinkedList().getHead().getNext();
+								TRNode cell = day.getSubList().getFirst();
 								// Java 'Color' class takes 3 floats, from 0 to 1.
 
 								g.setColor(dyNode.getColor());
 //								dyNode.setColor(Color.BLUE);
-								while (cell != day.getNodesLinkedList().getTail()) {
+								while (cell != day.getSubList().getTail()) {
 									//dont redraw the cell again if its a depot
-									if (cell.getIndex() > 0) {
-										x = transX((int) cell.getShipment().getXCoord());
-										y = transY((int) cell.getShipment().getYCoord());
+//									if (cell.getIndex() > 0) {
+										x = transX((int) Math.abs(cell.getShipment().getCoordinates().getLongitude() * 100000000));
+										y = transY((int) Math.abs(cell.getShipment().getCoordinates().getLatitude() * 100000000));
 										g.fillOval(x - 4, y - 4, 8, 8);
-									}
+//									}
 
-									Nodes next = cell.getNext();
+									TRNode next = cell.getNext();
 
-									if (next != day.getNodesLinkedList().getTail()) {
+									if (next != day.getSubList().getTail()) {
 										//draw the path
-										g.drawLine(transX((int) cell.getShipment().getXCoord()),
-												transY((int) cell.getShipment().getYCoord()),
-												transX((int) next.getShipment().getXCoord()),
-												transY((int) next.getShipment().getYCoord()));
+										g.drawLine(transX((int) Math.abs(cell.getShipment().getCoordinates().getLongitude() * 100000000)),
+												transY((int) Math.abs(cell.getShipment().getCoordinates().getLatitude() * 100000000)),
+												transX((int) Math.abs(next.getShipment().getCoordinates().getLongitude()* 100000000)),
+												transY((int) Math.abs(next.getShipment().getCoordinates().getLatitude() * 100000000)));
 									}
 
 									cell = next;

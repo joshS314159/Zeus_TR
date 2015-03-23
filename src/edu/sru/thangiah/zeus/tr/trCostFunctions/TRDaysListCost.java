@@ -45,10 +45,15 @@ public double getTotalDistance(Object o) {
 	return ((TRDaysList) o).getAttributes().getTotalDistance();
 }//GETTER
 
+    @Override
+    public double getTotalTravelTime(Object o) {
+        setTotalTravelTime(o);
+
+        return ((TRDaysList) o).getAttributes().getTotalTravelTime();
+    }
 
 
-
-//GETTER
+    //GETTER
 @Override
 public void setTotalDistance(Object o) {
 	TRDaysList daysList = (TRDaysList) o;
@@ -65,10 +70,23 @@ public void setTotalDistance(Object o) {
 
 }//GETTER@Override
 
+    @Override
+    public void setTotalTravelTime(Object o) {
+        TRDaysList daysList = (TRDaysList) o;
+        TRDay theDay = daysList.getFirst();
+        daysList.getAttributes().getTotalTravelTime();
+//    daysList.getAttributes().setTotalDistance(0);
+
+        while(theDay != daysList.getTail()) {
+            if(!theDay.isSubListEmpty()) {
+                daysList.getAttributes().setTotalTravelTime(daysList.getAttributes().getTotalTravelTime() + TRProblemInfo.daysLevelCostF.getTotalTravelTime(theDay));
+            }
+            theDay = theDay.getNext();
+        }
+    }
 
 
-
-public double getTotalCost(Object o) {
+    public double getTotalCost(Object o) {
     setTotalCost(o);
 
     return ((TRDaysList) o).getAttributes().getTotalCost();
