@@ -189,7 +189,7 @@ public class TR {
 
         //	System.out.println("\nLAUNCHING GUI\n");
         //
-        			new ZeusGui(mainDepots, mainShipments);
+//        			new ZeusGui(mainDepots, mainShipments);
 
 
     } //PVRP ENDS
@@ -336,8 +336,192 @@ public class TR {
         }
     }
 
-
     public int readDataFromFile(final String TRFileName)
+            throws IOException, InvalidFormatException, InstantiationException, IllegalAccessException,
+            InvocationTargetException {
+        final int LOCATION = 0;
+        final int PICKUP_POINT = 1;
+        final int LATITUDE = 2;
+        final int LONGITUDE = 3;
+        final int FREQUENCY = 4;
+        final int BINS = 5;
+        final int DAY_ONE = 6;
+        final int DAY_TWO = 7;
+        final int DAY_THREE = 8;
+        final int DAY_FOUR = 9;
+        final int DAY_FIVE = 10;
+        final int DAY_SIX = 11;
+        final int BUILDING_TYPE = 12;
+        final int CLASSES_NEARBY = 13;
+        final int FOOD_NEARBY = 14;
+        final int PICKUP_ORDER = 15;
+        final int NUMBER_COLUMNS = 16;
+
+        final int NUMBER_NON_NODE_ROWS = 2;
+
+        final String TIP_CART = "tip-cart";
+
+        final FileInputStream file = new FileInputStream(new File(TRFileName));
+
+        XSSFWorkbook workbook = new XSSFWorkbook(file);
+        XSSFSheet sheet = workbook.getSheetAt(0);
+        Row row;
+        Cell cell;
+
+
+        TRProblemInfo.noOfShips = sheet.getPhysicalNumberOfRows() - NUMBER_NON_NODE_ROWS;
+        int wut = TRProblemInfo.noOfShips;
+        for(int rowCounter = 1; rowCounter < sheet.getPhysicalNumberOfRows(); rowCounter++) {
+            if(rowCounter == 52) {
+                int i = 5;
+                int sumthin = sheet.getPhysicalNumberOfRows();
+                int ere = 9;
+            }
+            row = sheet.getRow(rowCounter);
+            TRShipment newShipment = new TRShipment();
+            double latitude = Double.MAX_VALUE;
+
+            for(int columnCounter = 0; columnCounter < NUMBER_COLUMNS; columnCounter++) {
+                cell = row.getCell(columnCounter);
+
+                switch(columnCounter) {
+                    case LOCATION:
+                        cell.setCellType(Cell.CELL_TYPE_STRING);
+                        newShipment.setPickupPointName(cell.getStringCellValue());
+                        break;
+                    case PICKUP_POINT:
+                        //cell.setCellType(Cell.CELL_TYPE_NUMERIC);
+                        //					int test = (int) cell.getNumericCellValue();
+                        cell.setCellType(Cell.CELL_TYPE_STRING);
+                        String pointName = cell.getStringCellValue();
+                        double point = Double.valueOf(pointName);
+                        newShipment.setNodeNumber((int) point);
+                        //					newShipment.setNodeNumber(test);
+                        break;
+                    case LATITUDE:
+                        cell.setCellType(Cell.CELL_TYPE_NUMERIC);
+                        latitude = cell.getNumericCellValue();
+                        //					newShipment.setLatitude(cell.getNumericCellValue());
+                        break;
+                    case LONGITUDE:
+                        cell.setCellType(Cell.CELL_TYPE_NUMERIC);
+                        double longitude = cell.getNumericCellValue();
+                        newShipment.getCoordinates().setCoordinates(longitude, latitude);
+                        break;
+                    case FREQUENCY:
+                        cell.setCellType(Cell.CELL_TYPE_NUMERIC);
+                        newShipment.setVisitFrequency((int) cell.getNumericCellValue());
+                        break;
+                    case BINS:
+                        cell.setCellType(Cell.CELL_TYPE_STRING);
+                        if(cell.getStringCellValue().equals(TIP_CART)) {
+                            newShipment.setIsTipCart(true);
+                            newShipment.setDelayType((TRDelayType) mainDelays.getByDelayName("Tipcart"));
+                            newShipment.setNumberOfBins(1);
+                        }
+                        else {
+                            newShipment.setIsTipCart(false);
+                            int numberBins = Integer.parseInt(cell.getStringCellValue());
+                            newShipment.setDelayType((TRDelayType) mainDelays.getByDelayName("Bin"));
+                            newShipment.setNumberOfBins(numberBins);
+                        }
+                        break;
+                    case DAY_ONE:
+                        cell.setCellType(Cell.CELL_TYPE_STRING);
+                        newShipment.setSingleDayVisitation(cell.getStringCellValue());
+                        break;
+                    case DAY_TWO:
+                        cell.setCellType(Cell.CELL_TYPE_STRING);
+                        newShipment.setSingleDayVisitation(cell.getStringCellValue());
+                        break;
+                    case DAY_THREE:
+                        cell.setCellType(Cell.CELL_TYPE_STRING);
+                        newShipment.setSingleDayVisitation(cell.getStringCellValue());
+                        break;
+                    case DAY_FOUR:
+                        cell.setCellType(Cell.CELL_TYPE_STRING);
+                        newShipment.setSingleDayVisitation(cell.getStringCellValue());
+                        break;
+                    case DAY_FIVE:
+                        cell.setCellType(Cell.CELL_TYPE_STRING);
+                        newShipment.setSingleDayVisitation(cell.getStringCellValue());
+                        break;
+                    case DAY_SIX:
+                        cell.setCellType(Cell.CELL_TYPE_STRING);
+                        newShipment.setSingleDayVisitation(cell.getStringCellValue());
+                        break;
+                    case BUILDING_TYPE:
+                        cell.setCellType(Cell.CELL_TYPE_NUMERIC);
+                        newShipment.setBuildingType((int) cell.getNumericCellValue());
+                        break;
+                    case CLASSES_NEARBY:
+                        cell.setCellType(Cell.CELL_TYPE_NUMERIC);
+                        newShipment.setNumberOfNearbyClasses((int) cell.getNumericCellValue());
+                        break;
+                    case FOOD_NEARBY:
+                        cell.setCellType(Cell.CELL_TYPE_NUMERIC);
+                        newShipment.setNumberOfNearbyFoods((int) cell.getNumericCellValue());
+                        break;
+                    case PICKUP_ORDER:
+                        cell.setCellType(Cell.CELL_TYPE_STRING);
+                        if(cell.getStringCellValue().equals("None")) {
+                            newShipment.setPickupOrder(cell.getStringCellValue());
+                        }
+                        else {
+                            cell.setCellType(Cell.CELL_TYPE_NUMERIC);
+                            newShipment.setRequiredPreviousPickupPoint((int) cell.getNumericCellValue());
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+            //		newShipment.setVisitationCombination();
+            //		try {
+            if(newShipment.getVisitFrequency() != 0) {
+                System.out.println("Node Counter: " + rowCounter);
+                mainShipments.insertAfterLastIndex(newShipment);
+            }
+            //		}
+            //		catch(IllegalAccessException e) {
+            //			e.printStackTrace();
+            //		}
+            //		catch(InstantiationException e) {
+            //			e.printStackTrace();
+            //		}
+        }
+        System.out.println("Setting up depot");
+
+        //	mainShipments.getTail().getPrev().rem
+        TRShipment depotShipment = mainShipments.getLast();
+        TRDepot theDepot = new TRDepot(depotShipment.getCoordinates());
+        mainShipments.removeByObject(depotShipment);
+        //	int position = mainShipments.getIndexOfObject(mainShipments.getLast());
+        //	mainShipments.removeByIndex(position);
+        mainDepots.insertAfterLastIndex(theDepot);
+
+        TRTruck theTruck = new TRTruck();
+        TRDepot firstDepot = mainDepots.getFirst();
+        TRTrucksList truckList = firstDepot.getSubList();
+        truckList.insertAfterLastIndex(theTruck);
+        theTruck = truckList.getFirst();
+        //		mainDepots.getFirst().getSubList().insertAfterLastIndex(new TRTruck());
+
+        TRDaysList daysList = theTruck.getSubList();
+        for(int x = 0; x < TRProblemInfo.NUMBER_DAYS_SERVICED; x++) {
+            TRDay temporaryDay = new TRDay();
+            temporaryDay.setDayNumber(x);
+            temporaryDay.getSubList().setStartEndDepot(theDepot, theDepot);
+            temporaryDay.getSubList().setTruckType(new TRTruckType());
+            daysList.insertAfterLastIndex(temporaryDay);
+
+        }
+
+        return -1;
+    }
+
+
+    /*public int readDataFromFile(final String TRFileName)
             throws IOException, InvalidFormatException, InstantiationException, IllegalAccessException,
             InvocationTargetException {
         final int LOCATION = 0;
@@ -504,7 +688,7 @@ public class TR {
         //	mainDepots
 
         return -1;
-    }
+    }*/
 
 
 

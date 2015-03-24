@@ -2,6 +2,7 @@ package edu.sru.thangiah.zeus.tr.trQualityAssurance;
 
 
 import edu.sru.thangiah.zeus.core.Settings;
+import edu.sru.thangiah.zeus.tr.TRCoordinates;
 
 import java.util.Vector;
 
@@ -47,7 +48,7 @@ private int    dayNumber   = -1;                //the day number the current day
 
 
 //CONSTRUCTOR
-public boolean checkDistanceConstraint(TRQADay day) {
+/*public boolean checkDistanceConstraint(TRQADay day) {
 	//VARIABLES
 	boolean isDiagnostic = true;        //print diagnostic information?
 	boolean status = true;                //return value
@@ -135,7 +136,94 @@ public boolean checkDistanceConstraint(TRQADay day) {
 
 	return status;
 }//CHECK_DISTANCE_CONSTRAINTS ENDS HERE*******************<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
+public boolean checkDistanceConstraint(TRQADay day) {
+	//VARIABLES
+	boolean isDiagnostic = true;        //print diagnostic information?
+	boolean status = true;                //return value
+	double totalDistance = 0;            //
+	double distance = 0;                //
+	TRQANode nodeOne;                    //these are for
+	TRQANode nodeTwo;                    //distance calculations
+	int distanceOne;                    //
+	int distanceTwo;                    //
 
+
+	//IF HAVE NO NODES
+	if (getNodes().size() == 0) {
+		return status;
+	}
+
+
+	//COMPUTE DISTANCE FROM DEPOT TO FIRST NODE
+	nodeOne = (TRQANode) getNodes().elementAt(0);
+
+
+	//COMPUTE TOTAL TRAVEL DISTANCE IN THE ROUTE
+	for (int i = 1; i < getNodes().size(); i++) {
+		nodeTwo = (TRQANode) getNodes().elementAt(i);
+
+		TRCoordinates firstPoint = new TRCoordinates(nodeOne.getY(), nodeOne.getX());
+		TRCoordinates secondPoint = new TRCoordinates(nodeTwo.getY(), nodeTwo.getX());
+		distance = firstPoint.calculateDistanceThisMiles(secondPoint);
+
+		totalDistance += distance;
+		if (isDiagnostic) {
+			System.out.println("    Distance from " + nodeOne.getIndex() + " to " +
+					nodeTwo.getIndex() + " = " + distance);
+		}
+		nodeOne = nodeTwo;
+	}
+
+
+	//Convert the distance to integer values for comparison. The convertion
+	//takes up to a precison of 3 decimal places. Comapring floats can lead
+	//to inaccurate results as errors start occuring after the 4th decimal
+	//place
+
+	//converting to ints because floats can be inaccurate
+	//and depending on the situation floats have been used
+	//over doubles
+	//less than one mile variation in distances isn't a
+	//quality problem to worry about
+	distanceOne = (int) (day.getDistance());
+	distanceTwo = (int) (totalDistance);
+
+	if (isDiagnostic) {
+		//System.out.println("    Distance from " + node1.getIndex() + " to " +
+		//                   node2.getIndex() + " = " + truck.getDistance());
+		System.out.println("   Truck distance " + day.getDistance() +
+				" : Computed distance " + totalDistance);
+
+	}
+
+	//DO OUR DISTANCES MATCH
+	//because the int conversion chops off the decimal we will consider
+	//our results to be OKAY if the distances are within one mile of
+	//each other, so if distanceOne == 359 then distanceTwo can be
+	//358, 359, or 360
+	if (distanceOne == distanceTwo || distanceOne == distanceTwo - 1 || distanceTwo == distanceOne - 1) {
+		status = true;
+	} else {
+		//	if(distanceOne != distanceTwo) {
+		Settings.printDebug(Settings.ERROR, "Truck # " + day.getDayNumber() +
+				" distance does not match computed distance " +
+				day.getDistance() + " " + totalDistance);
+		status = false;
+		return status;
+	}
+
+	//DOES THIS EXCEED MAXIUMUM DISTANCE
+	if (totalDistance > day.getMaxDistance() && day.getMaxDistance() > 0) {
+		Settings.printDebug(Settings.ERROR, "Truck # " + day.getDayNumber() +
+				"distance exceeds maximum distance " +
+				totalDistance + " " + getMaxDistance());
+		status = false;
+		return status;
+	}
+
+	return status;
+}
 
 
 

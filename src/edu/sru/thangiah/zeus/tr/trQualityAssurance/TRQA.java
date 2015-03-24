@@ -164,7 +164,8 @@ public void readShipmentFile()
 
 
 	//READ IN ALL THE NODES
-	for(int rowCounter = 0; rowCounter < numberShipmentsNodes; rowCounter++) {
+	while(rowIterator.hasNext()){
+	//for(int rowCounter = 0; rowCounter < numberShipmentsNodes; rowCounter++) {
 		//ITERATE OVER EVERY ROW
 		//GET THE NEXT ROW
 		row = rowIterator.next();
@@ -417,7 +418,7 @@ public void readSolutionFile()
 							case 3:    //READ Y COORD
 								theNode.setY(currentCellValue);
 								break;
-							case 4:    //READ DEMAND
+							case 6:    //READ DEMAND
 								theNode.setDemand(currentCellValue);
 								break;
 							default:    //WE HAVE NO NODAL TYPE

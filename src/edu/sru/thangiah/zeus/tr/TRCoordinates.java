@@ -20,6 +20,10 @@ public TRCoordinates(final TRCoordinates copyMe) {
 	this.latitude = copyMe.getLatitude();
 }
 
+	public TRCoordinates(double lat, double lon){
+		this.latitude = lat;
+		this.longitude = lon;
+	}
 
 
 
