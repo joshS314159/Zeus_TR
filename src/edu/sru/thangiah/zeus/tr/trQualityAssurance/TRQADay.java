@@ -347,14 +347,15 @@ public boolean checkCapacityConstraint(TRQADay day) {
 	}
 
 
+    //we don't have a max capacity for this problem, so no need to check for it's validity
 	//DOES THE COMPUTEd CAPACITY EXCEED OUR MAXIMUM CAPACITY
-	if(totalCapacity > day.getMaxDemand()) {
-		Settings.printDebug(Settings.ERROR, "Truck # " + day.getDayNumber() +
-											"distance exceeds maximum capacity " +
-											totalCapacity + " " + day.getMaxDemand());
-		status = false;
-		return status;
-	}
+//	if(totalCapacity > day.getMaxDemand()) {
+//		Settings.printDebug(Settings.ERROR, "Truck # " + day.getDayNumber() +
+//											"distance exceeds maximum capacity " +
+//											totalCapacity + " " + day.getMaxDemand());
+//		status = false;
+//		return status;
+//	}
 	return status;
 }//CHECK_CAPACITY_CONSTRAINTS ENDS HERE*******************<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 

@@ -163,6 +163,9 @@ public class TR {
             //if QA was a success -- solution created properly
             Settings.printDebug(Settings.COMMENT, "QA succeeded");
         }
+
+        long endTime = System.currentTimeMillis();
+        System.out.println(">>>>>>>>>>>>>>>>>>> RUN TIME\t" + (endTime - startTime) );
         //Check for the quality and integrity of the solution
 
         System.out.println("Routes that cannot be routed due to lack of local optimization:");
@@ -184,12 +187,13 @@ public class TR {
 
 
 //        compareResults(dataFile);
+        compareResults();
         //writes an Excel file that compares our results to some results
         //from various research papers
 
-        //	System.out.println("\nLAUNCHING GUI\n");
+        	System.out.println("\nLAUNCHING GUI\n");
         //
-//        			new ZeusGui(mainDepots, mainShipments);
+//        new ZeusGui(mainDepots, mainShipments);
 
 
     } //PVRP ENDS
@@ -372,11 +376,7 @@ public class TR {
         TRProblemInfo.noOfShips = sheet.getPhysicalNumberOfRows() - NUMBER_NON_NODE_ROWS;
         int wut = TRProblemInfo.noOfShips;
         for(int rowCounter = 1; rowCounter < sheet.getPhysicalNumberOfRows(); rowCounter++) {
-            if(rowCounter == 52) {
-                int i = 5;
-                int sumthin = sheet.getPhysicalNumberOfRows();
-                int ere = 9;
-            }
+
             row = sheet.getRow(rowCounter);
             TRShipment newShipment = new TRShipment();
             double latitude = Double.MAX_VALUE;
@@ -428,27 +428,27 @@ public class TR {
                         break;
                     case DAY_ONE:
                         cell.setCellType(Cell.CELL_TYPE_STRING);
-                        newShipment.setSingleDayVisitation(cell.getStringCellValue());
+                        newShipment.addDayToVisitationList(cell.getStringCellValue());
                         break;
                     case DAY_TWO:
                         cell.setCellType(Cell.CELL_TYPE_STRING);
-                        newShipment.setSingleDayVisitation(cell.getStringCellValue());
+                        newShipment.addDayToVisitationList(cell.getStringCellValue());
                         break;
                     case DAY_THREE:
                         cell.setCellType(Cell.CELL_TYPE_STRING);
-                        newShipment.setSingleDayVisitation(cell.getStringCellValue());
+                        newShipment.addDayToVisitationList(cell.getStringCellValue());
                         break;
                     case DAY_FOUR:
                         cell.setCellType(Cell.CELL_TYPE_STRING);
-                        newShipment.setSingleDayVisitation(cell.getStringCellValue());
+                        newShipment.addDayToVisitationList(cell.getStringCellValue());
                         break;
                     case DAY_FIVE:
                         cell.setCellType(Cell.CELL_TYPE_STRING);
-                        newShipment.setSingleDayVisitation(cell.getStringCellValue());
+                        newShipment.addDayToVisitationList(cell.getStringCellValue());
                         break;
                     case DAY_SIX:
                         cell.setCellType(Cell.CELL_TYPE_STRING);
-                        newShipment.setSingleDayVisitation(cell.getStringCellValue());
+                        newShipment.addDayToVisitationList(cell.getStringCellValue());
                         break;
                     case BUILDING_TYPE:
                         cell.setCellType(Cell.CELL_TYPE_NUMERIC);
@@ -476,6 +476,7 @@ public class TR {
                         break;
                 }
             }
+            //newShipment.setVisitationSchedule();
             //		newShipment.setVisitationCombination();
             //		try {
             if(newShipment.getVisitFrequency() != 0) {
@@ -490,6 +491,7 @@ public class TR {
             //			e.printStackTrace();
             //		}
         }
+        mainShipments.makeSchedule();
         System.out.println("Setting up depot");
 
         //	mainShipments.getTail().getPrev().rem
@@ -1504,7 +1506,7 @@ public class TR {
     //METHOD
 //this method prints an excel file which compares this program's
 //solution(s) to that of known research
-    public void compareResults(String filename)
+    public void compareResults(/*String filename*/)
             throws IOException, InvalidFormatException {
 
         //VARIABLES
@@ -1531,6 +1533,8 @@ public class TR {
         FileOutputStream out = null;
         XSSFSheet outputSheet = null;
         //if the file already exists
+
+        /*
         if(theFile.exists() && !theFile.isDirectory()) {
             //then set up the inputs and outputs properly to modify the file
             FileInputStream in = new FileInputStream(new File(ProblemInfo.outputPath + TRProblemInfo
@@ -1541,12 +1545,13 @@ public class TR {
             didFileExist = true;
         }
         else {
+        */
             //otherwise the file doesn't exist so set up everything to create a new file
             out = new FileOutputStream(new File(ProblemInfo.outputPath + TRProblemInfo.comparisonOutputFile));
             workbook = new XSSFWorkbook();
             outputSheet = workbook.createSheet("Comparisons");
             didFileExist = false;
-        }
+//        }
 
 
         //INPUT VARIABLES
@@ -1560,9 +1565,115 @@ public class TR {
         Row inputRow = null;
         Iterator<Cell> inputCellIterator = null;
 
+        double totalOldDistanceTravelled = 0;
+        double totalOldTimeTravelled = 0;
+        int dayCounter = 0;
+        double[] oldDistanceTravelled = new double[TRProblemInfo.MAX_NUMBER_OF_DAYS_IN_SCHEDULE];
+        double[] oldTimeTravelled = new double[TRProblemInfo.MAX_NUMBER_OF_DAYS_IN_SCHEDULE];
 
+        for(int x = 0; x <= inputSheet.getLastRowNum(); x++){
+            inputRow = inputSheet.getRow(x);
+            if(inputRow != null) {
+                inputCell = inputRow.getCell(0);
+                if(inputCell != null && inputCell.getCellType() != Cell.CELL_TYPE_BLANK) {
+                    inputCell.setCellType(TYPE_STRING);
+                    String checkMe = inputCell.getStringCellValue();
+
+                    if (checkMe.equals("Total Distance")) {
+                        inputCell = inputRow.getCell(1);
+                        double distanceValue = Float.parseFloat(inputCell.getStringCellValue());
+                        oldDistanceTravelled[dayCounter] = distanceValue;
+//                oldDistanceTravelled += distanceValue;
+                    } else if (checkMe.equals("Total Time")) {
+                        inputCell = inputRow.getCell(1);
+                        double timeValue = Float.parseFloat(inputCell.getStringCellValue());
+                        oldTimeTravelled[dayCounter++] = timeValue;
+//                oldTimeTravelled += timeValue;
+                    }
+                }
+            }
+        }
+
+        for(int x = 0; x < oldDistanceTravelled.length; x++){
+            totalOldDistanceTravelled += oldDistanceTravelled[x];
+            totalOldTimeTravelled += oldTimeTravelled[x];
+        }
+
+        int cellCounter = 1;
+        int rowCounter = 0;
+
+        outputRow = outputSheet.createRow(rowCounter++);
+        {
+            outputCell = outputRow.createCell(cellCounter++);
+            outputCell.setCellValue("Original Distance");
+
+            outputCell = outputRow.createCell(cellCounter++);
+            outputCell.setCellValue("New Distance");
+
+//            cellCounter++;
+
+            outputCell = outputRow.createCell(cellCounter++);
+            outputCell.setCellValue("Original Time");
+
+            outputCell = outputRow.createCell(cellCounter++);
+            outputCell.setCellValue("New Time");
+        }
+
+
+
+        outputRow = outputSheet.createRow(rowCounter++);
+        {
+            cellCounter = 0;
+
+            outputCell = outputRow.createCell(cellCounter++);
+            outputCell.setCellValue("Total");
+
+            outputCell = outputRow.createCell(cellCounter++);
+            outputCell.setCellValue(totalOldDistanceTravelled);
+
+            outputCell = outputRow.createCell(cellCounter++);
+            outputCell.setCellValue(mainDepots.getAttributes().getTotalDistance());
+
+//            cellCounter++;
+
+            outputCell = outputRow.createCell(cellCounter++);
+            outputCell.setCellValue(totalOldTimeTravelled);
+
+            outputCell = outputRow.createCell(cellCounter++);
+            outputCell.setCellValue(mainDepots.getAttributes().getTotalTravelTime());
+        }
+
+
+        rowCounter = 3;
+        cellCounter = 0;
+        TRDaysList daysList = mainDepots.getFirst().getSubList().getFirst().getSubList();
+
+        for(int x = 0; x < TRProblemInfo.NUMBER_DAYS_SERVICED; x++) {
+            outputRow = outputSheet.createRow(rowCounter++);
+            cellCounter = 0;
+            {
+                outputCell = outputRow.createCell(cellCounter++);
+                outputCell.setCellValue("Day " + x);
+
+                outputCell = outputRow.createCell(cellCounter++);
+                outputCell.setCellValue(oldDistanceTravelled[x]);
+
+                outputCell = outputRow.createCell(cellCounter++);
+                outputCell.setCellValue(daysList.getAtIndex(x).getAttributes().getTotalDistance());
+
+
+                outputCell = outputRow.createCell(cellCounter++);
+                outputCell.setCellValue(oldTimeTravelled[x]);
+
+                outputCell = outputRow.createCell(cellCounter++);
+                outputCell.setCellValue(daysList.getAtIndex(x).getAttributes().getTotalTravelTime());
+            }
+        }
+
+
+/*
         //IF THE FILE DID NOT EXIST
-        if(didFileExist == false) {
+        if(!didFileExist) {
             //here we copy everything from the base comparison file
             //by iterating over every row and column
             //into this new file which will contain our results
@@ -1693,9 +1804,10 @@ public class TR {
             outputSheet.autoSizeColumn(x);
         }
 
-
+*/
         workbook.write(out);        //write out workbook to the stream
         out.close();                //close the stream
+        System.out.print("comparison outed");
     }//COMPARE RESULTS ENDS
 // HERE*******************<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 

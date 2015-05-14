@@ -103,6 +103,10 @@ public boolean customerServicedRequestedFrequency(PVRPQADepotLinkedList qaDepots
 														   " needs serviced " +
 														   s.getFrequency() + " BUT is serviced " + s.getServCount() +
 														   " >>>>>>>>>>");
+			System.out.println("\n<<<<<< FAIL: Shipment " + s.getIndex() +
+					" needs serviced " +
+					s.getFrequency() + " BUT is serviced " + s.getServCount() +
+					" >>>>>>>>>>");
 			didPassTest = false;
 		}
 		else {

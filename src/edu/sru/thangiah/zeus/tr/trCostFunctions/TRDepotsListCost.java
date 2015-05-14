@@ -95,7 +95,7 @@ public void setTotalDistance(Object o) {
 
 //CONSTRUCTOR
 public void calculateTotalsStats(Object o) {
-	//	setTotalDemand(o);
+		setTotalDemand(o);
 	setTotalDistance(o);
 		setTotalCost(o);
     setTotalTravelTime(o);

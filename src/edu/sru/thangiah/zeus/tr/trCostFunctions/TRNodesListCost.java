@@ -105,7 +105,7 @@ public void setTotalDemand(Object o) {
 	int distance = 0;
 
 	while(theNode != nodesList.getTail()) {
-		distance += theNode.getDemand();
+		distance += theNode.getShipment().getNumberOfBins();
 		theNode = theNode.getNext();
 	}
 

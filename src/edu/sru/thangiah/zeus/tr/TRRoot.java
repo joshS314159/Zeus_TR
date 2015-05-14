@@ -82,17 +82,18 @@ public class TRRoot {
         TRProblemInfo.tempFileLocation = TRProblemInfo.workingDirectory + FS + "temp";                  //temp file location
         TRProblemInfo.inputPath = TRProblemInfo.workingDirectory + FS + "data" + FS + "TR" + FS + "problem" + FS;                                //input file location
         TRProblemInfo.outputPath = TRProblemInfo.workingDirectory + FS + "data" + FS + "TR" + FS + "results" + FS;                            //output file location
-        //	TRProblemInfo.compareToInputPath = TRProblemInfo.workingDirectory + FS + "data" + FS + "TR" + FS + "compareTo" + FS;
-        //	TRProblemInfo.compareToInputFile = "Comparison_List.xlsx";
+        TRProblemInfo.compareToInputPath = TRProblemInfo.workingDirectory + FS + "data" + FS + "TR" + FS + "compareTo" + FS;
+//        TRProblemInfo.compareToInputFile = "old_five_day.xlsx";
+        TRProblemInfo.compareToInputFile = "old_six_day.xlsx";
         TRProblemInfo.comparisonOutputFile = "Comparison_Results.xlsx";
         TRProblemInfo.longSolutionOutputFile = "All_Long_Solutions.xlsx";
         TRProblemInfo.shortSolutionOutputFile = "All_Short_Solutions.xlsx";
         TRProblemInfo.penaltiesInputFile = "Penalty.xlsx";
         TRProblemInfo.delayTypesInputFile = "DelayTimes.xlsx";
 
-        TRProblemInfo.startHour = 9;
+        TRProblemInfo.startHour = 8;
         TRProblemInfo.startMinute = 00;
-        TRProblemInfo.averageVelocity = 15;
+        TRProblemInfo.averageVelocity = 12;
         TRProblemInfo.numDepots = 1;
         TRProblemInfo.addPenaltyPerBin = true;
         TRProblemInfo.mainPenalties = new TRPenaltiesList();

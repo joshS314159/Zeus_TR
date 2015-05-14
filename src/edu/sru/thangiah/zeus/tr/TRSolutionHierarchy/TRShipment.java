@@ -8,6 +8,9 @@ import edu.sru.thangiah.zeus.tr.TRAttributes;
 import edu.sru.thangiah.zeus.tr.TRCoordinates;
 import edu.sru.thangiah.zeus.tr.TRProblemInfo;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 
 public class TRShipment
 		extends Shipment
@@ -19,7 +22,7 @@ private TRShipment previous;
 private TRShipment next;
 private int        customerIndex;
 private boolean canBeRouted = false;
-    private TRAttributes  attributes = new TRAttributes();
+private TRAttributes  attributes = new TRAttributes();
 private TRCoordinates homeDepotCoordinates;
 private TRCoordinates coordinates;
 private int           numberOfBins;
@@ -35,8 +38,8 @@ private int     demand;
 private int     visitFrequency = 0;
 private String  pickupPointName;
 private int     requiredPreviousPickupPoint;
-    private TRDelayType delayType = new TRDelayType();
-
+private TRDelayType delayType = new TRDelayType();
+private ArrayList<String> daysToVisitStop = new ArrayList<String>();
 
 
 //CONSTRUCTOR
@@ -365,6 +368,7 @@ public int getNumberOfBins() {
 public void setNumberOfBins(final int numberOfBins) {
 	if(numberOfBins >= 0) {
 		this.numberOfBins = numberOfBins;
+        this.setDemand(numberOfBins);
 	}
 }
 
@@ -531,6 +535,202 @@ public void setSingleDayVisitation(String visitationDaySymbol) {
 
 }
 
+    public void addDayToVisitationList(String dayCode){
+
+        if(!dayCode.equals("None")) {
+            this.daysToVisitStop.add(dayCode);
+            this.setFrequency(this.getFrequency() + 1);
+        }
+
+    }
+
+	//if we are sticking to bound days, this method is to adjust for a 5 day schedule from the original 6 day one
+    public void setVisitationSchedule(){
+		//if we are running a 5 day schedule, saturday is never visited it. remove it from daysToVisitStop
+        if(TRProblemInfo.NUMBER_DAYS_SERVICED != TRProblemInfo.MAX_NUMBER_OF_DAYS_IN_SCHEDULE){
+            if(daysToVisitStop.contains("Sat")){
+                daysToVisitStop.remove("Sat");
+				//if a shipment requires a visit all 6 days, we can only visit 5 days in a 5 day schedule, so decrease its frequency accordingly
+                if(this.getFrequency() == TRProblemInfo.MAX_NUMBER_OF_DAYS_IN_SCHEDULE)
+                    this.setFrequency(this.getFrequency() - 1);
+				//if we do not need to visit the stop all days, but saturday is still on the schedule, check to see
+				//if friday is on the schedule. If not, schedule it. 
+                else if(!daysToVisitStop.contains("F")){
+                    daysToVisitStop.add(("F"));
+                }
+				//if friday is on the schedule, the only other schedule possible from our data is MWFS, so 
+				//TR are both open. Choose one at random and schedule it. 
+                else{
+                    Random random = new Random();
+                    int randInt = random.nextInt();
+                    if(randInt == 0)
+                        daysToVisitStop.add("T");
+                    else
+                        daysToVisitStop.add("R");
+                }
+            }
+        }
+
+		//take this new visitation schedule and set our daysVisited array using this new data
+        for(String dayCode: daysToVisitStop){
+            setSingleDayVisitation(dayCode);
+        }
+    }
+
+	//method used when creating an entirely new schedule for a shipment
+    public void makeCustomVisitationSchedule(){
+		//variable dictionary
+        int weekLength = TRProblemInfo.NUMBER_DAYS_SERVICED;	
+        int[] schedule = new int[weekLength];
+        int period = weekLength / this.getVisitFrequency(); 			//a shipment requires a number of visits equal to its frequency. taking the length of our schedule and dividing it by the 
+																		//frequency gives us a period during which at least 1 visitation is required. 
+        int excessDays = weekLength % this.getVisitFrequency();			//because division gives us a whole number, we need to capture the number of days that the shipment is not to be visited on.
+																		//for example, if a shipment has a freq of 4 on a 6 day schedule, its period would be 1, with an excessDay count of 2.
+        int daysScheduled = 0;											//number of days scheduled so far
+        boolean isNewScheduleMade = false;
+		Random random = new Random();
+
+		//if this shipment needs visited everyday, go ahead and schedule it. we are done here
+		if(this.getVisitFrequency() >= weekLength){
+			for(int i = 0; i < weekLength; i++){
+				this.setSingleDayVisitation(daysToVisitStop.get(i));
+			}
+			return;
+		}
+
+		//having a shipment that does not need visited everyday is where the fun starts
+        while(!isNewScheduleMade){
+
+			//check at the beginning of the loop to see if all days have been scheduled. if so, skip everything and exit the loop.
+            if(daysScheduled == weekLength)
+                isNewScheduleMade = true;
+
+			//there are 3 possible cases for a shipment having a period of 1. it will either have and excess day count of either 0, 1, or 2
+            else if(period == 1){
+				//may not actually need this if statement. having a period of 1 with not excess days is a full schedule, which was taken care of
+				//in the first part of this method... @TODO
+                if(excessDays >= 1){
+					//this array will hold the days which will be skipped
+                    int[] gapDays = new int[excessDays];
+                    for(int i = 0; i < excessDays; i++){
+						//get a random day of the week to skip
+                        int rand = random.nextInt(weekLength);
+						//if this is the first gap day, go ahead and schedule it
+                        if(i == 0)
+                            gapDays[0] = rand;
+						//if this isn't the first gap day, we need to check to make sure that day is not already skipped
+                        else{
+							//if the random day is already skipped, go 2 days forward and skip that day
+                            if(gapDays[0] == rand)
+                                gapDays[i] = (rand + 2) % weekLength;
+							//if not skipped, skip it
+                            else
+                                gapDays[i] = rand;
+                        }
+                    }
+					//check to make sure the days are in order so when scheduling we don't skip over a day that is to be skipped
+                    if(excessDays == 2){
+                        if(gapDays[0] > gapDays[1]){
+                            int temp = gapDays[0];
+                            gapDays[0] = gapDays[1];
+                            gapDays[1] = temp;
+                        }
+                    }
+
+					//var keeps track of how many days we have skipped so far;
+                    int gapDayCnt = 0;
+                    boolean allGapsUsed = false;
+					
+					//make the schedule now
+                    for(int i = 0; i < weekLength; i++){
+                        boolean gap = false;
+						//as long as we still have gaps to schedule, check if this current day is a gap day
+                        if(!allGapsUsed){
+                            if(i == gapDays[gapDayCnt]){
+                                schedule[i] = 0;
+                                gapDayCnt++;
+                                gap = true;
+                                if(gapDayCnt == excessDays)
+                                    allGapsUsed = true;
+                            }
+                        }
+						//if we have already scheduled a gap this loop, skip
+                        if(!gap)
+                            schedule[i] = 1;
+
+                        daysScheduled++;
+                    }
+                }
+            }
+
+			//all shipments with a period != 1
+            else{
+				//pick a random day during a period to schedule
+                int dayToSchedule = random.nextInt(period);
+				//we are looping through a period here. once all periods have been scheduled, our while loop condition is met and we quit executing
+                for(int i = 0; i < period; i++){
+					//as long as we have a day scheduled, we need to check that the beginning of one period is not scheduled right after the end of another
+					//that's a little confusing. If we have a period of 2, and the first period is scheduled as [0,1], we need to make sure not to schedule [1,0] for the next
+                    if(daysScheduled > 0){
+                        if(schedule[daysScheduled - 1] == 1 && dayToSchedule == i)
+                            dayToSchedule++;
+                    }
+					//schedule a day to be visited or not depending of what our random day is
+                    if(i != dayToSchedule)
+                        schedule[daysScheduled] = 0;
+                    else
+                        schedule[daysScheduled] = 1;
+
+                    daysScheduled++;
+                }
+				//if we have extra days to skip, skip one now
+                if(excessDays != 0){
+                    schedule[daysScheduled] = 0;
+                    daysScheduled++;
+                    excessDays--;
+                }
+            }
+
+        }
+
+		//clear any schedule already in the shipment
+        daysToVisitStop.clear();
+		//add our new schedule to the shipment
+        for(int i = 0; i < schedule.length; i++){
+            switch (i){
+                case 0:
+                    if(schedule[i] == 1)
+                        daysToVisitStop.add("M");
+                    break;
+                case 1:
+                    if(schedule[i] == 1)
+                        daysToVisitStop.add("T");
+                    break;
+                case 2:
+                    if(schedule[i] == 1)
+                        daysToVisitStop.add("W");
+                    break;
+                case 3:
+                    if(schedule[i] == 1)
+                        daysToVisitStop.add("R");
+                    break;
+                case 4:
+                    if(schedule[i] == 1)
+                        daysToVisitStop.add("F");
+                    break;
+                case 5:
+                    if(schedule[i] == 1)
+                        daysToVisitStop.add("Sat");
+                    break;
+            }
+        }
+
+		//set the new schedule
+        for(int i = 0; i < daysToVisitStop.size(); i++){
+            this.setSingleDayVisitation(daysToVisitStop.get(i));
+        }
+
+    }
 
 
 

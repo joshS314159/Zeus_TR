@@ -2,6 +2,7 @@ package edu.sru.thangiah.zeus.tr.trCostFunctions;
 
 
 import edu.sru.thangiah.zeus.core.ProblemInfo;
+import edu.sru.thangiah.zeus.tr.TR;
 import edu.sru.thangiah.zeus.tr.TRProblemInfo;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRTruck;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRTrucksList;
@@ -146,9 +147,9 @@ public void setTotalDemand(Object o) {
 
 	while(theTruck != truckList.getTail()) {
 
-		if(!theTruck.isEmptyMainDays()) {
+		if(!theTruck.isSubListEmpty()) {
 			truckList.getAttributes()
-					 .setTotalDemand(truckList.getAttributes().getTotalDemand() + ProblemInfo.truckLevelCostF.
+					 .setTotalDemand(truckList.getAttributes().getTotalDemand() + TRProblemInfo.truckLevelCostF.
 																													 getTotalDemand(
 																															 theTruck));
 		}

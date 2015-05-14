@@ -118,7 +118,7 @@ public void setTotalCost(Object o) {
 //SETTER
 public void setTotalDemand(Object o) {
 	TRTruck truck = (TRTruck) o;
-	truck.getAttributes().setTotalDemand(TRProblemInfo.daysLLLevelCostF.getTotalDemand(truck.getMainDays()));
+	truck.getAttributes().setTotalDemand(TRProblemInfo.daysLLLevelCostF.getTotalDemand(truck.getSubList()));
 }
 
 

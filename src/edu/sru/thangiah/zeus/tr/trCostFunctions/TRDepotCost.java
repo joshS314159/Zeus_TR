@@ -129,7 +129,7 @@ public void setTotalCost(Object o) {
 public void setTotalDemand(Object o) {
 	TRDepot theDepot = (TRDepot) o;
 	((TRDepot) o).getAttributes()
-				 .setTotalDemand((int) ProblemInfo.truckLLLevelCostF.getTotalDemand(theDepot.getMainTrucks()));
+				 .setTotalDemand((int) TRProblemInfo.truckLLLevelCostF.getTotalDemand(theDepot.getSubList()));
 }
 
 

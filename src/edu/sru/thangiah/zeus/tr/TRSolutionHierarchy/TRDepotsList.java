@@ -130,7 +130,8 @@ public TRDepot getFirst() {
         System.out.println("ERROR: getFirst() is null/invalid");
 		return null;
 	}
-	return getHead().getNext();
+
+	return this.getHead().getNext();
 }
 
 
@@ -747,7 +748,7 @@ public void writeOutData(FileOutputStream out)
 
 
 					cell = row.createCell(columnCounter++);
-					cell.setCellValue(theShipment.getDemand());
+					cell.setCellValue(theShipment.getNumberOfBins());
 
 					cell = row.createCell(columnCounter++);
 					cell.setCellValue(NULL_VALUE);
