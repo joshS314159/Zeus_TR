@@ -97,6 +97,8 @@ public class TRProblemInfo
 
     public static String delayTypesInputFile = new String();
 
+    public static String problemFileName = new String();
+
     public static int startHour;
     public static int startMinute;
     public static int averageVelocity;
