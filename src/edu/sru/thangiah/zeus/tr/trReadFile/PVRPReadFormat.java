@@ -462,8 +462,7 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 
 			Integer custType = (Integer) custTypes
 					.elementAt(0);        //we only have on customer type so we can just get at index zero
-			mainShipments
-					.insertShipment(newShipment);
+			mainShipments.insertAfterLastIndex(newShipment);
 			//insert the just read shipment into the mainShipments list holds our all our problem info read in from Excel
 
 		}

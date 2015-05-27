@@ -6,29 +6,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="427f608e-7f95-4a29-8cf7-159527e366d2" name="Default" comment="">
-      <change type="MOVED" beforePath="C:\Users\jks1010\Documents\GitHub\Zeus_TR\src\edu\sru\thangiah\zeus\tr\trReadFile\readFormat.java" afterPath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trReadFile/ReadFormat.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trReadFile/PVRPReadFormat.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trReadFile/PVRPReadFormat.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trReadFile/ReadFormat.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trReadFile/ReadFormat.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trReadFile/ReadFormatInterface.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trReadFile/ReadFormatInterface.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TR.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TR.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRCoordinates.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRCoordinates.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRDay.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRDay.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRDepot.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRDepot.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRProblemInfo.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRProblemInfo.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trReadFile/TRReadFormat.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trReadFile/TRReadFormat.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRRoot.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRRoot.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRShipment.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRShipment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRShipmentsList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRShipmentsList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRTruck.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRTruck.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trWriteFile/TRWriteFormat.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trWriteFile/TRWriteFormat.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temp/Temp_TR_Shipments.xlsx" afterPath="$PROJECT_DIR$/temp/Temp_TR_Shipments.xlsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trWriteFile/PVRPWriteFormat.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trWriteFile/PVRPWriteFormat.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trWriteFile/WriteFormat.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trWriteFile/WriteFormat.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trReadFile/PVRPReadFormat.java" afterPath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trReadFile/PVRPReadFormat.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trReadFile/ReadFormatInterface.java" afterPath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trReadFile/ReadFormatInterface.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TR.java" afterPath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TR.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRDay.java" afterPath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRDay.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRProblemInfo.java" afterPath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRProblemInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trReadFile/TRReadFormat.java" afterPath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trReadFile/TRReadFormat.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRRoot.java" afterPath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRRoot.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trWriteFile/PVRPWriteFormat.java" afterPath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trWriteFile/PVRPWriteFormat.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trWriteFile/WriteFormat.java" afterPath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trWriteFile/WriteFormat.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Zeus_TR.iws" />
@@ -131,21 +114,11 @@
                 </provider>
               </entry>
             </file>
-            <file leaf-file-name="PVRPTruck.java" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/pvrp/PVRPTruck.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.0">
-                    <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="79" selection-end-column="89" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
             <file leaf-file-name="PVRPReadFormat.java" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trReadFile/PVRPReadFormat.java">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.60251045">
-                    <caret line="469" column="0" selection-start-line="469" selection-start-column="0" selection-end-line="469" selection-end-column="0" />
+                  <state vertical-scroll-proportion="0.51882845">
+                    <caret line="464" column="47" selection-start-line="464" selection-start-column="47" selection-end-line="464" selection-end-column="47" />
                     <folding>
                       <element signature="imports" expanded="true" />
                       <element signature="e#899#900#0" expanded="true" />
@@ -161,6 +134,18 @@
                   <state vertical-scroll-proportion="0.0">
                     <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
                     <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="PVRPWriteFormat.java" pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trWriteFile/PVRPWriteFormat.java">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state vertical-scroll-proportion="0.0">
+                    <caret line="74" column="13" selection-start-line="74" selection-start-column="13" selection-end-line="74" selection-end-column="13" />
+                    <folding>
+                      <element signature="imports" expanded="true" />
+                    </folding>
                   </state>
                 </provider>
               </entry>
@@ -199,9 +184,11 @@
       <file leaf-file-name="TR.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TR.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="347" column="0" selection-start-line="347" selection-start-column="0" selection-end-line="347" selection-end-column="0" />
-              <folding />
+            <state vertical-scroll-proportion="-7.0">
+              <caret line="287" column="49" selection-start-line="287" selection-start-column="40" selection-end-line="287" selection-end-column="49" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -209,29 +196,12 @@
       <file leaf-file-name="TRShipmentsList.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRShipmentsList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.94871795">
-              <caret line="844" column="0" selection-start-line="844" selection-start-column="0" selection-end-line="844" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Zeus.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/Zeus.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReadFormatInterface.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trReadFile/ReadFormatInterface.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-              <folding />
+            <state vertical-scroll-proportion="0.57877094">
+              <caret line="186" column="0" selection-start-line="186" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
+              <folding>
+                <element signature="e#4959#4960#0" expanded="true" />
+                <element signature="e#4976#4977#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -239,58 +209,20 @@
       <file leaf-file-name="PVRP.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/pvrp/PVRP.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.931034">
-              <caret line="462" column="69" selection-start-line="462" selection-start-column="69" selection-end-line="462" selection-end-column="69" />
-              <folding />
+            <state vertical-scroll-proportion="-7.586207">
+              <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="35" />
+              <folding>
+                <element signature="method#compareResults#0;class#PVRP#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PVRPProblemInfo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/pvrp/PVRPProblemInfo.java">
+      <file leaf-file-name="WriteFormat.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trWriteFile/WriteFormat.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="49" column="22" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProblemInfo.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/Libraries/zeuscore.jar!/edu/sru/thangiah/zeus/core/ProblemInfo.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.267857">
-              <caret line="33" column="30" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TRDepotCost.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trCostFunctions/TRDepotCost.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="130" column="0" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TRDepotsList.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRDepotsList.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.551724">
-              <caret line="129" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TRDepotsListCost.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trCostFunctions/TRDepotsListCost.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+              <caret line="31" column="9" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -329,7 +261,6 @@
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/QAHeuristics/Selection/ClosestDistanceToDepot.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRDepotsList.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/ObjectInList.java" />
-        <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRShipmentsList.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/pvrp/PVRP.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRCoordinates.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRDepot.java" />
@@ -342,6 +273,9 @@
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trReadFile/TRReadFormat.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TR.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trReadFile/ReadFormat.java" />
+        <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trWriteFile/WriteFormat.java" />
+        <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trWriteFile/PVRPWriteFormat.java" />
+        <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRShipmentsList.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trReadFile/PVRPReadFormat.java" />
       </list>
     </option>
@@ -465,7 +399,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="TRSolutionHierarchy" />
+              <option name="myItemId" value="trWriteFile" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -698,22 +632,22 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34138656" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32762095" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36302084" sideWeight="0.21743697" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.296875" sideWeight="0.50625" order="8" side_tool="true" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43489584" sideWeight="0.50625" order="8" side_tool="true" content_ui="combo" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.13645834" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" x="-394" y="101" width="402" height="978" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.13645834" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" x="-394" y="101" width="402" height="978" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15126051" sideWeight="0.49375" order="9" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.05357143" sideWeight="0.49375" order="9" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -793,7 +727,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trReadFile/PVRPReadFormat.java</url>
-          <line>469</line>
+          <line>468</line>
           <properties />
           <option name="timeStamp" value="34" />
         </line-breakpoint>
@@ -810,7 +744,7 @@
           <option name="timeStamp" value="39" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="40" />
+      <option name="time" value="41" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -826,36 +760,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRDepotsList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="113" column="25" selection-start-line="113" selection-start-column="25" selection-end-line="113" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1456#1457#0" expanded="false" />
-            <element signature="e#1477#1478#0" expanded="false" />
-            <element signature="e#1527#1528#0" expanded="false" />
-            <element signature="e#1548#1549#0" expanded="false" />
-            <element signature="e#1818#1819#0" expanded="false" />
-            <element signature="e#1845#1846#0" expanded="false" />
-            <element signature="e#2120#2121#0" expanded="false" />
-            <element signature="e#2153#2154#0" expanded="false" />
-            <element signature="e#8902#8903#0" expanded="false" />
-            <element signature="e#8915#8916#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/Heuristics/Selection/TRClosestDistanceToDepot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="21" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/QAHeuristics/Selection/ClosestDistanceToDepot.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -870,7 +774,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="266" column="13" selection-start-line="266" selection-start-column="13" selection-end-line="266" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -878,7 +784,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="444" column="60" selection-start-line="444" selection-start-column="60" selection-end-line="444" selection-end-column="60" />
-          <folding />
+          <folding>
+            <element signature="e#4959#4960#0" expanded="true" />
+            <element signature="e#4976#4977#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1546,34 +1455,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/pvrp/PVRP.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.931034">
-          <caret line="462" column="69" selection-start-line="462" selection-start-column="69" selection-end-line="462" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trReadFile/PVRPReadFormat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.60251045">
-          <caret line="469" column="0" selection-start-line="469" selection-start-column="0" selection-end-line="469" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#899#900#0" expanded="true" />
-            <element signature="e#936#937#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TR.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="347" column="0" selection-start-line="347" selection-start-column="0" selection-end-line="347" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/Zeus.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1582,11 +1463,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TR.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.0">
+          <caret line="287" column="49" selection-start-line="287" selection-start-column="40" selection-end-line="287" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/pvrp/PVRP.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.586207">
+          <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="35" />
+          <folding>
+            <element signature="method#compareResults#0;class#PVRP#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trWriteFile/WriteFormat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="9" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trWriteFile/PVRPWriteFormat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="74" column="13" selection-start-line="74" selection-start-column="13" selection-end-line="74" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trReadFile/PVRPReadFormat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.51882845">
+          <caret line="464" column="47" selection-start-line="464" selection-start-column="47" selection-end-line="464" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#899#900#0" expanded="true" />
+            <element signature="e#936#937#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRShipmentsList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.94871795">
-          <caret line="844" column="0" selection-start-line="844" selection-start-column="0" selection-end-line="844" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.57877094">
+          <caret line="186" column="0" selection-start-line="186" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
+          <folding>
+            <element signature="e#4959#4960#0" expanded="true" />
+            <element signature="e#4976#4977#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
