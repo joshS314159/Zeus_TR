@@ -13,6 +13,7 @@
 package edu.sru.thangiah.zeus.tr;
 
 
+import edu.sru.thangiah.zeus.QAHeuristics.Selection.ClosestDistanceToDepot;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Selection.TRClosestDistanceToDepot;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Selection.TRSmallestAngleClosestDistanceToDepot;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Selection.TRSmallestAngleToDepot;
@@ -100,7 +101,7 @@ public class TRRoot {
         TRProblemInfo.addPenaltyPerBin = true;
         TRProblemInfo.mainPenalties = new TRPenaltiesList();
         TRProblemInfo.problemFileName = "TrashRoutes-Frequency.xlsx";
-        new TR(/*"TrashRoutes-Frequency.xlsx", */false, new TRClosestDistanceToDepot(), TRReadFormat.class, TRWriteFormat.class);
+        new TR(/*"TrashRoutes-Frequency.xlsx", */false, new ClosestDistanceToDepot(), TRReadFormat.class, TRWriteFormat.class);
 
 
     }//END CONSTRUCTOR *******************<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

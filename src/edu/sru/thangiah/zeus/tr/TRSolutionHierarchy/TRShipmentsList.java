@@ -1,6 +1,9 @@
 package edu.sru.thangiah.zeus.tr.TRSolutionHierarchy;
 
 
+import edu.sru.thangiah.zeus.core.Depot;
+import edu.sru.thangiah.zeus.core.DepotLinkedList;
+import edu.sru.thangiah.zeus.core.Shipment;
 import edu.sru.thangiah.zeus.core.ShipmentLinkedList;
 import edu.sru.thangiah.zeus.tr.TRAttributes;
 import edu.sru.thangiah.zeus.tr.TRProblemInfo;
@@ -439,14 +442,14 @@ public TRShipment getNextInsertShipment(final TRDepotsList depotList, final TRDe
 	TRShipmentsList selectShip = (TRShipmentsList) TRProblemInfo.selectShipType;
 
 
-	return selectShip.getSelectShipment(depotList, theDepot, shipmentList, theShipment);
+	return (TRShipment) selectShip.getSelectShipment(depotList, theDepot, shipmentList, theShipment);
 }
 
 
 
 
-public TRShipment getSelectShipment(TRDepotsList currDepotLL, TRDepot currDepot, TRShipmentsList currShipmentLL,
-									TRShipment currShip) {
+public Shipment getSelectShipment(DepotLinkedList currDepotLL, Depot currDepot, ShipmentLinkedList currShipmentLL,
+								  Shipment currShip) {
 	return null;
 }
 

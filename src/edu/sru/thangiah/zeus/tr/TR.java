@@ -116,23 +116,14 @@ public class TR {
         //READ DATA
 
         printDataToConsole();
-        //prints the routes to the console
-        System.out.println("reading penalties");
-//        readPenaltiesFromFile();
-//		mainReader.readPenaltiesFromFile();
+        System.out.println("reading penalties/delays/nodes");
         System.out.println("reading delays");
-//        readDelayTypesFromFile();
-//		mainReader.readDelayTypesFromFile();
-
         Settings.printDebug(Settings.COMMENT,
-                "Read Data File: " + TRProblemInfo.inputPath + TRProblemInfo.problemFileName);    //store some debug data
-//        readDataFromFile(TRProblemInfo.inputPath + dataFile);                          //reads data from file
-//		mainReader.readDataFromFile();
-		((TRReadFormat) mainReader).readFiles();
+                "Read Data File: " + TRProblemInfo.inputPath + TRProblemInfo.problemFileName);    //store some debug data;
+		mainReader.readFiles();
 
 
         //PROCESS PREPARATION
-
         if(mainShipments.getHead() == null) {
             Settings.printDebug(Settings.ERROR, "TR: Shipment linked list is empty");
         }
@@ -140,19 +131,6 @@ public class TR {
 
 
         TRProblemInfo.selectShipType = selectionTypeObject;
-
-        //		Settings.printDebug(Settings.COMMENT, selectionTypeObject.WhoAmI());
-
-        //	PVRPProblemInfo.selectShipType = new PVRPClosestEuclideanDistToDepot();
-        //	Settings.printDebug(Settings.COMMENT, PVRPClosestEuclideanDistToDepot.WhoAmI());
-        //This sets our heuristic to choose the next shipment
-        //there are several more commented out under this
-
-        //	PVRPProblemInfo.selectShipType = new PVRPSmallestPolarAngleToDepot();
-        //	Settings.printDebug(Settings.COMMENT, PVRPSmallestPolarAngleToDepot.WhoAmI());
-
-        //	PVRPProblemInfo.selectShipType = new PVRPSmallestPolarAngleShortestDistToDepot();
-        //	Settings.printDebug(Settings.COMMENT, PVRPSmallestPolarAngleShortestDistToDepot.WhoAmI());
 
 
         TRProblemInfo.insertShipType = new TRGreedyInsertion();
@@ -206,20 +184,8 @@ public class TR {
 
 
         System.out.println("\nWRITING SOLUTION AND COMPARISON FILES\n");
-        //CLEAN UP AND GUI
-//		mainWriter.writeShortSolution();
-//		mainWriter.writeLongSolution();
         mainWriter.writeAll();
-//        writeShortSolution(TRProblemInfo.problemFileName);
-//        writeShortSolution(dataFile);
-//        writeLongSolution(TRProblemInfo.problemFileName);
-//        writeLongSolution(dataFile);
-        //Write the short and long solutions to our problems in Excel format
-        //long solution is far more detailed than short solution; both can be useful
 
-
-//        compareResults(dataFile);
-//        compareResults();
 		mainWriter.writeComparisonResults();
         //writes an Excel file that compares our results to some results
         //from various research papers
@@ -361,15 +327,6 @@ public class TR {
     private void appendShipment(TRNodesList nodesList, TRShipment insertMe){
         nodesList.insertShipment(insertMe);
     }
-
-
-
-
-
-
-
-
-
 
 
     public void printRoutesToConsole(){

@@ -1,8 +1,7 @@
 package edu.sru.thangiah.zeus.pvrp;
 
 
-import edu.sru.thangiah.zeus.core.ProblemInfo;
-import edu.sru.thangiah.zeus.core.ShipmentLinkedList;
+import edu.sru.thangiah.zeus.core.*;
 import edu.sru.thangiah.zeus.vrp.VRPDepot;
 import edu.sru.thangiah.zeus.vrp.VRPDepotLinkedList;
 import edu.sru.thangiah.zeus.vrp.VRPShipment;
@@ -196,11 +195,10 @@ public boolean insertLast(PVRPShipment shipment) {
 public PVRPShipment getNextInsertShipment(PVRPDepotLinkedList currDepotLL, PVRPDepot currDepot,
 										  PVRPShipmentLinkedList currShipmentLL, PVRPShipment currShip) {
 
-	PVRPShipmentLinkedList selectShip = (PVRPShipmentLinkedList) PVRPProblemInfo.
-			selectShipType;
+	PVRPShipmentLinkedList selectShip = (PVRPShipmentLinkedList) PVRPProblemInfo.selectShipType;
 
 
-	return selectShip.getSelectShipment(currDepotLL, currDepot, currShipmentLL, currShip);
+	return (PVRPShipment) selectShip.getSelectShipment((DepotLinkedList) currDepotLL, (Depot) currDepot, (ShipmentLinkedList) currShipmentLL, (Shipment) currShip);
 }
 
 
@@ -216,12 +214,14 @@ public PVRPShipment getNextInsertShipment(PVRPDepotLinkedList currDepotLL, PVRPD
  * @return PVRPShipment the shipment to be inserted
  */
 
-public PVRPShipment getSelectShipment(PVRPDepotLinkedList currDepotLL, PVRPDepot currDepot,
-									  PVRPShipmentLinkedList currShipmentLL, PVRPShipment currShip) {
-	return null;
-}
+//public PVRPShipment getSelectShipment(PVRPDepotLinkedList currDepotLL, PVRPDepot currDepot,
+//									  PVRPShipmentLinkedList currShipmentLL, PVRPShipment currShip) {
+//	return null;
+//}
+//
 
-
+public Shipment getSelectShipment(final DepotLinkedList depotsList, final Depot theDepot,
+								  final ShipmentLinkedList shipmentsList, final Shipment theShipment) { return  null;}
 
 
 /**
