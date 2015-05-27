@@ -34,6 +34,37 @@ private TRDepot previous;
 private TRTrucksList trucksSubList = new TRTrucksList();
 private TRAttributes  attributes = new TRAttributes();
 private TRCoordinates coordinates;
+private double maxDistance;
+private double maxDemand;
+
+
+	public double getMaxDemand() {
+		return maxDemand;
+	}
+
+	public void setMaxDemand(final double maxDemand) {
+		this.maxDemand = maxDemand;
+	}
+
+	public double getMaxDistance() {
+		return maxDistance;
+	}
+
+	public void setMaxDistance(final double maxDistance) {
+		this.maxDistance = maxDistance;
+	}
+
+
+
+	public int getNodeNumber() {
+		return nodeNumber;
+	}
+
+	public void setNodeNumber(final int nodeNumber) {
+		this.nodeNumber = nodeNumber;
+	}
+
+	private int nodeNumber;
 //private int depotNumber;
 
 

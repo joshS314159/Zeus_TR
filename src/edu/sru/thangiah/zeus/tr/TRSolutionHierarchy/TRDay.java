@@ -20,6 +20,42 @@ private TRCoordinates homeDepotCoordinates;
 private int           dayNumber;
 
 
+	private int numberOfNodes;
+private int numberOfTrucks;
+private int maxDistance;
+private int maxDemand;
+
+
+
+	private int daysServicedOver;
+//private int
+
+
+	//CONSTUCTOR
+//this method creates a new day based
+//on passed attributes (usually more useful than the above
+//constructor)
+//	public PVRPDay(int nodes, int numberTrucks, int planningPeriod, float maxDistance, float maxDemand,
+//	               double depX, double depY, int dayNumber) {
+//
+//
+//		this.attributes = new PVRPAttributes();
+//
+//		this.nodes = nodes;
+//		this.numberTrucks = numberTrucks;
+//		this.planningPeriod = planningPeriod;
+//		this.maxDistance = maxDistance;
+//		this.maxDemand = maxDemand;
+//		this.dayNumber = dayNumber;
+//
+//		setNodesLinkedList(new PVRPNodesLinkedList(depX, depY));
+//
+//
+//		setAttributes(new PVRPAttributes());
+//
+//	}//CONSTRUCTOR ENDS
+//// HERE*******************<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
 
 
 public TRDay(final TRDay copyMe) {
@@ -30,6 +66,45 @@ public TRDay(final TRDay copyMe) {
 	setDayOfWeek(copyMe.getDayOfWeek());
 }
 
+	public int getDaysServicedOver() {
+		return daysServicedOver;
+	}
+
+	public void setDaysServicedOver(final int daysServicedOver) {
+		this.daysServicedOver = daysServicedOver;
+	}
+
+	public int getNumberOfNodes() {
+		return numberOfNodes;
+	}
+
+	public void setNumberOfNodes(int numberOfNodes) {
+		this.numberOfNodes = numberOfNodes;
+	}
+
+	public int getNumberOfTrucks() {
+		return numberOfTrucks;
+	}
+
+	public void setNumberOfTrucks(int numberOfTrucks) {
+		this.numberOfTrucks = numberOfTrucks;
+	}
+
+	public int getMaxDistance() {
+		return maxDistance;
+	}
+
+	public void setMaxDistance(int maxDistance) {
+		this.maxDistance = maxDistance;
+	}
+
+	public int getMaxDemand() {
+		return maxDemand;
+	}
+
+	public void setMaxDemand(int maxDemand) {
+		this.maxDemand = maxDemand;
+	}
 
 
 

@@ -50,16 +50,17 @@ public class TRProblemInfo
         extends ProblemInfo {
 
 
-    public final static int NUMBER_DAYS_SERVICED            = 6;
-    public final static int NUMBER_TRUCKS                   = 2;
+    public static int NUMBER_DAYS_SERVICED            = 6;
+    public static int NUMBER_TRUCKS                   = 2;
     public final static int WORK_HOURS_PER_DAY              = 8;
     public static final int MAX_COMBINATIONS                = 1;
-    public static final int NUMBER_DEPOTS                   = 1;
+    public static int NUMBER_DEPOTS                   = 1;
     public static final int NUMBER_COMBINATIONS             = 1;
     public static final int TRUCKS_OPERATING_SIMULTANEOUSLY = 1;
     public static final int MAX_NUMBER_OF_DAYS_IN_SCHEDULE  = 6;
     public static final boolean ARE_DAYS_BOUND           = true;
     public static final int MAX_DIFFERENCE_IN_DISTRIBUTION  = 5;
+    public static int NUMBER_OF_NODES = -1;
 //NEEDED TO OVERRIDE THE DEFAULT VALUE (PVRP HAD VALUES GREATER
 //THAN VRP BY DR. SAM) -- WHAT THIS IS BASED ON
     /**

@@ -1,7 +1,11 @@
 package edu.sru.thangiah.zeus.tr.TRSolutionHierarchy;
 
 
+import edu.sru.thangiah.zeus.core.ProblemInfo;
 import edu.sru.thangiah.zeus.core.Truck;
+import edu.sru.thangiah.zeus.pvrp.PVRPAttributes;
+import edu.sru.thangiah.zeus.pvrp.PVRPDayLinkedList;
+import edu.sru.thangiah.zeus.pvrp.PVRPTruckType;
 import edu.sru.thangiah.zeus.tr.TRAttributes;
 import edu.sru.thangiah.zeus.tr.TRCoordinates;
 import edu.sru.thangiah.zeus.tr.TRTruckType;
@@ -46,9 +50,10 @@ private boolean isTruckOnRoad = false;
 private TRTruckType  truckType;
 private TRTruck      next;
 private TRTruck      previous;
-    private TRAttributes  attributes = new TRAttributes();
+private TRAttributes  attributes = new TRAttributes();
 private TRDaysList daysSubList = new TRDaysList();
 private TRCoordinates homeDepotCoordinates;
+//private TRTruckType truckType = new TRTruckType();
 
 
 
@@ -61,7 +66,6 @@ public TRTruck(final TRTruck copyMe) {
 	setHomeDepotCoordinates(new TRCoordinates(copyMe.getHomeDepotCoordinates()));
 
 }
-
 
 
 

@@ -12,6 +12,9 @@ private final double MINIMUM_LONGITUDE = -180;
 private final double MINIMUM_LATITUDE  = -90;
 private double longitude;
 private double latitude;
+private boolean isCartesian = false;
+private double x;
+private double y;
 
 
 
@@ -20,24 +23,38 @@ public TRCoordinates(final TRCoordinates copyMe) {
 	this.latitude = copyMe.getLatitude();
 }
 
-	public TRCoordinates(double lat, double lon){
-		this.latitude = lat;
-		this.longitude = lon;
-	}
+public TRCoordinates(double lat, double lon){
+	this.latitude = lat;
+	this.longitude = lon;
+}
+
+public void setIsCartesian(final boolean isCartesian){
+	this.isCartesian = isCartesian;
+}
+
+public boolean getIsCartesian(){
+	return isCartesian;
+}
 
 
 
 public double getLongitude() {
-	return this.longitude;
+	if(!isCartesian){ return this.longitude; }
+	return (double) -1;
 }
 
 
 
 
 public double getLatitude() {
-	return this.latitude;
+	if(!isCartesian){ return this.latitude; }
+	return (double) -1;
 }
 
+public double[] getCoordinateSet(){
+	if(!isCartesian){ return new double[]{this.longitude, this.latitude}; }
+	else{ return new double[]{this.x, this.y};}
+}
 
 
 
@@ -46,11 +63,16 @@ public TRCoordinates() {
 
 
 
-public boolean setCoordinates(final double longitude, final double latitude) {
+public boolean setCoordinates(final double a, final double b) {
 	//	if(isLongitudeLatitude && !isCartesian){
-	if(isValidLongitudeLatitude(longitude, latitude)) {
-		this.longitude = longitude;
-		this.latitude = latitude;
+	if(isValidLongitudeLatitude(a, b) && !isCartesian) {
+		this.longitude = a;
+		this.latitude = b;
+		return true;
+	}
+	else if (isCartesian){
+		this.x = a;
+		this.y = b;
 		return true;
 	}
 	return false;
@@ -66,43 +88,56 @@ public boolean isValidLongitudeLatitude(final double longitude, final double lat
 	}
 	return false;
 }
-//	else if(this.isCartesian && point.isCartesian) {
-//put formula in here
-//	}
-//	return -1.0;
-//}
+
 
 
 
 
 public float calculateDistanceThisMiles(final TRCoordinates point) {
-	final double milesUnitMultiplier = 3963.1676;
-	return distFrom(this.getLatitude(), this.getLongitude(), point.getLatitude(), point.getLongitude());
-	//	return calculateDistance(point, milesUnitMultiplier);
+	if(this.isCartesian == point.isCartesian) {
+		if (!isCartesian) {
+			final double milesUnitMultiplier = 3963.1676;
+			return distFrom(this.getLatitude(), this.getLongitude(), point.getLatitude(), point.getLongitude());
+		} else {
+			double x1 = this.x;
+			double y1 = this.y;
+			double x2 = point.x;
+			double y2 = point.y;
+			return (float) Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+		}
+	}
+	System.out.println("POINT TYPES DO NOT MATCH -- TRYING TO PAIR A GEOGRAPHIC COORDINATE (LONG, LAT) WITH A CARTESIAN POINT (X,Y)");
+	return (float) -1;
 }
 
 
 
 
 private float distFrom(double lat1, double lng1, double lat2, double lng2) {
-	double earthRadius = 6371; //kilometers
-	double dLat = Math.toRadians(lat2 - lat1);
-	double dLng = Math.toRadians(lng2 - lng1);
-	double a =
-			Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) *
-													  Math.sin(dLng / 2) * Math.sin(dLng / 2);
-	double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-	float dist = (float) (earthRadius * c);
+	if(!isCartesian) {
+		double earthRadius = 6371; //kilometers
+		double dLat = Math.toRadians(lat2 - lat1);
+		double dLng = Math.toRadians(lng2 - lng1);
+		double a =
+				Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) *
+						Math.sin(dLng / 2) * Math.sin(dLng / 2);
+		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+		float dist = (float) (earthRadius * c);
 
-	return dist;
+		return dist;
+	}
+	return (float) -1;
 }
 
 
 
 
 public float calculateDistanceThisKilometers(final TRCoordinates point) {
-	final double kilometersUnitMultiplier = 6378.10;
-	return calculateDistance(point, kilometersUnitMultiplier);
+	if(!isCartesian) {
+		final double kilometersUnitMultiplier = 6378.10;
+		return calculateDistance(point, kilometersUnitMultiplier);
+	}
+	return (float) -1;
 }
 
 
@@ -111,41 +146,28 @@ public float calculateDistanceThisKilometers(final TRCoordinates point) {
 private float calculateDistance(final TRCoordinates point, final double radiusOfEarthInUnits) {
 	//		https://stackoverflow.com/questions/27928/how-do-i-calculate-distance-between-two-latitude-longitude
 	// -points?rq=1
-	double latitudeA = this.getLatitude();
-	double latitudeB = point.getLatitude();
 
-	double longitudeA = this.getLongitude();
-	double longitudeB = point.getLongitude();
+	if(!isCartesian) {
+		double latitudeA = this.getLatitude();
+		double latitudeB = point.getLatitude();
 
-	double latDistance = Math.toRadians(latitudeA - latitudeB);
-	double lngDistance = Math.toRadians(longitudeA - longitudeB);
+		double longitudeA = this.getLongitude();
+		double longitudeB = point.getLongitude();
 
-	double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2) +
-			   Math.cos(Math.toRadians(latitudeA)) * Math.cos(Math.toRadians(latitudeB)) * Math.sin(lngDistance / 2) *
-			   Math.sin(lngDistance / 2);
+		double latDistance = Math.toRadians(latitudeA - latitudeB);
+		double lngDistance = Math.toRadians(longitudeA - longitudeB);
 
-	double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+		double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2) +
+				Math.cos(Math.toRadians(latitudeA)) * Math.cos(Math.toRadians(latitudeB)) * Math.sin(lngDistance / 2) *
+						Math.sin(lngDistance / 2);
 
-	return Math.round(radiusOfEarthInUnits * c);
+		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+		return Math.round(radiusOfEarthInUnits * c);
+	}
+	return (float) -1;
 }
 
-//	if(this.isLongitudeLatitude && point.isLongitudeLatitude) {
-//	final double R = 6371; // In kilometers
-//	double latitudeOne = this.latitude;
-//	double longitudeOne = this.longitude;
-//	double latitudeTwo = point.latitude;
-//	double longitudeTwo = point.longitude;
-//
-//	double latitudeDistance = Math.toRadians(latitudeTwo - latitudeOne);
-//	double longitudeDistance = Math.toRadians(longitudeTwo - longitudeOne);
-//	latitudeOne = Math.toRadians(latitudeOne);
-//	latitudeTwo = Math.toRadians(latitudeTwo);
-//
-//	double a = Math.sin(latitudeDistance / 2) * Math.sin(latitudeDistance / 2) + Math.sin(longitudeDistance / 2) *
-// Math.sin(longitudeDistance / 2) * Math.cos(latitudeOne) * Math.cos(latitudeTwo);
-//	double c = 2 * Math.asin(Math.sqrt(a));
-//	return R * c;
-//}
 
 
 
@@ -176,11 +198,6 @@ public double calculateAngleBearing(final TRCoordinates point) {
 
 public boolean isValidLongitudeLatitude(final TRCoordinates coordinates) {
 	return isValidLongitudeLatitude(coordinates.getLongitude(), coordinates.getLatitude());
-	//	if(longitude <= MAXIMUM_LONGITUDE && longitude >= MINIMUM_LONGITUDE && latitude <= MAXIMUM_LATITUDE &&
-	// latitude >= MINIMUM_LATITUDE){
-	//		return true;
-	//	}
-	//	return false;
 }
 
 }

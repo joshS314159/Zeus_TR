@@ -453,6 +453,11 @@ public Shipment getSelectShipment(DepotLinkedList currDepotLL, Depot currDepot, 
 	return null;
 }
 
+	public Shipment getSelectShipment(TRDepotsList currDepotLL, TRDepot currDepot, TRShipmentsList currShipmentLL,
+								  TRShipment currShip) {
+	return null;
+}
+
 
 //METHOD
 //inserts a shipment
