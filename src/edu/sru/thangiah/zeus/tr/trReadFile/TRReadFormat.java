@@ -211,7 +211,7 @@ public class TRReadFormat extends ReadFormat {
 			throws IOException, InvalidFormatException, InstantiationException, IllegalAccessException,
 			InvocationTargetException {
 		if(this.problemFileName == null || this.problemPath == null){
-			return false;
+//			return false;
 		}
 		final int LOCATION = 0;
 		final int PICKUP_POINT = 1;
@@ -388,7 +388,7 @@ public class TRReadFormat extends ReadFormat {
 			daysList.insertAfterLastIndex(temporaryDay);
 
 		}
-
+//return new TRShipmentsList();
 		return true;
 	}
 

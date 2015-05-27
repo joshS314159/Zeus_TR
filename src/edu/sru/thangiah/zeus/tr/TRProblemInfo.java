@@ -53,7 +53,8 @@ public class TRProblemInfo
     public static int NUMBER_DAYS_SERVICED            = 6;
     public static int NUMBER_TRUCKS                   = 2;
     public final static int WORK_HOURS_PER_DAY              = 8;
-    public static final int MAX_COMBINATIONS                = 1;
+//    public static final int MAX_COMBINATIONS                = 1;
+    public static final int MAX_COMBINATIONS                = 12;
     public static int NUMBER_DEPOTS                   = 1;
     public static final int NUMBER_COMBINATIONS             = 1;
     public static final int TRUCKS_OPERATING_SIMULTANEOUSLY = 1;

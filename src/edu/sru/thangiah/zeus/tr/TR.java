@@ -98,7 +98,7 @@ public class TR {
 			this.mainReader = new TRReadFormat(mainShipments, mainDepots, mainDelays);
 		}
 		else if(classReader == PVRPReadFormat.class){
-
+            this.mainReader = new PVRPReadFormat(mainShipments, mainDepots);
 		}
 
 		if(classWriter == TRWriteFormat.class){

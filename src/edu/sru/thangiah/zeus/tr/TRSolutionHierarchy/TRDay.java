@@ -66,6 +66,23 @@ public TRDay(final TRDay copyMe) {
 	setDayOfWeek(copyMe.getDayOfWeek());
 }
 
+	//USED FOR PVRP FILE VERSION ONLY
+public TRDay(final TRNodesList nodes, final int numberOfTrucks, final int daysServicedOver, final float maxDistance, final float maxDemand, final double xCoordinate, final double yCoordinate, final int dayNumber, final boolean isCartesian){
+	this.nodesSubList = nodes;
+	this.numberOfTrucks = numberOfTrucks;
+	this.daysServicedOver = daysServicedOver;
+	this.maxDistance = (int) maxDistance;
+	this.maxDemand = (int) maxDemand;
+
+	TRCoordinates tempCoordinates = new TRCoordinates(xCoordinate, yCoordinate);
+		tempCoordinates.setIsCartesian(isCartesian);
+	this.homeDepotCoordinates = tempCoordinates;
+
+	this.dayNumber = dayNumber;
+
+
+}
+
 	public int getDaysServicedOver() {
 		return daysServicedOver;
 	}

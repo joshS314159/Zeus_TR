@@ -18,7 +18,7 @@ protected String problemFileName;
 protected TRShipmentsList mainShipments;
 protected TRDepotsList mainDepots;
 
-public ReadFormat(final TRShipmentsList mainShipments, final TRDepotsList mainDepots){
+public ReadFormat( TRShipmentsList mainShipments,  TRDepotsList mainDepots){
 	this.mainShipments = mainShipments;
 	this.mainDepots = mainDepots;
 

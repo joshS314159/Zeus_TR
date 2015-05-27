@@ -18,6 +18,7 @@ import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Selection.TRClose
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Selection.TRSmallestAngleClosestDistanceToDepot;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Selection.TRSmallestAngleToDepot;
 import edu.sru.thangiah.zeus.tr.trCostFunctions.*;
+import edu.sru.thangiah.zeus.tr.trReadFile.PVRPReadFormat;
 import edu.sru.thangiah.zeus.tr.trReadFile.TRReadFormat;
 import edu.sru.thangiah.zeus.tr.trWriteFile.TRWriteFormat;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -100,8 +101,9 @@ public class TRRoot {
         TRProblemInfo.numDepots = 1;
         TRProblemInfo.addPenaltyPerBin = true;
         TRProblemInfo.mainPenalties = new TRPenaltiesList();
-        TRProblemInfo.problemFileName = "TrashRoutes-Frequency.xlsx";
-        new TR(/*"TrashRoutes-Frequency.xlsx", */false, new TRClosestDistanceToDepot(), TRReadFormat.class, TRWriteFormat.class);
+//        TRProblemInfo.problemFileName = "TrashRoutes-Frequency.xlsx";
+        TRProblemInfo.problemFileName = "p14.xlsx";
+        new TR(/*"TrashRoutes-Frequency.xlsx", */false, new TRClosestDistanceToDepot(), PVRPReadFormat.class, TRWriteFormat.class);
 
 
     }//END CONSTRUCTOR *******************<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

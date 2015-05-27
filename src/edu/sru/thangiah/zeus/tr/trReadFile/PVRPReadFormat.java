@@ -1,8 +1,7 @@
 package edu.sru.thangiah.zeus.tr.trReadFile;
 
-import edu.sru.thangiah.zeus.core.Day;
-import edu.sru.thangiah.zeus.core.Truck;
 import edu.sru.thangiah.zeus.tr.TRCoordinates;
+import edu.sru.thangiah.zeus.tr.TRFeasibility;
 import edu.sru.thangiah.zeus.tr.TRProblemInfo;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.*;
 import edu.sru.thangiah.zeus.tr.TRTruckType;
@@ -25,7 +24,7 @@ import java.util.Vector;
 public class PVRPReadFormat extends ReadFormat  {
 
 
-public PVRPReadFormat(TRShipmentsList mainShipments, TRDepotsList mainDepots) {
+public PVRPReadFormat( TRShipmentsList mainShipments,  TRDepotsList mainDepots) {
 	super(mainShipments, mainDepots);
 }
 
@@ -199,9 +198,10 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 				tempCoordinates.setIsCartesian(true);
 				day.setHomeDepotCoordinates(tempCoordinates);
 			day.setDayNumber(dayNumberCounter++);
+			System.out.println(dayNumberCounter);
 
 
-			mainDaysTemp.insertLastDay(day);                //insert the just created day into our temporary list of days
+			mainDaysTemp.insertAfterLastIndex(day);                //insert the just created day into our temporary list of days
 			row = rowIterator.next();        //get the next row
 			cellIterator = row.cellIterator();    //an iterator for columns
 
@@ -250,7 +250,7 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 			cellColumnCounter++;        //increment what column we are one
 		}
 
-		mainDepots = new TRDepotsList();        //create a new depot linked list for our solution
+//		mainDepots = new TRDepotsList();        //create a new depot linked list for our solution
 		TRCoordinates tempCoordinates = new TRCoordinates();
 			tempCoordinates.setCoordinates(depotXCoordinates, depotYCoordinates);
 			tempCoordinates.setIsCartesian(true);
@@ -264,7 +264,7 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 		//creates a new temporary depot to be inserted in the depot linked list
 		//calculates the total maximum distance for the depot by (singleDayMaxDistance)(numberVehicles)(numberDays)
 		//calculates the total maximum demand for the entire depot by (maxDemandPerDay)(numberVehicles)(numberDays)
-		mainDepots.insertDepotLast(depotTemporary);    //insert our newly read depot in the depot linked list
+		mainDepots.insertAfterLastIndex(depotTemporary);    //insert our newly read depot in the depot linked list
 
 
 
@@ -274,7 +274,7 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 
 
 		depotTemporary = mainDepots.getFirst();
-		for(int i = 0; i < TRProblemInfo.noOfVehs; i++) {
+		for(int i = 0; i < TRProblemInfo.NUMBER_TRUCKS; i++) {
 			TRTruckType ttype = (TRTruckType) TRProblemInfo.truckTypes.elementAt(0);
 			tempCoordinates = new TRCoordinates(depotTemporary.getCoordinates());
 
@@ -286,7 +286,7 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 //			truckTemp.setTruckType(ttype);
 			//we only have one type of truck
 			depotTemporary.getSubList()
-					.insertTruckLast(tempTruck);
+					.insertAfterLastIndex(tempTruck);
 
 			//insert the newly read truck data into the trucks linked list (which is underneath each depot read in; one in
 			// our case)
@@ -309,15 +309,15 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 		for(int i = 0; i < depotTemporary.getSubList().getSize(); i++) {
 			TRDay tempDay = daysLL.getFirst();
 
-			while(tempDay != mainDaysTemp.getTail()) {    //while we aren't at the end of the list
-				tempDay = new TRDay();
-				tempDay.
-				truck.getSubList().insertLastDay(        //insert the day into the days linked list
+			while(tempDay != daysLL.getTail()) {    //while we aren't at the end of the list
+//				tempDay = new TRDay();
+//				tempDay.
+				truck.getSubList().insertAfterLastIndex(        //insert the day into the days linked list
 						new TRDay(tempDay.getSubList(), tempDay.getNumberOfTrucks(),
 								tempDay.getDaysServicedOver(),
 								tempDay.getMaxDistance(),
 								tempDay.getMaxDemand(), depotXCoordinates,
-								depotYCoordinates, tempDay.getDayNumber()));
+								depotYCoordinates, tempDay.getDayNumber(), true));
 				if(tempDay.getNext() == mainDaysTemp.getTail()) {
 					//if we are at the last day in the list
 					break;
@@ -337,21 +337,24 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 
 
 		TRTruck truckTemp = mainDepots.getFirst().getSubList().getHead();
-		for(int i = 0; i < numberOfVehicles; i++) {
+		for(int i = 0; i < TRProblemInfo.NUMBER_TRUCKS; i++) {
 			truckTemp = truckTemp.getNext();
-			TRDay day = truckTemp.getSubList().getHead();
+			TRDay day = truckTemp.getSubList().getFirst();
 			//get the first day from the days linked list in the truck
+			TRDay tempDay = day;
+//			for(int x = 0; x < TRProblemInfo.NUMBER_DAYS_SERVICED; x++) {
+			while(tempDay != truckTemp.getSubList().getTail()){
 
-			for(int x = 0; x < daysServicedOver; x++) {
-				TRDay tempDay = (TRDay) day.getNext();
-				day = day.getNext();
+//				day = day.getNext();
 				//get the next day
 
 				TRNodesList tempNLL = tempDay.getSubList();
 
-				tempNLL.setTruckType((PVRPTruckType) TRProblemInfo.truckTypes.get(0));
-				tempNLL.setFeasibility(new PVRPFeasibility(tempNLL.getTruckType().getMaxDuration(),
+				tempNLL.setTruckType((TRTruckType) TRProblemInfo.truckTypes.get(0));
+				tempNLL.setFeasibility(new TRFeasibility(tempNLL.getTruckType().getMaxDuration(),
 						tempNLL.getTruckType().getMaxCapacity(), tempNLL));
+
+				tempDay = (TRDay) tempDay.getNext();
 			}
 		}
 
@@ -464,8 +467,8 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 			//insert the just read shipment into the mainShipments list holds our all our problem info read in from Excel
 
 		}
-
 		return true;
+//		return true;
 		//whoo! done with one method in one class
 	}//READ DATA FROM FILE ENDS
 // HERE*******************<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
