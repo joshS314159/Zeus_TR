@@ -26,7 +26,14 @@ public class Zeus {
 	//PVRP GROUP 06 MAIN
 	public static void main(String[] args) throws Exception
 	{
-		TRRoot theTRRoot = new TRRoot();
+//		new TRRoot().TRFormat();
+		new TRRoot().PVRPFormat();
+
+
+
+
+
+
 //		PVRPRoot thePVRPRoot = new PVRPRoot();
 //		VRPRoot theVRPRoot = new VRPRoot();
 		//System.gc();

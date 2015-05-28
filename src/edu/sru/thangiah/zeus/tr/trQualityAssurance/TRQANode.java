@@ -46,4 +46,19 @@ import edu.sru.thangiah.zeus.qualityassurance.QANode;
 //CLASS
 public class TRQANode
 		extends QANode
-		implements java.io.Serializable, Cloneable {}
+		implements java.io.Serializable, Cloneable {
+
+	private boolean isCartesian;
+
+
+
+	public boolean isCartesian() {
+		return isCartesian;
+	}
+
+	public void setIsCartesian(boolean isCartesian) {
+		this.isCartesian = isCartesian;
+	}
+
+
+}

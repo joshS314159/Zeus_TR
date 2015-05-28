@@ -251,6 +251,7 @@ public boolean insertShipment(final TRShipment theShipment) {
 		//Get truck to insert the shipment
 		//while we have more depots
 
+
 		truckLL = depot.getSubList();
 		//get the trucks linked ist
 
@@ -263,88 +264,9 @@ public boolean insertShipment(final TRShipment theShipment) {
 		depot = depot.getNext();
 	}
 	return status;    //return true if inserted OK
-//    return false;
 
-//    TRGreedyInsertionRevised insertion = new TRGreedyInsertionRevised();
-//
-//    insertion.getInsertShipment(this, theShipment);
-//
-//    return true;
-//	boolean status = false;
-//    final int LARGE_INT = 999999999;
-//    int lowestDistance = LARGE_INT;
-//    TRDepot lowestDepot = null;
-//
-//	TRDepot theDepot = this.getFirst();
-//
-//
-//    while(theDepot != this.getTail()){
-//        TRDepot copyDepot = new TRDepot(theDepot);
-//
-//        if(copyDepot.insertShipment(theShipment)){
-//            TRProblemInfo.depotLLLevelCostF.calculateTotalsStats(this);
-//            final int DEPOT_DISTANCE = (int) copyDepot.getAttributes().getTotalDistance();
-//            if(DEPOT_DISTANCE < lowestDistance){
-//               lowestDistance = DEPOT_DISTANCE;
-//                lowestDepot = theDepot;
-//            }
-//        }
-//
-//        theDepot = theDepot.getNext();
-//    }
-//
-//    if(lowestDistance != LARGE_INT && lowestDepot != null){
-//        lowestDepot.insertShipment(theShipment);
-//        return true;
-//    }
-//    return false;
-//
-//
-//
-//
-//	while(theDepot != this.getTail()) {
-//		if(theDepot.insertShipment(theShipment)) {
-//            if(theDepot.getAttributes().getTotalDistance() < lowestDistance){
-//                lowestDistance = (int) theDepot.getAttributes().getTotalDistance();
-//                lowestDepot = theDepot;
-//            }
-//            theDepot.
-//		}
-//		theDepot = theDepot.getNext();
-//	}
-
-//	return false;
-
-	/*
-	boolean status = false;
-
-	TRDepot depot = getHead().getNext();
-	TRTrucksList truckLL = null;
-
-//	double  test = tempDepotLL.getAttributes().getTotalDemand();
-	while (depot != this.getTail()) {
-		//Get truck to insert the shipment
-		//while we have more depots
-
-		truckLL = depot.getSubList();
-		//get the trucks linked ist
-
-		status = truckLL.insertShipment(theShipment);
-		//insert the shipment into the trucks linked list
-
-		if (status) {
-			break;    //if it inserted into the list okay then break
-		}
-		depot = depot.getNext();
-	}
-	return status;    //return true if inserted OK
-	*/
 }//END INSERT_SHIPMENT *********<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-//@Override
-//public boolean insertShipment(final TRShipment theShipment) {
-//	return false;
-//}
 
 
 
@@ -553,10 +475,10 @@ public void writeOutData(FileOutputStream out)
 	cell.setCellValue("1_INDEX");
 
 	cell = row.createCell(columnCounter++);        //C2
-	cell.setCellValue("2_LONG");
+	cell.setCellValue("2_X/LONG");
 
 	cell = row.createCell(columnCounter++);        //C3
-	cell.setCellValue("3_LAT");
+	cell.setCellValue("3_Y/LAT");
 
 	cell = row.createCell(columnCounter++);        //C4
 	cell.setCellValue("COST");
@@ -588,10 +510,21 @@ public void writeOutData(FileOutputStream out)
 	cell.setCellValue(NULL_VALUE);
 
 	cell = row.createCell(columnCounter++);
-	cell.setCellValue(NULL_VALUE);
+	if(this.getFirst().getCoordinates().getIsCartesian()){
+		cell.setCellValue("cartesian");
+	}
+	else{
+		cell.setCellValue("geographic");
+	}
+
 
 	cell = row.createCell(columnCounter++);
-	cell.setCellValue(NULL_VALUE);
+	if(this.getFirst().getCoordinates().getIsCartesian()){
+		cell.setCellValue("cartesian");
+	}
+	else{
+		cell.setCellValue("geographic");
+	}
 
 	cell = row.createCell(columnCounter++);
 	cell.setCellValue(NULL_VALUE);
@@ -611,7 +544,7 @@ public void writeOutData(FileOutputStream out)
 	cell = row.createCell(columnCounter++);
 	cell.setCellValue(NULL_VALUE);
 
-	theDepot = getHead().getNext();
+	theDepot = getFirst();
 	while(theDepot != getTail()) {
 		//while we have more depots
 
@@ -627,10 +560,10 @@ public void writeOutData(FileOutputStream out)
 		//		cell.setCellValue(theDepot.getDepotNum());
 
 		cell = row.createCell(columnCounter++);
-		cell.setCellValue(theDepot.getCoordinates().getLongitude());
+		cell.setCellValue(theDepot.getCoordinates().getA());
 
 		cell = row.createCell(columnCounter++);
-		cell.setCellValue(theDepot.getCoordinates().getLatitude());
+		cell.setCellValue(theDepot.getCoordinates().getB());
 
 		cell = row.createCell(columnCounter++);
 		cell.setCellValue(theDepot.getAttributes().getTotalCost());
@@ -755,11 +688,15 @@ public void writeOutData(FileOutputStream out)
 							theShipment.getNodeNumber());    //set each cell value to the correct value from the linked list
 
 					cell = row.createCell(columnCounter++);
-					cell.setCellValue(theShipment.getCoordinates().getLongitude());
+//					if(theShipment)
+					final double coordinates[] = theShipment.getCoordinates().getCoordinateSet();
+					final double a = coordinates[0];
+					final double b = coordinates[1];
+					cell.setCellValue(a);
 
 
 					cell = row.createCell(columnCounter++);
-					cell.setCellValue(theShipment.getCoordinates().getLatitude());
+					cell.setCellValue(b);
 
 
 					cell = row.createCell(columnCounter++);

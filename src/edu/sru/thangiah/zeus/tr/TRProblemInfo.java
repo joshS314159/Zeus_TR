@@ -59,7 +59,7 @@ public class TRProblemInfo
     public static final int NUMBER_COMBINATIONS             = 1;
     public static final int TRUCKS_OPERATING_SIMULTANEOUSLY = 1;
     public static final int MAX_NUMBER_OF_DAYS_IN_SCHEDULE  = 6;
-    public static final boolean ARE_DAYS_BOUND           = true;
+    public static boolean ARE_DAYS_BOUND           = true;
     public static final int MAX_DIFFERENCE_IN_DISTRIBUTION  = 5;
     public static int NUMBER_OF_NODES = -1;
 //NEEDED TO OVERRIDE THE DEFAULT VALUE (PVRP HAD VALUES GREATER

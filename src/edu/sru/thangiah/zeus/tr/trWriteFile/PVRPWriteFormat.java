@@ -1,6 +1,7 @@
 package edu.sru.thangiah.zeus.tr.trWriteFile;
 
 import edu.sru.thangiah.zeus.tr.TR;
+import edu.sru.thangiah.zeus.tr.TRCoordinates;
 import edu.sru.thangiah.zeus.tr.TRProblemInfo;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.*;
 import edu.sru.thangiah.zeus.tr.TRTruckType;
@@ -20,7 +21,18 @@ import java.util.Iterator;
  * Created by library-tlc on 5/26/15.
  */
 public class PVRPWriteFormat  extends  WriteFormat{
-@Override
+
+	public PVRPWriteFormat(final boolean isMakeSeparateFile, final TRDepotsList mainDepots){
+		super();
+		this.isMakeSeparateFile = isMakeSeparateFile;
+		this.mainDepots = mainDepots;
+//		file = TRProblemInfo.problemFileName;
+	}
+
+
+
+
+	@Override
 //METHOD
 //writes a detailed report of the solution
 public void writeLongSolution()
@@ -381,8 +393,9 @@ public void writeLongSolution()
 
 				theNode = nodesList.getHead();
 
-				double previousX = theNode.getShipment().getXCoord();
-				double previousY = theNode.getShipment().getYCoord();
+				TRCoordinates previousCoordinates = theNode.getShipment().getCoordinates();
+//				double previousX = theNode.getShipment().getXCoord();
+//				double previousY = theNode.getShipment().getYCoord();
 
 //				int tempComputedDemand;
 //				int temp
@@ -414,6 +427,7 @@ public void writeLongSolution()
 
 					cell = row.createCell(columnCounter++);
 					cell.setCellValue(theShipment.getDemand());    //print the node shipment demand
+//					cell.setCellValue(theShipment.getNumberOfBins());    //print the node shipment demand
 
 
 
@@ -421,8 +435,9 @@ public void writeLongSolution()
 
 					cell = row.createCell(columnCounter++);
 					double distanceFromDepot =
-							calculateDistance(theDepot.getXCoord(), theShipment.getxCoord(), theDepot.getYCoord(),
-									theShipment.getyCoord());
+							theDepot.getCoordinates().calculateDistanceThisMiles(theShipment.getCoordinates());
+//							calculateDistance(theDepot.getXCoord(), theShipment.getxCoord(), theDepot.getYCoord(),
+//									theShipment.getyCoord());
 					cell.setCellValue(distanceFromDepot);
 					//distance from depot can be a great way to show the closest euclidean distance is working
 
@@ -430,8 +445,10 @@ public void writeLongSolution()
 
 
 					cell = row.createCell(columnCounter++);
-					double angle = calculateAngle(theShipment.getXCoord(), theDepot.getXCoord(),
-							theShipment.getYCoord(), theDepot.getYCoord());
+//					double angle = theShipment.getCoordinates().calculateAngleBearing(theDepot.getCoordinates());
+					double angle = theDepot.getCoordinates().calculateAngleBearing(theShipment.getCoordinates());
+//							calculateAngle(theShipment.getXCoord(), theDepot.getXCoord(),
+//							theShipment.getYCoord(), theDepot.getYCoord());
 					cell.setCellValue(angle);
 					//distance from depot can be a great way to show the closest euclidean distance is working
 
@@ -439,9 +456,13 @@ public void writeLongSolution()
 
 
 					cell = row.createCell(columnCounter++);
-					double distanceFromLast =
-							calculateDistance(previousX, theShipment.getxCoord(), previousY,
-									theShipment.getyCoord());
+					double distanceFromLast = previousCoordinates.calculateDistanceThisMiles(theShipment.getCoordinates());
+//							if(theShipment.getCoordinates().getIsCartesian()){
+
+//							}
+
+//							calculateDistance(previousX, theShipment.getxCoord(), previousY,
+//									theShipment.getyCoord());
 					cell.setCellValue(distanceFromLast);
 					//show the linear distance we are from the last node
 
@@ -459,8 +480,9 @@ public void writeLongSolution()
 						break;
 					}
 
-					previousX = theShipment.getxCoord();
-					previousY = theShipment.getyCoord();
+					previousCoordinates = theShipment.getCoordinates();
+//					previousX = theShipment.getxCoord();
+//					previousY = theShipment.getyCoord();
 
 					theNode = theNode.getNext();    //grab the next node
 				}

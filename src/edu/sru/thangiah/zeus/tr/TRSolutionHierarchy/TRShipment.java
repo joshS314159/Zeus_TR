@@ -34,7 +34,7 @@ private int     numberOfNearbyFoods;
 private boolean isPickupOrder;
 private int     nodeNumber;
 private boolean isAssigned;
-private int     demand;
+//private int     demand;
 private int     visitFrequency = 0;
 private String  pickupPointName;
 private int     requiredPreviousPickupPoint;
@@ -69,12 +69,65 @@ public TRShipment(final TRShipment copyMe) {
 	setCustomerIndex(copyMe.getCustomerIndex());
 	setSubList(new TRShipmentsList(null));
 	setFrequency(copyMe.getFrequency());
+	setDemand((int) copyMe.getDemand());
+	setNumberOfBins(copyMe.getNumberOfBins());
 }
 
 //public TRShipment(final TRCoordinates homeDepotCoordinates){
 //	setAttributes(new TRAttributes());
 //	setHomeDepotCoordinates(homeDepotCoordinates);
 //}
+//	@Override
+
+public void setCurrentComb(final int[][] currentCombination, final int numberCombinations){
+	int combinationTemp[][] = new int[numberCombinations][TRProblemInfo.NUMBER_DAYS_SERVICED];
+
+
+	for(int i = 0; i < numberCombinations; i++) {
+		for(int j = 0; j < TRProblemInfo.NUMBER_DAYS_SERVICED; j++) {
+			combinationTemp[i][j] = currentCombination[i][j];
+		}
+	}
+	super.setCurrentComb(currentCombination);
+	super.setNoComb(numberCombinations);
+}
+
+public void chooseRandomVisitCombination(){
+	Random rand = new Random();
+	int min = 0;
+	int max = this.getNoComb()-1;
+
+	int randomNum = rand.nextInt((max - min) + 1) + min;
+
+	int[] theRandomVisitation = this.getCurrentComb()[randomNum];
+
+
+	for(int i = 0; i < daysVisited.length; i++){
+		if(theRandomVisitation[i] == 1){
+			daysVisited[i] = true;
+		}
+		else{
+			daysVisited[i] = false;
+		}
+	}
+}
+
+public boolean chooseVisitCombination(final int combinationIndex){
+	if(combinationIndex >= 0 && combinationIndex < this.getNoComb()){
+		int[] visitationSchedule = this.getCurrentComb()[combinationIndex];
+
+		for(int i = 0; i < visitationSchedule.length; i++){
+			if(visitationSchedule[i] == 1){
+				daysVisited[i] = true;
+			}
+			else{
+				daysVisited[i] = false;
+			}
+		}
+		return true;
+	}
+	return false;
+}
 
 
     public void setDelayType(final TRDelayType delayType){
@@ -242,10 +295,10 @@ public double getDistanceTravelledMiles() {
 
 
 
-
-public int getDemand() {
-	return demand;
-}
+//
+//public int getDemand() {
+//	return demand;
+//}
 
 
 
@@ -532,7 +585,6 @@ public void setSingleDayVisitation(String visitationDaySymbol) {
 		System.out.println("CAN'T FIND VALID DAY");
 
 	}
-
 }
 
     public void addDayToVisitationList(String dayCode){
@@ -547,7 +599,7 @@ public void setSingleDayVisitation(String visitationDaySymbol) {
 	//if we are sticking to bound days, this method is to adjust for a 5 day schedule from the original 6 day one
     public void setVisitationSchedule(){
 		//if we are running a 5 day schedule, saturday is never visited it. remove it from daysToVisitStop
-        if(TRProblemInfo.NUMBER_DAYS_SERVICED != TRProblemInfo.MAX_NUMBER_OF_DAYS_IN_SCHEDULE){
+        if(TRProblemInfo.NUMBER_DAYS_SERVICED != TRProblemInfo.MAX_NUMBER_OF_DAYS_IN_SCHEDULE && !TRProblemInfo.ARE_DAYS_BOUND){
             if(daysToVisitStop.contains("Sat")){
                 daysToVisitStop.remove("Sat");
 				//if a shipment requires a visit all 6 days, we can only visit 5 days in a 5 day schedule, so decrease its frequency accordingly

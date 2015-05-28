@@ -13,13 +13,14 @@
 package edu.sru.thangiah.zeus.tr;
 
 
-import edu.sru.thangiah.zeus.QAHeuristics.Selection.ClosestDistanceToDepot;
+//import edu.sru.thangiah.zeus.QAHeuristics.Selection.ClosestDistanceToDepot;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Selection.TRClosestDistanceToDepot;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Selection.TRSmallestAngleClosestDistanceToDepot;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Selection.TRSmallestAngleToDepot;
 import edu.sru.thangiah.zeus.tr.trCostFunctions.*;
 import edu.sru.thangiah.zeus.tr.trReadFile.PVRPReadFormat;
 import edu.sru.thangiah.zeus.tr.trReadFile.TRReadFormat;
+import edu.sru.thangiah.zeus.tr.trWriteFile.PVRPWriteFormat;
 import edu.sru.thangiah.zeus.tr.trWriteFile.TRWriteFormat;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
@@ -71,9 +72,8 @@ public class TRRoot {
 
 
 
-
-    public TRRoot()
-            throws Exception {
+//
+    public TRRoot(){
         TRProblemInfo.nodesLLLevelCostF = new TRNodesListCost();
         TRProblemInfo.truckLevelCostF = new TRTruckCost();
         TRProblemInfo.truckLLLevelCostF = new TRTrucksListCost();
@@ -81,6 +81,37 @@ public class TRRoot {
         TRProblemInfo.depotLLLevelCostF = new TRDepotsListCost();
         TRProblemInfo.daysLLLevelCostF = new TRDaysListCost();
         TRProblemInfo.daysLevelCostF = new TRDayCost();
+
+
+        TRProblemInfo.startHour = 8;
+        TRProblemInfo.startMinute = 00;
+        TRProblemInfo.averageVelocity = 12;
+        TRProblemInfo.numDepots = 1;
+        TRProblemInfo.addPenaltyPerBin = true;
+        TRProblemInfo.mainPenalties = new TRPenaltiesList();
+    }
+//            throws Exception {
+//
+////
+//
+//    }//END CONSTRUCTOR *******************<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+    public void PVRPFormat() throws IllegalAccessException, InvalidFormatException, IOException, InstantiationException, NoSuchMethodException, InvocationTargetException {
+        TRProblemInfo.tempFileLocation = TRProblemInfo.workingDirectory + FS + "temp";                  //temp file location
+        TRProblemInfo.inputPath = TRProblemInfo.workingDirectory + FS + "data" + FS + "PVRP" + FS + "data" + FS;                                //input file location
+        TRProblemInfo.outputPath = TRProblemInfo.workingDirectory + FS + "data" + FS + "TR" + FS + "results" + FS;                            //output file location
+        TRProblemInfo.compareToInputPath = TRProblemInfo.workingDirectory + FS + "data" + FS + "PVRP" + FS + "compareTo" + FS;
+        TRProblemInfo.compareToInputFile = "Comparison_List.xlsx";
+        TRProblemInfo.comparisonOutputFile = "PVRP_Comparison_Results.xlsx";
+        TRProblemInfo.longSolutionOutputFile = "PVRP_All_Long_Solutions.xlsx";
+        TRProblemInfo.shortSolutionOutputFile = "PVRP_All_Short_Solutions.xlsx";
+        TRProblemInfo.ARE_DAYS_BOUND = true;
+        TRProblemInfo.problemFileName = "p1.xlsx";
+        new TR(/*"TrashRoutes-Frequency.xlsx", */false, new TRClosestDistanceToDepot(), PVRPReadFormat.class, PVRPWriteFormat.class);
+    }
+
+    public void TRFormat() throws IllegalAccessException, InvalidFormatException, IOException, InstantiationException, NoSuchMethodException, InvocationTargetException {
+
 
 
         TRProblemInfo.tempFileLocation = TRProblemInfo.workingDirectory + FS + "temp";                  //temp file location
@@ -95,19 +126,12 @@ public class TRRoot {
         TRProblemInfo.penaltiesInputFile = "Penalty.xlsx";
         TRProblemInfo.delayTypesInputFile = "DelayTimes.xlsx";
 
-        TRProblemInfo.startHour = 8;
-        TRProblemInfo.startMinute = 00;
-        TRProblemInfo.averageVelocity = 12;
-        TRProblemInfo.numDepots = 1;
-        TRProblemInfo.addPenaltyPerBin = true;
-        TRProblemInfo.mainPenalties = new TRPenaltiesList();
-//        TRProblemInfo.problemFileName = "TrashRoutes-Frequency.xlsx";
-        TRProblemInfo.problemFileName = "p14.xlsx";
-        new TR(/*"TrashRoutes-Frequency.xlsx", */false, new TRClosestDistanceToDepot(), PVRPReadFormat.class, TRWriteFormat.class);
 
 
-    }//END CONSTRUCTOR *******************<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        TRProblemInfo.problemFileName = "TrashRoutes-Frequency.xlsx";
+        new TR(/*"TrashRoutes-Frequency.xlsx", */false, new TRClosestDistanceToDepot(), TRReadFormat.class, TRWriteFormat.class);
 
+    }
 
 
 

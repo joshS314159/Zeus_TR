@@ -239,86 +239,21 @@ public boolean isValidHeadTail() {
 
 @Override
 public boolean insertShipment(final TRShipment theShipment) {
+	boolean status = true;
+	int visitCounter = 0;
 
-	boolean status = false;
-
-	TRDay day = this.getFirst();
-	TRNodesList nodesLL = null;
-
-//	double  test = tempDepotLL.getAttributes().getTotalDemand();
-	while(day != this.getTail() && !status) {
-		//Get truck to insert the shipment
-		//while we have more depots
-
-		nodesLL = day.getSubList();
-		//get the trucks linked ist
-
-		status = nodesLL.insertShipment(theShipment);
-		//insert the shipment into the trucks linked list
-//
-//		if(status) {
-//			break;    //if it inserted into the list okay then break
-//		}
-		day = day.getNext();
+	for(int i = 0; i < this.getSize(); i++){
+		if(theShipment.getDaysVisited()[i]){
+			status = status && this.getAtIndex(i).getSubList().insertShipment(theShipment);
+			visitCounter++;
+		}
 	}
-	return status;    //return true if inserted OK
-//    boolean status = false;
-//    final int LARGE_INT = 999999999;
-//    int lowestDistance = LARGE_INT;
-//    TRDay lowestDay = null;
-//
-//    TRDay theDay = this.getFirst();
-//
-//
-//    while(theDay != this.getTail()){
-//        TRDay copyDay = new TRDay(theDay);
-//
-//        if(copyDay.insertShipment(theShipment)){
-//            copyDay.getAttributes().getTotalDistance();
-//            TRProblemInfo.daysLLLevelCostF.calculateTotalsStats(this);
-//            final int DEPOT_DISTANCE = (int) copyDay.getAttributes().getTotalDistance();
-//            if(DEPOT_DISTANCE < lowestDistance){
-//                lowestDistance = DEPOT_DISTANCE;
-//                lowestDay = theDay;
-//            }
-//        }
-//
-//        theDay = theDay.getNext();
-//    }
-//
-//    if(lowestDistance != LARGE_INT && lowestDay != null){
-//        lowestDay.insertShipment(theShipment);
-//        return true;
-//    }
-//    return false;
-//
-//
-//
-//
-//
-//
-////
-////
-//	boolean status = false;
-//
-//	TRDay theDay = this.getFirst();
-//
-//	while(theDay != this.getTail()) {
-//		if(theDay.insertShipment(theShipment)) {
-//			return true;
-//		}
-//		theDay = theDay.getNext();
-//	}
-//	return false;
+
+	if(!status){System.out.print("UNSUCCESSFUL INSERTION :: TRDaysList[insertShipment]");}
+	return status;
+
 }
 
-//@Override
-//public boolean insertShipment() {
-//	return false;
-//}
-
-//METHOD
-//inserts a shipment
 
 
 

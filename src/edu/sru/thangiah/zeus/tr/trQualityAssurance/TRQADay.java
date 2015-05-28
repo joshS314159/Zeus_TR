@@ -163,8 +163,8 @@ public boolean checkDistanceConstraint(TRQADay day) {
 	for (int i = 1; i < getNodes().size(); i++) {
 		nodeTwo = (TRQANode) getNodes().elementAt(i);
 
-		TRCoordinates firstPoint = new TRCoordinates(nodeOne.getY(), nodeOne.getX());
-		TRCoordinates secondPoint = new TRCoordinates(nodeTwo.getY(), nodeTwo.getX());
+		TRCoordinates firstPoint = new TRCoordinates(nodeOne.getY(), nodeOne.getX(), nodeOne.isCartesian());
+		TRCoordinates secondPoint = new TRCoordinates(nodeTwo.getY(), nodeTwo.getX(), nodeOne.isCartesian());
 		distance = firstPoint.calculateDistanceThisMiles(secondPoint);
 
 		totalDistance += distance;

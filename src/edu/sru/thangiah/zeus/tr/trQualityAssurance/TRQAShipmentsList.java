@@ -72,6 +72,7 @@ public boolean customerServicedRequestedFrequency(TRQADepotsList qaDepots) {
 					//get node from linked list
 					for(int m = 0; m < getShipments().size(); m++) {
 						TRQAShipment theShipment = (TRQAShipment) getShipments().elementAt(m);
+
 						//get the list of shipments; cycle through every possible shipment for
 						//each routed shipment
 

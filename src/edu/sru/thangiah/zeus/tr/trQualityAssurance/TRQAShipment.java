@@ -51,6 +51,18 @@ public class TRQAShipment
 //VARIABLES
 private int frequency;
 
+	private boolean isCartesian;
+
+
+
+	public boolean isCartesian() {
+		return isCartesian;
+	}
+
+	public void setIsCartesian(boolean isCartesian) {
+		this.isCartesian = isCartesian;
+	}
+
 
 
 

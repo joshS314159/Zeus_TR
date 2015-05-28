@@ -85,7 +85,7 @@ public void setTotalCost(Object o) {
 	TRNodesList nodesList = (TRNodesList) o;
 	double cost = 0;
 
-	if(nodesList.getFirst() != nodesList.getTail()) {
+	if(nodesList.getHead().getNext() != nodesList.getTail()) {
 		cost = nodesList.getTruckType().getFixedCost();
 //        System.out.println("\n\nVARIABLE COST#$#$#$#$#$#$\t\t" + nodesList.getTruckType().getVariableCost());
 		cost += (nodesList.getTruckType().getVariableCost() * getTotalDistance(o));

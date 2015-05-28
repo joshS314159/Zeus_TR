@@ -17,32 +17,52 @@ private double x;
 private double y;
 
 
-
 public TRCoordinates(final TRCoordinates copyMe) {
-	this.longitude = copyMe.getLongitude();
-	this.latitude = copyMe.getLatitude();
 	this.isCartesian = copyMe.isCartesian;
+//	this.a = copyMe.a;
+//	this.b = copyMe.b;
+	if(this.isCartesian){
+		this.x = copyMe.getA();
+		this.y = copyMe.getB();
+	}
+	else{
+		this.longitude = copyMe.getA();
+		this.latitude = copyMe.getB();
+	}
+//	this.longitude = copyMe.getA();
+//	this.latitude = copyMe.getB();
+
 }
 
 public TRCoordinates(double lat, double lon){
+
 	this.latitude = lat;
 	this.longitude = lon;
 }
 
 	public TRCoordinates(double lat, double lon, final boolean isCartesian){
-		this.latitude = lat;
-		this.longitude = lon;
 		this.isCartesian = isCartesian;
+		if(isCartesian){
+			this.x = lon;
+			this.y = lat;
+		}
+		else{
+			this.latitude = lat;
+			this.longitude = lon;
+		}
+
+
 	}
 
 public void setIsCartesian(final boolean isCartesian){
 	this.isCartesian = isCartesian;
+//	if(long)
 }
 
 public boolean getIsCartesian(){
 	return isCartesian;
 }
-
+//s
 
 
 public double getLongitude() {
@@ -66,6 +86,16 @@ public double[] getCoordinateSet(){
 
 
 public TRCoordinates() {
+}
+
+public double getA(){
+	if(isCartesian){ return x; }
+	return longitude;
+}
+
+public double getB(){
+	if(isCartesian){ return y; }
+	return latitude;
 }
 
 
@@ -181,10 +211,11 @@ private float calculateDistance(final TRCoordinates point, final double radiusOf
 
 public double calculateAngleBearing(final TRCoordinates point) {
 	//http://stackoverflow.com/questions/3932502/calcute-angle-between-two-latitude-longitude-points
-	double long2 = this.getLongitude();
-	double long1 = point.getLongitude();
-	double lat1 = this.getLatitude();
-	double lat2 = point.getLatitude();
+
+	double long2 = this.getA();
+	double long1 = point.getB();
+	double lat1 = this.getA();
+	double lat2 = point.getB();
 
 	double dLon = (long2 - long1);
 

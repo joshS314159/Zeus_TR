@@ -105,7 +105,7 @@ public class TR {
 			this.mainWriter = new TRWriteFormat(isMakeSeparateFile, mainDepots);
 		}
 		else if(classWriter == PVRPWriteFormat.class){
-
+            this.mainWriter = new PVRPWriteFormat(isMakeSeparateFile, mainDepots);
 		}
 
 
@@ -244,8 +244,9 @@ public class TR {
             currentUsedDepot = mainDepots.getFirst();
             //we only have one depot so get next always gets the same depot
 
+
             theShipment = mainShipments.getNextInsertShipment(mainDepots, currentUsedDepot, mainShipments,
-                    currentUsedShip);
+                        currentUsedShip);
             //		TRProblemInfo.selectShipType
             //Send the entire mainDepots and mainShipments to get the next shipment to be inserted including the current
             // depot
@@ -267,21 +268,20 @@ public class TR {
             }
 
 //            if(!insertShipment(mainDepots, theShipment)){
-            if(!mainDepots.insertShipment(theShipment)){
-                //The selected shipment couldn't be inserted in the selected location
-                Settings.printDebug(Settings.COMMENT, "The Shipment: <" + theShipment.getNodeNumber() +
-                        "> cannot be routed " +
-                        "***********************************************");
+            if(!theShipment.getIsAssigned()) {
+                if (!mainDepots.insertShipment(theShipment)) {
+                    //The selected shipment couldn't be inserted in the selected location
+                    Settings.printDebug(Settings.COMMENT, "The Shipment: <" + theShipment.getNodeNumber() +
+                            "> cannot be routed " +
+                            "***********************************************");
 
+                } else {
+                    Settings.printDebug(Settings.COMMENT, "The Shipment: <" + theShipment.getNodeNumber() +// " " + theShipment +
+                            "> was routed");
+                    theShipment.setIsAssigned(true);    //this shipment has been assigned and we won't go back to it
+                    theShipment.setCanBeRouted(true);
+                }
             }
-            else {
-                Settings.printDebug(Settings.COMMENT, "The Shipment: <" + theShipment.getNodeNumber() +// " " + theShipment +
-                        "> was routed");
-                theShipment.setIsAssigned(true);    //this shipment has been assigned and we won't go back to it
-                theShipment.setCanBeRouted(true);
-            }
-
-
         }
 
 
@@ -290,53 +290,6 @@ public class TR {
         //	calculate all the cost, distance, demand, etc. information related to the solution we just created
     }//CREATE INITIAL ROUTES ENDS
 // HERE*********<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-
-    private boolean insertShipment(TRDepotsList depotsList, TRShipment insertMe){
-        stepThroughDepots(depotsList, insertMe);
-        return true;
-    }
-
-    private boolean stepThroughDepots(TRDepotsList depotsList, TRShipment insertMe) {
-        TRDepot theDepot = depotsList.getFirst();
-
-        while (theDepot != depotsList.getTail()) {
-            if(stepThroughTrucks(theDepot.getSubList(), insertMe)){
-                return true;
-            }
-            theDepot = theDepot.getNext();
-        }
-        return false;
-    }
-
-
-    private boolean stepThroughTrucks(TRTrucksList trucksList, TRShipment insertMe) {
-        TRTruck theTruck = trucksList.getFirst();
-
-        while (theTruck != trucksList.getTail()) {
-            if(stepThroughDays(theTruck.getSubList(), insertMe)){
-                return true;
-            }
-            theTruck = theTruck.getNext();
-        }
-        return false;
-    }
-
-    private boolean stepThroughDays(TRDaysList daysList, TRShipment insertMe) {
-
-        for(int i = 0; i < daysList.getSize(); i++){
-            if(insertMe.getDaysVisited()[i]){
-                if(appendShipment((TRNodesList) daysList.getAtIndex(i).getSubList(), insertMe)){
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    private boolean appendShipment(TRNodesList nodesList, TRShipment insertMe){
-        return nodesList.insertShipment(insertMe);
-    }
 
 
     public void printRoutesToConsole(){

@@ -13,9 +13,6 @@
 package edu.sru.thangiah.zeus.pvrp;
 
 
-import edu.sru.thangiah.zeus.QAHeuristics.Selection.ClosestDistanceToDepot;
-import edu.sru.thangiah.zeus.QAHeuristics.Selection.SmallestAngleClosestDistanceToDepot;
-import edu.sru.thangiah.zeus.QAHeuristics.Selection.SmallestAngleToDepot;
 import edu.sru.thangiah.zeus.pvrp.pvrpcostfunctions.*;
 //import edu.sru.thangiah.zeus.trGeneric.TRSolutionHierarchy.TRShipmentsList;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -134,11 +131,11 @@ public PVRPRoot() throws Exception {
 		}
 
 		if (userInput.equals("1")) {
-			new PVRP(problemName, isMakeSeparateFile, new ClosestDistanceToDepot());
+			new PVRP(problemName, isMakeSeparateFile, new PVRPClosestEuclideanDistToDepot());
 		} else if (userInput.equals("2")) {
-			new PVRP(problemName, isMakeSeparateFile, new SmallestAngleToDepot());
+			new PVRP(problemName, isMakeSeparateFile, new PVRPSmallestPolarAngleShortestDistToDepot());
 		} else if (userInput.equals("3")) {
-			new PVRP(problemName, isMakeSeparateFile, new SmallestAngleClosestDistanceToDepot());
+			new PVRP(problemName, isMakeSeparateFile, new PVRPSmallestPolarAngleToDepot());
 		}
 
 

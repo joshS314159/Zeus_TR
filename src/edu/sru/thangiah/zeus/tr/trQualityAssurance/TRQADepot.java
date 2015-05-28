@@ -50,6 +50,19 @@ public class TRQADepot
 private double maxDistance;
 private double maxDemand;
 
+	private boolean isCartesian;
+
+
+
+	public boolean isCartesian() {
+		return isCartesian;
+	}
+
+	public void setIsCartesian(boolean isCartesian) {
+		this.isCartesian = isCartesian;
+	}
+
+
 
 
 

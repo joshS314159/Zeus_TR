@@ -95,22 +95,6 @@ public TRNode getTail() {
 }
 
 
-//@Override
-//public boolean insertShipment(final TRShipment theShipment) {
-//	boolean status = false;
-//
-//	TRNode theNode = this.getFirst();
-//
-//	while(theNode != this.getTail()){
-//		if(theNode.insertShipment(theShipment)){
-//			return true;
-//		}
-//		theNode = theNode.getNext();
-//	}
-//	return false;
-//}
-//
-
 
 
 

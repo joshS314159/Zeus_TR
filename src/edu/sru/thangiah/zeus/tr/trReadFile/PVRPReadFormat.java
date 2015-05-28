@@ -194,7 +194,7 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 			day.setMaxDistance(maxDistanceD*numberOfVehicles);
 			day.setMaxDemand(maxDemandQ * numberOfVehicles);
 
-			TRCoordinates tempCoordinates = new TRCoordinates(depotXCoordinates, depotYCoordinates);
+			TRCoordinates tempCoordinates = new TRCoordinates(depotXCoordinates, depotYCoordinates, true);
 				tempCoordinates.setIsCartesian(true);
 				day.setHomeDepotCoordinates(tempCoordinates);
 			day.setDayNumber(dayNumberCounter++);
@@ -251,9 +251,9 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 		}
 
 //		mainDepots = new TRDepotsList();        //create a new depot linked list for our solution
-		TRCoordinates tempCoordinates = new TRCoordinates();
-			tempCoordinates.setCoordinates(depotXCoordinates, depotYCoordinates);
-			tempCoordinates.setIsCartesian(true);
+		TRCoordinates tempCoordinates = new TRCoordinates(depotXCoordinates, depotYCoordinates, true);
+//			tempCoordinates.setCoordinates(depotXCoordinates, depotYCoordinates, true);
+//			tempCoordinates.setIsCartesian(true);
 		TRDepot depotTemporary = new TRDepot(tempCoordinates);//(nodeNumber, depotXCoordinates, depotYCoordinates,
 //				maxDistanceD * numberOfVehicles * daysServicedOver,
 //				maxDemandQ * numberOfVehicles *
@@ -400,7 +400,7 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 						break;    //the x coordinate for the node
 					case Y_COORDINATE:
 						yCoordinates = (double) currentCellContents;
-						tempCoordinates = new TRCoordinates(xCoordinates, yCoordinates);
+						tempCoordinates = new TRCoordinates(xCoordinates, yCoordinates, true);
 						tempCoordinates.setIsCartesian(true);
 						newShipment.setCoordinates(tempCoordinates);
 						newShipment.getCoordinates().setIsCartesian(true);
@@ -415,6 +415,7 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 						demandQ = (int) currentCellContents;
 						newShipment.setDemand(demandQ);
 						newShipment.setNumberOfBins(demandQ);
+						newShipment.setDemand((int) demandQ);
 						break;    //the demand for the node
 					case FREQUENCY:
 						frequency = (int) currentCellContents;
@@ -454,6 +455,8 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 			for(int l = 0; l < numberCombinations; l++) {
 				currentCombination[l] = mainShipments.getCurrentComb(list, l, daysServicedOver);
 			}
+			newShipment.setCurrentComb(currentCombination, numberCombinations);
+			newShipment.chooseRandomVisitCombination();
 			//this decodes each combination for a node into a simple to read array (1 == visit me on day X; 0 == don't
 			// visit me today)
 

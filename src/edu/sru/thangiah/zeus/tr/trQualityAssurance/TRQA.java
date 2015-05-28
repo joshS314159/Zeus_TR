@@ -239,6 +239,7 @@ public void readSolutionFile()
 	TRQADay theDay;                //HOLDS A DAY QA
 	TRQANode theNode;                //HOLDS A NODE QA
 	TRQANode depotAsNode;
+	boolean isCartesionPoints = false;
 	//TREATS DEPOT AS A VISTED NODE (FIRST LOCATION AND LAST LOCATION)
 
 	final int NUMBER_COLUMNS = 10;
@@ -251,6 +252,17 @@ public void readSolutionFile()
 	row = rowIterator.next();                //GET THE NEXT ROW - row 1
 	cellIterator = row.cellIterator();        //GET A CELL ITERATOR FOR NEW ROW
 
+	String aCoordinate = row.getCell(2).getStringCellValue();
+	String bCoordinate = row.getCell(3).getStringCellValue();
+
+	if(aCoordinate.equals(bCoordinate)){
+		if(aCoordinate.equals("cartesian")){
+			isCartesionPoints = true;
+		}
+		else if(aCoordinate.equals("geographic")){
+			isCartesionPoints = false;
+		}
+	}
 
 	for(int h = 0; h < NUMBER_COLUMNS - 1; h++) {
 		//skip over 'blank' cells (represented by -1)
@@ -292,10 +304,12 @@ public void readSolutionFile()
 				case 3:        //READ Y COORDINATE
 					theDepot.setY(currentCellValue);
 					depotAsNode.setY(currentCellValue);
+					theDepot.setIsCartesian(isCartesionPoints);
 					break;
 				case 4:        //READ DEMAND
 					theDepot.setDemand(currentCellValue);
 					depotAsNode.setDemand(currentCellValue);
+					theDepot.setIsCartesian(isCartesionPoints);
 					break;
 				case 5:        //READ DISTANCE
 					theDepot.setDistance(currentCellValue);
@@ -414,9 +428,11 @@ public void readSolutionFile()
 								break;
 							case 2:    //READ X COORD
 								theNode.setX(currentCellValue);
+								theNode.setIsCartesian(isCartesionPoints);
 								break;
 							case 3:    //READ Y COORD
 								theNode.setY(currentCellValue);
+								theNode.setIsCartesian(isCartesionPoints);
 								break;
 							case 6:    //READ DEMAND
 								theNode.setDemand(currentCellValue);
