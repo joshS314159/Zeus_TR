@@ -251,7 +251,7 @@ public class TR {
             // depot
 
 
-            if(theShipment.getFrequency() == 0) {
+            if(theShipment.getVisitFrequency() == 0) {
                 //this node is in the list but wouldn't
                 //like to be serviced... p11.xlsx, node 131
                 //does this
@@ -266,7 +266,8 @@ public class TR {
                 Settings.printDebug(Settings.COMMENT, "No shipment was selected");
             }
 
-            if(!insertShipment(mainDepots, theShipment)){
+//            if(!insertShipment(mainDepots, theShipment)){
+            if(!mainDepots.insertShipment(theShipment)){
                 //The selected shipment couldn't be inserted in the selected location
                 Settings.printDebug(Settings.COMMENT, "The Shipment: <" + theShipment.getNodeNumber() +
                         "> cannot be routed " +
@@ -296,36 +297,45 @@ public class TR {
         return true;
     }
 
-    private void stepThroughDepots(TRDepotsList depotsList, TRShipment insertMe) {
+    private boolean stepThroughDepots(TRDepotsList depotsList, TRShipment insertMe) {
         TRDepot theDepot = depotsList.getFirst();
 
         while (theDepot != depotsList.getTail()) {
-            stepThroughTrucks(theDepot.getSubList(), insertMe);
+            if(stepThroughTrucks(theDepot.getSubList(), insertMe)){
+                return true;
+            }
             theDepot = theDepot.getNext();
         }
+        return false;
     }
 
 
-    private void stepThroughTrucks(TRTrucksList trucksList, TRShipment insertMe) {
+    private boolean stepThroughTrucks(TRTrucksList trucksList, TRShipment insertMe) {
         TRTruck theTruck = trucksList.getFirst();
 
         while (theTruck != trucksList.getTail()) {
-            stepThroughDays(theTruck.getSubList(), insertMe);
+            if(stepThroughDays(theTruck.getSubList(), insertMe)){
+                return true;
+            }
             theTruck = theTruck.getNext();
         }
+        return false;
     }
 
-    private void stepThroughDays(TRDaysList daysList, TRShipment insertMe) {
+    private boolean stepThroughDays(TRDaysList daysList, TRShipment insertMe) {
 
         for(int i = 0; i < daysList.getSize(); i++){
             if(insertMe.getDaysVisited()[i]){
-                appendShipment((TRNodesList) daysList.getAtIndex(i).getSubList(), insertMe);
+                if(appendShipment((TRNodesList) daysList.getAtIndex(i).getSubList(), insertMe)){
+                    return true;
+                }
             }
         }
+        return false;
     }
 
-    private void appendShipment(TRNodesList nodesList, TRShipment insertMe){
-        nodesList.insertShipment(insertMe);
+    private boolean appendShipment(TRNodesList nodesList, TRShipment insertMe){
+        return nodesList.insertShipment(insertMe);
     }
 
 

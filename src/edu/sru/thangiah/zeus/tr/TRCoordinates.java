@@ -21,12 +21,19 @@ private double y;
 public TRCoordinates(final TRCoordinates copyMe) {
 	this.longitude = copyMe.getLongitude();
 	this.latitude = copyMe.getLatitude();
+	this.isCartesian = copyMe.isCartesian;
 }
 
 public TRCoordinates(double lat, double lon){
 	this.latitude = lat;
 	this.longitude = lon;
 }
+
+	public TRCoordinates(double lat, double lon, final boolean isCartesian){
+		this.latitude = lat;
+		this.longitude = lon;
+		this.isCartesian = isCartesian;
+	}
 
 public void setIsCartesian(final boolean isCartesian){
 	this.isCartesian = isCartesian;

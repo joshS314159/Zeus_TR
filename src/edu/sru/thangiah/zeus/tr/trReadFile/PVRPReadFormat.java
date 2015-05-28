@@ -349,6 +349,8 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 				//get the next day
 
 				TRNodesList tempNLL = tempDay.getSubList();
+				tempNLL.getHead().getCoordinates().setIsCartesian(true);
+				tempNLL.getTail().getCoordinates().setIsCartesian(true);
 
 				tempNLL.setTruckType((TRTruckType) TRProblemInfo.truckTypes.get(0));
 				tempNLL.setFeasibility(new TRFeasibility(tempNLL.getTruckType().getMaxDuration(),
@@ -401,6 +403,7 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 						tempCoordinates = new TRCoordinates(xCoordinates, yCoordinates);
 						tempCoordinates.setIsCartesian(true);
 						newShipment.setCoordinates(tempCoordinates);
+						newShipment.getCoordinates().setIsCartesian(true);
 						break;    //the y coordinate for the node
 					case 3:
 						DUMMY = (double) currentCellContents;
@@ -411,9 +414,11 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 					case DEMAND:
 						demandQ = (int) currentCellContents;
 						newShipment.setDemand(demandQ);
+						newShipment.setNumberOfBins(demandQ);
 						break;    //the demand for the node
 					case FREQUENCY:
 						frequency = (int) currentCellContents;
+						newShipment.setVisitFrequency(frequency);
 						newShipment.setFrequency(frequency);
 						break;    //the number of days a node needs visited
 					case NUMBER_COMBINATIONS:

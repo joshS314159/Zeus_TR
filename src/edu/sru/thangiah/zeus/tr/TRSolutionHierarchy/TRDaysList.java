@@ -239,6 +239,29 @@ public boolean isValidHeadTail() {
 
 @Override
 public boolean insertShipment(final TRShipment theShipment) {
+
+	boolean status = false;
+
+	TRDay day = this.getFirst();
+	TRNodesList nodesLL = null;
+
+//	double  test = tempDepotLL.getAttributes().getTotalDemand();
+	while(day != this.getTail() && !status) {
+		//Get truck to insert the shipment
+		//while we have more depots
+
+		nodesLL = day.getSubList();
+		//get the trucks linked ist
+
+		status = nodesLL.insertShipment(theShipment);
+		//insert the shipment into the trucks linked list
+//
+//		if(status) {
+//			break;    //if it inserted into the list okay then break
+//		}
+		day = day.getNext();
+	}
+	return status;    //return true if inserted OK
 //    boolean status = false;
 //    final int LARGE_INT = 999999999;
 //    int lowestDistance = LARGE_INT;
@@ -274,19 +297,19 @@ public boolean insertShipment(final TRShipment theShipment) {
 //
 //
 //
+////
+////
+//	boolean status = false;
 //
+//	TRDay theDay = this.getFirst();
 //
-	boolean status = false;
-
-	TRDay theDay = this.getFirst();
-
-	while(theDay != this.getTail()) {
-		if(theDay.insertShipment(theShipment)) {
-			return true;
-		}
-		theDay = theDay.getNext();
-	}
-	return false;
+//	while(theDay != this.getTail()) {
+//		if(theDay.insertShipment(theShipment)) {
+//			return true;
+//		}
+//		theDay = theDay.getNext();
+//	}
+//	return false;
 }
 
 //@Override

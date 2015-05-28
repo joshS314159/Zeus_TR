@@ -241,7 +241,29 @@ public boolean isValidHeadTail() {
 //inserts a shipment
 @Override
 public boolean insertShipment(final TRShipment theShipment) {
-    return false;
+	boolean status = false;
+
+	TRDepot depot = this.getFirst();
+	TRTrucksList truckLL = null;
+
+//	double  test = tempDepotLL.getAttributes().getTotalDemand();
+	while(depot != this.getTail() && !status) {
+		//Get truck to insert the shipment
+		//while we have more depots
+
+		truckLL = depot.getSubList();
+		//get the trucks linked ist
+
+		status = truckLL.insertShipment(theShipment);
+		//insert the shipment into the trucks linked list
+//
+//		if(status) {
+//			break;    //if it inserted into the list okay then break
+//		}
+		depot = depot.getNext();
+	}
+	return status;    //return true if inserted OK
+//    return false;
 
 //    TRGreedyInsertionRevised insertion = new TRGreedyInsertionRevised();
 //
