@@ -13,9 +13,9 @@ public class TRNodesList
 
 	//private TRNode       head;
 //private TRNode       tail;
-	private TRTruckType truckType;
+//	private TRTruckType truckType;
 	//private TRAttributes  attributes;
-	private TRFeasibility feasibility = new TRFeasibility();
+//	private TRFeasibility feasibility = new TRFeasibility();
 //private TRNode       head;
 //private TRNode       tail;
 //    private TRAttributes  attributes = new TRAttributes();
@@ -25,6 +25,7 @@ public class TRNodesList
 	public TRNodesList() {
 		setUpHeadTail();
 		setAttributes(new TRAttributes());
+		super.setFeasibility(new TRFeasibility());
 	}//END CONSTRUCTOR *******************<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
@@ -51,6 +52,7 @@ public class TRNodesList
 //	this.tail = new TRNode(coordinates);
 		linkHeadTail();
 		setAttributes(new TRAttributes());
+		super.setFeasibility(new TRFeasibility());
 		//	setHead((ObjectInList) new TRNode(coordinates));
 		//	setTail((ObjectInList) new TRNode(coordinates));
 	}
@@ -74,12 +76,12 @@ public class TRNodesList
 	}
 
 	public TRFeasibility getFeasibility() {
-		return this.feasibility;
+		return (TRFeasibility) super.getFeasibility();
 	}
 
 	//@Override
 	private void setFeasibility(final TRFeasibility feasibility) {
-		this.feasibility = feasibility;
+		super.setFeasibility((TRFeasibility) feasibility);
 	}
 
 	//GETTER

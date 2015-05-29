@@ -20,12 +20,12 @@ final boolean isVisitSunday = false;
 //VARIABLES
 //private TRShipment previous;
 //private TRShipment next;
-private int        customerIndex;
+//private int        customerIndex;
 private boolean canBeRouted = false;
 private TRAttributes  attributes = new TRAttributes();
 private TRCoordinates homeDepotCoordinates;
 private TRCoordinates coordinates;
-private int           numberOfBins;
+//private int           numberOfBins;
 private boolean       isTipCart;
 private boolean[] daysVisited = new boolean[TRProblemInfo.NUMBER_DAYS_SERVICED];
 private int     buildingType;
@@ -35,8 +35,8 @@ private boolean isPickupOrder;
 private int     nodeNumber;
 private boolean isAssigned;
 //private int     demand;
-private int     visitFrequency = 0;
-private String  pickupPointName;
+//private int     visitFrequency = 0;
+//private String  pickupPointName;
 private int     requiredPreviousPickupPoint;
 private TRDelayType delayType = new TRDelayType();
 private ArrayList<String> daysToVisitStop = new ArrayList<String>();
@@ -177,7 +177,8 @@ public boolean getCanBeRouted() {
 //SETTER
 public boolean setCustomerIndex(final int index) {
 	if(index >= 0) {
-		this.customerIndex = index;
+		super.setIndex(index);
+		super.setCustId(index);
 		return true;
 	}
 	return false;
@@ -188,7 +189,7 @@ public boolean setCustomerIndex(final int index) {
 
 //GETTER
 public int getCustomerIndex() {
-	return this.customerIndex;
+	return super.getIndex();
 }
 
 
@@ -389,7 +390,7 @@ public boolean insertAfterCurrent(final ObjectInList insertMe) {
 
 
 public int getVisitFrequency() {
-	return visitFrequency;
+	return super.getFrequency();
 }
 
 
@@ -402,7 +403,7 @@ public int getVisitFrequency() {
 
 public boolean setVisitFrequency(final int visitFrequency) {
 	if(visitFrequency >= 0) {
-		this.visitFrequency = visitFrequency;
+		super.setFrequency(visitFrequency);
 		return true;
 	}
 	return false;
@@ -412,7 +413,7 @@ public boolean setVisitFrequency(final int visitFrequency) {
 
 
 public int getNumberOfBins() {
-	return numberOfBins;
+	return super.getDemand();
 }
 
 
@@ -420,7 +421,7 @@ public int getNumberOfBins() {
 
 public void setNumberOfBins(final int numberOfBins) {
 	if(numberOfBins >= 0) {
-		this.numberOfBins = numberOfBins;
+		super.setDemand(numberOfBins);
         this.setDemand(numberOfBins);
 	}
 }
@@ -514,8 +515,9 @@ public void setRequiredPreviousPickupPoint(final int pickupOrder) {
 
 public boolean setNodeNumber(final int nodeNumber) {
 	if(nodeNumber > 0) {
-		this.nodeNumber = nodeNumber;
-        this.setIndex(nodeNumber);
+//		this.nodeNumber = nodeNumber;
+        super.setIndex(nodeNumber);
+		super.setCustId(nodeNumber);
 		return true;
 	}
 	return false;
@@ -527,7 +529,7 @@ public boolean setNodeNumber(final int nodeNumber) {
 
 
 public int getNodeNumber() {
-	return this.nodeNumber;
+	return super.getIndex();
 }
 
 

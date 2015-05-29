@@ -13,7 +13,7 @@ public class TRNode
 		extends Nodes
 		implements java.io.Serializable, Cloneable, ObjectInList {
 
-	private TRShipment theShipment = new TRShipment();
+	//	private TRShipment theShipment = new TRShipment();
 	//private TRNode        next;
 //private TRNode        previous;
 	private TRAttributes attributes = new TRAttributes();
@@ -36,6 +36,7 @@ public class TRNode
 
 	public TRNode(final TRCoordinates homeDepotCoordinates) {
 		setAttributes(new TRAttributes());
+		setShipment(new TRShipment());
 		//	set
 		//	setHomeDepotCoordinates(homeDepotCoordinates);
 	}
@@ -50,6 +51,7 @@ public class TRNode
 
 	public TRNode() {
 		setAttributes(new TRAttributes());
+		setShipment(new TRShipment());
 	}
 
 	public int getIndex() {
@@ -187,7 +189,7 @@ public class TRNode
 
 	//@Override
 	public TRShipment getShipment() {
-		return this.theShipment;
+		return (TRShipment) super.getShipment();
 	}
 
 

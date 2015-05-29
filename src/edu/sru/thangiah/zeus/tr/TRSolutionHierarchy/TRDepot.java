@@ -37,7 +37,7 @@ public class TRDepot
 	private TRCoordinates coordinates;
 	private double maxDistance;
 	private double maxDemand;
-	private int nodeNumber;
+//	private int nodeNumber;
 
 	public TRDepot(final TRDepot copyMe) {
 		setAttributes(new TRAttributes(copyMe.getAttributes()));
@@ -73,11 +73,11 @@ public class TRDepot
 	}
 
 	public int getNodeNumber() {
-		return nodeNumber;
+		return super.getDepotNum();
 	}
 
 	public void setNodeNumber(final int nodeNumber) {
-		this.nodeNumber = nodeNumber;
+		super.setDepotNum(nodeNumber);
 	}
 
 	public TRCoordinates getCoordinates() {

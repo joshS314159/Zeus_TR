@@ -45,7 +45,7 @@ public class TRTruck
 		implements java.io.Serializable, Cloneable, ObjectInList {
 
 	private boolean isTruckOnRoad = false;
-	private TRTruckType truckType;
+	//	private TRTruckType truckType;
 	//private TRTruck      next;
 //private TRTruck      previous;
 //private TRAttributes  attributes = new TRAttributes();
@@ -67,12 +67,14 @@ public class TRTruck
 	public TRTruck(final TRCoordinates homeDepotCoordinates) {
 		setAttributes(new TRAttributes());
 		setHomeDepotCoordinates(homeDepotCoordinates);
+		super.setTruckType(new TRTruckType());
 	}
 
 
 	//CONSTRUCTOR
 	public TRTruck() {
 		setAttributes(new TRAttributes());
+		super.setTruckType(new TRTruckType());
 	}
 
 	public boolean getIsTruckOnRoad() {
@@ -103,11 +105,11 @@ public class TRTruck
 
 	@Override
 	public TRTruckType getTruckType() {
-		return truckType;
+		return (TRTruckType) super.getTruckType();
 	}
 
 	public void setTruckType(final TRTruckType truckType) {
-		this.truckType = truckType;
+		super.setTruckType(truckType);
 	}
 
 	public String toString() {
