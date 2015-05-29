@@ -10,8 +10,8 @@ public class TRDaysList
 		extends DaysLinkedList
 		implements java.io.Serializable, Cloneable, DoublyLinkedList {
 
-private TRDay        head;
-private TRDay        tail;
+//private TRDay        head;
+//private TRDay        tail;
     private TRAttributes  attributes = new TRAttributes();
 private int          dayNumber;
 
@@ -29,8 +29,10 @@ public TRDaysList() {
 
 @Override
 public void setUpHeadTail() {
-	this.head = new TRDay();
-	this.tail = new TRDay();
+	super.setHead(new TRDay());
+	super.setTail(new TRDay());
+//	this.head = new TRDay();
+//	this.tail = new TRDay();
 	linkHeadTail();
 }
 
@@ -39,7 +41,8 @@ public void setUpHeadTail() {
 
 //GETTER
 public TRDay getHead() {
-	return this.head;
+//	return this.head;
+	return (TRDay) super.getHead();
 }
 
 
@@ -47,7 +50,7 @@ public TRDay getHead() {
 
 //GETTER
 public TRDay getTail() {
-	return this.tail;
+	return (TRDay) super.getTail();
 }
 
 
@@ -116,7 +119,7 @@ public boolean setHead(final ObjectInList head) {
 		head.getPrevious().setNext(head);
 		getHead().setPrevious(null);
 		getHead().setNext((ObjectInList) null);
-		this.head = (TRDay) head;
+		setHead(head);
 		return true;
 	}
 	return false;
@@ -195,7 +198,7 @@ public int getIndexOfObject(final ObjectInList findMe) {
 		while(theDay != findMe) {
 			theDay = theDay.getNext();
 			counter++;
-			if(theDay == tail) {
+			if(theDay == getTail()) {
 				return -1;
 			}
 		}
@@ -215,7 +218,7 @@ public boolean setTail(final ObjectInList tail) {
 		tail.getPrevious().setNext(tail);
 		getTail().setPrevious(null);
 		getTail().setNext((ObjectInList) null);
-		this.tail = (TRDay) tail;
+		setTail(tail);
 		return true;
 	}
 	return false;
@@ -352,7 +355,7 @@ public ObjectInList getAtIndex(final int index) {
 
 @Override
 public boolean insertAfterObject(final ObjectInList insertMe, final ObjectInList insertAfter) {
-	TRDay theDay = head;
+	TRDay theDay = getHead();
 	while(!isEmpty() && isValidHeadTail()) {
 		theDay = theDay.getNext();
 		if(theDay == insertAfter) {

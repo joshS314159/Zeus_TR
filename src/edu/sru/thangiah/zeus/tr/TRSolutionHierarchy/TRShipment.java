@@ -18,8 +18,8 @@ public class TRShipment
 
 final boolean isVisitSunday = false;
 //VARIABLES
-private TRShipment previous;
-private TRShipment next;
+//private TRShipment previous;
+//private TRShipment next;
 private int        customerIndex;
 private boolean canBeRouted = false;
 private TRAttributes  attributes = new TRAttributes();
@@ -222,7 +222,7 @@ public void setIsAssigned(final boolean isAssigned) {
 
 
 public TRShipment getNext() {
-	return this.next;
+	return (TRShipment) super.getNext();
 }
 
 
@@ -230,7 +230,7 @@ public TRShipment getNext() {
 
 @Override
 public void setNext(final ObjectInList next) {
-	this.next = (TRShipment) next;
+	super.setNext((TRShipment) next);
 }
 
 
@@ -266,7 +266,7 @@ public boolean removeThisObject() {
 
 @Override
 public ObjectInList getPrevious() {
-	return this.previous;
+	return (TRShipment) super.getPrev();
 }
 
 
@@ -274,7 +274,7 @@ public ObjectInList getPrevious() {
 
 @Override
 public void setPrevious(final ObjectInList previous) {
-	this.previous = (TRShipment) previous;
+	super.setPrev((TRShipment) previous);
 }
 
 

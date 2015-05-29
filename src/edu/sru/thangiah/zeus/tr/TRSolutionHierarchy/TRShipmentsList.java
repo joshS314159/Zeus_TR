@@ -32,8 +32,8 @@ public class TRShipmentsList
 		extends ShipmentLinkedList
 		implements java.io.Serializable, Cloneable, DoublyLinkedList {
 
-private TRShipment   head;
-private TRShipment   tail;
+//private TRShipment   head;
+//private TRShipment   tail;
     private TRAttributes  attributes = new TRAttributes();
 
 
@@ -52,8 +52,10 @@ public TRShipmentsList() {
 public void setUpHeadTail() {
 	//	setHead((ObjectInList) new TRShipment());
 	//	setTail((ObjectInList) new TRShipment());
-	this.head = new TRShipment();
-	this.tail = new TRShipment();
+//	this.head = new TRShipment();
+//	this.tail = new TRShipment();
+	super.setTail(new TRShipment());
+	super.setHead(new TRShipment());
 	linkHeadTail();
 }
 
@@ -71,7 +73,7 @@ public void linkHeadTail() {
 
 //GETTER
 public TRShipment getHead() {
-	return this.head;
+	return (TRShipment) super.getHead();
 }
 
 
@@ -79,7 +81,7 @@ public TRShipment getHead() {
 
 //GETTER
 public TRShipment getTail() {
-	return this.tail;
+	return (TRShipment) super.getTail();
 }
 
 
@@ -151,7 +153,8 @@ public boolean setHead(final ObjectInList head) {
 		head.getPrevious().setNext(head);
 		getHead().setPrevious(null);
 		getHead().setNext((ObjectInList) null);
-		this.head = (TRShipment) head;
+		setHead(head);
+//		this.head = (TRShipment) head;
 		return true;
 	}
 	return false;
@@ -230,7 +233,7 @@ public int getIndexOfObject(final ObjectInList findMe) {
 		while(theShipment != findMe) {
 			theShipment = theShipment.getNext();
 			counter++;
-			if(theShipment == tail) {
+			if(theShipment == getTail()) {
 				return -1;
 			}
 		}
@@ -250,7 +253,8 @@ public boolean setTail(final ObjectInList tail) {
 		tail.getPrevious().setNext(tail);
 		getTail().setPrevious(null);
 		getTail().setNext((ObjectInList) null);
-		this.tail = (TRShipment) tail;
+		setTail(tail);
+//		this.tail = (TRShipment) tail;
 		return true;
 	}
 	return false;
@@ -388,7 +392,7 @@ public ObjectInList getAtIndex(final int index) {
 
 @Override
 public boolean insertAfterObject(final ObjectInList insertMe, final ObjectInList insertAfter) {
-	TRShipment theDepot = head;
+	TRShipment theDepot = getHead();
 	while(!isEmpty() && isValidHeadTail()) {
 		theDepot = theDepot.getNext();
 		if(theDepot == insertAfter) {

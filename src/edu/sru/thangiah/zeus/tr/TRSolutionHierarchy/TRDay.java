@@ -13,11 +13,11 @@ public class TRDay
 
 //VARIABLES
 private TRAttributes  attributes = new TRAttributes();            //takes precedence over the base class attributes type
-private TRDay        previous;    //takes precedence over the base class previous and next type
-private TRDay        next;
+//private TRDay        previous;    //takes precedence over the base class previous and next type
+//private TRDay        next;
 private TRNodesList nodesSubList = new TRNodesList();
 private TRCoordinates homeDepotCoordinates;
-private int           dayNumber;
+//private int           dayNumber;
 
 
 	private int numberOfNodes;
@@ -77,8 +77,8 @@ public TRDay(final TRNodesList nodes, final int numberOfTrucks, final int daysSe
 	TRCoordinates tempCoordinates = new TRCoordinates(xCoordinate, yCoordinate);
 		tempCoordinates.setIsCartesian(isCartesian);
 	this.homeDepotCoordinates = tempCoordinates;
-
-	this.dayNumber = dayNumber;
+	setDayNumber(dayNumber);
+//	this.dayNumber = dayNumber;
 
 
 }
@@ -132,7 +132,7 @@ public TRCoordinates getHomeDepotCoordinates() {
 
     public String toString()
     {
-        String s = "#" + this.dayNumber;
+        String s = "#" + getDayNumber();
 
         return s;
     }
@@ -193,7 +193,7 @@ public boolean insertAfterCurrent(final ObjectInList insertMe) {
 
 
 public TRDay getNext() {
-	return this.next;
+	return (TRDay) super.getNext();
 }
 
 
@@ -201,7 +201,7 @@ public TRDay getNext() {
 
 @Override
 public void setNext(final ObjectInList next) {
-	this.next = (TRDay) next;
+	super.setNext((Day) next);
 }
 
 
@@ -237,7 +237,7 @@ public boolean removeThisObject() {
 
 @Override
 public ObjectInList getPrevious() {
-	return this.previous;
+	return (TRDay) super.getPrev();
 }
 
 
@@ -245,7 +245,7 @@ public ObjectInList getPrevious() {
 
 @Override
 public void setPrevious(final ObjectInList previous) {
-	this.previous = (TRDay) previous;
+	super.setPrev((Day) previous);
 }
 
 
@@ -297,7 +297,8 @@ public TRDay(final TRCoordinates coordinates, final int dayNumber) {
 
 public boolean setDayNumber(final int dayNumber) {
 	if(dayNumber >= 0) {
-		this.dayNumber = dayNumber;
+		setIndex(dayNumber);
+//		this.dayNumber = dayNumber;
 		return true;
 	}
 	return false;
@@ -316,7 +317,7 @@ public boolean insertShipment(final TRShipment theShipment) {
 
 
 public int getDayNumber() {
-	return dayNumber;
+	return getIndex();
 }
 
 
