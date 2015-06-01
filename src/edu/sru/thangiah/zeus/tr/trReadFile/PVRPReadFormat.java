@@ -474,6 +474,7 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 			//insert the just read shipment into the mainShipments list holds our all our problem info read in from Excel
 
 		}
+		int size = mainShipments.getSize();
 		return true;
 //		return true;
 		//whoo! done with one method in one class

@@ -4,198 +4,189 @@ package edu.sru.thangiah.zeus.tr.TRSolutionHierarchy;
 
 
 import edu.sru.thangiah.zeus.core.Nodes;
-import edu.sru.thangiah.zeus.tr.TR;
 import edu.sru.thangiah.zeus.tr.TRAttributes;
 import edu.sru.thangiah.zeus.tr.TRCoordinates;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.GenericCompositions.*;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.GenericCompositions.ObjectInList;
 
 
 public class TRNode
-		extends Nodes
-		implements java.io.Serializable, Cloneable, ObjectInList {
+        extends Nodes
+        implements java.io.Serializable, Cloneable,// ObjectInList
+        ObjectInListInterface<TRNode>, ObjectInListCoreInterface<TRNode>, ContainsSubObjectInterface<TRShipment> {
 
-	//	private TRShipment theShipment = new TRShipment();
-	//private TRNode        next;
+
+    // {
+
+    //	private TRShipment theShipment = new TRShipment();
+    //private TRNode        next;
 //private TRNode        previous;
-	private TRAttributes attributes = new TRAttributes();
-	private TRCoordinates homeDepotCoordinates;
+    private TRAttributes attributes = new TRAttributes();
+    private TRCoordinates homeDepotCoordinates;
+
+    private ObjectInList<TRNode> objectInList = new ObjectInList<>(this);
+    private ContainsSubObject<TRShipment> subObject = new ContainsSubObject<TRShipment>();
 
 
-	private int visitationHour = -1;
-	private int visitationMinute = -1;
+    private int visitationHour = -1;
+    private int visitationMinute = -1;
 
 
-	public TRNode(final TRNode copyMe) {
-		setShipment(new TRShipment(copyMe.getShipment()));
-		setAttributes(new TRAttributes(copyMe.getAttributes()));
-		setHomeDepotCoordinates(new TRCoordinates(copyMe.getHomeDepotCoordinates()));
-		//	setSubList(new TRNodesList(null));
-		setHomeDepotCoordinates(new TRCoordinates(copyMe.getHomeDepotCoordinates()));
+    public TRNode(final TRNode copyMe) {
+        setShipment(new TRShipment(copyMe.getShipment()));
+        setAttributes(new TRAttributes(copyMe.getAttributes()));
+        setHomeDepotCoordinates(new TRCoordinates(copyMe.getHomeDepotCoordinates()));
+        //	setSubList(new TRNodesList(null));
+        setHomeDepotCoordinates(new TRCoordinates(copyMe.getHomeDepotCoordinates()));
+        setSubobject(new TRShipment());
 //		setAttributes(new TRAttributes());
-	}
+    }
 
 
-	public TRNode(final TRCoordinates homeDepotCoordinates) {
-		setAttributes(new TRAttributes());
-		setShipment(new TRShipment());
-		//	set
-		//	setHomeDepotCoordinates(homeDepotCoordinates);
-	}
+    public TRNode(final TRCoordinates homeDepotCoordinates) {
+        setAttributes(new TRAttributes());
+        setShipment(new TRShipment());
+        //	set
+        //	setHomeDepotCoordinates(homeDepotCoordinates);
+    }
 
 
-	public TRNode(final TRShipment theShipment) {
-		setShipment(theShipment);
-	}
+    public TRNode(final TRShipment theShipment) {
+        setShipment(theShipment);
+    }
 
 
 //final TRNode(final TR)
 
-	public TRNode() {
-		setAttributes(new TRAttributes());
-		setShipment(new TRShipment());
-	}
+    public TRNode() {
+        setAttributes(new TRAttributes());
+        setShipment(new TRShipment());
+    }
 
-	public int getIndex() {
-		return this.getShipment().getIndex();
-	}
+    public int getIndex() {
+        return this.getShipment().getIndex();
+    }
 
-	public TRCoordinates getHomeDepotCoordinates() {
-		return homeDepotCoordinates;
-	}
+    public TRCoordinates getHomeDepotCoordinates() {
+        return homeDepotCoordinates;
+    }
 
-	public void setHomeDepotCoordinates(final TRCoordinates homeDepotCoordinates) {
-		this.homeDepotCoordinates = homeDepotCoordinates;
-	}
+    public void setHomeDepotCoordinates(final TRCoordinates homeDepotCoordinates) {
+        this.homeDepotCoordinates = homeDepotCoordinates;
+    }
 
-	public int getVisitationHour() {
-		return visitationHour;
-	}
+    public int getVisitationHour() {
+        return visitationHour;
+    }
 
-	public void setVisitationHour(final int visitationHour) {
-		if (visitationHour >= 0 && visitationHour <= 23) {
-			this.visitationHour = visitationHour;
-		}
-	}
+    public void setVisitationHour(final int visitationHour) {
+        if (visitationHour >= 0 && visitationHour <= 23) {
+            this.visitationHour = visitationHour;
+        }
+    }
 
-	public int getVisitationMinute() {
-		return visitationMinute;
-	}
+    public int getVisitationMinute() {
+        return visitationMinute;
+    }
 
-	public void setVisitationMinute(final int visitationMinute) {
-		if (visitationMinute >= 0 && visitationMinute <= 59) {
-			this.visitationMinute = visitationMinute;
-		}
-	}
+    public void setVisitationMinute(final int visitationMinute) {
+        if (visitationMinute >= 0 && visitationMinute <= 59) {
+            this.visitationMinute = visitationMinute;
+        }
+    }
 
-	public TRCoordinates getCoordinates() {
-		return this.getShipment().getCoordinates();
-	}
-
-
-	@Override
-	public TRNodesList getSubList() {
-		return null;
-	}
+    public TRCoordinates getCoordinates() {
+        return this.getShipment().getCoordinates();
+    }
 
 
-	@Override
-	public void setSubList(DoublyLinkedList subList) {
-		//null
-	}
 
 
-	public TRAttributes getAttributes() {
-		return this.attributes;
-	}
+
+    public TRAttributes getAttributes() {
+        return this.attributes;
+    }
 
 
-	@Override
-	public void setAttributes(final TRAttributes attributes) {
-		this.attributes = attributes;
-	}
+//    @Override
+    public void setAttributes(final TRAttributes attributes) {
+        this.attributes = attributes;
+    }
 
 
-	@Override
-	public boolean insertAfterCurrent(final ObjectInList insertMe) {
-		if (this.getNext() != null) {
-			(insertMe).setPrevious(this);
-			(insertMe).setNext(this.getNext());
-
-			(this).setNext(insertMe);
-			(insertMe).getNext().setPrevious(insertMe);
-			return true;
-		}
-		return false;
-	}
 
 
-	public TRNode getNext() {
-		return (TRNode) super.getNext();
-	}
+
+    public TRNode getNext() {
+        return (TRNode) super.getNext();
+    }
+
+    @Override
+    public TRNode getPrevious() {
+        return (TRNode) super.getPrev();
+    }
 
 
-	@Override
-	public void setNext(final ObjectInList next) {
-		super.setNext((TRNode) next);
-	}
+    @Override
+    public boolean insertAfterCurrent(TRNode insertMe) {
+        return objectInList.insertAfterCurrent(insertMe);
+    }
+
+    @Override
+    public void linkAsHeadTail(TRNode linkTwo) {
+        objectInList.linkAsHeadTail(linkTwo);
+    }
+
+    @Override
+    public boolean removeThisObject() {
+        return objectInList.removeThisObject();
+    }
 
 
-	@Override
-	public void linkAsHeadTail(final ObjectInList linkTwo) {
-		this.setNext(linkTwo);
-		(linkTwo).setPrevious(this);
-		this.setPrevious(null);    //nothing comes before the head
-		(linkTwo).setNext(null);        //nothing comes after the tail
-	}
+    @Override
+    public void setNext(TRNode next) {
+        super.setNext(next);
+    }
+
+    @Override
+    public void setPrevious(TRNode previous) {
+        super.setPrev(previous);
+    }
 
 
-	@Override
-	public boolean removeThisObject() {
-		if (this.getNext() != null || this.getPrevious() != null) {
 
-			(this.getPrevious()).setNext(this.getNext());
-			(this.getNext()).setPrevious(this.getPrevious());
-
-			this.setPrevious(null);
-			this.setNext((ObjectInList) null);
-			return true;
-		}
-		return false;
-	}
+//    @Override
+//    public boolean isSubListEmpty() {
+//        return subObject.;
+//    }
 
 
-	@Override
-	public ObjectInList getPrevious() {
-		return (TRNode) super.getPrev();
-	}
+    @Override
+    public TRShipment getSubObject() {
+        return subObject.getSubObject();
+    }
+
+    @Override
+    public void setSubobject(TRShipment setMe) {
+//        subobject.setSub
+        subObject.setSubobject(setMe);
+    }
+
+    @Override
+    public double getDistanceTravelledMiles() {
+        return 0;
+    }
 
 
-	@Override
-	public void setPrevious(final ObjectInList previous) {
-		super.setPrev((TRNode) previous);
-	}
+    //@Override
+    public TRShipment getShipment() {
+        return (TRShipment) super.getShipment();
+    }
 
 
-	@Override
-	public boolean isSubListEmpty() {
-		return true;
-	}
-
-
-	@Override
-	public double getDistanceTravelledMiles() {
-		return 0;
-	}
-
-
-	//@Override
-	public TRShipment getShipment() {
-		return (TRShipment) super.getShipment();
-	}
-
-
-	public void setShipment(final TRShipment theShipment) {
-		this.theShipment = theShipment;
-	}
+    public void setShipment(final TRShipment theShipment) {
+        this.theShipment = theShipment;
+    }
 
 
 }

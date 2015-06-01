@@ -1,10 +1,8 @@
 package edu.sru.thangiah.zeus.tr.trCostFunctions;
 
 
-import edu.sru.thangiah.zeus.core.ProblemInfo;
 import edu.sru.thangiah.zeus.tr.TRProblemInfo;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRDay;
-import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRDepot;
 
 
 /**

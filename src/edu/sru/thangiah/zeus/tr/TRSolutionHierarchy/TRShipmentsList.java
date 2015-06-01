@@ -7,6 +7,9 @@ import edu.sru.thangiah.zeus.core.Shipment;
 import edu.sru.thangiah.zeus.core.ShipmentLinkedList;
 import edu.sru.thangiah.zeus.tr.TRAttributes;
 import edu.sru.thangiah.zeus.tr.TRProblemInfo;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.GenericCompositions.DoublyLinkedList;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.GenericCompositions.DoublyLinkedListCoreInterface;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.GenericCompositions.DoublyLinkedListInterface;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -30,22 +33,22 @@ import java.io.IOException;
 
 public class TRShipmentsList
 		extends ShipmentLinkedList
-		implements java.io.Serializable, Cloneable, DoublyLinkedList {
+		implements java.io.Serializable, Cloneable, //DoublyLinkedList
+		DoublyLinkedListInterface<TRShipment>, DoublyLinkedListCoreInterface<TRShipment> {
 
 //private TRShipment   head;
 //private TRShipment   tail;
-    private TRAttributes  attributes = new TRAttributes();
+private TRAttributes attributes = new TRAttributes();
 
 
-
+private DoublyLinkedList<TRShipmentsList, TRShipment> doublyLinkedList = new DoublyLinkedList<>(this,
+		TRShipment.class);
 
 //CONSTRUCTOR
 public TRShipmentsList() {
 	setUpHeadTail();
 	setAttributes(new TRAttributes());
 }//END CONSTRUCTOR *******************<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-
 
 
 @Override
@@ -60,15 +63,16 @@ public void setUpHeadTail() {
 }
 
 
-
-
 //METHOD
 //link the head and the tail together
 public void linkHeadTail() {
 	getHead().linkAsHeadTail(getTail());
 }//END LINK_HEAD_TAIL *********<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-
+@Override
+public void setUpHeadTail(final TRShipment head, final TRShipment tail) {
+	doublyLinkedList.setUpHeadTail(head, tail);
+}
 
 
 //GETTER
@@ -77,14 +81,20 @@ public TRShipment getHead() {
 }
 
 
-
-
 //GETTER
 public TRShipment getTail() {
 	return (TRShipment) super.getTail();
 }
 
+@Override
+public void setTail(final TRShipment tail) {
+	super.setTail(tail);
+}
 
+@Override
+public void setHead(final TRShipment head) {
+	super.setHead(head);
+}
 
 
 public boolean isAllShipsAssigned() {
@@ -106,317 +116,99 @@ public boolean isAllShipsAssigned() {
 }
 
 
-
-
 public boolean isEmpty() {
-	if(getSize() == 0) {
-		return true;
-	}
-	return false;
+	return doublyLinkedList.isEmpty();
 }
-
-
-
 
 @Override
-public void setUpHeadTail(final ObjectInList head, final ObjectInList tail) {
-	setHead(head);
-	setTail(tail);
-	linkHeadTail();
+public boolean removeByObject(final TRShipment findMe) {
+	return doublyLinkedList.removeByObject(findMe);
 }
-
-
-
 
 @Override
-public TRAttributes getAttributes() {
-	return this.attributes;
+public boolean insertAfterIndex(final TRShipment insertMe, final int index) {
+	return doublyLinkedList.insertAfterIndex(insertMe, index);
 }
-
-
-
-
-//SETTER
-@Override
-public void setAttributes(final TRAttributes attributes) {
-	this.attributes = attributes;
-}
-
-
-
 
 @Override
-public boolean setHead(final ObjectInList head) {
-	//	return getHead().replaceThisWith((TRShipment) head);
-	if(head != null) {
-		head.setPrevious(getTail().getPrevious());
-		head.getPrevious().setNext(head);
-		getHead().setPrevious(null);
-		getHead().setNext((ObjectInList) null);
-		setHead(head);
-//		this.head = (TRShipment) head;
-		return true;
-	}
-	return false;
+public TRShipment getAtIndex(final int index) {
+	return doublyLinkedList.getAtIndex(index);
 }
-
-
-
 
 @Override
 public TRShipment getFirst() {
-	if(isEmpty() || !isValidHeadTail()) {
-        System.out.println("ERROR: getFirst() is null/invalid");
-		return null;
-	}
-	return getHead().getNext();
+	return doublyLinkedList.getFirst();
 }
-
-
-
 
 @Override
-public boolean insertAfterLastIndex(final ObjectInList theObject) {
-	if(!isValidHeadTail()) {
-		return false;
-	}
-
-	if(isEmpty()) {
-		return getHead().insertAfterCurrent(theObject);
-	}
-	//otherwise we already got stuff in here
-	return getLast().insertAfterCurrent(theObject);
+public boolean insertAfterLastIndex(final TRShipment theObject) {
+	return doublyLinkedList.insertAfterLastIndex(theObject);
 }
-
-
-
 
 @Override
 public TRShipment getLast() {
-	if(isEmpty() || !isValidHeadTail()) {
-		return null;
-	}
-	return (TRShipment) getTail().getPrevious();
+	return doublyLinkedList.getLast();
 }
-
-
-
 
 @Override
 public boolean removeLast() {
-	if(!isEmpty() && isValidHeadTail()) {
-		return getTail().getPrevious().removeThisObject();
-	}
-	return false;
+	return doublyLinkedList.removeLast();
 }
-
-
-
 
 @Override
 public boolean removeFirst() {
-	if(!isEmpty() && isValidHeadTail()) {
-		return getHead().getNext().removeThisObject();
-	}
-	return false;
+	return doublyLinkedList.removeFirst();
 }
-
-
-
 
 @Override
-public int getIndexOfObject(final ObjectInList findMe) {
-	int counter = -1;
-	TRShipment theShipment = this.getHead();
-
-	if(!isEmpty() && isValidHeadTail()) {
-		while(theShipment != findMe) {
-			theShipment = theShipment.getNext();
-			counter++;
-			if(theShipment == getTail()) {
-				return -1;
-			}
-		}
-		return counter;
-	}
-	return -1;
+public int getIndexOfObject(final TRShipment findMe) {
+	return doublyLinkedList.getIndexOfObject(findMe);
 }
-
-
-
-
-@Override
-public boolean setTail(final ObjectInList tail) {
-	//	return getTail().replaceThisWith((TRShipment) tail);
-	if(tail != null) {
-		tail.setPrevious(getTail().getPrevious());
-		tail.getPrevious().setNext(tail);
-		getTail().setPrevious(null);
-		getTail().setNext((ObjectInList) null);
-		setTail(tail);
-//		this.tail = (TRShipment) tail;
-		return true;
-	}
-	return false;
-
-}
-
-
-
 
 @Override
 public boolean isValidHeadTail() {
-	if(getHead() == null || getHead().getNext() == null || getHead().getPrevious() != null ||
-	   getTail().getPrevious() == null || getTail() == null || getTail().getNext() != null) {
-		return false;
-	}
-	return true;
+	return doublyLinkedList.isValidHeadTail();
 }
 
 
-
-
-@Override
-public boolean insertShipment(TRShipment insertShipment) {
-	return false;
-}
-
-
-
-
-//@Override
-//public boolean insertShipment() {
-//	return false;
-//}
-//
 @Override
 public boolean removeByIndex(final int index) {
-	int counter = -1;
-	TRShipment theShipment = this.getHead();
-
-	while(index >= 0 && index < getSize() && isValidHeadTail()) {
-		theShipment = theShipment.getNext();
-		counter++;
-		if(counter == index) {
-			return theShipment.removeThisObject();
-		}
-	}
-	return false;
+	return doublyLinkedList.removeByIndex(index);
 }
-
-
-
 
 public int getSize() {
-	TRShipment theDepot = getHead();
-	int sizeCounter = 0;
-
-	if(!isValidHeadTail()) {
-		return -1;
-	}
-
-	while(theDepot.getNext() != getTail()) {
-		theDepot = theDepot.getNext();
-		sizeCounter++;
-	}
-
-	return sizeCounter;
+	return doublyLinkedList.getSize();
 }
-
-
-
 
 @Override
 public int getSizeWithHeadTail() {
-	if(isValidHeadTail()) {
-		return getSize() + 2;
-	}
-	return -1;
+	return doublyLinkedList.getSizeWithHeadTail();
 }
-
-
-
 
 @Override
-public boolean removeByObject(final ObjectInList findMe) {
-	TRShipment theDepot = getHead();
-	while(theDepot.getNext() != getTail() && isValidHeadTail()) {
-		theDepot = theDepot.getNext();
-		if(theDepot == findMe) {
-			theDepot.removeThisObject();
-			return true;
-		}
-	}
-	return false;
+public boolean insertAfterObject(final TRShipment insertMe, final TRShipment insertAfter) {
+	return doublyLinkedList.insertAfterObject(insertMe, insertAfter);
 }
-
-
-
-
-@Override
-public boolean insertAfterIndex(final ObjectInList insertMe, final int index) {
-	int counter = -1;
-	TRShipment theDepot = getHead();
-
-	while(index >= 0 && index < getSize() && !isEmpty() && isValidHeadTail()) {
-		theDepot = theDepot.getNext();
-		counter++;
-		if(counter == index) {
-			theDepot.insertAfterCurrent(insertMe);
-			return true;
-		}
-	}
-	return false;
-}
-
-
-
-
-@Override
-public ObjectInList getAtIndex(final int index) {
-	int counter = -1;
-	TRShipment theDepot = getHead();
-
-	while(index >= 0 && index < getSize() && !isEmpty() && isValidHeadTail()) {
-		theDepot = theDepot.getNext();
-		counter++;
-		if(counter == index) {
-			return theDepot;
-		}
-	}
-	return null;
-}
-
-
-
-
-@Override
-public boolean insertAfterObject(final ObjectInList insertMe, final ObjectInList insertAfter) {
-	TRShipment theDepot = getHead();
-	while(!isEmpty() && isValidHeadTail()) {
-		theDepot = theDepot.getNext();
-		if(theDepot == insertAfter) {
-			return insertAfter.insertAfterCurrent(insertMe);
-			//			return true;
-		}
-	}
-	return false;
-}
-
-
-
 
 @Override
 public double getDistanceTravelledMiles() {
-	return 0;
+	return doublyLinkedList.getDistanceTravelledMiles();
+}
+
+@Override
+public boolean setHeadNext(final TRShipment nextHead) {
+	return doublyLinkedList.setHeadNext(nextHead);
+}
+
+@Override
+public boolean setTailPrevious(final TRShipment previousTail) {
+	return doublyLinkedList.setTailPrevious(previousTail);
 }
 
 
-
-
 public TRShipmentsList(final TRShipmentsList copyMe) {
-	setHead((ObjectInList) new TRShipment(copyMe.getHead()));
-	setTail((ObjectInList) new TRShipment(copyMe.getTail()));
+	setHead( new TRShipment(copyMe.getHead()));
+	setTail( new TRShipment(copyMe.getTail()));
 	setAttributes(new TRAttributes(copyMe.getAttributes()));
 
 	TRShipment theCopyMeShipment = copyMe.getHead();
@@ -429,7 +221,20 @@ public TRShipmentsList(final TRShipmentsList copyMe) {
 }
 
 
+public TRAttributes getAttributes() {
+	return this.attributes;
+}
 
+//SETTER
+public void setAttributes(final TRAttributes attributes) {
+	this.attributes = attributes;
+}
+
+
+//@Override
+public boolean insertShipment(TRShipment insertShipment) {
+	return doublyLinkedList.insertAfterLastIndex(insertShipment);
+}
 
 //METHOD
 //used by the gui to show problem information
@@ -438,10 +243,8 @@ public String getSolutionString() {
 }
 
 
-
-
 public TRShipment getNextInsertShipment(final TRDepotsList depotList, final TRDepot theDepot,
-										final TRShipmentsList shipmentList, final TRShipment theShipment) {
+                                        final TRShipmentsList shipmentList, final TRShipment theShipment) {
 
 	TRShipmentsList selectShip = (TRShipmentsList) TRProblemInfo.selectShipType;
 
@@ -449,276 +252,249 @@ public TRShipment getNextInsertShipment(final TRDepotsList depotList, final TRDe
 	return (TRShipment) selectShip.getSelectShipment(depotList, theDepot, shipmentList, theShipment);
 }
 
-
-
+public Shipment getSelectShipment(TRDepotsList currDepotLL, TRDepot currDepot, TRShipmentsList currShipmentLL,
+                                  TRShipment currShip) {
+	return null;
+}
 
 public Shipment getSelectShipment(DepotLinkedList currDepotLL, Depot currDepot, ShipmentLinkedList currShipmentLL,
-								  Shipment currShip) {
-	return null;
-}
-
-	public Shipment getSelectShipment(TRDepotsList currDepotLL, TRDepot currDepot, TRShipmentsList currShipmentLL,
-								  TRShipment currShip) {
+                                  Shipment currShip) {
 	return null;
 }
 
 
+//WRITE_PVRP_SHIPMENTS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+public void writeShipments(FileOutputStream out)
+		throws IOException {
+
+	//VARIABLES
+	//		Shipment ship = super.getHead();		//the linked list head
+	//
+	//		PVRPShipment PVRPShip;
+
+	XSSFWorkbook workbook = new XSSFWorkbook();
+	XSSFSheet sheet = workbook.createSheet("Customer Data");    //create a worksheet
 
 
-@Override
-public boolean setHeadNext(final ObjectInList nextHead) {
-	if(this.getHead().getNext() == this.getTail()){
-		return false;
-	}
-	this.getHead().setNext((ObjectInList) nextHead);
-	return true;
+	int rowCounter = 0;        //tracks our rows
+	int previousGetIndex = -10;
 
-}
+	Row row = sheet.createRow(rowCounter);
+	rowCounter++;
+	Cell cell = row.createCell(0);
+	cell.setCellValue(getNumShipments());
 
-@Override
-public boolean setTailPrevious(final ObjectInList nextTail){
-	if(this.getTail().getPrevious() == this.getHead()){
-		return false;
-	}
-	this.getTail().setPrevious((ObjectInList) nextTail);
-	return true;
+	//        ship = ship.getNext();								//get the next shipment
+	//        PVRPShip = (PVRPShipment) ship;
 
-}
+	TRShipment theShipment = this.getFirst();
+	while(theShipment != getTail())                                //while we aren'numberOfDays at the tail of the doubly linked list
+	{
 
 
-    //WRITE_PVRP_SHIPMENTS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    public void writeShipments(FileOutputStream out)
-            throws IOException {
-
-        //VARIABLES
-        //		Shipment ship = super.getHead();		//the linked list head
-        //
-        //		PVRPShipment PVRPShip;
-
-        XSSFWorkbook workbook = new XSSFWorkbook();
-        XSSFSheet sheet = workbook.createSheet("Customer Data");    //create a worksheet
+		//            PVRPShip = (PVRPShipment) ship;
 
 
-        int rowCounter = 0;        //tracks our rows
-        int previousGetIndex = -10;
-
-        Row row = sheet.createRow(rowCounter);
-        rowCounter++;
-        Cell cell = row.createCell(0);
-        cell.setCellValue(getNumShipments());
-
-        //        ship = ship.getNext();								//get the next shipment
-        //        PVRPShip = (PVRPShipment) ship;
-
-        TRShipment theShipment = this.getFirst();
-        while(theShipment != getTail())                                //while we aren'numberOfDays at the tail of the doubly linked list
-        {
+		row = sheet.createRow(rowCounter);        //make a new row
+		int cellTracker = 0;                        //tracks which cell we are currently at
 
 
-            //            PVRPShip = (PVRPShipment) ship;
+		while(cellTracker != 5)                    //while we haven'numberOfDays written all the cells for the given
+		// row
+		{
+			cell = row.createCell(cellTracker);    //create new cell number X
+			switch(cellTracker)                        //SWITCH statement
+			{
+				case 0:
+					cell.setCellValue(
+							theShipment.getNodeNumber());    //set each cell value to the correct value from the linked list
+					break;
+				case 1:
+					cell.setCellValue(theShipment.getCoordinates().getLongitude());
+					break;
+				case 2:
+					cell.setCellValue(theShipment.getCoordinates().getLatitude());
 
-
-            row = sheet.createRow(rowCounter);        //make a new row
-            int cellTracker = 0;                        //tracks which cell we are currently at
-
-
-            while(cellTracker != 5)                    //while we haven'numberOfDays written all the cells for the given
-            // row
-            {
-                cell = row.createCell(cellTracker);    //create new cell number X
-                switch(cellTracker)                        //SWITCH statement
-                {
-                    case 0:
-                        cell.setCellValue(
-                                theShipment.getNodeNumber());    //set each cell value to the correct value from the linked list
-                        break;
-                    case 1:
-                        cell.setCellValue(theShipment.getCoordinates().getLongitude());
-                        break;
-                    case 2:
-                        cell.setCellValue(theShipment.getCoordinates().getLatitude());
-
-                        break;
-                    case 3:
+					break;
+				case 3:
 //                        cell.setCellValue(theShipment.getDemand());
-                        break;
-                    case 4:
-                        cell.setCellValue(theShipment.getFrequency());
-                        break;
-                    /**        case 5:								??????????????????????????MUST IMPLEMENT FOR ALL
-                     * VARIABLES OF PVRP
-                     cell.setCellValue(PVRPShip.getExtraVariable());
-                     break;
-                     case 6:
-                     cell.setCellValue(PVRPShip.getIndex());
-                     break;
-                     case 7:*/
-                }
-                cellTracker++;            //increment our cell tracker
-            }
-            rowCounter++;                //move onto the next row
-            theShipment = theShipment.getNext();                                //get the next shipment
+					break;
+				case 4:
+					cell.setCellValue(theShipment.getFrequency());
+					break;
+				/**        case 5:								??????????????????????????MUST IMPLEMENT FOR ALL
+				 * VARIABLES OF PVRP
+				 cell.setCellValue(PVRPShip.getExtraVariable());
+				 break;
+				 case 6:
+				 cell.setCellValue(PVRPShip.getIndex());
+				 break;
+				 case 7:*/
+			}
+			cellTracker++;            //increment our cell tracker
+		}
+		rowCounter++;                //move onto the next row
+		theShipment = theShipment.getNext();                                //get the next shipment
 
-        }
+	}
 
-        workbook.write(out);
-        out.close();
+	workbook.write(out);
+	out.close();
 
-    }
+}
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
-	//make up the schedule of all shipments in list
-	public void makeSchedule(){
-		//if we are to keep the same day schedule as read in from the file, set the schedule for each shipment with this information
-		if(TRProblemInfo.ARE_DAYS_BOUND){
-			TRShipment ship = this.getFirst();
-			while(ship != this.getTail()){
-				ship.setVisitationSchedule();
-                ship = ship.getNext();
-			}
+//make up the schedule of all shipments in list
+public void makeSchedule() {
+	//if we are to keep the same day schedule as read in from the file, set the schedule for each shipment with this information
+	if(TRProblemInfo.ARE_DAYS_BOUND) {
+		TRShipment ship = this.getFirst();
+		while(ship != this.getTail()) {
+			ship.setVisitationSchedule();
+			ship = ship.getNext();
 		}
-		//if we are not to keep the same schedule that was read in, we need to redo things. This loop serves the purpose of taking
-		//the frequency of each shipment and making a different schedule than the one that was read in
-		else {
-			//once the schedule is "balanced" we can exit the loop
-			boolean isScheduleBalanced = false;
-			while (!isScheduleBalanced) {
-				//because shipments are read in from the file from smallest to highest frequency, we can schedule all stops that 
-				//need the most visits first, the fill in the gaps with the shipments that require less visits. This is how we
-				//"balance" the schedule.
-				TRShipment ship = this.getLast();
-				while (ship != this.getHead()) {
-					ship.makeCustomVisitationSchedule();
-					ship = (TRShipment) ship.getPrevious();
-				}
-				
-				//once all schedules are made, we can check how balanced all of the days are in the new schedule. 
-				
-				//variables for the stop counts of each day
-				int mCount, tCount, wCount, rCount, fCount, sCount;
-				mCount = tCount = wCount = rCount = fCount = sCount = 0;
-				ship = this.getFirst();
-				//if a shipment is visited on a particular day, increase that days stop count
-				while(ship != this.getTail()){
-					boolean[] schedule = ship.getDaysVisited();
-					for(int i = 0; i < schedule.length; i++){
-						switch(i){
-							case 0:
-								if(schedule[i])
-									mCount++;
-								break;
-							case 1:
-								if(schedule[i])
-									tCount++;
-								break;
-							case 2:
-								if(schedule[i])
-									wCount++;
-								break;
-							case 3:
-								if(schedule[i])
-									rCount++;
-								break;
-							case 4:
-								if(schedule[i])
-									fCount++;
-								break;
-							case 5:
-								if(schedule[i])
-									sCount++;
-								break;
-						}
+	}
+	//if we are not to keep the same schedule that was read in, we need to redo things. This loop serves the purpose of taking
+	//the frequency of each shipment and making a different schedule than the one that was read in
+	else {
+		//once the schedule is "balanced" we can exit the loop
+		boolean isScheduleBalanced = false;
+		while(!isScheduleBalanced) {
+			//because shipments are read in from the file from smallest to highest frequency, we can schedule all stops that
+			//need the most visits first, the fill in the gaps with the shipments that require less visits. This is how we
+			//"balance" the schedule.
+			TRShipment ship = this.getLast();
+			while(ship != this.getHead()) {
+				ship.makeCustomVisitationSchedule();
+				ship = (TRShipment) ship.getPrevious();
+			}
+
+			//once all schedules are made, we can check how balanced all of the days are in the new schedule.
+
+			//variables for the stop counts of each day
+			int mCount, tCount, wCount, rCount, fCount, sCount;
+			mCount = tCount = wCount = rCount = fCount = sCount = 0;
+			ship = this.getFirst();
+			//if a shipment is visited on a particular day, increase that days stop count
+			while(ship != this.getTail()) {
+				boolean[] schedule = ship.getDaysVisited();
+				for(int i = 0; i < schedule.length; i++) {
+					switch(i) {
+						case 0:
+							if(schedule[i])
+								mCount++;
+							break;
+						case 1:
+							if(schedule[i])
+								tCount++;
+							break;
+						case 2:
+							if(schedule[i])
+								wCount++;
+							break;
+						case 3:
+							if(schedule[i])
+								rCount++;
+							break;
+						case 4:
+							if(schedule[i])
+								fCount++;
+							break;
+						case 5:
+							if(schedule[i])
+								sCount++;
+							break;
 					}
-                    ship = ship.getNext();
 				}
-				//find the days with the most and least stops
-				int leastStops = findMinVisitsDay(mCount, tCount, wCount,
-						rCount, fCount, sCount);
-				int mostStops = findMaxVisitsDay(mCount, tCount, wCount,
-						rCount, fCount, sCount);
+				ship = ship.getNext();
+			}
+			//find the days with the most and least stops
+			int leastStops = findMinVisitsDay(mCount, tCount, wCount,
+					rCount, fCount, sCount);
+			int mostStops = findMaxVisitsDay(mCount, tCount, wCount,
+					rCount, fCount, sCount);
 
-				//if the difference between most and least stops is greater than the value set in TRProblemInfo,
-				//we need to try and set the schedules again. If it is within this range, the entire schedule is accepted. 
-				if(mostStops - leastStops <= TRProblemInfo.MAX_DIFFERENCE_IN_DISTRIBUTION){
-					isScheduleBalanced = true;
-				}
+			//if the difference between most and least stops is greater than the value set in TRProblemInfo,
+			//we need to try and set the schedules again. If it is within this range, the entire schedule is accepted.
+			if(mostStops - leastStops <= TRProblemInfo.MAX_DIFFERENCE_IN_DISTRIBUTION) {
+				isScheduleBalanced = true;
 			}
 		}
 	}
+}
 
-	//method to find the day that has the least stops. 
-	private int findMinVisitsDay(int m, int t, int w, int r, int f, int s){
-		//setting this variable above the amount of possible stops so it is always changed
-		int leastStops = 99;
-		if(TRProblemInfo.NUMBER_DAYS_SERVICED != TRProblemInfo.MAX_NUMBER_OF_DAYS_IN_SCHEDULE){
+//method to find the day that has the least stops.
+private int findMinVisitsDay(int m, int t, int w, int r, int f, int s) {
+	//setting this variable above the amount of possible stops so it is always changed
+	int leastStops = 99;
+	if(TRProblemInfo.NUMBER_DAYS_SERVICED != TRProblemInfo.MAX_NUMBER_OF_DAYS_IN_SCHEDULE) {
 
-			if(leastStops > m)
-				leastStops = m;
-			if(leastStops > t)
-				leastStops = t;
-			if(leastStops > w)
-				leastStops = w;
-			if(leastStops > r)
-				leastStops = r;
-			if(leastStops > f)
-				leastStops = f;
-		}
-		else{
+		if(leastStops > m)
+			leastStops = m;
+		if(leastStops > t)
+			leastStops = t;
+		if(leastStops > w)
+			leastStops = w;
+		if(leastStops > r)
+			leastStops = r;
+		if(leastStops > f)
+			leastStops = f;
+	} else {
 
-			if(leastStops > m)
-				leastStops = m;
-			if(leastStops > t)
-				leastStops = t;
-			if(leastStops > w)
-				leastStops = w;
-			if(leastStops > r)
-				leastStops = r;
-			if(leastStops > f)
-				leastStops = f;
-			if(leastStops > s)
-				leastStops = s;
-		}
-
-		return leastStops;
+		if(leastStops > m)
+			leastStops = m;
+		if(leastStops > t)
+			leastStops = t;
+		if(leastStops > w)
+			leastStops = w;
+		if(leastStops > r)
+			leastStops = r;
+		if(leastStops > f)
+			leastStops = f;
+		if(leastStops > s)
+			leastStops = s;
 	}
 
-	//method to find the day with the most visits
-	private int findMaxVisitsDay(int m, int t, int w, int r, int f, int s){
-		int mostStops = 1;
+	return leastStops;
+}
 
-		//for 5 day schedule execute the loop inside if statement
-		if(TRProblemInfo.NUMBER_DAYS_SERVICED != TRProblemInfo.MAX_NUMBER_OF_DAYS_IN_SCHEDULE){
+//method to find the day with the most visits
+private int findMaxVisitsDay(int m, int t, int w, int r, int f, int s) {
+	int mostStops = 1;
 
-			if(mostStops < m)
-				mostStops = m;
-			if(mostStops < t)
-				mostStops = t;
-			if(mostStops < w)
-				mostStops = w;
-			if(mostStops < r)
-				mostStops = r;
-			if(mostStops < f)
-				mostStops = f;
-		}
-		//otherwise do the 6 day schedule
-		else{
+	//for 5 day schedule execute the loop inside if statement
+	if(TRProblemInfo.NUMBER_DAYS_SERVICED != TRProblemInfo.MAX_NUMBER_OF_DAYS_IN_SCHEDULE) {
 
-			if(mostStops < m)
-				mostStops = m;
-			if(mostStops < t)
-				mostStops = t;
-			if(mostStops < w)
-				mostStops = w;
-			if(mostStops < r)
-				mostStops = r;
-			if(mostStops < f)
-				mostStops = f;
-			if(mostStops < s)
-				mostStops = s;
-		}
-
-		return mostStops;
+		if(mostStops < m)
+			mostStops = m;
+		if(mostStops < t)
+			mostStops = t;
+		if(mostStops < w)
+			mostStops = w;
+		if(mostStops < r)
+			mostStops = r;
+		if(mostStops < f)
+			mostStops = f;
 	}
+	//otherwise do the 6 day schedule
+	else {
+
+		if(mostStops < m)
+			mostStops = m;
+		if(mostStops < t)
+			mostStops = t;
+		if(mostStops < w)
+			mostStops = w;
+		if(mostStops < r)
+			mostStops = r;
+		if(mostStops < f)
+			mostStops = f;
+		if(mostStops < s)
+			mostStops = s;
+	}
+
+	return mostStops;
+}
 }
 

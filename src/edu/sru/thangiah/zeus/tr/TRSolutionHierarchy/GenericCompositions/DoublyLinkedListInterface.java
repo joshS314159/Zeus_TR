@@ -3,14 +3,14 @@ package edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.GenericCompositions;
 /**
  * Created by jks1010 on 5/29/2015.
  */
-public interface DoublyLinkedListInterface<A extends ObjectInListInterface & ObjectInListCoreInterface, B extends DoublyLinkedListInterface & DoublyLinkedListCoreInterface>{
+public interface DoublyLinkedListInterface<B extends ObjectInListInterface<B> & ObjectInListCoreInterface<B>>{
 
 
-	public void setUpHeadTail() throws InstantiationException, IllegalAccessException;
+	void setUpHeadTail() throws InstantiationException, IllegalAccessException;
 
-	public void linkHeadTail();
+	void linkHeadTail();
 
-	public void setUpHeadTail(final A head, final A tail);
+	void setUpHeadTail(final B head, final B tail);
 
 //
 //	public TRAttributes getAttributes();
@@ -24,22 +24,23 @@ public interface DoublyLinkedListInterface<A extends ObjectInListInterface & Obj
 
 //	public boolean setHead(final A head);
 
+//	boolean emptyList();
 
-	public A getFirst();
+	B getFirst();
 
 
 	//@Override
-	public boolean insertAfterLastIndex(final A theObject);
+	boolean insertAfterLastIndex(final B theObject);
 
 
-//	public A getLast();
+	B getLast();
 
-	public boolean removeLast();
+	boolean removeLast();
 
-	public boolean removeFirst();
+	boolean removeFirst();
 
 
-	public int getIndexOfObject(final A findMe);
+	int getIndexOfObject(final B findMe);
 
 
 //	public A getTail();
@@ -48,38 +49,38 @@ public interface DoublyLinkedListInterface<A extends ObjectInListInterface & Obj
 //	public boolean setTail(final A tail);
 
 
-	public boolean isValidHeadTail();
+	boolean isValidHeadTail();
 
 //	public boolean insertShipment(final TRShipment insertShipment);
 
 
-	public boolean removeByIndex(final int index);
+	boolean removeByIndex(final int index);
 
 
-	public int getSize();
+	int getSize();
 
 
-	public int getSizeWithHeadTail();
+	int getSizeWithHeadTail();
 
-	public boolean isEmpty();
-
-
-	public boolean removeByObject(final A findMe);
+	boolean isEmpty();
 
 
-	public boolean insertAfterIndex(final A insertMe, final int index);
-
-	public A getAtIndex(final int index);
+	boolean removeByObject(final B findMe);
 
 
-	public boolean insertAfterObject(final A insertMe, final A insertAfter);
+	boolean insertAfterIndex(final B insertMe, final int index);
+
+	B getAtIndex(final int index);
 
 
-	public double getDistanceTravelledMiles();
+	boolean insertAfterObject(final B insertMe, final B insertAfter);
 
-	public boolean setHeadNext(final A nextHead);
 
-	public boolean setTailPrevious(final A previousTail);
+	double getDistanceTravelledMiles();
+
+	boolean setHeadNext(final B nextHead);
+
+	boolean setTailPrevious(final B previousTail);
 
 
 //    public Object copyThis(final Object copyMe);

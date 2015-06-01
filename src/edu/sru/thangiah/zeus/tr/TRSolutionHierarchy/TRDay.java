@@ -4,34 +4,40 @@ package edu.sru.thangiah.zeus.tr.TRSolutionHierarchy;
 import edu.sru.thangiah.zeus.core.Day;
 import edu.sru.thangiah.zeus.tr.TRAttributes;
 import edu.sru.thangiah.zeus.tr.TRCoordinates;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.GenericCompositions.*;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.GenericCompositions.ObjectInList;
 
 
 public class TRDay
-		extends Day
-		implements java.io.Serializable, Cloneable, ObjectInList {
+        extends Day
+        implements java.io.Serializable, Cloneable,
+        ObjectInListInterface<TRDay>, ObjectInListCoreInterface<TRDay>, ContainsSubListInterface<TRNodesList, TRNode> {
 
 
-//VARIABLES
-private TRAttributes  attributes = new TRAttributes();            //takes precedence over the base class attributes type
-//private TRDay        previous;    //takes precedence over the base class previous and next type
+    //VARIABLES
+    private TRAttributes attributes = new TRAttributes();            //takes precedence over the base class attributes type
+    //private TRDay        previous;    //takes precedence over the base class previous and next type
 //private TRDay        next;
-private TRNodesList nodesSubList = new TRNodesList();
-private TRCoordinates homeDepotCoordinates;
+//    private TRNodesList nodesSubList = new TRNodesList();
+    private TRCoordinates homeDepotCoordinates;
 //private int           dayNumber;
 
 
-	private int numberOfNodes;
-private int numberOfTrucks;
-private int maxDistance;
-private int maxDemand;
+    private int numberOfNodes;
+    private int numberOfTrucks;
+    private int maxDistance;
+    private int maxDemand;
 
 
+    private int daysServicedOver;
 
-	private int daysServicedOver;
-//private int
+    private ObjectInList<TRDay> objectInList = new ObjectInList<>(this);
+    private ContainsSubList<TRNodesList, TRNode> subList = new ContainsSubList<>();
+
+/// /private int
 
 
-	//CONSTUCTOR
+    //CONSTUCTOR
 //this method creates a new day based
 //on passed attributes (usually more useful than the above
 //constructor)
@@ -57,270 +63,170 @@ private int maxDemand;
 //// HERE*******************<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
+    public TRDay(final TRDay copyMe) throws IllegalAccessException, InstantiationException {
+        setAttributes(new TRAttributes(copyMe.getAttributes()));
+        setHomeDepotCoordinates(new TRCoordinates(copyMe.getHomeDepotCoordinates()));
+        setSubList(new TRNodesList(copyMe.getSubList()));
+        setHomeDepotCoordinates(new TRCoordinates(copyMe.getHomeDepotCoordinates()));
+        setDayOfWeek(copyMe.getDayOfWeek());
+    }
 
-public TRDay(final TRDay copyMe) {
-	setAttributes(new TRAttributes(copyMe.getAttributes()));
-	setHomeDepotCoordinates(new TRCoordinates(copyMe.getHomeDepotCoordinates()));
-	setSubList(new TRNodesList(copyMe.getSubList()));
-	setHomeDepotCoordinates(new TRCoordinates(copyMe.getHomeDepotCoordinates()));
-	setDayOfWeek(copyMe.getDayOfWeek());
-}
+    public TRAttributes getAttributes() {
+        return this.attributes;
+    }
 
-	//USED FOR PVRP FILE VERSION ONLY
-public TRDay(final TRNodesList nodes, final int numberOfTrucks, final int daysServicedOver, final float maxDistance, final float maxDemand, final double xCoordinate, final double yCoordinate, final int dayNumber, final boolean isCartesian){
-	this.nodesSubList = nodes;
-	this.numberOfTrucks = numberOfTrucks;
-	this.daysServicedOver = daysServicedOver;
-	this.maxDistance = (int) maxDistance;
-	this.maxDemand = (int) maxDemand;
+    public TRCoordinates getHomeDepotCoordinates() {
+        return homeDepotCoordinates;
+    }
 
-	TRCoordinates tempCoordinates = new TRCoordinates(xCoordinate, yCoordinate);
-		tempCoordinates.setIsCartesian(isCartesian);
-	this.homeDepotCoordinates = tempCoordinates;
-	setDayNumber(dayNumber);
+    public void setHomeDepotCoordinates(final TRCoordinates homeDepotCoordinates) {
+        this.homeDepotCoordinates = homeDepotCoordinates;
+    }
+
+    @Override
+    public TRNodesList getSubList() {
+        return subList.getSubList();
+    }
+
+    @Override
+    public void setSubList(TRNodesList setMe) {
+        subList.setSubList(setMe);
+    }
+
+    @Override
+    public boolean isSubListEmpty() {
+        return subList.isSubListEmpty();
+    }
+
+    @Override
+    public int getSubListSize() {
+        return subList.getSubListSize();
+    }
+
+    @Override
+    public double getDistanceTravelledMiles() {
+        return 0;
+    }
+
+    public void setAttributes(final TRAttributes attributes) {
+        this.attributes = attributes;
+    }
+
+    //USED FOR PVRP FILE VERSION ONLY
+    public TRDay(final TRNodesList nodes, final int numberOfTrucks, final int daysServicedOver, final float maxDistance, final float maxDemand, final double xCoordinate, final double yCoordinate, final int dayNumber, final boolean isCartesian) {
+        subList.setSubList(nodes);
+//        this.nodesSubList = nodes;
+        this.numberOfTrucks = numberOfTrucks;
+        this.daysServicedOver = daysServicedOver;
+        this.maxDistance = (int) maxDistance;
+        this.maxDemand = (int) maxDemand;
+
+        TRCoordinates tempCoordinates = new TRCoordinates(xCoordinate, yCoordinate);
+        tempCoordinates.setIsCartesian(isCartesian);
+        this.homeDepotCoordinates = tempCoordinates;
+        setDayNumber(dayNumber);
 //	this.dayNumber = dayNumber;
 
 
-}
+//        subList = new ContainsSubList<>(TRNodesList.class);
+    }
 
-	public int getDaysServicedOver() {
-		return daysServicedOver;
-	}
+    public boolean setDayNumber(final int dayNumber) {
+        if (dayNumber >= 0) {
+            setIndex(dayNumber);
+//		this.dayNumber = dayNumber;
+            return true;
+        }
+        return false;
+    }
 
-	public void setDaysServicedOver(final int daysServicedOver) {
-		this.daysServicedOver = daysServicedOver;
-	}
+    public TRDay() { setAttributes(new TRAttributes());
+        setSubList(new TRNodesList());
+    }
 
-	public int getNumberOfNodes() {
-		return numberOfNodes;
-	}
+    public TRDay(final TRCoordinates homeDepotCoordinates) {
+        setAttributes(new TRAttributes());
+        setSubList(new TRNodesList(homeDepotCoordinates));
+    }
 
-	public void setNumberOfNodes(int numberOfNodes) {
-		this.numberOfNodes = numberOfNodes;
-	}
+    public TRDay(final TRCoordinates coordinates, final int dayNumber) {
+        setHomeDepotCoordinates(coordinates);
+        setDayNumber(dayNumber);
+        setSubList(new TRNodesList());
+    }
 
-	public int getNumberOfTrucks() {
-		return numberOfTrucks;
-	}
+    public int getDaysServicedOver() { return daysServicedOver; }
 
-	public void setNumberOfTrucks(int numberOfTrucks) {
-		this.numberOfTrucks = numberOfTrucks;
-	}
+    public void setDaysServicedOver(final int daysServicedOver) { this.daysServicedOver = daysServicedOver; }
 
-	public int getMaxDistance() {
-		return maxDistance;
-	}
+    public int getNumberOfNodes() { return numberOfNodes; }
 
-	public void setMaxDistance(int maxDistance) {
-		this.maxDistance = maxDistance;
-	}
+    public void setNumberOfNodes(int numberOfNodes) { this.numberOfNodes = numberOfNodes; }
 
-	public int getMaxDemand() {
-		return maxDemand;
-	}
+    public int getNumberOfTrucks() { return numberOfTrucks; }
 
-	public void setMaxDemand(int maxDemand) {
-		this.maxDemand = maxDemand;
-	}
+    public void setNumberOfTrucks(int numberOfTrucks) { this.numberOfTrucks = numberOfTrucks; }
 
+    public int getMaxDistance() { return maxDistance; }
 
+    public void setMaxDistance(int maxDistance) { this.maxDistance = maxDistance; }
 
-public TRCoordinates getHomeDepotCoordinates() {
-	return homeDepotCoordinates;
-}
+    public int getMaxDemand() { return maxDemand; }
 
+    public void setMaxDemand(int maxDemand) {
+        this.maxDemand = maxDemand;
+    }
 
-    public String toString()
-    {
+    public String toString() {
         String s = "#" + getDayNumber();
 
         return s;
     }
 
-
-public void setHomeDepotCoordinates(final TRCoordinates homeDepotCoordinates) {
-	this.homeDepotCoordinates = homeDepotCoordinates;
-}
-
-
-
-
-@Override
-public TRNodesList getSubList() {
-	return nodesSubList;
-}
-
-
-
-
-@Override
-public void setSubList(final DoublyLinkedList sublist) {
-	this.nodesSubList = (TRNodesList) sublist;
-}
-
-
-
-
-public TRAttributes getAttributes() {
-	return this.attributes;
-}
-
-
-
-
-@Override
-public void setAttributes(final TRAttributes attributes) {
-	this.attributes = attributes;
-}
-
-
-
-
-@Override
-public boolean insertAfterCurrent(final ObjectInList insertMe) {
-	if(this.getNext() != null) {
-		(insertMe).setPrevious(this);
-		(insertMe).setNext(this.getNext());
-
-		(this).setNext(insertMe);
-		(insertMe).getNext().setPrevious(insertMe);
-		return true;
-	}
-	return false;
-}
-
-
-
-
-public TRDay getNext() {
-	return (TRDay) super.getNext();
-}
-
-
-
-
-@Override
-public void setNext(final ObjectInList next) {
-	super.setNext((Day) next);
-}
-
-
-
-
-@Override
-public void linkAsHeadTail(final ObjectInList linkTwo) {
-	this.setNext(linkTwo);
-	(linkTwo).setPrevious(this);
-	this.setPrevious(null);    //nothing comes before the head
-	(linkTwo).setNext(null);        //nothing comes after the tail
-}
-
-
-
-
-@Override
-public boolean removeThisObject() {
-	if(this.getNext() != null || this.getPrevious() != null) {
-
-		(this.getPrevious()).setNext(this.getNext());
-		(this.getNext()).setPrevious(this.getPrevious());
-
-		this.setPrevious(null);
-		this.setNext((ObjectInList) null);
-		return true;
-	}
-	return false;
-}
-
-
-
-
-@Override
-public ObjectInList getPrevious() {
-	return (TRDay) super.getPrev();
-}
-
-
-
-
-@Override
-public void setPrevious(final ObjectInList previous) {
-	super.setPrev((Day) previous);
-}
-
-
-
-
-@Override
-public boolean isSubListEmpty() {
-	if(getSubList() == null || getSubList().isEmpty()) {
-		return true;
-	}
-	return false;
-}
-
-
-
-
-@Override
-public double getDistanceTravelledMiles() {
-	return 0;
-}
-
-
-
-
-public TRDay() {
-	setAttributes(new TRAttributes());
-}
-
-
-
-
-public TRDay(final TRCoordinates homeDepotCoordinates) {
-	setAttributes(new TRAttributes());
-
-	setSubList(new TRNodesList(homeDepotCoordinates));
-	//	setHomeDepotCoordinates(homeDepotCoordinates);
-}
-
-
-
-
-public TRDay(final TRCoordinates coordinates, final int dayNumber) {
-	setHomeDepotCoordinates(coordinates);
-	setDayNumber(dayNumber);
-}
-
-
-
-
-public boolean setDayNumber(final int dayNumber) {
-	if(dayNumber >= 0) {
-		setIndex(dayNumber);
-//		this.dayNumber = dayNumber;
-		return true;
-	}
-	return false;
-}
-
-
-
-
-public boolean insertShipment(final TRShipment theShipment) {
-	boolean status = false;
-
-	return this.getSubList().insertShipment(theShipment);
-}//END INSERT_SHIPMENT *********<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-
-
-
-public int getDayNumber() {
-	return getIndex();
-}
-
-
+    public int getDayNumber() {
+        return getIndex();
+    }
+
+    public TRDay getNext() {
+        return (TRDay) super.getNext();
+    }
+
+    @Override
+    public void setNext(final TRDay next) {
+        super.setNext(next);
+    }
+
+    @Override
+    public TRDay getPrevious() {
+        return (TRDay) super.getPrev();
+    }
+
+    @Override
+    public void setPrevious(final TRDay previous) {
+        super.setPrev(previous);
+    }
+
+    public boolean insertShipment(final TRShipment theShipment) {
+        boolean status = false;
+
+        return this.getSubList().insertShipment(theShipment);
+    }//END INSERT_SHIPMENT *********<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+    @Override
+    public boolean insertAfterCurrent(TRDay insertMe) {
+        return objectInList.insertAfterCurrent(insertMe);
+    }
+
+    @Override
+    public void linkAsHeadTail(TRDay linkTwo) {
+        objectInList.linkAsHeadTail(linkTwo);
+
+    }
+
+    @Override
+    public boolean removeThisObject() {
+        return objectInList.removeThisObject();
+    }
 }
 
 

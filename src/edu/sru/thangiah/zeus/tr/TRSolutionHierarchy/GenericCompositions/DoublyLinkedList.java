@@ -7,17 +7,17 @@ import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.*;
 /**
  * Created by jks1010 on 5/29/2015.
  */
-public class DoublyLinkedList<A extends ObjectInListInterface & ObjectInListCoreInterface, B extends DoublyLinkedListCoreInterface & DoublyLinkedListInterface> implements DoublyLinkedListInterface<A, B> {
+public class DoublyLinkedList<A extends DoublyLinkedListCoreInterface<B> & DoublyLinkedListInterface<B>, B extends ObjectInListInterface<B> & ObjectInListCoreInterface<B>> implements DoublyLinkedListInterface<B> {
 
-	private Class<A> newA;
-	private B outerClass;
+	private Class<B> newA;
+	private A outerClass;
 
-	public DoublyLinkedList(final Class<A> newA, final B outerClass){
+	public DoublyLinkedList(final A outerClass, final Class<B> newA){
 		this.newA = newA;
 		this.outerClass = outerClass;
 	}
 
-	public A getNewA() throws IllegalAccessException, InstantiationException {
+	public B getNewA() throws IllegalAccessException, InstantiationException {
 		return newA.newInstance();
 	}
 
@@ -35,6 +35,7 @@ public class DoublyLinkedList<A extends ObjectInListInterface & ObjectInListCore
 
 	@Override
 	public void linkHeadTail() {
+//		outerClass.link
 		outerClass.getHead().linkAsHeadTail(outerClass.getTail());
 	}
 
@@ -42,18 +43,26 @@ public class DoublyLinkedList<A extends ObjectInListInterface & ObjectInListCore
 
 
 	@Override
-	public void setUpHeadTail(final A head, final A tail) {
+	public void setUpHeadTail(final B head, final B tail) {
 		outerClass.setHead(head);
 		outerClass.setTail(tail);
 //	this.head = new TRDepot();
 //	this.tail = new TRDepot();
 		linkHeadTail();
 	}
+//
+//@Override
+//public boolean emptyList() {
+//this.getHead().setNext((ObjectInList) this.getTail());
+//this.getTail().setPrevious(this.getHead());
+//
+//this.getHead().setPrevious(null);
+//this.getTail().setNext((ObjectInList) null);
+//}
 
 
-
-	@Override
-	public A getFirst() {
+@Override
+	public B getFirst() {
 		if (isEmpty() || !isValidHeadTail()) {
 			System.out.println("ERROR: getFirst() is null/invalid");
 			return null;
@@ -64,7 +73,7 @@ public class DoublyLinkedList<A extends ObjectInListInterface & ObjectInListCore
 	}
 
 	@Override
-	public boolean insertAfterLastIndex(final A theObject) {
+	public boolean insertAfterLastIndex(final B theObject) {
 		if (!isValidHeadTail()) {
 			return false;
 		}
@@ -77,11 +86,11 @@ public class DoublyLinkedList<A extends ObjectInListInterface & ObjectInListCore
 	}
 
 	@Override
-	public A getLast() {
+	public B getLast() {
 		if (isEmpty() || !isValidHeadTail()) {
 			return null;
 		}
-		return (TRDepot) outerClass.getTail().getPrevious();
+		return (B) outerClass.getTail().getPrevious();
 	}
 
 	@Override
@@ -101,9 +110,9 @@ public class DoublyLinkedList<A extends ObjectInListInterface & ObjectInListCore
 	}
 
 	@Override
-	public int getIndexOfObject(final A findMe) {
+	public int getIndexOfObject(final B findMe) {
 		int counter = -1;
-		A theGeneric = outerClass.getHead();
+		B theGeneric = outerClass.getHead();
 
 		if (!isEmpty() && isValidHeadTail()) {
 			while (theGeneric != findMe) {
@@ -131,7 +140,7 @@ public class DoublyLinkedList<A extends ObjectInListInterface & ObjectInListCore
 	@Override
 	public boolean removeByIndex(final int index) {
 		int counter = -1;
-		A theGeneric = outerClass.getHead();
+		B theGeneric = outerClass.getHead();
 
 		while (index >= 0 && index < getSize() && isValidHeadTail()) {
 			theGeneric = theGeneric.getNext();
@@ -145,7 +154,7 @@ public class DoublyLinkedList<A extends ObjectInListInterface & ObjectInListCore
 
 	@Override
 	public int getSize() {
-		A theGeneric = outerClass.getHead();
+		B theGeneric = outerClass.getHead();
 		int sizeCounter = 0;
 
 		if (!isValidHeadTail()) {
@@ -177,8 +186,8 @@ public class DoublyLinkedList<A extends ObjectInListInterface & ObjectInListCore
 	}
 
 	@Override
-	public boolean removeByObject(final A findMe) {
-		A theGeneric = outerClass.getHead();
+	public boolean removeByObject(final B findMe) {
+		B theGeneric = outerClass.getHead();
 		while (theGeneric.getNext() != outerClass.getTail() && isValidHeadTail()) {
 			theGeneric = theGeneric.getNext();
 			if (theGeneric == findMe) {
@@ -190,9 +199,9 @@ public class DoublyLinkedList<A extends ObjectInListInterface & ObjectInListCore
 	}
 
 	@Override
-	public boolean insertAfterIndex(final A insertMe, final int index) {
+	public boolean insertAfterIndex(final B insertMe, final int index) {
 		int counter = -1;
-		A theGeneric = outerClass.getHead();
+		B theGeneric = outerClass.getHead();
 
 		while (index >= 0 && index < getSize() && !isEmpty() && isValidHeadTail()) {
 			theGeneric = theGeneric.getNext();
@@ -206,9 +215,9 @@ public class DoublyLinkedList<A extends ObjectInListInterface & ObjectInListCore
 	}
 
 	@Override
-	public A getAtIndex(final int index) {
+	public B getAtIndex(final int index) {
 		int counter = -1;
-		A theGeneric = outerClass.getHead();
+		B theGeneric = outerClass.getHead();
 
 		while (index >= 0 && index < getSize() && !isEmpty() && isValidHeadTail()) {
 			theGeneric = theGeneric.getNext();
@@ -221,8 +230,8 @@ public class DoublyLinkedList<A extends ObjectInListInterface & ObjectInListCore
 	}
 
 	@Override
-	public boolean insertAfterObject(final A insertMe, final A insertAfter) {
-		A theGeneric = outerClass.getHead();
+	public boolean insertAfterObject(final B insertMe, final B insertAfter) {
+		B theGeneric = outerClass.getHead();
 		while (!isEmpty() && isValidHeadTail()) {
 			theGeneric = theGeneric.getNext();
 			if (theGeneric == insertAfter) {
@@ -239,20 +248,20 @@ public class DoublyLinkedList<A extends ObjectInListInterface & ObjectInListCore
 	}
 
 	@Override
-	public boolean setHeadNext(final A nextHead) {
+	public boolean setHeadNext(final B nextHead) {
 		if (outerClass.getHead().getNext() == outerClass.getTail()) {
 			return false;
 		}
-		outerClass.getHead().setNext((A) nextHead);
+		outerClass.getHead().setNext((B) nextHead);
 		return true;
 	}
 
 	@Override
-	public boolean setTailPrevious(final A nextTail) {
+	public boolean setTailPrevious(final B nextTail) {
 		if (outerClass.getTail().getPrevious() == outerClass.getHead()) {
 			return false;
 		}
-		outerClass.getTail().setPrevious((A) nextTail);
+		outerClass.getTail().setPrevious((B) nextTail);
 		return true;
 	}
 }

@@ -5,7 +5,7 @@ import edu.sru.thangiah.zeus.tr.TRAttributes;
 /**
  * Created by jks1010 on 5/29/2015.
  */
-public interface ObjectInListInterface<T extends ObjectInListInterface & ObjectInListCoreInterface> {
+public interface ObjectInListInterface<B extends ObjectInListInterface<B> & ObjectInListCoreInterface<B>> {
 
 //    public void setHasPhysicalLocation();
 
@@ -19,7 +19,7 @@ public interface ObjectInListInterface<T extends ObjectInListInterface & ObjectI
 //	public void setAttributes(final TRAttributes attributes);
 
 
-	public boolean insertAfterCurrent(final T insertMe);
+	boolean insertAfterCurrent(final B insertMe);
 
 
 //	public ObjectInList getNext();
@@ -28,10 +28,10 @@ public interface ObjectInListInterface<T extends ObjectInListInterface & ObjectI
 //	public void setNext(final ObjectInList next);
 
 
-	public void linkAsHeadTail(final T linkTwo);
+	void linkAsHeadTail(final B linkTwo);
 
 
-	public boolean removeThisObject();
+	boolean removeThisObject();
 
 
 //	public ObjectInList getPrevious();

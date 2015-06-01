@@ -4,27 +4,32 @@ package edu.sru.thangiah.zeus.tr.TRSolutionHierarchy;
 import edu.sru.thangiah.zeus.core.DaysLinkedList;
 import edu.sru.thangiah.zeus.tr.TRAttributes;
 import edu.sru.thangiah.zeus.tr.TRProblemInfo;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.GenericCompositions.DoublyLinkedList;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.GenericCompositions.DoublyLinkedListCoreInterface;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.GenericCompositions.DoublyLinkedListInterface;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.GenericCompositions.ObjectInList;
 
 
 public class TRDaysList
 		extends DaysLinkedList
-		implements java.io.Serializable, Cloneable, DoublyLinkedList {
+		implements java.io.Serializable, Cloneable, //DoublyLinkedList
+		DoublyLinkedListCoreInterface<TRDay>, DoublyLinkedListInterface<TRDay> {
+
 
 //private TRDay        head;
 //private TRDay        tail;
-    private TRAttributes  attributes = new TRAttributes();
-private int          dayNumber;
+private TRAttributes attributes = new TRAttributes();
+private int dayNumber;
 
 
-
+private DoublyLinkedList<TRDaysList, TRDay> doublyLinkedList = new DoublyLinkedList<>(this,
+		TRDay.class);
 
 //CONSTRUCTOR
 public TRDaysList() {
 	setUpHeadTail();
 	setAttributes(new TRAttributes());
 }//END CONSTRUCTOR *******************<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-
 
 
 @Override
@@ -37,8 +42,6 @@ public void setUpHeadTail() {
 }
 
 
-
-
 //GETTER
 public TRDay getHead() {
 //	return this.head;
@@ -46,340 +49,127 @@ public TRDay getHead() {
 }
 
 
-
-
 //GETTER
 public TRDay getTail() {
 	return (TRDay) super.getTail();
 }
 
+@Override
+public void setTail(final TRDay tail) {
+	super.setTail(tail);
+}
 
-
-
-public int getSize() {
-	TRDay theDay = getHead();
-	int sizeCounter = 0;
-
-	if(!isValidHeadTail()) {
-		return -1;
-	}
-
-	while(theDay.getNext() != getTail()) {
-		theDay = theDay.getNext();
-		sizeCounter++;
-	}
-
-	return sizeCounter;
+@Override
+public void setHead(final TRDay head) {
+	super.setHead(head);
 }
 
 
+public int getSize() {
+	return doublyLinkedList.getSize();
+}
 
 
 //METHOD
 //link the head and the tail together
 public void linkHeadTail() {
-	getHead().linkAsHeadTail(getTail());
+	doublyLinkedList.linkHeadTail();
 }//END LINK_HEAD_TAIL *********<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-
-
-
 @Override
-public void setUpHeadTail(final ObjectInList head, final ObjectInList tail) {
-	setHead(head);
-	setTail(tail);
-	linkHeadTail();
+public void setUpHeadTail(final TRDay head, final TRDay tail) {
+	doublyLinkedList.setUpHeadTail(head, tail);
 }
-
-
-
-
-@Override
-public TRAttributes getAttributes() {
-	return this.attributes;
-}
-
-
-
-
-//SETTER
-@Override
-public void setAttributes(final TRAttributes attributes) {
-	this.attributes = attributes;
-}
-
-
-
-
-@Override
-public boolean setHead(final ObjectInList head) {
-	//	return getHead().replaceThisWith((TRDay) head);
-	if(head != null) {
-		head.setPrevious(getTail().getPrevious());
-		head.getPrevious().setNext(head);
-		getHead().setPrevious(null);
-		getHead().setNext((ObjectInList) null);
-		setHead(head);
-		return true;
-	}
-	return false;
-}
-
-
-
 
 @Override
 public TRDay getFirst() {
-	if(isEmpty() || !isValidHeadTail()) {
-        System.out.println("ERROR: getFirst() is null/invalid");
-		return null;
-	}
-	return getHead().getNext();
+	return doublyLinkedList.getFirst();
 }
-
-
-
 
 @Override
-public boolean insertAfterLastIndex(final ObjectInList theObject) {
-	if(!isValidHeadTail()) {
-		return false;
-	}
-
-	if(isEmpty()) {
-		return getHead().insertAfterCurrent(theObject);
-	}
-	//otherwise we already got stuff in here
-	return getLast().insertAfterCurrent(theObject);
+public boolean insertAfterLastIndex(final TRDay theObject) {
+	return doublyLinkedList.insertAfterLastIndex(theObject);
 }
-
-
-
 
 @Override
 public TRDay getLast() {
-	if(isEmpty() || !isValidHeadTail()) {
-		return null;
-	}
-	return (TRDay) getTail().getPrevious();
+	return doublyLinkedList.getLast();
 }
-
-
-
 
 @Override
 public boolean removeLast() {
-	if(!isEmpty() && isValidHeadTail()) {
-		return getTail().getPrevious().removeThisObject();
-	}
-	return false;
+	return doublyLinkedList.removeLast();
 }
-
-
-
 
 @Override
 public boolean removeFirst() {
-	if(!isEmpty() && isValidHeadTail()) {
-		return getHead().getNext().removeThisObject();
-	}
-	return false;
+	return doublyLinkedList.removeLast();
 }
-
-
-
 
 @Override
-public int getIndexOfObject(final ObjectInList findMe) {
-	int counter = -1;
-	TRDay theDay = this.getHead();
-
-	if(!isEmpty() && isValidHeadTail()) {
-		while(theDay != findMe) {
-			theDay = theDay.getNext();
-			counter++;
-			if(theDay == getTail()) {
-				return -1;
-			}
-		}
-		return counter;
-	}
-	return -1;
+public int getIndexOfObject(final TRDay findMe) {
+	return doublyLinkedList.getIndexOfObject(findMe);
 }
-
-
-
-
-@Override
-public boolean setTail(final ObjectInList tail) {
-	//	return getTail().replaceThisWith((TRDay) tail);
-	if(tail != null) {
-		tail.setPrevious(getTail().getPrevious());
-		tail.getPrevious().setNext(tail);
-		getTail().setPrevious(null);
-		getTail().setNext((ObjectInList) null);
-		setTail(tail);
-		return true;
-	}
-	return false;
-
-}
-
-
-
 
 @Override
 public boolean isValidHeadTail() {
-	if(getHead() == null || getHead().getNext() == null || getHead().getPrevious() != null ||
-	   getTail().getPrevious() == null || getTail() == null || getTail().getNext() != null) {
-		return false;
-	}
-	return true;
+	return doublyLinkedList.isValidHeadTail();
 }
-
-
-
-
-@Override
-public boolean insertShipment(final TRShipment theShipment) {
-	boolean status = true;
-	int visitCounter = 0;
-
-	for(int i = 0; i < this.getSize(); i++){
-		if(theShipment.getDaysVisited()[i]){
-			status = status && this.getAtIndex(i).getSubList().insertShipment(theShipment);
-			visitCounter++;
-		}
-	}
-
-	if(!status){System.out.print("UNSUCCESSFUL INSERTION :: TRDaysList[insertShipment]");}
-	return status;
-
-}
-
-
-
-
 
 @Override
 public boolean removeByIndex(final int index) {
-	int counter = -1;
-	TRDay theDay = this.getHead();
-
-	while(index >= 0 && index < getSize() && isValidHeadTail()) {
-		theDay = theDay.getNext();
-		counter++;
-		if(counter == index) {
-			return theDay.removeThisObject();
-		}
-	}
-	return false;
+	return doublyLinkedList.removeByIndex(index);
 }
-
-
-
 
 @Override
 public int getSizeWithHeadTail() {
-	if(isValidHeadTail()) {
-		return getSize() + 2;
-	}
-	return -1;
+	return doublyLinkedList.getSizeWithHeadTail();
 }
-
-
-
 
 public boolean isEmpty() {
-	if(getSize() == 0) {
-		return true;
-	}
-	return false;
+	return doublyLinkedList.isEmpty();
 }
 
+@Override
+public boolean removeByObject(final TRDay findMe) {
+	return doublyLinkedList.removeByObject(findMe);
+}
 
+@Override
+public boolean insertAfterIndex(final TRDay insertMe, final int index) {
+	return doublyLinkedList.insertAfterIndex(insertMe, index);
+}
+
+@Override
+public TRDay getAtIndex(final int index) {
+	return doublyLinkedList.getAtIndex(index);
+}
 
 
 @Override
-public boolean removeByObject(final ObjectInList findMe) {
-	TRDay theDay = getHead();
-	while(theDay.getNext() != getTail() && isValidHeadTail()) {
-		theDay = theDay.getNext();
-		if(theDay == findMe) {
-			theDay.removeThisObject();
-			return true;
-		}
-	}
-	return false;
+public boolean insertAfterObject(final TRDay insertMe, final TRDay insertAfter) {
+	return doublyLinkedList.insertAfterObject(insertMe, insertAfter);
 }
-
-
-
-
-@Override
-public boolean insertAfterIndex(final ObjectInList insertMe, final int index) {
-	int counter = -1;
-	TRDay theDay = getHead();
-
-	while(index >= 0 && index < getSize() && !isEmpty() && isValidHeadTail()) {
-		theDay = theDay.getNext();
-		counter++;
-		if(counter == index) {
-			theDay.insertAfterCurrent(insertMe);
-			return true;
-		}
-	}
-	return false;
-}
-
-
-
-
-@Override
-public ObjectInList getAtIndex(final int index) {
-	int counter = -1;
-	TRDay theDay = getHead();
-
-	while(index >= 0 && index < getSize() && !isEmpty() && isValidHeadTail()) {
-		theDay = theDay.getNext();
-		counter++;
-		if(counter == index) {
-			return theDay;
-		}
-	}
-	return null;
-}
-
-
-
-
-@Override
-public boolean insertAfterObject(final ObjectInList insertMe, final ObjectInList insertAfter) {
-	TRDay theDay = getHead();
-	while(!isEmpty() && isValidHeadTail()) {
-		theDay = theDay.getNext();
-		if(theDay == insertAfter) {
-			return insertAfter.insertAfterCurrent(insertMe);
-			//			return true;
-		}
-	}
-	return false;
-}
-
-
-
 
 @Override
 public double getDistanceTravelledMiles() {
-	return 0;
+	return doublyLinkedList.getDistanceTravelledMiles();
+}
+
+@Override
+public boolean setHeadNext(final TRDay nextHead) {
+	return doublyLinkedList.setHeadNext(nextHead);
+}
+
+@Override
+public boolean setTailPrevious(final TRDay previousTail) {
+	return doublyLinkedList.setTailPrevious(previousTail);
 }
 
 
-
-
-public TRDaysList(final TRDaysList copyMe) {
-	setHead((ObjectInList) new TRDay(copyMe.getHead()));
-	setTail((ObjectInList) new TRDay(copyMe.getTail()));
+public TRDaysList(final TRDaysList copyMe) throws InstantiationException, IllegalAccessException {
+	setHead( new TRDay(copyMe.getHead()));
+	setTail( new TRDay(copyMe.getTail()));
 	setAttributes(new TRAttributes(copyMe.getAttributes()));
 
 	TRDay theCopyMeDay = copyMe.getHead();
@@ -393,6 +183,34 @@ public TRDaysList(final TRDaysList copyMe) {
 
 
 
+public TRAttributes getAttributes() {
+	return this.attributes;
+}
+
+//SETTER
+public void setAttributes(final TRAttributes attributes) {
+	this.attributes = attributes;
+}
+
+
+
+public boolean insertShipment(final TRShipment theShipment) {
+	boolean status = true;
+	int visitCounter = 0;
+
+	for(int i = 0; i < this.getSize(); i++) {
+		if(theShipment.getDaysVisited()[i]) {
+			status = status && this.getAtIndex(i).getSubList().insertShipment(theShipment);
+			visitCounter++;
+		}
+	}
+
+	if(!status) {
+		System.out.print("UNSUCCESSFUL INSERTION :: TRDaysList[insertShipment]");
+	}
+	return status;
+
+}
 
 //METHOD
 //used by the gui to show problem information
@@ -403,27 +221,6 @@ public String getSolutionString() {
 //METHOD
 //
 
-
-
-@Override
-public boolean setHeadNext(final ObjectInList nextHead) {
-	if(this.getHead().getNext() == this.getTail()){
-		return false;
-	}
-	this.getHead().setNext((ObjectInList) nextHead);
-	return true;
-
-}
-
-@Override
-public boolean setTailPrevious(final ObjectInList nextTail){
-	if(this.getTail().getPrevious() == this.getHead()){
-		return false;
-	}
-	this.getTail().setPrevious((ObjectInList) nextTail);
-	return true;
-
-}
 
 
 }

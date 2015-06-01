@@ -1,19 +1,19 @@
 package edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.GenericCompositions;
 
-import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.DoublyLinkedList;
-
 /**
  * Created by jks1010 on 5/29/2015.
  */
-public interface ContainsSubListInterface<A extends ObjectInListInterface, B extends DoublyLinkedListCoreInterface> {
+public interface ContainsSubListInterface<C extends DoublyLinkedListCoreInterface<D> & DoublyLinkedListInterface<D>, D extends ObjectInListInterface<D> & ObjectInListCoreInterface<D>> {
 
-	public A getSubList();
+//	C getNewC();
 
-	public void setSubList(final A subList);
+	C getSubList();
 
-	public boolean isSubListEmpty();
+	void setSubList(final C subList);
 
-    public int getSubListSize();
+	boolean isSubListEmpty();
 
-	public double getDistanceTravelledMiles();
+    int getSubListSize();
+
+	double getDistanceTravelledMiles();
 }

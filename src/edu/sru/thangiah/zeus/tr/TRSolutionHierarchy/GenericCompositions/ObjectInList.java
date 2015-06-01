@@ -1,21 +1,19 @@
 package edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.GenericCompositions;
 
-import edu.sru.thangiah.zeus.tr.TRAttributes;
-
 /**
  * Created by jks1010 on 5/29/2015.
  */
-public class ObjectInList<T extends ObjectInListInterface & ObjectInListCoreInterface> implements ObjectInListInterface<T> {
+public class ObjectInList<B extends ObjectInListInterface<B> & ObjectInListCoreInterface<B>> implements ObjectInListInterface<B> {
 
-	T outerClass;
+	B outerClass;
 
-	public ObjectInList(final T outerClass){
+	public ObjectInList(final B outerClass){
 		this.outerClass = outerClass;
 	}
 	@Override
-	public boolean insertAfterCurrent(final T insertMe) {
+	public boolean insertAfterCurrent(final B insertMe) {
 		if(outerClass.getNext() != null) {
-			(insertMe).setPrevious(this);
+			(insertMe).setPrevious(outerClass);
 			(insertMe).setNext(outerClass.getNext());
 
 			(outerClass).setNext(insertMe);
@@ -27,9 +25,10 @@ public class ObjectInList<T extends ObjectInListInterface & ObjectInListCoreInte
 
 
 	@Override
-	public void linkAsHeadTail(final T linkTwo) {
+	public void linkAsHeadTail(final B linkTwo) {
 		outerClass.setNext(linkTwo);
 		(linkTwo).setPrevious(outerClass);
+
 		outerClass.setPrevious(null);    //nothing comes before the head
 		(linkTwo).setNext(null);        //nothing comes after the tail
 	}
@@ -42,7 +41,7 @@ public class ObjectInList<T extends ObjectInListInterface & ObjectInListCoreInte
 			(outerClass.getNext()).setPrevious(outerClass.getPrevious());
 
 			outerClass.setPrevious(null);
-			outerClass.setNext((edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.ObjectInList) null);
+			outerClass.setNext((B) null);
 			return true;
 		}
 		return false;

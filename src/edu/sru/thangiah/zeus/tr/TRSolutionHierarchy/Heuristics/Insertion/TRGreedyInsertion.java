@@ -2,7 +2,6 @@ package edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Insertion;
 
 
 import edu.sru.thangiah.zeus.tr.TRProblemInfo;
-import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.ObjectInList;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRNode;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRNodesList;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRShipment;

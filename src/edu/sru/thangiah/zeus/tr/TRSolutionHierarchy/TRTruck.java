@@ -8,6 +8,8 @@ import edu.sru.thangiah.zeus.pvrp.PVRPDayLinkedList;
 import edu.sru.thangiah.zeus.pvrp.PVRPTruckType;
 import edu.sru.thangiah.zeus.tr.TRAttributes;
 import edu.sru.thangiah.zeus.tr.TRCoordinates;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.GenericCompositions.*;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.GenericCompositions.ObjectInList;
 import edu.sru.thangiah.zeus.tr.TRTruckType;
 
 //import the parent class
@@ -42,7 +44,10 @@ import edu.sru.thangiah.zeus.tr.TRTruckType;
 
 public class TRTruck
 		extends Truck
-		implements java.io.Serializable, Cloneable, ObjectInList {
+		implements java.io.Serializable, Cloneable,
+//		ObjectInList
+		ObjectInListInterface<TRTruck>, ObjectInListCoreInterface<TRTruck>, ContainsSubListInterface<TRDaysList, TRDay>
+{
 
 	private boolean isTruckOnRoad = false;
 	//	private TRTruckType truckType;
@@ -53,8 +58,11 @@ public class TRTruck
 	private TRCoordinates homeDepotCoordinates;
 //private TRTruckType truckType = new TRTruckType();
 
+	private ObjectInList<TRTruck> objectInList = new ObjectInList<>(this);
+	private ContainsSubList<TRDaysList, TRDay> subList = new ContainsSubList<TRDaysList, TRDay>();
 
-	public TRTruck(final TRTruck copyMe) {
+
+	public TRTruck(final TRTruck copyMe) throws IllegalAccessException, InstantiationException {
 		setIsTruckOnRoad(copyMe.getIsTruckOnRoad());
 		setTruckType(new TRTruckType(copyMe.getTruckType()));
 		setAttributes(new TRAttributes(copyMe.getAttributes()));
@@ -68,6 +76,7 @@ public class TRTruck
 		setAttributes(new TRAttributes());
 		setHomeDepotCoordinates(homeDepotCoordinates);
 		super.setTruckType(new TRTruckType());
+		setSubList(new TRDaysList());
 	}
 
 
@@ -75,6 +84,7 @@ public class TRTruck
 	public TRTruck() {
 		setAttributes(new TRAttributes());
 		super.setTruckType(new TRTruckType());
+		setSubList(new TRDaysList());
 	}
 
 	public boolean getIsTruckOnRoad() {
@@ -87,12 +97,12 @@ public class TRTruck
 
 	@Override
 	public TRDaysList getSubList() {
-		return this.daysSubList;
+		return subList.getSubList();
 	}
 
 	@Override
-	public void setSubList(final DoublyLinkedList subList) {
-		this.daysSubList = (TRDaysList) subList;
+	public void setSubList(TRDaysList setMe) {
+		subList.setSubList(setMe);
 	}
 
 	public TRCoordinates getHomeDepotCoordinates() {
@@ -136,7 +146,6 @@ public class TRTruck
 	}
 
 
-	@Override
 	public void setAttributes(final TRAttributes attributes) {
 		super.setAttributes(attributes);
 	}
@@ -146,69 +155,48 @@ public class TRTruck
 		return (TRTruck) super.getNext();
 	}
 
+@Override
+public TRTruck getPrevious() {
+	return (TRTruck) super.getPrev();
+}
 
-	@Override
-	public void setNext(final ObjectInList next) {
-		super.setNext((TRTruck) next);
+
+@Override
+	public boolean insertAfterCurrent(TRTruck insertMe) {
+		return objectInList.insertAfterCurrent(insertMe);
 	}
 
-
 	@Override
-	public boolean insertAfterCurrent(final ObjectInList insertMe) {
-		if (this.getNext() != null) {
-			insertMe.setPrevious(this);
-			insertMe.setNext(this.getNext());
-
-			this.setNext(insertMe);
-			insertMe.getNext().setPrevious(insertMe);
-			return true;
-		}
-		return false;
+	public void linkAsHeadTail(TRTruck linkTwo) {
+		objectInList.linkAsHeadTail(linkTwo);
 	}
-
-
-	@Override
-	public void linkAsHeadTail(final ObjectInList linkTwo) {
-		this.setNext(linkTwo);
-		linkTwo.setPrevious(this);
-		this.setPrevious(null);    //nothing comes before the head
-		linkTwo.setNext(null);        //nothing comes after the tail
-	}
-
 
 	@Override
 	public boolean removeThisObject() {
-		if (this.getNext() != null || this.getPrevious() != null) {
-
-			this.getPrevious().setNext(this.getNext());
-			this.getNext().setPrevious(this.getPrevious());
-
-			this.setPrevious(null);
-			this.setNext((ObjectInList) null);
-			return true;
-		}
-		return false;
+		return objectInList.removeThisObject();
 	}
 
 
 	@Override
-	public ObjectInList getPrevious() {
-		return (TRTruck) super.getPrev();
+	public void setNext(TRTruck next) {
+		super.setNext(next);
 	}
-
 
 	@Override
-	public void setPrevious(final ObjectInList previous) {
-		super.setPrev((TRTruck) previous);
+	public void setPrevious(TRTruck previous) {
+		super.setPrev(previous);
 	}
+
 
 
 	@Override
 	public boolean isSubListEmpty() {
-		if (getSubList() == null || getSubList().isEmpty()) {
-			return true;
-		}
-		return false;
+		return subList.isSubListEmpty();
+	}
+
+	@Override
+	public int getSubListSize() {
+		return subList.getSubListSize();
 	}
 
 

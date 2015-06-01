@@ -5,13 +5,13 @@ import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.*;
 /**
  * Created by jks1010 on 5/29/2015.
  */
-public interface ObjectInListCoreInterface<A extends ObjectInListInterface & ObjectInListCoreInterface, B extends DoublyLinkedListInterface & DoublyLinkedListCoreInterface> {
+public interface ObjectInListCoreInterface<B extends ObjectInListCoreInterface<B> & ObjectInListInterface<B>> {
 
-	A getNext();
+	B getNext();
 
-	A getPrevious();
+	B getPrevious();
 
-	void setNext(final A next);
+	void setNext(final B next);
 
-	void setPrevious(final A previous);
+	void setPrevious(final B previous);
 }
