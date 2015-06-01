@@ -198,10 +198,23 @@ public boolean insertShipment(final TRShipment theShipment) {
 	boolean status = true;
 	int visitCounter = 0;
 
-	for(int i = 0; i < this.getSize(); i++) {
-		if(theShipment.getDaysVisited()[i]) {
-			status = status && this.getAtIndex(i).getSubList().insertShipment(theShipment);
-			visitCounter++;
+//	for(int i = 0; i < this.getSize(); i++) {
+//		if(theShipment.getDaysVisited()[i]) {
+//			status = status && this.getAtIndex(i).getSubList().insertShipment(theShipment);
+//			visitCounter++;
+//		}
+//	}
+
+	for(int i = 0; i < theShipment.getVisitComb().length; i++){
+		if(theShipment.getVisitComb()[i] == 1 && !theShipment.isDayAlreadyScheduled(i)){
+			if(this.getAtIndex(i).getSubList().insertShipment(theShipment)){
+				theShipment.setDayAsScheduled(i);
+				status = status && true;
+			}
+			else{
+				status = status && false;
+			}
+//			status = status && this.getAtIndex(i).getSubList().insertShipment(theShipment);
 		}
 	}
 

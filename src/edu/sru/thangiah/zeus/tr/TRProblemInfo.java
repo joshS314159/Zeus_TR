@@ -109,6 +109,8 @@ public class TRProblemInfo
 
     public static boolean addPenaltyPerBin;
 
+    public static String problemFormatType = new String();
+
 
 
     TRProblemInfo() {

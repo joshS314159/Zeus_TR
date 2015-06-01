@@ -420,7 +420,7 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 					case FREQUENCY:
 						frequency = (int) currentCellContents;
 						newShipment.setVisitFrequency(frequency);
-						newShipment.setFrequency(frequency);
+//						newShipment.setFrequency(frequency);
 						break;    //the number of days a node needs visited
 					case NUMBER_COMBINATIONS:
 						numberCombinations = (int) currentCellContents;

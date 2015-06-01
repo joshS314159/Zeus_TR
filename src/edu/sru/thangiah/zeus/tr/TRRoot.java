@@ -107,6 +107,7 @@ public class TRRoot {
         TRProblemInfo.shortSolutionOutputFile = "PVRP_All_Short_Solutions.xlsx";
         TRProblemInfo.ARE_DAYS_BOUND = true;
         TRProblemInfo.problemFileName = "p1.xlsx";
+        TRProblemInfo.problemFormatType = "PVRP";
         new TR(/*"TrashRoutes-Frequency.xlsx", */false, new TRClosestDistanceToDepot(), PVRPReadFormat.class, PVRPWriteFormat.class);
     }
 
@@ -125,6 +126,7 @@ public class TRRoot {
         TRProblemInfo.shortSolutionOutputFile = "All_Short_Solutions.xlsx";
         TRProblemInfo.penaltiesInputFile = "Penalty.xlsx";
         TRProblemInfo.delayTypesInputFile = "DelayTimes.xlsx";
+        TRProblemInfo.problemFormatType = "TR";
 
 
 

@@ -19,6 +19,7 @@ package edu.sru.thangiah.zeus.tr.trQualityAssurance;
 
 import edu.sru.thangiah.zeus.core.ProblemInfo;
 import edu.sru.thangiah.zeus.qualityassurance.QualityAssurance;
+import edu.sru.thangiah.zeus.tr.TRProblemInfo;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRDepotsList;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRShipmentsList;
 import org.apache.poi.ss.usermodel.Cell;
@@ -108,13 +109,13 @@ public void writeTempFiles() {
     FileOutputStream out = null;
 	try {
 		//prepare to print out our TEMP shipment file
-		shipmentFile = new File(ProblemInfo.tempFileLocation + "/Temp_TR_Shipments.xlsx");
+		shipmentFile = new File(ProblemInfo.tempFileLocation + "/Temp_"+ TRProblemInfo.problemFormatType+"_Shipments.xlsx");
         out = new FileOutputStream(shipmentFile);
         mainShipments.writeShipments(out);            //write the shipments list
 
 
 		//prepare to print out our TEMP solution file
-		solutionFile = new File(ProblemInfo.tempFileLocation + "/Temp_TR_Solutions.xlsx");
+		solutionFile = new File(ProblemInfo.tempFileLocation + "/Temp_"+TRProblemInfo.problemFormatType+"_Solutions.xlsx");
 		out = new FileOutputStream(solutionFile);
 		mainDepots.printDepotLinkedList(out);        //write solution file
 	}

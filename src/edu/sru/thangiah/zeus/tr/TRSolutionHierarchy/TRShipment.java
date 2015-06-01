@@ -7,7 +7,6 @@ import edu.sru.thangiah.zeus.core.Shipment;
 import edu.sru.thangiah.zeus.tr.TRAttributes;
 import edu.sru.thangiah.zeus.tr.TRCoordinates;
 import edu.sru.thangiah.zeus.tr.TRProblemInfo;
-import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.GenericCompositions.ContainsSubList;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.GenericCompositions.ObjectInListCoreInterface;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.GenericCompositions.ObjectInListInterface;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.GenericCompositions.ObjectInList;
@@ -43,6 +42,7 @@ public class TRShipment
     private boolean isPickupOrder;
     private int nodeNumber;
     private boolean isAssigned;
+    private int[] daysCurrentlyScheduled;
     //private int     demand;
 //private int     visitFrequency = 0;
 //private String  pickupPointName;
@@ -127,6 +127,11 @@ public class TRShipment
         int randomNum = rand.nextInt((max - min) + 1) + min;
 
         int[] theRandomVisitation = this.getCurrentComb()[randomNum];
+        setVisitComb(theRandomVisitation);
+        daysCurrentlyScheduled = new int[theRandomVisitation.length];
+        for(int i = 0; i < daysCurrentlyScheduled.length; i++){
+            daysCurrentlyScheduled[i] = 0;
+        }
 
 
         for (int i = 0; i < daysVisited.length; i++) {
@@ -136,6 +141,21 @@ public class TRShipment
                 daysVisited[i] = false;
             }
         }
+    }
+
+    public boolean isDayAlreadyScheduled(final int day){
+        if(daysCurrentlyScheduled[day] == 1){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean setDayAsScheduled(final int day){
+        if(!isDayAlreadyScheduled(day)){
+            daysCurrentlyScheduled[day] = 1;
+            return true;
+        }
+        return false;
     }
 
     public boolean chooseVisitCombination(final int combinationIndex) {
@@ -201,7 +221,18 @@ public class TRShipment
         return super.getIndex();
     }
 
+
     public int getFrequency() {
+        int counter = 0;
+        for (int x = 0; x < daysVisited.length; x++) {
+            if (daysVisited[x] == true) {
+                counter++;
+            }
+        }
+        return counter;
+    }
+
+    public int countFrequency(){
         int counter = 0;
         for (int x = 0; x < daysVisited.length; x++) {
             if (daysVisited[x] == true) {
@@ -396,27 +427,27 @@ public class TRShipment
             //		isVisitMonday = true;
             daysVisited[0] = true;
             //		getFrequency();
-            setFrequency(getFrequency() + 1);
+            setFrequency(countFrequency() + 1);
         } else if (visitationDaySymbol.equals("T")) {
             //		isVisitTuesday = true;
             daysVisited[1] = true;
-            setFrequency(getFrequency() + 1);
+            setFrequency(countFrequency() + 1);
         } else if (visitationDaySymbol.equals("W")) {
             //		isVisitWednesday = true;
             daysVisited[2] = true;
-            setFrequency(getFrequency() + 1);
+            setFrequency(countFrequency() + 1);
         } else if (visitationDaySymbol.equals("R")) {
             //		isVisitThursday = true;
             daysVisited[3] = true;
-            setFrequency(getFrequency() + 1);
+            setFrequency(countFrequency() + 1);
         } else if (visitationDaySymbol.equals("F")) {
             //		isVisitFriday = true;
             daysVisited[4] = true;
-            setFrequency(getFrequency() + 1);
+            setFrequency(countFrequency() + 1);
         } else if (visitationDaySymbol.equals("Sat")) {
             //		isVisitSaturday = true;
             daysVisited[5] = true;
-            setFrequency(getFrequency() + 1);
+            setFrequency(countFrequency() + 1);
         } else if (visitationDaySymbol.equals("None")) {
         } else {
             System.out.println("CAN'T FIND VALID DAY");
@@ -428,7 +459,7 @@ public class TRShipment
 
         if (!dayCode.equals("None")) {
             this.daysToVisitStop.add(dayCode);
-            this.setFrequency(this.getFrequency() + 1);
+            this.setFrequency(this.countFrequency() + 1);
         }
 
     }

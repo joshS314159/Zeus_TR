@@ -310,17 +310,17 @@ public void writeShipments(FileOutputStream out)
 							theShipment.getNodeNumber());    //set each cell value to the correct value from the linked list
 					break;
 				case 1:
-					cell.setCellValue(theShipment.getCoordinates().getLongitude());
+					cell.setCellValue(theShipment.getCoordinates().getA());
 					break;
 				case 2:
-					cell.setCellValue(theShipment.getCoordinates().getLatitude());
+					cell.setCellValue(theShipment.getCoordinates().getB());
 
 					break;
 				case 3:
 //                        cell.setCellValue(theShipment.getDemand());
 					break;
 				case 4:
-					cell.setCellValue(theShipment.getFrequency());
+					cell.setCellValue(theShipment.countFrequency());
 					break;
 				/**        case 5:								??????????????????????????MUST IMPLEMENT FOR ALL
 				 * VARIABLES OF PVRP
