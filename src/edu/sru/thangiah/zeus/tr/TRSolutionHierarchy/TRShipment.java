@@ -43,6 +43,7 @@ public class TRShipment
     private int nodeNumber;
     private boolean isAssigned;
     private int[] daysCurrentlyScheduled;
+    private boolean isShipmentFullyScheduled = false;
     //private int     demand;
 //private int     visitFrequency = 0;
 //private String  pickupPointName;
@@ -143,8 +144,24 @@ public class TRShipment
         }
     }
 
+    public boolean isShipmentFullyScheduled(){
+        for(int i = 0; i < daysCurrentlyScheduled.length; i++){
+            if(daysCurrentlyScheduled[i] != this.getVisitComb()[i]){
+                return false;
+            }
+        }
+        return true;
+    }
+
     public boolean isDayAlreadyScheduled(final int day){
         if(daysCurrentlyScheduled[day] == 1){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isDayAllowedToBeScheduled(final int day){
+        if(this.getVisitComb()[day] == 1){
             return true;
         }
         return false;
@@ -659,5 +676,7 @@ public class TRShipment
         } else {
         }
     }
+
+//    public createVisiatio
 
 }

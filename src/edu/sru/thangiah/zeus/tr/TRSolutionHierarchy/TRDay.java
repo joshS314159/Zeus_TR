@@ -140,7 +140,8 @@ public class TRDay
         return false;
     }
 
-    public TRDay() { setAttributes(new TRAttributes());
+    public TRDay() {
+        setAttributes(new TRAttributes());
         setSubList(new TRNodesList());
     }
 

@@ -344,8 +344,8 @@ public void writeOutData(FileOutputStream out)
 	cell = row.createCell(columnCounter++);
 	cell.setCellValue(NULL_VALUE);
 
-	theDepot = getFirst();
-	while(theDepot != getTail()) {
+	theDepot = this.getFirst();
+	while(theDepot != this.getTail()) {
 		//while we have more depots
 
 		columnCounter = 0;
@@ -357,7 +357,7 @@ public void writeOutData(FileOutputStream out)
 		cell.setCellValue("Depot");
 
 		cell = row.createCell(columnCounter++);
-		//		cell.setCellValue(theDepot.getDepotNum());
+				cell.setCellValue(this.getIndexOfObject(theDepot));
 
 		cell = row.createCell(columnCounter++);
 		cell.setCellValue(theDepot.getCoordinates().getA());
@@ -386,7 +386,7 @@ public void writeOutData(FileOutputStream out)
 
 		TRTrucksList truckLL = theDepot.getSubList();
 		//extract trucks linked list from depot
-		TRTruck theTruck = truckLL.getHead().getNext();
+		TRTruck theTruck = truckLL.getFirst();
 		//extract single truck from the linked list
 		while(theTruck != truckLL.getTail()) {
 
@@ -400,7 +400,7 @@ public void writeOutData(FileOutputStream out)
 			cell.setCellValue("Truck");
 
 			cell = row.createCell(columnCounter++);
-			cell.setCellValue(theTruck.getTruckNum());
+			cell.setCellValue(truckLL.getIndexOfObject(theTruck));
 
 			cell = row.createCell(columnCounter++);
 			cell.setCellValue(NULL_VALUE);
@@ -428,7 +428,7 @@ public void writeOutData(FileOutputStream out)
 
 			dayCount = 0;
 			TRDaysList daysLL = theTruck.getSubList();
-			TRDay theDay = daysLL.getHead().getNext();
+			TRDay theDay = daysLL.getFirst();
 			while(theDay != daysLL.getTail()) {
 
 
@@ -440,7 +440,7 @@ public void writeOutData(FileOutputStream out)
 				cell.setCellValue("Day");
 
 				cell = row.createCell(columnCounter++);
-				cell.setCellValue(dayCount++);
+				cell.setCellValue(daysLL.getIndexOfObject(theDay));
 
 				cell = row.createCell(columnCounter++);
 				cell.setCellValue(NULL_VALUE);

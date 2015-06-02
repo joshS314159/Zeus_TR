@@ -34,6 +34,21 @@ public static String WhoAmI() {
 public boolean getInsertShipment(TRNodesList currentNodeLL, TRShipment theShipment) {
 	//currentNodeLL is the reference to the current node linked list being considered for insertion
 	//theShipment is the shipment to be inserted
+//	int test = 5;
+//	if(test == 5) {
+//		currentNodeLL.insertShipmentLast(theShipment);
+//		if(theShipment.getNodeNumber() == 4) {
+//			return true;
+//		}
+//		return true;
+//	}
+//
+//
+
+
+
+
+
 	TRNode nodeToInsert = new TRNode(theShipment);
 
 	// the route is empty

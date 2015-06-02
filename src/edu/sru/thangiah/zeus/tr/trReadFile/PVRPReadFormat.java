@@ -36,7 +36,7 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 
 	//METHOD
 //read in the data from the requested file in Excel format
-	public boolean readDataFromFile(/*String PVRPFileName*/)
+	public void readDataFromFile(/*String PVRPFileName*/)
 			throws IOException, InvalidFormatException, InstantiationException, IllegalAccessException,
 			InvocationTargetException {
 
@@ -88,6 +88,7 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 
 //READ ROW 0
 		//this while loop will work each cell of the zero-th row
+
 		final int NUMBER_DEPOTS = 0;
 		final int NUMBER_VEHICLES = 1;
 		final int NUMBER_NODES = 2;
@@ -103,10 +104,12 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 				case NUMBER_DEPOTS:
 					numberDepots = (int) currentCellValue;
 					TRProblemInfo.NUMBER_DEPOTS = numberDepots;    //Set the number of depots to 1 for this problem
+					this.numberDepotsToMake = numberDepots;
 					break;    //this cell contains the number of depots (all our problems are 1)
 				case NUMBER_VEHICLES:
 					numberOfVehicles = (int) currentCellValue;
 					TRProblemInfo.NUMBER_TRUCKS = numberOfVehicles;    //number of vehicles
+					this.numberTrucksToMake = numberOfVehicles;
 					break;    //reads in the number of vehicles
 				case NUMBER_NODES:
 					numberOfNodes = (int) currentCellValue;
@@ -115,6 +118,7 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 				case DAYS_SERVICED_OVER:
 					daysServicedOver = (int) currentCellValue;
 					TRProblemInfo.NUMBER_DAYS_SERVICED = daysServicedOver;    //number of days (horizon) or number of depots for PVRP
+					this.numberDaysToMake = daysServicedOver;
 					break;    //reads in the horizon/number of days/days serviced over
 
 				//PVRPProblem info is a class that holds various bits of information related to our problem
@@ -168,57 +172,41 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 				{
 					case MAX_DISTANCE:
 						maxDistanceD = (int) currentCellValue;
+						if(maxDistanceD == 0){
+							this.isDistanceRestraint = false;
+						}
+						else{
+							this.isDistanceRestraint = true;
+							this.maxDayDistance = maxDistanceD;
+							this.maxTruckDistance = this.maxDayDistance * this.numberDaysToMake;
+							this.maxDepotDistance = this.maxTruckDistance * this.numberTrucksToMake;
+						}
 						break;        //the first value is maximum distance allowed by the truck
 
 					//MAX CAP
 					case MAX_DEMAND:
 						maxDemandQ = (int) currentCellValue;
+						if(maxDemandQ == 0){
+							this.isDemandRestraint = false;
+							this.maxDayDemand = maxDemandQ;
+							this.maxTruckDemand = this.maxDayDemand * this.numberDaysToMake;
+							this.maxDepotDistance = this.maxTruckDemand * this.numberTrucksToMake;
+						}
 						break;        //the second value is the maximum demand allowed by the truck
 
 				}
 				cellColumnCounter++;    //increment cell counter so we can move through FSM
 			}
 
-			if(maxDemandQ == 0) {        //if there is no maximum capacity, set it to a very large number
-				maxDemandQ = 99999999;
-			}
-
-			if(maxDistanceD == 0) {    //if there is no max distance, set it to a very large number
-				maxDistanceD = 9999999;
-			}
-
-			TRDay day = new TRDay();/*(0, numberOfVehicles, daysServicedOver, maxDistanceD*numberOfVehicles, maxDemandQ*numberOfVehicles, depotXCoordinates,
-					depotYCoordinates, dayNumberCounter++);    //create a new day for the currently read information*/
-			day.setNumberOfTrucks(numberOfVehicles);
-			day.setDaysServicedOver(daysServicedOver);
-			day.setMaxDistance(maxDistanceD*numberOfVehicles);
-			day.setMaxDemand(maxDemandQ * numberOfVehicles);
-
-			TRCoordinates tempCoordinates = new TRCoordinates(depotXCoordinates, depotYCoordinates, true);
-				tempCoordinates.setIsCartesian(true);
-				day.setHomeDepotCoordinates(tempCoordinates);
-			day.setDayNumber(dayNumberCounter++);
-			System.out.println(dayNumberCounter);
-
-
-			mainDaysTemp.insertAfterLastIndex(day);                //insert the just created day into our temporary list of days
 			row = rowIterator.next();        //get the next row
 			cellIterator = row.cellIterator();    //an iterator for columns
 
 		}
 
 
-		for(int i = 0; i < numberTruckTypes; i++) {
-			TRTruckType truckType = new TRTruckType(i, maxDistanceD, maxDemandQ, truckTypeString);
-			TRProblemInfo.truckTypes.add(truckType);
-		}
-
-
-
-
-
 //READ DEPOT INFORMATION
 		cellColumnCounter = 0;
+//		boolean isDepotRead = false;
 		//reset our column counter
 		final int NODE_NUMBER = 0;
 		final int DEPOT_X = 1;
@@ -250,117 +238,7 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 			cellColumnCounter++;        //increment what column we are one
 		}
 
-//		mainDepots = new TRDepotsList();        //create a new depot linked list for our solution
-		TRCoordinates tempCoordinates = new TRCoordinates(depotXCoordinates, depotYCoordinates, true);
-//			tempCoordinates.setCoordinates(depotXCoordinates, depotYCoordinates, true);
-//			tempCoordinates.setIsCartesian(true);
-		TRDepot depotTemporary = new TRDepot(tempCoordinates);//(nodeNumber, depotXCoordinates, depotYCoordinates,
-//				maxDistanceD * numberOfVehicles * daysServicedOver,
-//				maxDemandQ * numberOfVehicles *
-//						daysServicedOver);
-		depotTemporary.setNodeNumber(nodeNumber);
-		depotTemporary.setMaxDemand(maxDemandQ * numberOfVehicles);
-		depotTemporary.setMaxDistance(maxDistanceD * numberOfVehicles * daysServicedOver);
-		//creates a new temporary depot to be inserted in the depot linked list
-		//calculates the total maximum distance for the depot by (singleDayMaxDistance)(numberVehicles)(numberDays)
-		//calculates the total maximum demand for the entire depot by (maxDemandPerDay)(numberVehicles)(numberDays)
-		mainDepots.insertAfterLastIndex(depotTemporary);    //insert our newly read depot in the depot linked list
-
-
-
-
-
-
-
-
-		depotTemporary = mainDepots.getFirst();
-		for(int i = 0; i < TRProblemInfo.NUMBER_TRUCKS; i++) {
-			TRTruckType ttype = (TRTruckType) TRProblemInfo.truckTypes.elementAt(0);
-			tempCoordinates = new TRCoordinates(depotTemporary.getCoordinates());
-
-			TRTruck tempTruck = new TRTruck();
-				tempTruck.setHomeDepotCoordinates(tempCoordinates);
-				tempTruck.setTruckType(ttype);
-
-//			TRTruck truckTemp = new TRTruck(ttype, depotTemporary.getXCoord(), depotTemporary.getYCoord());
-//			truckTemp.setTruckType(ttype);
-			//we only have one type of truck
-			depotTemporary.getSubList()
-					.insertAfterLastIndex(tempTruck);
-
-			//insert the newly read truck data into the trucks linked list (which is underneath each depot read in; one in
-			// our case)
-		}
-
-
-		TRDaysList daysLL = mainDaysTemp;
-		TRTrucksList truckLL = mainDepots.getFirst().getSubList();
-		//get the Truck linked list from inside mainDepots
-
-		TRTruck truck = truckLL.getFirst();
-		//get the first truck from inside the truck list
-
-
-
-
-
-
-		//steps through each depot and then truck to create the correct number of days for each
-		for(int i = 0; i < depotTemporary.getSubList().getSize(); i++) {
-			TRDay tempDay = daysLL.getFirst();
-
-			while(tempDay != daysLL.getTail()) {    //while we aren't at the end of the list
-//				tempDay = new TRDay();
-//				tempDay.
-				truck.getSubList().insertAfterLastIndex(        //insert the day into the days linked list
-						new TRDay(tempDay.getSubList(), tempDay.getNumberOfTrucks(),
-								tempDay.getDaysServicedOver(),
-								tempDay.getMaxDistance(),
-								tempDay.getMaxDemand(), depotXCoordinates,
-								depotYCoordinates, tempDay.getDayNumber(), true));
-				if(tempDay.getNext() == mainDaysTemp.getTail()) {
-					//if we are at the last day in the list
-					break;
-				}
-				else {
-					//otherwise we have more days we can read in
-					tempDay = tempDay.getNext();
-				}
-			}
-			truck = truck.getNext();            //get the next truck in the list
-		}
-
-
-
-
-
-
-
-		TRTruck truckTemp = mainDepots.getFirst().getSubList().getHead();
-		for(int i = 0; i < TRProblemInfo.NUMBER_TRUCKS; i++) {
-			truckTemp = truckTemp.getNext();
-			TRDay day = truckTemp.getSubList().getFirst();
-			//get the first day from the days linked list in the truck
-			TRDay tempDay = day;
-//			for(int x = 0; x < TRProblemInfo.NUMBER_DAYS_SERVICED; x++) {
-			while(tempDay != truckTemp.getSubList().getTail()){
-
-//				day = day.getNext();
-				//get the next day
-
-				TRNodesList tempNLL = tempDay.getSubList();
-				tempNLL.getHead().getCoordinates().setIsCartesian(true);
-				tempNLL.getTail().getCoordinates().setIsCartesian(true);
-
-				tempNLL.setTruckType((TRTruckType) TRProblemInfo.truckTypes.get(0));
-				tempNLL.setFeasibility(new TRFeasibility(tempNLL.getTruckType().getMaxDuration(),
-						tempNLL.getTruckType().getMaxCapacity(), tempNLL));
-
-				tempDay = (TRDay) tempDay.getNext();
-			}
-		}
-
-
+		this.depotCoordinates = (new TRCoordinates(depotXCoordinates, depotYCoordinates, true));
 
 
 
@@ -400,9 +278,7 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 						break;    //the x coordinate for the node
 					case Y_COORDINATE:
 						yCoordinates = (double) currentCellContents;
-						tempCoordinates = new TRCoordinates(xCoordinates, yCoordinates, true);
-						tempCoordinates.setIsCartesian(true);
-						newShipment.setCoordinates(tempCoordinates);
+						newShipment.setCoordinates(new TRCoordinates(xCoordinates, yCoordinates, true));
 						newShipment.getCoordinates().setIsCartesian(true);
 						break;    //the y coordinate for the node
 					case 3:
@@ -474,14 +350,11 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 			//insert the just read shipment into the mainShipments list holds our all our problem info read in from Excel
 
 		}
-		int size = mainShipments.getSize();
-		return true;
-//		return true;
+		this.createHierarchy();
+
 		//whoo! done with one method in one class
 	}//READ DATA FROM FILE ENDS
 // HERE*******************<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-
 
 
 

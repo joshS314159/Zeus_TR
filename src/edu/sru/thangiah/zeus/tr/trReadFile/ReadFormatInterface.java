@@ -13,7 +13,7 @@ public interface ReadFormatInterface {
 
 
 public void readFiles() throws InvocationTargetException, InvalidFormatException, InstantiationException, IllegalAccessException, IOException;
-public boolean readDataFromFile() throws IOException, InvalidFormatException, InstantiationException, IllegalAccessException, InvocationTargetException;
+public void readDataFromFile() throws IOException, InvalidFormatException, InstantiationException, IllegalAccessException, InvocationTargetException;
 
 	public String getProblemPath();
 
