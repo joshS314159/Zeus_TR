@@ -650,8 +650,8 @@ public void writeComparisonResults(/*String filename*/) throws IOException {
 	double totalOldDistanceTravelled = 0;
 	double totalOldTimeTravelled = 0;
 	int dayCounter = 0;
-	double[] oldDistanceTravelled = new double[TRProblemInfo.MAX_NUMBER_OF_DAYS_IN_SCHEDULE];
-	double[] oldTimeTravelled = new double[TRProblemInfo.MAX_NUMBER_OF_DAYS_IN_SCHEDULE];
+	double[] oldDistanceTravelled = new double[TRProblemInfo.noOfDays];
+	double[] oldTimeTravelled = new double[TRProblemInfo.noOfDays];
 
 	for(int x = 0; x <= inputSheet.getLastRowNum(); x++){
 		inputRow = inputSheet.getRow(x);
@@ -730,7 +730,7 @@ public void writeComparisonResults(/*String filename*/) throws IOException {
 	cellCounter = 0;
 	TRDaysList daysList = mainDepots.getFirst().getSubList().getFirst().getSubList();
 
-	for(int x = 0; x < TRProblemInfo.NUMBER_DAYS_SERVICED; x++) {
+	for(int x = 0; x < TRProblemInfo.noOfDays; x++) {
 		outputRow = outputSheet.createRow(rowCounter++);
 		cellCounter = 0;
 		{

@@ -197,30 +197,147 @@ public TRTrucksList(final TRTrucksList copyMe) throws InstantiationException, Il
 	}
 }
 
+private TRDay[][] findLowestDemandDays(final TRShipment theShipment){
+	final int numberCombinations = theShipment.getNoComb();
+	int[] currentCombination;
+	final int numberDays = TRProblemInfo.noOfDays;
+	final int scheduledDay = 1;
+	TRDay[][] bestDayCombinations = new TRDay[numberCombinations][numberDays];
+
+
+	for(int combinationStepper = 0; combinationStepper < numberCombinations; combinationStepper++){
+		currentCombination = theShipment.getCurrentComb()[combinationStepper];
+
+		for(int dayNumberStepper = 0; dayNumberStepper < numberDays; dayNumberStepper++){
+			if(currentCombination[dayNumberStepper] == scheduledDay){
+				int bestDemand = 999999999;
+				TRDay bestDay = null;
+
+				for(int truckStepper = 0; truckStepper < this.getSize(); truckStepper++){
+					TRTruck currentTruck = (TRTruck) this.getAtIndex(truckStepper);
+					TRDaysList daysList = currentTruck.getSubList();
+					TRDay currentDay = (TRDay) daysList.getAtIndex(dayNumberStepper);
+					int currentDemand = (int) currentDay.getDemand();
+
+					if(currentDemand < bestDemand){
+						bestDemand = currentDemand;
+						bestDay = currentDay;
+					}
+				}
+				bestDayCombinations[combinationStepper][dayNumberStepper] = bestDay;
+			}
+		}
+	}
+	return bestDayCombinations;
+}
+
+
+
+private TRDay[] findLowestDemandCombination(final TRShipment theShipment, final TRDay[][] bestDaysForEachCombo){
+	int[] demandTotalForEachCombo = new int[bestDaysForEachCombo.length];
+	final int numberCombinations = theShipment.getNoComb();
+	final int numberDays = TRProblemInfo.noOfDays;
+
+	for(int i = 0; i < demandTotalForEachCombo.length; i++){
+		demandTotalForEachCombo[i] = 0;
+	}
+
+	for(int combinationStepper = 0; combinationStepper < numberCombinations; combinationStepper++){
+		for(int dayStepper = 0; dayStepper < numberDays; dayStepper++){
+			TRDay currentDay = bestDaysForEachCombo[combinationStepper][dayStepper];
+			if(currentDay != null){
+				demandTotalForEachCombo[combinationStepper] += currentDay.getDemand();
+			}
+		}
+	}
+
+	int bestDemand = 999999999;
+	TRDay[] bestCombination = null;
+	for(int i = 0; i < demandTotalForEachCombo.length; i++){
+		if(demandTotalForEachCombo[i] < bestDemand){
+			bestDemand = demandTotalForEachCombo[i];
+			bestCombination = bestDaysForEachCombo[i];
+		}
+	}
+	return bestCombination;
+}
+
+private int[] createProperVisitationFormat(final TRDay[] bestCombination){
+	int[] schedule = new int[bestCombination.length];
+	for(int i = 0; i < schedule.length; i++){
+		if(bestCombination[i] == null){
+			schedule[i] = 0;
+		}
+		else{
+			schedule[i] = 1;
+		}
+	}
+	return schedule;
+}
 
 public boolean insertShipment(final TRShipment theShipment) {
-	boolean status = false;
+	TRDay[][] bestDayCombinations = findLowestDemandDays(theShipment);
+	TRDay[] bestCombination = findLowestDemandCombination(theShipment, bestDayCombinations);
+	int[] properFormatSchedule = createProperVisitationFormat(bestCombination);
+	boolean[] bruteForceDays = new boolean[TRProblemInfo.noOfDays];
+	theShipment.setVisitComb(properFormatSchedule);
+	boolean status = true;
 
-	TRTruck truck = this.getFirst();
-	TRDaysList daysLL = null;
-
-//	double  test = tempDepotLL.getAttributes().getTotalDemand();
-	while(truck != this.getTail() && !status) {
-		//Get truck to insert the shipment
-		//while we have more depots
-
-		daysLL = truck.getSubList();
-		//get the trucks linked ist
-
-		status = daysLL.insertShipment(theShipment);
-		//insert the shipment into the trucks linked list
-//
-//		if(status) {
-//			break;    //if it inserted into the list okay then break
-//		}
-		truck = truck.getNext();
+	for(int i = 0; i < bruteForceDays.length; i++){
+		bruteForceDays[i] = false;
 	}
-	return status;    //return true if inserted OK
+
+	for (int i = 0; i < bestCombination.length; i++) {
+		if (bestCombination[i] != null) {
+			if(!bestCombination[i].insertShipment(theShipment)){
+				bruteForceDays[i] = true;
+			}
+//				status = status & bestCombination[i].insertShipment(theShipment);
+		}
+	}
+
+	for(int i = 0; i < bruteForceDays.length; i++){
+		if(bruteForceDays[i]){
+			TRTruck currentTruck = this.getFirst();
+			boolean isInserted = false;
+			while(currentTruck != this.getTail() && !isInserted){
+				TRDaysList daysList = currentTruck.getSubList();
+				TRDay currentDay = daysList.getAtIndex(i);
+				if(currentDay.insertShipment(theShipment)){
+					isInserted = true;
+				}
+				currentTruck = currentTruck.getNext();
+			}
+		}
+	}
+
+		return status;
+
+//
+//
+//
+//	boolean status = false;
+//
+//	TRTruck truck = this.getFirst();
+//	TRDaysList daysLL = null;
+//
+////	double  test = tempDepotLL.getAttributes().getTotalDemand();
+//	while(truck != this.getTail() && !status) {
+//		//Get truck to insert the shipment
+//		//while we have more depots
+//
+//		daysLL = truck.getSubList();
+//		//get the trucks linked ist
+//
+//		status = daysLL.insertShipment(theShipment);
+//		//insert the shipment into the trucks linked list
+////
+////		if(status) {
+////			break;    //if it inserted into the list okay then break
+////		}
+//		truck = truck.getNext();
+//	}
+//	return status;    //return true if inserted OK
 }
 
 

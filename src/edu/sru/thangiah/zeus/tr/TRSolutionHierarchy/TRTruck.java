@@ -126,13 +126,13 @@ public class TRTruck
 		String s = "#" + 1 + " "/* + " Time" + this.truckType.getMaxCapacity() + " Max Dist =" + this.truckType.getMaxDistance()*/;
 		return s;
 	}
-
-	public boolean insertShipment(final TRShipment theShipment) {
-		boolean status = false;
-
-		return this.getSubList().insertShipment(theShipment);
-	}//END INSERT_SHIPMENT *********<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<public TRTruck
-
+//
+//	public boolean insertShipment(final TRShipment theShipment) {
+//		boolean status = false;
+//
+//		return this.getSubList().insertShipment(theShipment);
+//	}//END INSERT_SHIPMENT *********<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<public TRTruck
+//
 
 // getNext() {
 

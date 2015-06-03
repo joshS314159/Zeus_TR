@@ -38,29 +38,6 @@ public class TRDay
 
 
     //CONSTUCTOR
-//this method creates a new day based
-//on passed attributes (usually more useful than the above
-//constructor)
-//	public PVRPDay(int nodes, int numberTrucks, int planningPeriod, float maxDistance, float maxDemand,
-//	               double depX, double depY, int dayNumber) {
-//
-//
-//		this.attributes = new PVRPAttributes();
-//
-//		this.nodes = nodes;
-//		this.numberTrucks = numberTrucks;
-//		this.planningPeriod = planningPeriod;
-//		this.maxDistance = maxDistance;
-//		this.maxDemand = maxDemand;
-//		this.dayNumber = dayNumber;
-//
-//		setNodesLinkedList(new PVRPNodesLinkedList(depX, depY));
-//
-//
-//		setAttributes(new PVRPAttributes());
-//
-//	}//CONSTRUCTOR ENDS
-//// HERE*******************<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
     public TRDay(final TRDay copyMe) throws IllegalAccessException, InstantiationException {
@@ -227,6 +204,11 @@ public class TRDay
     @Override
     public boolean removeThisObject() {
         return objectInList.removeThisObject();
+    }
+
+    public double getDemand(){
+        double demand = 0;
+        return this.getSubList().getTotalDemand();
     }
 }
 

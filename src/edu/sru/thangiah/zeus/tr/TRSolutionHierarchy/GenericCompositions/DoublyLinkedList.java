@@ -232,12 +232,12 @@ public class DoublyLinkedList<A extends DoublyLinkedListCoreInterface<B> & Doubl
 	@Override
 	public boolean insertAfterObject(final B insertMe, final B insertAfter) {
 		B theGeneric = outerClass.getHead();
-		while (!isEmpty() && isValidHeadTail()) {
-			theGeneric = theGeneric.getNext();
+		while (isValidHeadTail() && theGeneric != outerClass.getTail()) {
 			if (theGeneric == insertAfter) {
 				return insertAfter.insertAfterCurrent(insertMe);
 				//			return true;
 			}
+			theGeneric = theGeneric.getNext();
 		}
 		return false;
 	}

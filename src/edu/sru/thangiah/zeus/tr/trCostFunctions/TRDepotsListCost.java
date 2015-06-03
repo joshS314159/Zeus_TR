@@ -97,16 +97,17 @@ public void setTotalDistance(Object o) {
 public void calculateTotalsStats(Object o) {
 		setTotalDemand(o);
 	setTotalDistance(o);
-		setTotalCost(o);
+//		setTotalCost(o);
     setTotalTravelTime(o);
 }
 
 
 //CONSTRUCTOR
 public void calculateTotalsStats(Object o, final TRPenaltiesList penaltiesList) {
-    //	setTotalDemand(o);
+    	setTotalDemand(o);
     setTotalDistance(o);
-    setTotalCost(o);
+//    setTotalCost(o);
+	setTotalTravelTime(o);
     setPenaltiesList(penaltiesList);
 }
 

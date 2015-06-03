@@ -29,13 +29,13 @@ public class TRShipment
 //private TRShipment previous;
 //private TRShipment next;
 //private int        customerIndex;
-    private boolean canBeRouted = false;
+    private boolean canBeRouted = true;
     private TRAttributes attributes = new TRAttributes();
     private TRCoordinates homeDepotCoordinates;
     private TRCoordinates coordinates;
     //private int           numberOfBins;
     private boolean isTipCart;
-    private boolean[] daysVisited = new boolean[TRProblemInfo.NUMBER_DAYS_SERVICED];
+    private boolean[] daysVisited = new boolean[TRProblemInfo.noOfDays];
     private int buildingType;
     private int numberOfNearbyClasses;
     private int numberOfNearbyFoods;
@@ -59,8 +59,8 @@ public class TRShipment
         setHomeDepotCoordinates(new TRCoordinates());
         //	setFrequency();
         setFrequency(0);
-        daysVisited = new boolean[TRProblemInfo.NUMBER_DAYS_SERVICED];
-        for (int x = 0; x < TRProblemInfo.NUMBER_DAYS_SERVICED; x++) {
+        daysVisited = new boolean[TRProblemInfo.noOfDays];
+        for (int x = 0; x < TRProblemInfo.noOfDays; x++) {
             daysVisited[x] = false;
         }
 
@@ -108,11 +108,11 @@ public class TRShipment
 //	@Override
 
     public void setCurrentComb(final int[][] currentCombination, final int numberCombinations) {
-        int combinationTemp[][] = new int[numberCombinations][TRProblemInfo.NUMBER_DAYS_SERVICED];
+        int combinationTemp[][] = new int[numberCombinations][TRProblemInfo.noOfDays];
 
 
         for (int i = 0; i < numberCombinations; i++) {
-            for (int j = 0; j < TRProblemInfo.NUMBER_DAYS_SERVICED; j++) {
+            for (int j = 0; j < TRProblemInfo.noOfDays; j++) {
                 combinationTemp[i][j] = currentCombination[i][j];
             }
         }
@@ -444,27 +444,27 @@ public class TRShipment
             //		isVisitMonday = true;
             daysVisited[0] = true;
             //		getFrequency();
-            setFrequency(countFrequency() + 1);
+//            setFrequency(countFrequency() + 1);
         } else if (visitationDaySymbol.equals("T")) {
             //		isVisitTuesday = true;
             daysVisited[1] = true;
-            setFrequency(countFrequency() + 1);
+//            setFrequency(countFrequency() + 1);
         } else if (visitationDaySymbol.equals("W")) {
             //		isVisitWednesday = true;
             daysVisited[2] = true;
-            setFrequency(countFrequency() + 1);
+//            setFrequency(countFrequency() + 1);
         } else if (visitationDaySymbol.equals("R")) {
             //		isVisitThursday = true;
             daysVisited[3] = true;
-            setFrequency(countFrequency() + 1);
+//            setFrequency(countFrequency() + 1);
         } else if (visitationDaySymbol.equals("F")) {
             //		isVisitFriday = true;
             daysVisited[4] = true;
-            setFrequency(countFrequency() + 1);
+//            setFrequency(countFrequency() + 1);
         } else if (visitationDaySymbol.equals("Sat")) {
             //		isVisitSaturday = true;
             daysVisited[5] = true;
-            setFrequency(countFrequency() + 1);
+//            setFrequency(countFrequency() + 1);
         } else if (visitationDaySymbol.equals("None")) {
         } else {
             System.out.println("CAN'T FIND VALID DAY");
@@ -484,11 +484,11 @@ public class TRShipment
     //if we are sticking to bound days, this method is to adjust for a 5 day schedule from the original 6 day one
     public void setVisitationSchedule() {
         //if we are running a 5 day schedule, saturday is never visited it. remove it from daysToVisitStop
-        if (TRProblemInfo.NUMBER_DAYS_SERVICED != TRProblemInfo.MAX_NUMBER_OF_DAYS_IN_SCHEDULE && !TRProblemInfo.ARE_DAYS_BOUND) {
+        if (TRProblemInfo.noOfDays != TRProblemInfo.noOfDays && !TRProblemInfo.areDaysFlexible) {
             if (daysToVisitStop.contains("Sat")) {
                 daysToVisitStop.remove("Sat");
                 //if a shipment requires a visit all 6 days, we can only visit 5 days in a 5 day schedule, so decrease its frequency accordingly
-                if (this.getFrequency() == TRProblemInfo.MAX_NUMBER_OF_DAYS_IN_SCHEDULE)
+                if (this.getFrequency() == TRProblemInfo.noOfDays)
                     this.setFrequency(this.getFrequency() - 1);
                     //if we do not need to visit the stop all days, but saturday is still on the schedule, check to see
                     //if friday is on the schedule. If not, schedule it.
@@ -517,7 +517,7 @@ public class TRShipment
     //method used when creating an entirely new schedule for a shipment
     public void makeCustomVisitationSchedule() {
         //variable dictionary
-        int weekLength = TRProblemInfo.NUMBER_DAYS_SERVICED;
+        int weekLength = TRProblemInfo.noOfDays;
         int[] schedule = new int[weekLength];
         int period = weekLength / this.getVisitFrequency();            //a shipment requires a number of visits equal to its frequency. taking the length of our schedule and dividing it by the
         //frequency gives us a period during which at least 1 visitation is required.

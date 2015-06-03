@@ -44,7 +44,13 @@ public class TRFeasibility
 private TRNodesList thisRoute;
 
 
+public void setMaxDistance(final double maxDistance){
+	this.maxDistance = maxDistance;
+}
 
+public void setMaxDemand(final double maxDemand){
+	this.maxCapacity = maxDemand;
+}
 
 //CONSTRUCTOR
 public TRFeasibility() {
@@ -105,18 +111,18 @@ public boolean isFeasible() {
 		//ostrich algorithm
 	}
 
-	currentDistance = edu.sru.thangiah.zeus.pvrp.PVRPProblemInfo.nodesLLLevelCostF.getTotalDistance(thisRoute);
-//	currentDemand = TRProblemInfo.nodesLLLevelCostF.getTotalDemand(thisRoute);		no total demand for TR
+	currentDistance = TRProblemInfo.nodesLLLevelCostF.getTotalDistance(thisRoute);
+	currentDemand = TRProblemInfo.nodesLLLevelCostF.getTotalDemand(thisRoute);
 
 
-//	if((currentDistance <= maxDuration) /*&& (currentDemand <= maxCapacity)*/) {
+
+
+	if((currentDistance <= maxDistance && currentDemand <= maxCapacity) /*&& (currentDemand <= maxCapacity)*/) {
 		return true;
-		//if our current distance and demand are NOT within the restraints
-//	}
-//	else {
-		//else, our trucks are good
-//		return false;
-//	}
+	}
+	return false;
+
+//	return true;
 }//END IS_FEASIBLE *******************<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 

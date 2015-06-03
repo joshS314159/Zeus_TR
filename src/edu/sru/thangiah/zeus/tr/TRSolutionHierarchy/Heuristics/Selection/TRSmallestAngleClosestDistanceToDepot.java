@@ -64,7 +64,7 @@ public TRShipment getSelectShipment(final TRDepotsList depotsList, final TRDepot
 		}
 
 		//if the shipment is assigned, skip it
-		if(temp.getIsAssigned()) {
+		if(temp.getIsAssigned() || !temp.getCanBeRouted()) {
 			if(isDiagnostic) {
 				System.out.println("has been assigned");
 			}

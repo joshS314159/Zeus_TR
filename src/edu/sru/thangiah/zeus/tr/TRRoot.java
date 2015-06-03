@@ -89,6 +89,7 @@ public class TRRoot {
         TRProblemInfo.numDepots = 1;
         TRProblemInfo.addPenaltyPerBin = true;
         TRProblemInfo.mainPenalties = new TRPenaltiesList();
+
     }
 //            throws Exception {
 //
@@ -105,10 +106,19 @@ public class TRRoot {
         TRProblemInfo.comparisonOutputFile = "PVRP_Comparison_Results.xlsx";
         TRProblemInfo.longSolutionOutputFile = "PVRP_All_Long_Solutions.xlsx";
         TRProblemInfo.shortSolutionOutputFile = "PVRP_All_Short_Solutions.xlsx";
-        TRProblemInfo.ARE_DAYS_BOUND = true;
-        TRProblemInfo.problemFileName = "p20.xlsx";
+        TRProblemInfo.problemFileName = "p5.xlsx";
         TRProblemInfo.problemFormatType = "PVRP";
-        new TR(/*"TrashRoutes-Frequency.xlsx", */false, new TRClosestDistanceToDepot(), PVRPReadFormat.class, PVRPWriteFormat.class);
+
+//        new TR(/*"TrashRoutes-Frequency.xlsx", */false, new TRClosestDistanceToDepot(), PVRPReadFormat.class, PVRPWriteFormat.class);
+
+        for(int i = 5; i <= 5; i++) {
+            TRProblemInfo.problemFileName = "p" + i + ".xlsx";
+            new TR(/*"TrashRoutes-Frequency.xlsx", */false, new TRClosestDistanceToDepot(), PVRPReadFormat.class, PVRPWriteFormat.class);
+        }
+//        for(int i = 1; i <= 10; i++){
+//            TRProblemInfo.problemFileName = "pr" + i + ".xlsx";
+//            new TR(/*"TrashRoutes-Frequency.xlsx", */false, new TRClosestDistanceToDepot(), PVRPReadFormat.class, PVRPWriteFormat.class);
+//        }
     }
 
     public void TRFormat() throws IllegalAccessException, InvalidFormatException, IOException, InstantiationException, NoSuchMethodException, InvocationTargetException {
@@ -127,6 +137,8 @@ public class TRRoot {
         TRProblemInfo.penaltiesInputFile = "Penalty.xlsx";
         TRProblemInfo.delayTypesInputFile = "DelayTimes.xlsx";
         TRProblemInfo.problemFormatType = "TR";
+        TRProblemInfo.noOfDays = 6;
+        TRProblemInfo.areDaysFlexible = true;
 
 
 

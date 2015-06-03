@@ -8,6 +8,7 @@ import edu.sru.thangiah.zeus.core.Settings;
 import edu.sru.thangiah.zeus.gui.ZeusGui;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Insertion.TRGreedyInsertion;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.*;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Insertion.TRLowestDistanceInsertion;
 import edu.sru.thangiah.zeus.tr.trQualityAssurance.TRQA;
 import edu.sru.thangiah.zeus.tr.trReadFile.PVRPReadFormat;
 import edu.sru.thangiah.zeus.tr.trReadFile.ReadFormat;
@@ -133,6 +134,7 @@ public class TR {
         TRProblemInfo.selectShipType = selectionTypeObject;
 
 
+//        TRProblemInfo.insertShipType = new TRLowestDistanceInsertion();
         TRProblemInfo.insertShipType = new TRGreedyInsertion();
         Settings.printDebug(Settings.COMMENT, TRGreedyInsertion.WhoAmI());
         //Sets up our shipment insertion type -- we only have one hueristic for this
@@ -274,12 +276,13 @@ public class TR {
                     Settings.printDebug(Settings.COMMENT, "The Shipment: <" + theShipment.getNodeNumber() +
                             "> cannot be routed " +
                             "***********************************************");
+                    theShipment.setCanBeRouted(false);
 
                 } else {
                     Settings.printDebug(Settings.COMMENT, "The Shipment: <" + theShipment.getNodeNumber() +// " " + theShipment +
                             "> was routed");
                     theShipment.setIsAssigned(true);    //this shipment has been assigned and we won't go back to it
-                    theShipment.setCanBeRouted(true);
+//                    theShipment.setCanBeRouted(true);
                 }
             }
         }

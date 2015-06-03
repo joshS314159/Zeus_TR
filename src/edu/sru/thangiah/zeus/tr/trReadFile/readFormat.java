@@ -109,9 +109,13 @@ public void createHierarchy(){
 						TRTruckType tempTruckType = new TRTruckType();
 						tempTruckType.setMaxDistance(maxTruckDistance);
 						tempTruckType.setMaxCapacity(maxTruckDemand);
-						daysList.getLast().getSubList().setTruckType(new TRTruckType());
+						TRNodesList nodesList = daysList.getLast().getSubList();
+						nodesList.setTruckType(new TRTruckType());
+						nodesList.getFeasibility().setMaxDemand(maxDayDemand);
+						nodesList.getFeasibility().setMaxDistance(maxDayDistance);
+//						daysList.getHead().getSubList().setTruckType(new TRTruckType());
+//						daysList.getTail().getSubList().setTruckType(new TRTruckType());
 						TRProblemInfo.truckTypes.add(tempTruckType);
-
 					}
 					else{
 						//code here for multiple truck types

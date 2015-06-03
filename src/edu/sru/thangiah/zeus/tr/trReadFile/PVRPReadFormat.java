@@ -1,10 +1,8 @@
 package edu.sru.thangiah.zeus.tr.trReadFile;
 
 import edu.sru.thangiah.zeus.tr.TRCoordinates;
-import edu.sru.thangiah.zeus.tr.TRFeasibility;
 import edu.sru.thangiah.zeus.tr.TRProblemInfo;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.*;
-import edu.sru.thangiah.zeus.tr.TRTruckType;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -68,7 +66,7 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 		int list[] = new int[TRProblemInfo.MAX_COMBINATIONS];
 		//this variable holds various day visit combinations that each node could find acceptable
 
-		int currentCombination[][] = new int[TRProblemInfo.MAX_HORIZON][TRProblemInfo.MAX_COMBINATIONS];
+		int currentCombination[][] = new int[TRProblemInfo.MAX_HORIZON*3][TRProblemInfo.MAX_COMBINATIONS];
 		//contains the current day visit combination selected for the node
 		TRDaysList mainDaysTemp = new TRDaysList();
 		//contains a temporary list of our days
@@ -103,22 +101,23 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 			{                                            //steps through each cell of row 0
 				case NUMBER_DEPOTS:
 					numberDepots = (int) currentCellValue;
-					TRProblemInfo.NUMBER_DEPOTS = numberDepots;    //Set the number of depots to 1 for this problem
+					TRProblemInfo.numDepots = numberDepots;    //Set the number of depots to 1 for this problem
 					this.numberDepotsToMake = numberDepots;
 					break;    //this cell contains the number of depots (all our problems are 1)
 				case NUMBER_VEHICLES:
 					numberOfVehicles = (int) currentCellValue;
-					TRProblemInfo.NUMBER_TRUCKS = numberOfVehicles;    //number of vehicles
+					TRProblemInfo.noOfVehs = numberOfVehicles;    //number of vehicles
 					this.numberTrucksToMake = numberOfVehicles;
 					break;    //reads in the number of vehicles
 				case NUMBER_NODES:
 					numberOfNodes = (int) currentCellValue;
-					TRProblemInfo.NUMBER_OF_NODES = numberOfNodes;    //number of shipments
+					TRProblemInfo.numCustomers = numberOfNodes;    //number of shipments
 					break;    //reads in the number of nodes
 				case DAYS_SERVICED_OVER:
 					daysServicedOver = (int) currentCellValue;
-					TRProblemInfo.NUMBER_DAYS_SERVICED = daysServicedOver;    //number of days (horizon) or number of depots for PVRP
+					TRProblemInfo.noOfDays = daysServicedOver;    //number of days (horizon) or number of depots for PVRP
 					this.numberDaysToMake = daysServicedOver;
+					TRProblemInfo.noOfDays = daysServicedOver;
 					break;    //reads in the horizon/number of days/days serviced over
 
 				//PVRPProblem info is a class that holds various bits of information related to our problem

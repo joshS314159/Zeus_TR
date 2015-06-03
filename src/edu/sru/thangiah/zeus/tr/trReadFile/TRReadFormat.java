@@ -1,6 +1,5 @@
 package edu.sru.thangiah.zeus.tr.trReadFile;
 
-import com.sun.tools.javac.util.ArrayUtils;
 import edu.sru.thangiah.zeus.tr.TRPenalty;
 import edu.sru.thangiah.zeus.tr.TRProblemInfo;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.*;
@@ -210,7 +209,7 @@ public void readDataFromFile(/*final String TRFileName*/)
 		throws IOException, InvalidFormatException, InstantiationException, IllegalAccessException,
 		InvocationTargetException {
 
-	this.numberDaysToMake = TRProblemInfo.NUMBER_DAYS_SERVICED;
+	this.numberDaysToMake = TRProblemInfo.noOfDays;
 	this.numberTrucksToMake = 1;
 	this.numberDepotsToMake = 1;
 
@@ -272,6 +271,9 @@ public void readDataFromFile(/*final String TRFileName*/)
 					String pointName = cell.getStringCellValue();
 					double point = Double.valueOf(pointName);
 					newShipment.setNodeNumber((int) point);
+//					if(point == 19){
+//						System.out.print("RFRR");
+//					}
 					//					newShipment.setNodeNumber(test);
 					break;
 				case LATITUDE:
@@ -352,58 +354,55 @@ public void readDataFromFile(/*final String TRFileName*/)
 		}
 
 		if(newShipment.getVisitFrequency() > 0) {
-
-			int[] combinations = new int[TRProblemInfo.MAX_COMBINATIONS];
-			int currentCombination[][] = new int[TRProblemInfo.MAX_HORIZON+5][TRProblemInfo.MAX_COMBINATIONS];
-			int combinationCounter = 0;
-			final boolean[] visitationList = newShipment.getDaysVisited();
-			boolean[] editableList = newShipment.getDaysVisited();
-			boolean[] shiftedList = new boolean[visitationList.length];
-			boolean isDoneShifting = false;
-			while(!isDoneShifting){
+			if(TRProblemInfo.areDaysFlexible) {
+				int[] combinations = new int[TRProblemInfo.MAX_COMBINATIONS];
+				int currentCombination[][] = new int[TRProblemInfo.MAX_HORIZON][TRProblemInfo.MAX_COMBINATIONS];
+				int combinationCounter = 0;
+				final boolean[] visitationList = Arrays.copyOf(newShipment.getDaysVisited(), newShipment.getDaysVisited().length);
+				boolean[] editableList = Arrays.copyOf(newShipment.getDaysVisited(), newShipment.getDaysVisited().length);
+				boolean[] shiftedList = new boolean[visitationList.length];
+				boolean isDoneShifting = false;
+				while (!isDoneShifting) {
 //			for(int j = 0; j < this.numberDaysToMake; j++){
-				shiftedList[0] = editableList[editableList.length - 1];
-				for(int i = 1; i < editableList.length; i++) {
-					shiftedList[i] = editableList[i - 1];
+					shiftedList[0] = editableList[editableList.length - 1];
+					for (int i = 1; i < editableList.length; i++) {
+						shiftedList[i] = editableList[i - 1];
+					}
+
+					currentCombination[combinationCounter] = createVisitationCombination(shiftedList);
+					combinationCounter++;
+
+					for (int i = 0; i < editableList.length; i++) {
+						editableList[i] = shiftedList[i];
+					}
+
+					boolean status = true;
+					for (int i = 0; i < editableList.length; i++) {
+
+						status = status && (visitationList[i] == shiftedList[i]);
+					}
+					isDoneShifting = status;
 				}
 
-				currentCombination[combinationCounter] = createVisitationCombination(shiftedList);
-				combinationCounter++;
+				newShipment.setCurrentComb(currentCombination, combinationCounter);
+//				newShipment.chooseRandomVisitCombination();
+				newShipment.setNoComb(combinationCounter);
 
-				for(int i = 0; i < editableList.length; i++){
-					editableList[i] = shiftedList[i];
-				}
-
-				boolean status = true;
-				for(int i = 0; i < editableList.length; i++){
-
-//					if(visitationList[i] != shiftedList[i]){
-//						break;
-//					}
-					status = status && (visitationList[i] == shiftedList[i]);
-				}
-				isDoneShifting = status;
-
-
-
-
+				mainShipments.insertAfterLastIndex(newShipment);
+			}
+			else{
+				final int numberCombinations = 1;
+				int[] visitation = createVisitationCombination(newShipment.getDaysVisited());
+				int[][] currentCombination = new int[TRProblemInfo.MAX_HORIZON][TRProblemInfo.MAX_COMBINATIONS];
+				currentCombination[0] = visitation;
+				newShipment.setCurrentComb(currentCombination, numberCombinations);
+				newShipment.setNoComb(numberCombinations);
+				mainShipments.insertAfterLastIndex(newShipment);
 			}
 
-//			for(int l = 0; l < combinationCounter; l++) {
-//				currentCombination[l] = mainShipments.getCurrentComb(combinations, l, this.numberDaysToMake);
-//			}
-			newShipment.setCurrentComb(currentCombination, combinationCounter);
-			newShipment.chooseRandomVisitCombination();
-			newShipment.setNoComb(combinationCounter);
-
-
-//			if(newShipment.getVisitFrequency() != 0) {
-				mainShipments.insertAfterLastIndex(newShipment);
-
-//			}
 		}
 	}
-	mainShipments.makeSchedule();
+//	mainShipments.makeSchedule();
 	System.out.println("Setting up depot");
 
 	this.depotCoordinates = mainShipments.getLast().getCoordinates();

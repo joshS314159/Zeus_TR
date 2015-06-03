@@ -267,7 +267,7 @@ public double getTotalDemand() {
 	//the head (depot) doesn't have a demand so we
 	//can skip it
 
-	while(theNode.getNext() != this.getTail() || theNode.getNext() != null) {
+	while(theNode.getNext() != this.getTail() && theNode.getNext() != null) {
 		theNode = theNode.getNext();
 		//until we reach the tail
 		demand += theNode.getDemand();
