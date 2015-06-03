@@ -106,11 +106,11 @@ public void createHierarchy(){
 					daysList.getLast().getSubList().setStartEndPoints(depotCoordinates, depotCoordinates);
 
 					if(!isMultipleTruckTypes){
-						TRTruckType tempTruckType = new TRTruckType();
+						TRTruckType tempTruckType = new TRTruckType(maxTruckDistance, maxTruckDemand);
 						tempTruckType.setMaxDistance(maxTruckDistance);
 						tempTruckType.setMaxCapacity(maxTruckDemand);
 						TRNodesList nodesList = daysList.getLast().getSubList();
-						nodesList.setTruckType(new TRTruckType());
+						nodesList.setTruckType(tempTruckType);
 						nodesList.getFeasibility().setMaxDemand(maxDayDemand);
 						nodesList.getFeasibility().setMaxDistance(maxDayDistance);
 //						daysList.getHead().getSubList().setTruckType(new TRTruckType());

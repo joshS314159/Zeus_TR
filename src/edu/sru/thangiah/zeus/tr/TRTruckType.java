@@ -4,6 +4,7 @@ package edu.sru.thangiah.zeus.tr;
 
 
 import edu.sru.thangiah.zeus.core.TruckType;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRTruck;
 
 
 /**
@@ -41,6 +42,10 @@ public class TRTruckType
 public TRTruckType() {
 }
 
+	public TRTruckType(final float maxDistance, final float maxDemand){
+		this.setMaxCapacity(maxDemand);
+		this.setMaxDistance(maxDistance);
+	}
 
 
 
