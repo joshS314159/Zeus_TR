@@ -35,8 +35,6 @@ public TRPenaltiesList() {
 public void setUpHeadTail() {
 	this.head = new TRPenalty();
 	this.tail = new TRPenalty();
-	//	setHead((ObjectInList) new TRPenalty());
-	//	setTail((ObjectInList) new TRPenalty());
 	linkHeadTail();
 }
 

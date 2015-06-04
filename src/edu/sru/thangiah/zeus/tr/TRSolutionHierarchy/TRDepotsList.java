@@ -25,11 +25,6 @@ public class TRDepotsList
 		implements java.io.Serializable, Cloneable,// DoublyLinkedList
 		DoublyLinkedListInterface<TRDepot>, DoublyLinkedListCoreInterface<TRDepot> {
 
-//VARIABLES
-//private TRDepot      head;     //takes precedence over the base class head and tail
-//private TRDepot      tail;
-//    private TRAttributes  attributes = new TRAttributes();     //takes precedence over the base class attributes
-
 
 private DoublyLinkedList<TRDepotsList, TRDepot> doublyLinkedList = new DoublyLinkedList<>(this, TRDepot.class);
 
@@ -41,15 +36,9 @@ public TRDepotsList() {
 
 @Override
 public void setUpHeadTail() {
-//	setHead(new TRDepot());
-//	setTail(new TRDepot());
-//	this.head = new TRDepot();
-//	this.tail = new TRDepot();
 	super.setHead(new TRDepot());
 	super.setTail(new TRDepot());
 	super.setAttributes(null);
-	//	setHead((ObjectInList) new TRDepot());
-	//	setTail((ObjectInList) new TRDepot());
 	linkHeadTail();
 }
 
@@ -79,7 +68,6 @@ public void setHead(final TRDepot head) {
 //link the head and the tail together
 public void linkHeadTail() {
 	doublyLinkedList.linkHeadTail();
-//	getHead().linkAsHeadTail(getTail());
 }//END LINK_HEAD_TAIL *********<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 @Override
@@ -216,7 +204,6 @@ public boolean insertShipment(final TRShipment theShipment) {
 	TRDepot depot = this.getFirst();
 	TRTrucksList truckLL = null;
 
-//	double  test = tempDepotLL.getAttributes().getTotalDemand();
 	while(depot != this.getTail() && !status) {
 		//Get truck to insert the shipment
 		//while we have more depots
@@ -227,10 +214,6 @@ public boolean insertShipment(final TRShipment theShipment) {
 
 		status = truckLL.insertShipment(theShipment);
 		//insert the shipment into the trucks linked list
-//
-//		if(status) {
-//			break;    //if it inserted into the list okay then break
-//		}
 		depot = depot.getNext();
 	}
 	return status;    //return true if inserted OK
@@ -455,10 +438,8 @@ public void writeOutData(FileOutputStream out)
 				cell.setCellValue(theDay.getAttributes().getTotalDistance());
 
 				cell = row.createCell(columnCounter++);
-				//				cell.setCellValue(theDay.getMaxDemand());
 
 				cell = row.createCell(columnCounter++);
-				//				cell.setCellValue(theDay.getMaxDistance());
 
 				cell = row.createCell(columnCounter++);
 				cell.setCellValue(theDay.getSubList().getSize() + 2);

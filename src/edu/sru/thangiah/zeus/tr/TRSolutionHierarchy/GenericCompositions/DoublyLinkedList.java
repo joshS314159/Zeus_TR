@@ -9,16 +9,20 @@ import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.*;
  */
 public class DoublyLinkedList<A extends DoublyLinkedListCoreInterface<B> & DoublyLinkedListInterface<B>, B extends ObjectInListInterface<B> & ObjectInListCoreInterface<B>> implements DoublyLinkedListInterface<B> {
 
-	private Class<B> newA;
+	private Class<B> newB;
 	private A outerClass;
 
-	public DoublyLinkedList(final A outerClass, final Class<B> newA){
-		this.newA = newA;
+
+	public DoublyLinkedList(final A outerClass, final Class<B> newB){
+		this.newB = newB;
 		this.outerClass = outerClass;
 	}
 
+
+
+
 	public B getNewA() throws IllegalAccessException, InstantiationException {
-		return newA.newInstance();
+		return newB.newInstance();
 	}
 
 
@@ -27,15 +31,11 @@ public class DoublyLinkedList<A extends DoublyLinkedListCoreInterface<B> & Doubl
 	public void setUpHeadTail() throws InstantiationException, IllegalAccessException {
 		outerClass.setHead(getNewA());
 		outerClass.setTail(getNewA());
-//		super.setAttributes(null);
-		//	setHead((A) new TRDepot());
-		//	setTail((A) new TRDepot());
 		linkHeadTail();
 	}
 
 	@Override
 	public void linkHeadTail() {
-//		outerClass.link
 		outerClass.getHead().linkAsHeadTail(outerClass.getTail());
 	}
 
@@ -46,19 +46,8 @@ public class DoublyLinkedList<A extends DoublyLinkedListCoreInterface<B> & Doubl
 	public void setUpHeadTail(final B head, final B tail) {
 		outerClass.setHead(head);
 		outerClass.setTail(tail);
-//	this.head = new TRDepot();
-//	this.tail = new TRDepot();
 		linkHeadTail();
 	}
-//
-//@Override
-//public boolean emptyList() {
-//this.getHead().setNext((ObjectInList) this.getTail());
-//this.getTail().setPrevious(this.getHead());
-//
-//this.getHead().setPrevious(null);
-//this.getTail().setNext((ObjectInList) null);
-//}
 
 
 @Override
@@ -68,7 +57,6 @@ public class DoublyLinkedList<A extends DoublyLinkedListCoreInterface<B> & Doubl
 			return null;
 		}
 
-//		outerClass.getHead().getNext()
 		return outerClass.getHead().getNext();
 	}
 

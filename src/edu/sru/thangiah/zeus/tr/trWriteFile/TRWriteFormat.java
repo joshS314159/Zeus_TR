@@ -312,7 +312,7 @@ public void writeLongSolution(/*String file*/) throws IOException {
 
 						writeToNewCell(row, columnCounter++, previousCoordinates.calculateDistanceThisMiles(theShipment.getCoordinates()));
 
-						writeToNewCell(row, columnCounter++, theShipment.countFrequency());
+						writeToNewCell(row, columnCounter++, theShipment.getFrequency());
 					}
 
 

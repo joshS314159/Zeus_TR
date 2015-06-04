@@ -16,11 +16,6 @@ public class TRNode
         ObjectInListInterface<TRNode>, ObjectInListCoreInterface<TRNode>, ContainsSubObjectInterface<TRShipment> {
 
 
-    // {
-
-    //	private TRShipment theShipment = new TRShipment();
-    //private TRNode        next;
-//private TRNode        previous;
     private TRAttributes attributes = new TRAttributes();
     private TRCoordinates homeDepotCoordinates;
 
@@ -36,18 +31,15 @@ public class TRNode
         setShipment(new TRShipment(copyMe.getShipment()));
         setAttributes(new TRAttributes(copyMe.getAttributes()));
         setHomeDepotCoordinates(new TRCoordinates(copyMe.getHomeDepotCoordinates()));
-        //	setSubList(new TRNodesList(null));
         setHomeDepotCoordinates(new TRCoordinates(copyMe.getHomeDepotCoordinates()));
         setSubobject(new TRShipment());
-//		setAttributes(new TRAttributes());
     }
 
 
     public TRNode(final TRCoordinates homeDepotCoordinates) {
         setAttributes(new TRAttributes());
         setShipment(new TRShipment());
-        //	set
-        //	setHomeDepotCoordinates(homeDepotCoordinates);
+
     }
 
 
@@ -155,11 +147,6 @@ public class TRNode
 
 
 
-//    @Override
-//    public boolean isSubListEmpty() {
-//        return subObject.;
-//    }
-
 
     @Override
     public TRShipment getSubObject() {
@@ -168,7 +155,6 @@ public class TRNode
 
     @Override
     public void setSubobject(TRShipment setMe) {
-//        subobject.setSub
         subObject.setSubobject(setMe);
     }
 

@@ -53,7 +53,7 @@ public TRShipment getSelectShipment(final TRDepotsList depotsList, final TRDepot
 		}
 
 		//if the shipment is assigned, skip it
-		if(temp.getIsAssigned() || !temp.getCanBeRouted()) {
+		if(temp.getIsAssigned()) {
 			if(isDiagnostic) {
 				System.out.println("has been assigned");
 			}
@@ -61,6 +61,13 @@ public TRShipment getSelectShipment(final TRDepotsList depotsList, final TRDepot
 			temp = temp.getNext();
 
 			continue;
+		}
+
+		if(!temp.getCanBeRouted()){
+//			System.out.println("SHIPMENT CANNOT CURRENTLY BE ROUTED>>>>>>>>>>>>>>");
+			temp = temp.getNext();
+			continue;
+
 		}
 		/** @todo Associate the quadrant with the distance to get the correct shipment.
 		 * Set up another insertion that takes the smallest angle and the smallest distance */

@@ -15,12 +15,12 @@ public interface ReadFormatInterface {
 public void readFiles() throws InvocationTargetException, InvalidFormatException, InstantiationException, IllegalAccessException, IOException;
 public void readDataFromFile() throws IOException, InvalidFormatException, InstantiationException, IllegalAccessException, InvocationTargetException;
 
-	public String getProblemPath();
+	String getProblemPath();
 
-	public void setProblemPath(final String problemPath);
+	void setProblemPath(final String problemPath);
 
-	public String getProblemFileName();
+	String getProblemFileName();
 
-	public void setProblemFileName(final String problemFileName);
+	void setProblemFileName(final String problemFileName);
 
 }

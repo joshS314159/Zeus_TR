@@ -115,22 +115,11 @@ private float geographicDistanceCalculator(double lat1, double lng1, double lat2
 	//https://stackoverflow.com/questions/837872/calculate-distance-in-meters-when-you-know-longitude-and-latitude-in-java
 	if(!isCartesian) {
 		return (float) distVincenty(lat1, lng1, lat2, lng2);
-//		double earthRadius = 3963.1676; //miles
-//		double dLat = Math.toRadians(lat2 - lat1);
-//		double dLng = Math.toRadians(lng2 - lng1);
-//		double a =
-//				Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) *
-//						Math.sin(dLng / 2) * Math.sin(dLng / 2);
-//		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-//		float dist = (float) (earthRadius * c);
-//
-//		return dist;
 	}
 	return (float) -1;
 }
 
 
-//private float geographicDistanceCalculateAccurate(double lat1, double lon1, double lat2, double lon 2){
 	/**
 	 * Calculates geodetic distance between two points specified by latitude/longitude using Vincenty inverse formula
 	 * for ellipsoids
@@ -172,7 +161,7 @@ private float geographicDistanceCalculator(double lat1, double lng1, double lat2
 			cosSqAlpha = 1 - sinAlpha * sinAlpha;
 			cos2SigmaM = cosSigma - 2 * sinU1 * sinU2 / cosSqAlpha;
 			if (Double.isNaN(cos2SigmaM))
-				cos2SigmaM = 0; // equatorial line: cosSqAlpha=0 (§6)
+				cos2SigmaM = 0; // equatorial line: cosSqAlpha=0 (ï¿½6)
 			double C = f / 16 * cosSqAlpha * (4 + f * (4 - 3 * cosSqAlpha));
 			lambdaP = lambda;
 			lambda = L + (1 - C) * f * sinAlpha
@@ -207,43 +196,6 @@ private float cartesianDistanceCalculator(final TRCoordinates point){
 
 
 
-//
-//private float calculateDistanceThisKilometers(final TRCoordinates point) {
-//	if(!isCartesian) {
-//		final double kilometersUnitMultiplier = 6378.10;
-//		return calculateDistance(point, kilometersUnitMultiplier);
-//	}
-//	return (float) -1;
-//}
-//
-
-
-
-//private float calculateDistance(final TRCoordinates point, final double radiusOfEarthInUnits) {
-//	//		https://stackoverflow.com/questions/27928/how-do-i-calculate-distance-between-two-b-a
-//	// -points?rq=1
-//
-//	if(!isCartesian) {
-//		double bA = this.getLatitude();
-//		double bB = point.getLatitude();
-//
-//		double aA = this.getLongitude();
-//		double aB = point.getLongitude();
-//
-//		double latDistance = Math.toRadians(bA - bB);
-//		double lngDistance = Math.toRadians(aA - aB);
-//
-//		double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2) +
-//				Math.cos(Math.toRadians(bA)) * Math.cos(Math.toRadians(bB)) * Math.sin(lngDistance / 2) *
-//						Math.sin(lngDistance / 2);
-//
-//		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-//
-//		return Math.round(radiusOfEarthInUnits * c);
-//	}
-//	return (float) -1;
-//}
-
 
 
 
@@ -274,9 +226,5 @@ public double calculateAngleBearing(final TRCoordinates point) {
 
 
 
-//
-//public boolean isValidCoordinates(final TRCoordinates coordinates) {
-//	return isValidCoordinates(coordinates.getA(), coordinates.getB());
-//}
 
 }

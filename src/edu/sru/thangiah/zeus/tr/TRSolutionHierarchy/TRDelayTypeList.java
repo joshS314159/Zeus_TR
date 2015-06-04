@@ -13,7 +13,6 @@ public class TRDelayTypeList implements //DoublyLinkedList
 //VARIABLES
 private TRDelayType head;     //takes precedence over the base class head and tail
 private TRDelayType tail;
-//    private TRAttributes attributes = new TRAttributes();     //takes precedence over the base class attributes
 private DoublyLinkedList<TRDelayTypeList, TRDelayType> doublyLinkedList = new DoublyLinkedList<>(this, TRDelayType
 		.class);
 
@@ -27,8 +26,6 @@ public TRDelayTypeList() {
 public void setUpHeadTail() {
 	this.head = new TRDelayType();
 	this.tail = new TRDelayType();
-	//	setHead((ObjectInList) new TRDelayType());
-	//	setTail((ObjectInList) new TRDelayType());
 	linkHeadTail();
 }
 

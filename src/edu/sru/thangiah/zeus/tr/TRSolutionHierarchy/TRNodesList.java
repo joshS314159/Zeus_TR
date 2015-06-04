@@ -18,16 +18,6 @@ public class TRNodesList
 		implements java.io.Serializable, Cloneable,// DoublyLinkedList {
 		DoublyLinkedListInterface<TRNode>, DoublyLinkedListCoreInterface<TRNode> {
 
-
-//private TRNode       head;
-//private TRNode       tail;
-//	private TRTruckType truckType;
-//private TRAttributes  attributes;
-//	private TRFeasibility feasibility = new TRFeasibility();
-//private TRNode       head;
-//private TRNode       tail;
-//    private TRAttributes  attributes = new TRAttributes();
-
 private DoublyLinkedList<TRNodesList, TRNode> doublyLinkedList = new DoublyLinkedList<>(this,
 		TRNode.class);
 
@@ -42,10 +32,6 @@ public TRNodesList() {
 public void setUpHeadTail() {
 	super.setHead(new TRNode());
 	super.setTail(new TRNode());
-//	this.head = new TRNode();
-//	this.tail = new TRNode();
-	//	setHead((ObjectInList) new TRNode());
-	//	setTail((ObjectInList) new TRNode());
 	linkHeadTail();
 }
 
@@ -53,6 +39,17 @@ public void setUpHeadTail() {
 public void setUpHeadTail(final TRNode head, final TRNode tail) {
 	doublyLinkedList.setUpHeadTail(head, tail);
 }
+
+public void removeByShipment(final TRShipment theShipment){
+	TRNode theNode = this.getFirst();
+	while(theNode != this.getTail()){
+		if(theNode.getShipment() == theShipment){
+			theNode.getShipment().removeThisObject();
+			return;
+		}
+	}
+}
+
 
 @Override
 public TRNode getFirst() {
@@ -157,13 +154,9 @@ public TRNodesList(final TRNodesList copyMe) {
 public TRNodesList(final TRCoordinates coordinates) {
 	super.setHead(new TRNode(coordinates));
 	super.setTail(new TRNode(coordinates));
-//	this.head = new TRNode(coordinates);
-//	this.tail = new TRNode(coordinates);
 	linkHeadTail();
 	setAttributes(new TRAttributes());
 	super.setFeasibility(new TRFeasibility());
-	//	setHead((ObjectInList) new TRNode(coordinates));
-	//	setTail((ObjectInList) new TRNode(coordinates));
 }
 
 public TRFeasibility getFeasibility() {

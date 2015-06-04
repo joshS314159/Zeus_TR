@@ -36,8 +36,7 @@ public class TRShipmentsList
 		implements java.io.Serializable, Cloneable, //DoublyLinkedList
 		DoublyLinkedListInterface<TRShipment>, DoublyLinkedListCoreInterface<TRShipment> {
 
-//private TRShipment   head;
-//private TRShipment   tail;
+
 private TRAttributes attributes = new TRAttributes();
 
 
@@ -53,10 +52,6 @@ public TRShipmentsList() {
 
 @Override
 public void setUpHeadTail() {
-	//	setHead((ObjectInList) new TRShipment());
-	//	setTail((ObjectInList) new TRShipment());
-//	this.head = new TRShipment();
-//	this.tail = new TRShipment();
 	super.setTail(new TRShipment());
 	super.setHead(new TRShipment());
 	linkHeadTail();
@@ -98,25 +93,19 @@ public void setHead(final TRShipment head) {
 
 
 public boolean isAllShipsAssigned() {
-	//	public boolean isAllShipsAssigned() {
-	int counter = 0;
-	TRShipment ship = this.getHead().getNext();
-	while(ship != this.getTail()) {
-		if(!ship.getIsAssigned()) {
-			counter++;
-		}
-		ship = ship.getNext();
-	}
-	if(counter == 0) {
-		return true;
-	}
-	System.out.println("\n" + counter + " more shipments need assigned -- TRShipmentsList\n");
+	TRShipment theShipment = this.getFirst();
 
-	return false;
+	while(theShipment != this.getTail()) {
+		if(!theShipment.getIsAssigned()) {
+			if(theShipment.getCanBeRouted()) {
+				return false;
+			}
+		}
+		theShipment = theShipment.getNext();
+	}
+	return true;
 }
 
-
-//public boolean isAll
 
 
 public boolean isEmpty() {
@@ -266,14 +255,39 @@ public Shipment getSelectShipment(DepotLinkedList currDepotLL, Depot currDepot, 
 }
 
 
+@Override
+public int[] decodeTheComb(final int code, final int numberDays) {
+	int quotient = -1;
+	int remainder = -1;
+	int dividend = code;
+	int counter = 0;
+
+	int[] reverseDecoded = new int[numberDays];
+
+	while(quotient != 0){
+		quotient = dividend / 2;
+		remainder = dividend % 2;
+		dividend = quotient;
+
+		reverseDecoded[counter++] = remainder;
+	}
+
+	int[] decoded = new int[numberDays];
+	for(int i = 0, j = numberDays-1; i < numberDays; i++, j--){
+		decoded[i] = reverseDecoded[j];
+	}
+
+
+	return decoded;
+
+
+}
+
+
 //WRITE_PVRP_SHIPMENTS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 public void writeShipments(FileOutputStream out)
 		throws IOException {
 
-	//VARIABLES
-	//		Shipment ship = super.getHead();		//the linked list head
-	//
-	//		PVRPShipment PVRPShip;
 
 	XSSFWorkbook workbook = new XSSFWorkbook();
 	XSSFSheet sheet = workbook.createSheet("Customer Data");    //create a worksheet
@@ -323,7 +337,7 @@ public void writeShipments(FileOutputStream out)
 //                        cell.setCellValue(theShipment.getDemand());
 					break;
 				case 4:
-					cell.setCellValue(theShipment.countFrequency());
+					cell.setCellValue(theShipment.getFrequency());
 					break;
 				/**        case 5:								??????????????????????????MUST IMPLEMENT FOR ALL
 				 * VARIABLES OF PVRP

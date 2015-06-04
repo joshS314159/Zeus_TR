@@ -5,16 +5,8 @@ package edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.GenericCompositions;
  */
 public class ContainsSubList<C extends DoublyLinkedListCoreInterface<D> & DoublyLinkedListInterface<D>, D extends ObjectInListInterface<D> & ObjectInListCoreInterface<D>> implements ContainsSubListInterface<C, D> {
 	private C subList;
-//	private Class<C> newC;
-//
-//public ContainsSubList(final Class<C> newC) throws InstantiationException, IllegalAccessException {
-//	this.newC = newC;
-//	this.subList = getNewC();
-//}
-//
-//public C getNewC() throws IllegalAccessException, InstantiationException {
-//	return newC.newInstance();
-//}
+
+
 
 	@Override
 	public C getSubList() {

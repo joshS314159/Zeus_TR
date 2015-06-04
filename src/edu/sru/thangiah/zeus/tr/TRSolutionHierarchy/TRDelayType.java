@@ -14,13 +14,10 @@ public class TRDelayType implements //ObjectInList
 {
 private TRDelayType next;
 private TRDelayType previous;
-//    private TRAttributes attributes = new TRAttributes();
 private String delayTypeName;
 private int delayTimeInMinutes;
-//private TRAttributes at
 private ObjectInList<TRDelayType> objectInList = new ObjectInList<>(this);
 
-//private int depotNumber;
 
 
 public TRDelayType(final String delayTypeName, final int delayTimeInMinutes) {

@@ -16,8 +16,6 @@ public class TRDaysList
 		DoublyLinkedListCoreInterface<TRDay>, DoublyLinkedListInterface<TRDay> {
 
 
-//private TRDay        head;
-//private TRDay        tail;
 private TRAttributes attributes = new TRAttributes();
 private int dayNumber;
 
@@ -36,8 +34,6 @@ public TRDaysList() {
 public void setUpHeadTail() {
 	super.setHead(new TRDay());
 	super.setTail(new TRDay());
-//	this.head = new TRDay();
-//	this.tail = new TRDay();
 	linkHeadTail();
 }
 
@@ -192,50 +188,6 @@ public void setAttributes(final TRAttributes attributes) {
 	this.attributes = attributes;
 }
 
-
-//
-//public boolean insertShipment(final TRShipment theShipment) {
-////	int CONTROL = 1;
-////	if(CONTROL == 0) {
-////		boolean status = true;
-////
-////		for(int i = 0; i < this.getSize(); i++) {
-////			if(theShipment.getDaysVisited()[i]) {
-////				status = status && this.getAtIndex(i).getSubList().insertShipment(theShipment);
-////			}
-////		}
-////	}
-//
-//
-//
-////	boolean status = true;
-////	if(!theShipment.isShipmentFullyScheduled()) {
-////		for(int i = 0; i < theShipment.getVisitComb().length; i++) {
-////			if(theShipment.isDayAllowedToBeScheduled(i) && !theShipment.isDayAlreadyScheduled(i)) {
-////				if(this.getAtIndex(i).getSubList().insertShipment(theShipment)) {
-////					theShipment.setDayAsScheduled(i);
-////					status = status && true;
-////				} else {
-////					status = status && false;
-////				}
-//////			status = status && this.getAtIndex(i).getSubList().insertShipment(theShipment);
-////			}
-////		}
-////	}
-////
-////	if(!status) {
-////		System.out.print("UNSUCCESSFUL INSERTION :: TRDaysList[insertShipment]");
-////	}
-//
-//
-//
-//
-//	return false;
-//}
-
-//public boolean insertShipmentIntoIndex(final TRShipment insertMe, final int index){
-//	TRDay found = this.get
-//}
 
 //METHOD
 //used by the gui to show problem information

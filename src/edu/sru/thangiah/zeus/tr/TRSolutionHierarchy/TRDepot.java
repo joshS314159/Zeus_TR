@@ -25,21 +25,9 @@ public class TRDepot
         implements java.io.Serializable, Cloneable,
         ObjectInListInterface<TRDepot>, ObjectInListCoreInterface<TRDepot>, ContainsSubListInterface<TRTrucksList, TRTruck> {
 
-
-//VARIABLES
-//private float maxDistance = -1;
-//private float maxDemand   = -1;
-
-    //private TRDepot next;
-//private TRDepot previous;
-    private TRTrucksList trucksSubList = new TRTrucksList();
-//private TRAttributes  attributes = new TRAttributes();
-
-
-    private TRCoordinates coordinates;
+ private TRCoordinates coordinates;
     private double maxDistance;
     private double maxDemand;
-//	private int nodeNumber;
 
 
     private ObjectInList<TRDepot> objectInList = new ObjectInList<>(this);

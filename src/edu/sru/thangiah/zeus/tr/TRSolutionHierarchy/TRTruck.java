@@ -50,13 +50,7 @@ public class TRTruck
 {
 
 	private boolean isTruckOnRoad = false;
-	//	private TRTruckType truckType;
-	//private TRTruck      next;
-//private TRTruck      previous;
-//private TRAttributes  attributes = new TRAttributes();
-	private TRDaysList daysSubList = new TRDaysList();
 	private TRCoordinates homeDepotCoordinates;
-//private TRTruckType truckType = new TRTruckType();
 
 	private ObjectInList<TRTruck> objectInList = new ObjectInList<>(this);
 	private ContainsSubList<TRDaysList, TRDay> subList = new ContainsSubList<TRDaysList, TRDay>();
@@ -127,18 +121,7 @@ public class TRTruck
 		return s;
 	}
 //
-//	public boolean insertShipment(final TRShipment theShipment) {
-//		boolean status = false;
-//
-//		return this.getSubList().insertShipment(theShipment);
-//	}//END INSERT_SHIPMENT *********<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<public TRTruck
-//
 
-// getNext() {
-
-
-//return this.next;
-//}
 
 
 	public TRAttributes getAttributes() {

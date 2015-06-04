@@ -29,6 +29,7 @@ public interface DoublyLinkedListInterface<B extends ObjectInListInterface<B> & 
 	B getFirst();
 
 
+
 	//@Override
 	boolean insertAfterLastIndex(final B theObject);
 

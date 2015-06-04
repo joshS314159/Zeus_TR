@@ -106,19 +106,19 @@ public class TRRoot {
         TRProblemInfo.comparisonOutputFile = "PVRP_Comparison_Results.xlsx";
         TRProblemInfo.longSolutionOutputFile = "PVRP_All_Long_Solutions.xlsx";
         TRProblemInfo.shortSolutionOutputFile = "PVRP_All_Short_Solutions.xlsx";
-        TRProblemInfo.problemFileName = "p5.xlsx";
+        TRProblemInfo.problemFileName = "pr10.xlsx";
         TRProblemInfo.problemFormatType = "PVRP";
 
 //        new TR(/*"TrashRoutes-Frequency.xlsx", */false, new TRClosestDistanceToDepot(), PVRPReadFormat.class, PVRPWriteFormat.class);
 
-        for(int i = 5; i <= 5; i++) {
+        for(int i = 1; i <= 32; i++) {
             TRProblemInfo.problemFileName = "p" + i + ".xlsx";
             new TR(/*"TrashRoutes-Frequency.xlsx", */false, new TRClosestDistanceToDepot(), PVRPReadFormat.class, PVRPWriteFormat.class);
         }
-//        for(int i = 1; i <= 10; i++){
-//            TRProblemInfo.problemFileName = "pr" + i + ".xlsx";
-//            new TR(/*"TrashRoutes-Frequency.xlsx", */false, new TRClosestDistanceToDepot(), PVRPReadFormat.class, PVRPWriteFormat.class);
-//        }
+        for(int i = 1; i <= 10; i++){
+            TRProblemInfo.problemFileName = "pr" + i + ".xlsx";
+            new TR(/*"TrashRoutes-Frequency.xlsx", */false, new TRClosestDistanceToDepot(), PVRPReadFormat.class, PVRPWriteFormat.class);
+        }
     }
 
     public void TRFormat() throws IllegalAccessException, InvalidFormatException, IOException, InstantiationException, NoSuchMethodException, InvocationTargetException {
@@ -143,7 +143,9 @@ public class TRRoot {
 
 
         TRProblemInfo.problemFileName = "TrashRoutes-Frequency.xlsx";
-        new TR(/*"TrashRoutes-Frequency.xlsx", */false, new TRClosestDistanceToDepot(), TRReadFormat.class, TRWriteFormat.class);
+//        new TR(/*"TrashRoutes-Frequency.xlsx", */false, new TRClosestDistanceToDepot(), TRReadFormat.class, TRWriteFormat.class);
+//        new TR(/*"TrashRoutes-Frequency.xlsx", */false, new TRSmallestAngleClosestDistanceToDepot(), TRReadFormat.class, TRWriteFormat.class);
+        new TR(/*"TrashRoutes-Frequency.xlsx", */false, new TRSmallestAngleToDepot(), TRReadFormat.class, TRWriteFormat.class);
 
     }
 

@@ -42,7 +42,6 @@ public void writeLongSolution()
 
 	FileInputStream in;
 	FileOutputStream out;
-//	String file = TRProblemInfo.problemFileName;
 	int rowCounter = 0;
 	int columnCounter = 0;
 
@@ -259,7 +258,7 @@ public void writeLongSolution()
 				cell.setCellStyle(BOLD_STYLE);            //set style
 
 				cell = row.createCell(columnCounter++);
-				cell.setCellValue(theDepot.getDepotNum());    //set number
+				cell.setCellValue(mainDepots.getIndexOfObject(theDepot));    //set number
 				cell.setCellStyle(BOLD_CENTER_STYLE);        //set style
 
 				cell = row.createCell(columnCounter++);
@@ -267,7 +266,7 @@ public void writeLongSolution()
 				cell.setCellStyle(BOLD_STYLE);                //set style
 
 				cell = row.createCell(columnCounter++);
-				cell.setCellValue(theDepot.getXCoord());    //set number
+				cell.setCellValue(theDepot.getCoordinates().getA());    //set number
 				cell.setCellStyle(BOLD_CENTER_STYLE);        //set style
 
 				cell = row.createCell(columnCounter++);
@@ -275,7 +274,7 @@ public void writeLongSolution()
 				cell.setCellStyle(BOLD_STYLE);                //set style
 
 				cell = row.createCell(columnCounter++);
-				cell.setCellValue(theDepot.getYCoord());    //set number
+				cell.setCellValue(theDepot.getCoordinates().getB());    //set number
 				cell.setCellStyle(BOLD_CENTER_STYLE);        //set style
 
 
@@ -298,7 +297,7 @@ public void writeLongSolution()
 				cell.setCellStyle(BOLD_STYLE);
 
 				cell = row.createCell(columnCounter++);
-				cell.setCellValue(theTruck.getTruckNum());
+				cell.setCellValue(truckList.getIndexOfObject(theTruck));
 				cell.setCellStyle(BOLD_CENTER_STYLE);
 
 				cell = row.createCell(columnCounter++);
@@ -342,7 +341,7 @@ public void writeLongSolution()
 				cell.setCellStyle(BOLD_STYLE);
 
 				cell = row.createCell(columnCounter++);
-				double maxDistance = ((TRTruckType) TRProblemInfo.truckTypes.elementAt(0)).getMaxDuration();
+				double maxDistance = theTruck.getTruckType().getMaxDistance();
 				cell.setCellValue(maxDistance);
 				cell.setCellStyle(BOLD_CENTER_STYLE);
 
@@ -436,8 +435,6 @@ public void writeLongSolution()
 					cell = row.createCell(columnCounter++);
 					double distanceFromDepot =
 							theDepot.getCoordinates().calculateDistanceThisMiles(theShipment.getCoordinates());
-//							calculateDistance(theDepot.getXCoord(), theShipment.getxCoord(), theDepot.getYCoord(),
-//									theShipment.getyCoord());
 					cell.setCellValue(distanceFromDepot);
 					//distance from depot can be a great way to show the closest euclidean distance is working
 
@@ -445,10 +442,7 @@ public void writeLongSolution()
 
 
 					cell = row.createCell(columnCounter++);
-//					double angle = theShipment.getCoordinates().calculateAngleBearing(theDepot.getCoordinates());
 					double angle = theDepot.getCoordinates().calculateAngleBearing(theShipment.getCoordinates());
-//							calculateAngle(theShipment.getXCoord(), theDepot.getXCoord(),
-//							theShipment.getYCoord(), theDepot.getYCoord());
 					cell.setCellValue(angle);
 					//distance from depot can be a great way to show the closest euclidean distance is working
 
@@ -457,12 +451,6 @@ public void writeLongSolution()
 
 					cell = row.createCell(columnCounter++);
 					double distanceFromLast = previousCoordinates.calculateDistanceThisMiles(theShipment.getCoordinates());
-//							if(theShipment.getCoordinates().getIsCartesian()){
-
-//							}
-
-//							calculateDistance(previousX, theShipment.getxCoord(), previousY,
-//									theShipment.getyCoord());
 					cell.setCellValue(distanceFromLast);
 					//show the linear distance we are from the last node
 
@@ -481,9 +469,6 @@ public void writeLongSolution()
 					}
 
 					previousCoordinates = theShipment.getCoordinates();
-//					previousX = theShipment.getxCoord();
-//					previousY = theShipment.getyCoord();
-
 					theNode = theNode.getNext();    //grab the next node
 				}
 

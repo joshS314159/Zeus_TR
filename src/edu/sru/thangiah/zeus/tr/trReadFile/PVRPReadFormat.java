@@ -66,7 +66,7 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 		int list[] = new int[TRProblemInfo.MAX_COMBINATIONS];
 		//this variable holds various day visit combinations that each node could find acceptable
 
-		int currentCombination[][] = new int[TRProblemInfo.MAX_HORIZON*3][TRProblemInfo.MAX_COMBINATIONS];
+
 		//contains the current day visit combination selected for the node
 		TRDaysList mainDaysTemp = new TRDaysList();
 		//contains a temporary list of our days
@@ -117,7 +117,7 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 					daysServicedOver = (int) currentCellValue;
 					TRProblemInfo.noOfDays = daysServicedOver;    //number of days (horizon) or number of depots for PVRP
 					this.numberDaysToMake = daysServicedOver;
-					TRProblemInfo.noOfDays = daysServicedOver;
+//					TRProblemInfo.noOfDays = daysServicedOver;
 					break;    //reads in the horizon/number of days/days serviced over
 
 				//PVRPProblem info is a class that holds various bits of information related to our problem
@@ -187,6 +187,9 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 						maxDemandQ = (int) currentCellValue;
 						if(maxDemandQ == 0){
 							this.isDemandRestraint = false;
+						}
+						else{
+							this.isDemandRestraint = true;
 							this.maxDayDemand = maxDemandQ;
 							this.maxTruckDemand = this.maxDayDemand * this.numberDaysToMake;
 							this.maxDepotDistance = this.maxTruckDemand * this.numberTrucksToMake;
@@ -252,6 +255,7 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 		final int FREQUENCY = 5;
 		final int NUMBER_COMBINATIONS = 6;
 		while(row.getRowNum() > daysServicedOver && row.getRowNum() < finalRowNumber && rowIterator.hasNext()) {
+
 			TRShipment newShipment = new TRShipment();
 			row = rowIterator.next();            //get the next row
 			cellIterator = row.cellIterator();        //an iterator for columns
@@ -325,13 +329,18 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 
 
 
-
-
-			for(int l = 0; l < numberCombinations; l++) {
-				currentCombination[l] = mainShipments.getCurrentComb(list, l, daysServicedOver);
+			int currentCombination[][] = new int[TRProblemInfo.MAX_HORIZON][TRProblemInfo.MAX_COMBINATIONS];
+			for(int i = 0; i < currentCombination.length; i++){
+				for(int j = 0; j < currentCombination[i].length; j++){
+					currentCombination[i][j] = 0;
+				}
 			}
-			newShipment.setCurrentComb(currentCombination, numberCombinations);
-			newShipment.chooseRandomVisitCombination();
+
+			for(int l = 0; l < newShipment.getNoComb(); l++) {
+				currentCombination[l] = mainShipments.getCurrentComb(list, l, TRProblemInfo.noOfDays);
+			}
+			newShipment.setCurrentComb(currentCombination, newShipment.getNoComb());
+//			newShipment.chooseRandomVisitCombination();
 			//this decodes each combination for a node into a simple to read array (1 == visit me on day X; 0 == don't
 			// visit me today)
 

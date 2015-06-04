@@ -39,10 +39,18 @@ public class TRTruckType
 		implements java.io.Serializable, Cloneable {
 
 
+
 public TRTruckType() {
 }
 
-	public TRTruckType(final float maxDistance, final float maxDemand){
+	public TRTruckType(float maxDistance, float maxDemand){
+		if(maxDistance == 0){
+			maxDistance = Integer.MAX_VALUE;
+		}
+		if(maxDemand == 0){
+			maxDemand = Integer.MAX_VALUE;
+		}
+
 		this.setMaxCapacity(maxDemand);
 		this.setMaxDistance(maxDistance);
 	}

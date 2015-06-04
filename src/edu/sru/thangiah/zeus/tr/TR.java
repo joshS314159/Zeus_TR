@@ -62,11 +62,7 @@ import static java.lang.StrictMath.sqrt;
 //CLASS
 public class TR {
 
-    private final int TYPE_NUMERIC = 0;
-    //track the CPU processing time
-    private final int TYPE_STRING  = 1;
-    //CLASS VARIABLES
-    private long startTime, endTime;
+    private long startTime;
 
     private TRShipmentsList mainShipments = new TRShipmentsList();
 
@@ -76,15 +72,7 @@ public class TR {
     private ReadFormat mainReader;
 	private WriteFormat mainWriter;
 
-//    private TRPenaltiesList mainPenalties = new TRPenaltiesList();
-//depots linked list for the VRP problem
-
     private boolean isMakeSeparateFile;
-
-
-//CONSTRUCTOR
-//this constructor will convert a width-delimited file into a XLSX file which will allow PVRP to read it
-
 
 
 
@@ -249,7 +237,6 @@ public class TR {
 
             theShipment = mainShipments.getNextInsertShipment(mainDepots, currentUsedDepot, mainShipments,
                         currentUsedShip);
-            //		TRProblemInfo.selectShipType
             //Send the entire mainDepots and mainShipments to get the next shipment to be inserted including the current
             // depot
 
@@ -260,6 +247,7 @@ public class TR {
                 //does this
 
                 theShipment.setAssigned(true);
+                theShipment.setCanBeRouted(false);
                 continue;
             }
 
@@ -269,22 +257,22 @@ public class TR {
                 Settings.printDebug(Settings.COMMENT, "No shipment was selected");
             }
 
-//            if(!insertShipment(mainDepots, theShipment)){
-            if(!theShipment.getIsAssigned()) {
+
                 if (!mainDepots.insertShipment(theShipment)) {
                     //The selected shipment couldn't be inserted in the selected location
                     Settings.printDebug(Settings.COMMENT, "The Shipment: <" + theShipment.getNodeNumber() +
                             "> cannot be routed " +
                             "***********************************************");
                     theShipment.setCanBeRouted(false);
+                    theShipment.setIsAssigned(false);
 
                 } else {
                     Settings.printDebug(Settings.COMMENT, "The Shipment: <" + theShipment.getNodeNumber() +// " " + theShipment +
                             "> was routed");
                     theShipment.setIsAssigned(true);    //this shipment has been assigned and we won't go back to it
-//                    theShipment.setCanBeRouted(true);
+                    theShipment.setCanBeRouted(true);
                 }
-            }
+//            }
         }
 
 

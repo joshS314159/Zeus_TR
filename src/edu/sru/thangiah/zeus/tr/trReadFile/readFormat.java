@@ -48,11 +48,7 @@ public ReadFormat(TRShipmentsList mainShipments, TRDepotsList mainDepots) {
 	this.problemFileName = TRProblemInfo.problemFileName;
 }
 
-//
-//public void setProblemPathAndName(final String problemPath, final String problemFileName){
-//	this.problemPath = problemPath;
-//	this.problemFileName = problemFileName;
-//}
+
 public String getProblemPath() {
 	return problemPath;
 }
@@ -84,7 +80,7 @@ public void createHierarchy(){
 	}
 
 	if(numberDepotsToMake > 0 && numberDaysToMake > 0 && numberTrucksToMake > 0){
-
+		TRTruckType tempTruckType = new TRTruckType(maxDayDistance, maxDayDemand);
 		for(int i = 0; i < numberDepotsToMake; i++){
 			mainDepots.insertAfterLastIndex(new TRDepot(depotCoordinates));
 			mainDepots.getAttributes().setMaxDemand(maxDepotDemand);
@@ -94,6 +90,7 @@ public void createHierarchy(){
 
 			for(int j = 0; j < numberTrucksToMake; j++){
 				trucksList.insertAfterLastIndex(new TRTruck());
+				trucksList.getLast().setTruckType(tempTruckType);
 				trucksList.getAttributes().setMaxDemand(maxTruckDemand);
 				trucksList.getAttributes().setMaxDistance(maxTruckDistance);
 
@@ -106,9 +103,9 @@ public void createHierarchy(){
 					daysList.getLast().getSubList().setStartEndPoints(depotCoordinates, depotCoordinates);
 
 					if(!isMultipleTruckTypes){
-						TRTruckType tempTruckType = new TRTruckType(maxTruckDistance, maxTruckDemand);
-						tempTruckType.setMaxDistance(maxTruckDistance);
-						tempTruckType.setMaxCapacity(maxTruckDemand);
+
+//						tempTruckType.setMaxDistance(maxTruckDistance);
+//						tempTruckType.setMaxCapacity(maxTruckDemand);
 						TRNodesList nodesList = daysList.getLast().getSubList();
 						nodesList.setTruckType(tempTruckType);
 						nodesList.getFeasibility().setMaxDemand(maxDayDemand);

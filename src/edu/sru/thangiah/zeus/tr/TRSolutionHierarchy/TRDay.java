@@ -16,11 +16,7 @@ public class TRDay
 
     //VARIABLES
     private TRAttributes attributes = new TRAttributes();            //takes precedence over the base class attributes type
-    //private TRDay        previous;    //takes precedence over the base class previous and next type
-//private TRDay        next;
-//    private TRNodesList nodesSubList = new TRNodesList();
     private TRCoordinates homeDepotCoordinates;
-//private int           dayNumber;
 
 
     private int numberOfNodes;
@@ -34,7 +30,6 @@ public class TRDay
     private ObjectInList<TRDay> objectInList = new ObjectInList<>(this);
     private ContainsSubList<TRNodesList, TRNode> subList = new ContainsSubList<>();
 
-/// /private int
 
 
     //CONSTUCTOR
@@ -65,6 +60,7 @@ public class TRDay
         return subList.getSubList();
     }
 
+
     @Override
     public void setSubList(TRNodesList setMe) {
         subList.setSubList(setMe);
@@ -92,7 +88,6 @@ public class TRDay
     //USED FOR PVRP FILE VERSION ONLY
     public TRDay(final TRNodesList nodes, final int numberOfTrucks, final int daysServicedOver, final float maxDistance, final float maxDemand, final double xCoordinate, final double yCoordinate, final int dayNumber, final boolean isCartesian) {
         subList.setSubList(nodes);
-//        this.nodesSubList = nodes;
         this.numberOfTrucks = numberOfTrucks;
         this.daysServicedOver = daysServicedOver;
         this.maxDistance = (int) maxDistance;
@@ -102,10 +97,8 @@ public class TRDay
         tempCoordinates.setIsCartesian(isCartesian);
         this.homeDepotCoordinates = tempCoordinates;
         setDayNumber(dayNumber);
-//	this.dayNumber = dayNumber;
 
 
-//        subList = new ContainsSubList<>(TRNodesList.class);
     }
 
     public boolean setDayNumber(final int dayNumber) {

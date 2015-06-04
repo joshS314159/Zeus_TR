@@ -51,12 +51,6 @@ public TRAttributes(final TRAttributes copyMe) {
 	setTotalTravelTime(copyMe.getTotalTravelTime());
 	setMaxTravelTime(copyMe.getMaxTravelTime());
 	setAvgTravelTime(copyMe.getAvgTravelTime());
-	//		private double totalDemand = 0.0D;
-	//		private double totalDistance = 0.0D;
-	//		private double totalCost = 0.0D;
-	//		private double totalTravelTime = 0.0D;
-	//		private double maxTravelTime = 0.0D;
-	//		private double avgTravelTime = 0.0D;
 }
 
 public TRAttributes() {
@@ -98,13 +92,6 @@ public int getTotalPenaltiesTime() {
 	return totalPenaltiesTime;
 }
 
-
-//    public boolean setTotalDistance(final float theTotalDistance){
-//        if(theTotalDistance >= 0) {
-//            this.totalDistance = theTotalDistance;
-//        }
-//        return false;
-//    }
 
 
 }
