@@ -14,8 +14,9 @@ package edu.sru.thangiah.zeus.tr;
 
 
 //import edu.sru.thangiah.zeus.QAHeuristics.Selection.ClosestDistanceToDepot;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Insertion.TRGreedyInsertion;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Selection.TRChooseByHighestDemand;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Selection.TRClosestDistanceToDepot;
-import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Selection.TRSmallestAngleClosestDistanceToDepot;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Selection.TRSmallestAngleToDepot;
 import edu.sru.thangiah.zeus.tr.trCostFunctions.*;
 import edu.sru.thangiah.zeus.tr.trReadFile.PVRPReadFormat;
@@ -24,10 +25,8 @@ import edu.sru.thangiah.zeus.tr.trWriteFile.PVRPWriteFormat;
 import edu.sru.thangiah.zeus.tr.trWriteFile.TRWriteFormat;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
-import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Scanner;
 
 
 /**
@@ -109,16 +108,17 @@ public class TRRoot {
         TRProblemInfo.problemFileName = "pr10.xlsx";
         TRProblemInfo.problemFormatType = "PVRP";
 
-//        new TR(/*"TrashRoutes-Frequency.xlsx", */false, new TRClosestDistanceToDepot(), PVRPReadFormat.class, PVRPWriteFormat.class);
-
-        for(int i = 1; i <= 32; i++) {
-            TRProblemInfo.problemFileName = "p" + i + ".xlsx";
-            new TR(/*"TrashRoutes-Frequency.xlsx", */false, new TRClosestDistanceToDepot(), PVRPReadFormat.class, PVRPWriteFormat.class);
-        }
-        for(int i = 1; i <= 10; i++){
-            TRProblemInfo.problemFileName = "pr" + i + ".xlsx";
-            new TR(/*"TrashRoutes-Frequency.xlsx", */false, new TRClosestDistanceToDepot(), PVRPReadFormat.class, PVRPWriteFormat.class);
-        }
+        new TR(/*"TrashRoutes-Frequency.xlsx", */false, TRChooseByHighestDemand.class, TRGreedyInsertion.class, PVRPReadFormat.class, PVRPWriteFormat.class);
+//        new TR(/*"TrashRoutes-Frequency.xlsx", */false, TRClosestDistanceToDepot.class, TRGreedyInsertion.class, PVRPReadFormat.class, PVRPWriteFormat.class);
+//
+//        for(int i = 1; i <= 32; i++) {
+//            TRProblemInfo.problemFileName = "p" + i + ".xlsx";
+//            new TR(/*"TrashRoutes-Frequency.xlsx", */false, TRChooseByHighestDemand.class, TRGreedyInsertion.class, PVRPReadFormat.class, PVRPWriteFormat.class);
+//        }
+//        for(int i = 1; i <= 10; i++){
+//            TRProblemInfo.problemFileName = "pr" + i + ".xlsx";
+//            new TR(/*"TrashRoutes-Frequency.xlsx", */false, TRChooseByHighestDemand.class, TRGreedyInsertion.class, PVRPReadFormat.class, PVRPWriteFormat.class);
+//        }
     }
 
     public void TRFormat() throws IllegalAccessException, InvalidFormatException, IOException, InstantiationException, NoSuchMethodException, InvocationTargetException {
@@ -145,7 +145,7 @@ public class TRRoot {
         TRProblemInfo.problemFileName = "TrashRoutes-Frequency.xlsx";
 //        new TR(/*"TrashRoutes-Frequency.xlsx", */false, new TRClosestDistanceToDepot(), TRReadFormat.class, TRWriteFormat.class);
 //        new TR(/*"TrashRoutes-Frequency.xlsx", */false, new TRSmallestAngleClosestDistanceToDepot(), TRReadFormat.class, TRWriteFormat.class);
-        new TR(/*"TrashRoutes-Frequency.xlsx", */false, new TRSmallestAngleToDepot(), TRReadFormat.class, TRWriteFormat.class);
+        new TR(/*"TrashRoutes-Frequency.xlsx", */false, TRChooseByHighestDemand.class, TRGreedyInsertion.class, TRReadFormat.class, TRWriteFormat.class);
 
     }
 

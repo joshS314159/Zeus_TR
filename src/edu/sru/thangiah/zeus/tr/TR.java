@@ -9,6 +9,7 @@ import edu.sru.thangiah.zeus.gui.ZeusGui;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Insertion.TRGreedyInsertion;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.*;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Insertion.TRLowestDistanceInsertion;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Selection.TRChooseByHighestDemand;
 import edu.sru.thangiah.zeus.tr.trQualityAssurance.TRQA;
 import edu.sru.thangiah.zeus.tr.trReadFile.PVRPReadFormat;
 import edu.sru.thangiah.zeus.tr.trReadFile.ReadFormat;
@@ -23,6 +24,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.*;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.text.DecimalFormat;
 import java.util.Iterator;
@@ -78,24 +80,19 @@ public class TR {
 
     //CONSTRUCTOR
 //this constructor is called by PVRPRoot and launches reading in data, routing vehicles, and printing out information
-    public TR(/*String dataFile, */boolean isMakeSeparateFile, Object selectionTypeObject, Class<? extends ReadFormat> classReader, Class<? extends WriteFormat> classWriter)
+    public TR(/*String dataFile, */boolean isMakeSeparateFile, Class<? extends TRShipmentsList> selectionTypeObject,
+              Class<? extends TRNodesList> insertionTypeObject, Class<? extends ReadFormat> classReader,
+              Class<? extends WriteFormat> classWriter)
             throws IOException, InvalidFormatException, IllegalAccessException, InvocationTargetException,
             InstantiationException, NoSuchMethodException {
 
         this.isMakeSeparateFile = isMakeSeparateFile;
-		if(classReader == TRReadFormat.class){
-			this.mainReader = new TRReadFormat(mainShipments, mainDepots, mainDelays);
-		}
-		else if(classReader == PVRPReadFormat.class){
-            this.mainReader = new PVRPReadFormat(mainShipments, mainDepots);
-		}
 
-		if(classWriter == TRWriteFormat.class){
-			this.mainWriter = new TRWriteFormat(isMakeSeparateFile, mainDepots);
-		}
-		else if(classWriter == PVRPWriteFormat.class){
-            this.mainWriter = new PVRPWriteFormat(isMakeSeparateFile, mainDepots);
-		}
+        Constructor classReaderConstructor = classReader.getConstructor(TRShipmentsList.class, TRDepotsList.class, TRDelayTypeList.class);
+        this.mainReader = (ReadFormat) classReaderConstructor.newInstance(mainShipments, mainDepots, mainDelays);
+
+        Constructor classWriterConstructor = classWriter.getConstructor(boolean.class, TRDepotsList.class);
+        this.mainWriter = (WriteFormat) classWriterConstructor.newInstance(isMakeSeparateFile, mainDepots);
 
 
         //VARIABLES
@@ -119,13 +116,9 @@ public class TR {
         //If the shipments linked list (our problem data) isn't null
 
 
-        TRProblemInfo.selectShipType = selectionTypeObject;
+        TRProblemInfo.selectShipType = selectionTypeObject.newInstance();
+        TRProblemInfo.insertShipType = insertionTypeObject.newInstance();
 
-
-//        TRProblemInfo.insertShipType = new TRLowestDistanceInsertion();
-        TRProblemInfo.insertShipType = new TRGreedyInsertion();
-        Settings.printDebug(Settings.COMMENT, TRGreedyInsertion.WhoAmI());
-        //Sets up our shipment insertion type -- we only have one hueristic for this
 
 
         startTime = System.currentTimeMillis();

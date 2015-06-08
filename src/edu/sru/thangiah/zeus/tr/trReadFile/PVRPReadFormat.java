@@ -22,7 +22,7 @@ import java.util.Vector;
 public class PVRPReadFormat extends ReadFormat  {
 
 
-public PVRPReadFormat( TRShipmentsList mainShipments,  TRDepotsList mainDepots) {
+public PVRPReadFormat(final TRShipmentsList mainShipments, final TRDepotsList mainDepots, final TRDelayTypeList mainDelays) {
 	super(mainShipments, mainDepots);
 }
 
@@ -328,34 +328,29 @@ public void readFiles() throws InvocationTargetException, InvalidFormatException
 
 
 
-
-			int currentCombination[][] = new int[TRProblemInfo.MAX_HORIZON][TRProblemInfo.MAX_COMBINATIONS];
-			for(int i = 0; i < currentCombination.length; i++){
-				for(int j = 0; j < currentCombination[i].length; j++){
-					currentCombination[i][j] = 0;
+			if(newShipment.getVisitFrequency() > 0) {
+				int currentCombination[][] = new int[TRProblemInfo.MAX_HORIZON][TRProblemInfo.MAX_COMBINATIONS];
+				for (int i = 0; i < currentCombination.length; i++) {
+					for (int j = 0; j < currentCombination[i].length; j++) {
+						currentCombination[i][j] = 0;
+					}
 				}
-			}
 
-			for(int l = 0; l < newShipment.getNoComb(); l++) {
-				currentCombination[l] = mainShipments.getCurrentComb(list, l, TRProblemInfo.noOfDays);
-			}
-			newShipment.setCurrentComb(currentCombination, newShipment.getNoComb());
+				for (int l = 0; l < newShipment.getNoComb(); l++) {
+					currentCombination[l] = mainShipments.getCurrentComb(list, l, TRProblemInfo.noOfDays);
+				}
+				newShipment.setCurrentComb(currentCombination, newShipment.getNoComb());
+
 //			newShipment.chooseRandomVisitCombination();
-			//this decodes each combination for a node into a simple to read array (1 == visit me on day X; 0 == don't
-			// visit me today)
+				//this decodes each combination for a node into a simple to read array (1 == visit me on day X; 0 == don't
+				// visit me today)
 
 
-
-
-
-
-
-
-
-			Integer custType = (Integer) custTypes
-					.elementAt(0);        //we only have on customer type so we can just get at index zero
-			mainShipments.insertAfterLastIndex(newShipment);
-			//insert the just read shipment into the mainShipments list holds our all our problem info read in from Excel
+				Integer custType = (Integer) custTypes
+						.elementAt(0);        //we only have on customer type so we can just get at index zero
+				mainShipments.insertAfterLastIndex(newShipment);
+				//insert the just read shipment into the mainShipments list holds our all our problem info read in from Excel
+			}
 
 		}
 		this.createHierarchy();
