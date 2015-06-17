@@ -506,7 +506,7 @@ private TRDay[][] findLowestDemandDistanceDays(final TRShipment theShipment){
 
 private TRDay[] findLowestDemandDistanceCombination(final TRShipment theShipment, final TRDay[][] bestDaysForEachCombo){
 	int[] demandTotalForEachCombo = new int[bestDaysForEachCombo.length];
-	double[] totalForEachCombo = new double[][bestDaysForEachCombo.length];
+	double[] totalForEachCombo = new double[bestDaysForEachCombo.length];
 	double[] relativeTotalForEachCombo = new double[bestDaysForEachCombo.length];
 	final int numberCombinations = theShipment.getNoComb();
 	final int numberDays = TRProblemInfo.noOfDays;
@@ -561,13 +561,12 @@ public boolean insertShipment(final TRShipment theShipment) {
 
 
 
-
 //
 	if(!insertByDemand(theShipment)){
 		return insertByDistance(theShipment);
 	}
 	return true;
-//
+
 
 
 

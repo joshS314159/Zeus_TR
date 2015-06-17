@@ -118,7 +118,14 @@ public boolean isFeasible() {
 
 
 	if((currentDistance <= maxDistance && currentDemand <= maxCapacity) /*&& (currentDemand <= maxCapacity)*/) {
+
 		return true;
+	}
+	if(currentDistance > maxDistance){
+		System.out.println("MAX DISTANCE PROBLEM");
+	}
+	if(currentDemand > maxCapacity){
+		System.out.println("MAX CAPACITY PROBLEM");
 	}
 	return false;
 
