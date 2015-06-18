@@ -103,8 +103,8 @@ public class TR {
         //READ DATA
 
         printDataToConsole();
-        System.out.println("reading penalties/delays/nodes");
-        System.out.println("reading delays");
+//        System.out.println("reading penalties/delays/nodes");
+//        System.out.println("reading delays");
         Settings.printDebug(Settings.COMMENT,
                 "Read Data File: " + TRProblemInfo.inputPath + TRProblemInfo.problemFileName);    //store some debug data;
 		mainReader.readFiles();
@@ -129,7 +129,8 @@ public class TR {
 
         //PROCESSING
         createInitialRoutes();
-        printRoutesToConsole();
+
+//        printRoutesToConsole();
         //this creates our initial solution routes
         //although this code doesn't have it, local optimization
         //would improve upon the initial routes created here
@@ -154,7 +155,7 @@ public class TR {
         }
 
         long endTime = System.currentTimeMillis();
-        System.out.println(">>>>>>>>>>>>>>>>>>> RUN TIME\t" + (endTime - startTime) );
+//        System.out.println(">>>>>>>>>>>>>>>>>>> RUN TIME\t" + (endTime - startTime) );
         //Check for the quality and integrity of the solution
 
         System.out.println("Routes that cannot be routed due to lack of local optimization:");
@@ -263,8 +264,8 @@ public class TR {
                     theShipment.setIsAssigned(false);
 
                 } else {
-                    Settings.printDebug(Settings.COMMENT, "The Shipment: <" + theShipment.getNodeNumber() +// " " + theShipment +
-                            "> was routed");
+//                    Settings.printDebug(Settings.COMMENT, "The Shipment: <" + theShipment.getNodeNumber() +// " " + theShipment +
+//                            "> was routed");
                     theShipment.setIsAssigned(true);    //this shipment has been assigned and we won't go back to it
                     theShipment.setCanBeRouted(true);
                 }

@@ -117,7 +117,7 @@ public boolean isFeasible() {
 
 
 
-	if((currentDistance <= maxDistance && currentDemand <= maxCapacity) /*&& (currentDemand <= maxCapacity)*/) {
+	if(currentDistance <= maxDistance && currentDemand <= maxCapacity) {
 		return true;
 	}
 	return false;

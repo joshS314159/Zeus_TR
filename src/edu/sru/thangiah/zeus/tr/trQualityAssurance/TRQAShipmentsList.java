@@ -105,11 +105,11 @@ public boolean customerServicedRequestedFrequency(TRQADepotsList qaDepots) {
 																		   " >>>>>>>>>>");
 			didPassTest = false;
 		}
-		else {
-			System.out.println(
-					"PASS: Shipment " + s.getIndex() + " is serviced " + s.getServCount() + "/" + s.getFrequency() +
-					"  time(s)");
-		}
+//		else {
+//			System.out.println(
+//					"PASS: Shipment " + s.getIndex() + " is serviced " + s.getServCount() + "/" + s.getFrequency() +
+//					"  time(s)");
+//		}
 	}
 	return didPassTest;
 
