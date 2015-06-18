@@ -15,8 +15,10 @@ package edu.sru.thangiah.zeus.tr;
 
 //import edu.sru.thangiah.zeus.QAHeuristics.Selection.ClosestDistanceToDepot;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Insertion.TRGreedyInsertion;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Insertion.TRLowestDistanceInsertion;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Selection.TRChooseByHighestDemand;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Selection.TRClosestDistanceToDepot;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Selection.TRSmallestAngleClosestDistanceToDepot;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Selection.TRSmallestAngleToDepot;
 import edu.sru.thangiah.zeus.tr.trCostFunctions.*;
 import edu.sru.thangiah.zeus.tr.trReadFile.PVRPReadFormat;
@@ -105,10 +107,10 @@ public class TRRoot {
         TRProblemInfo.comparisonOutputFile = "PVRP_Comparison_Results.xlsx";
         TRProblemInfo.longSolutionOutputFile = "PVRP_All_Long_Solutions.xlsx";
         TRProblemInfo.shortSolutionOutputFile = "PVRP_All_Short_Solutions.xlsx";
-        TRProblemInfo.problemFileName = "pr10.xlsx";
+        TRProblemInfo.problemFileName = "p1.xlsx";
         TRProblemInfo.problemFormatType = "PVRP";
 
-        new TR(/*"TrashRoutes-Frequency.xlsx", */false, TRChooseByHighestDemand.class, TRGreedyInsertion.class, PVRPReadFormat.class, PVRPWriteFormat.class);
+        new TR(/*"TrashRoutes-Frequency.xlsx", */false, TRSmallestAngleClosestDistanceToDepot.class, TRGreedyInsertion.class, PVRPReadFormat.class, PVRPWriteFormat.class);
 //        new TR(/*"TrashRoutes-Frequency.xlsx", */false, TRClosestDistanceToDepot.class, TRGreedyInsertion.class, PVRPReadFormat.class, PVRPWriteFormat.class);
 //
 //        for(int i = 1; i <= 32; i++) {

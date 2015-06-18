@@ -251,7 +251,8 @@ public class TR {
             }
 
 
-                if (!mainDepots.insertShipment(theShipment)) {
+//                if (!mainDepots.insertShipment(theShipment)) {
+                if(!insertAtLowestDistance(theShipment)){
                     //The selected shipment couldn't be inserted in the selected location
                     Settings.printDebug(Settings.COMMENT, "The Shipment: <" + theShipment.getNodeNumber() +
                             "> cannot be routed " +
@@ -275,6 +276,74 @@ public class TR {
     }//CREATE INITIAL ROUTES ENDS
 // HERE*********<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+
+    private double findDistanceAtInsertionPoint(final TRNodesList nodesList, final TRNode insertMe){
+        nodesList.insertAfterLastIndex(insertMe);
+        TRProblemInfo.nodesLLLevelCostF.setTotalDemand(nodesList);
+        TRProblemInfo.nodesLLLevelCostF.setTotalDistance(nodesList);
+
+        final double distance = nodesList.getAttributes().getTotalDistance();
+
+        nodesList.removeByObject(insertMe);
+        TRProblemInfo.nodesLLLevelCostF.setTotalDemand(nodesList);
+        TRProblemInfo.nodesLLLevelCostF.setTotalDistance(nodesList);
+
+        return distance;
+
+    }
+
+
+    private boolean insertAtLowestDistance(final TRShipment theShipment){
+        TRNode insertMe = new TRNode(theShipment);
+
+        final int[] combination = theShipment.getCurrentComb()[0];
+        TRNodesList[] bestNodes = new TRNodesList[combination.length];
+
+        for(int i = 0; i < combination.length; i++){
+            double bestDistance = 999999999;
+            double currentDistance = -1;
+
+            if(combination[i] == 1){
+
+                TRDepot theDepot = mainDepots.getFirst();
+                while(theDepot != mainDepots.getTail()){
+                    TRTrucksList trucksList = theDepot.getSubList();
+                    TRTruck theTruck = trucksList.getFirst();
+
+                    while(theTruck != trucksList.getTail()){
+                        TRDaysList daysList = theTruck.getSubList();
+                        TRDay theDay = daysList.getAtIndex(i);
+                        TRNodesList nodesList = theDay.getSubList();
+
+                        currentDistance = findDistanceAtInsertionPoint(nodesList, insertMe);
+
+                        if(currentDistance < bestDistance){
+                            bestDistance = currentDistance;
+                            bestNodes[i] = nodesList;
+                        }
+                        theTruck = theTruck.getNext();
+                    }
+
+                    theDepot = theDepot.getNext();
+                }
+            }
+        }
+
+
+        for(int i = 0; i < bestNodes.length; i++){
+            if(bestNodes[i] != null){
+                bestNodes[i].insertAfterLastIndex(new TRNode(theShipment));
+                TRProblemInfo.nodesLLLevelCostF.setTotalDemand(bestNodes[i]);
+                TRProblemInfo.nodesLLLevelCostF.setTotalDistance(bestNodes[i]);
+
+            }
+        }
+
+
+
+
+        return true;
+    }
 
     public void printRoutesToConsole(){
         System.out.println("\n|_____THE ROUTE___________________________________________\n");
