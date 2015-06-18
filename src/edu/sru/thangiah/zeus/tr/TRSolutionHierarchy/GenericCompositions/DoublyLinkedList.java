@@ -54,7 +54,7 @@ public class DoublyLinkedList<A extends DoublyLinkedListCoreInterface<B> & Doubl
 	public B getFirst() {
 		if (isEmpty() || !isValidHeadTail()) {
 //			System.out.println("ERROR: getFirst() is null/invalid");
-			return null;
+			return outerClass.getHead();
 		}
 
 		return outerClass.getHead().getNext();
