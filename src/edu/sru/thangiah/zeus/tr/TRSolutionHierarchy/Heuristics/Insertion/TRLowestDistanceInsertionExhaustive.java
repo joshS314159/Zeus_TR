@@ -26,89 +26,138 @@ public class TRLowestDistanceInsertionExhaustive {
         return distance;
     }
 
+    private TRNode[] findBestCombination(final TRShipment theShipment, final TRNode[][] bestNodes, final
+                                              TRDepotsList mainDepots){
+//        TRNode[][] sortedBest = bestNodes;
+        final TRNode insertMe = new TRNode(theShipment);
 
-//    private double cycleThroughInsertionPoints(final TRNodesList nodesList, TRNode bestNode, final TRNode insertMe){
-//        double bestDistance = 999999999;
-//        double currentDistance = -1;
-////        TRNode bestNode = null;
-//
-//        TRNode theNode = nodesList.getFirst();
-//        while(theNode != nodesList.getTail()){
-//            currentDistance = findDistanceAtInsertionPoint(nodesList, theNode, insertMe);
-//            if(currentDistance < bestDistance){
-//                bestDistance = currentDistance;
-//                bestNode = theNode;
-//            }
-//            theNode = theNode.getNext();
-//        }
-//       return bestDistance;
-//    }
+        double bestDistance = 999999999;
+        TRNode[] bestCombination = null;
+        double currentDistance = 999999999;
+
+
+        for(int i = 0; i < bestNodes.length; i++){
+            boolean isSuccessful = true;
+            for(int j = 0; j < bestNodes[i].length; j++){
+                if(bestNodes[i][j] != null) {
+                    if(!bestNodes[i][j].insertAfterCurrent(new TRNode(theShipment))){
+                        isSuccessful = false;
+                    }
+                }
+            }
+
+            if(isSuccessful) {
+                TRProblemInfo.depotLLLevelCostF.setTotalDemand(mainDepots);
+                TRProblemInfo.depotLLLevelCostF.setTotalDistance(mainDepots);
+
+
+//                currentDistance = mainDepots.getAttributes().getTotalDistance();
+                currentDistance =  TRProblemInfo.depotLLLevelCostF.getTotalDistance(mainDepots);
+                if(currentDistance < bestDistance) {
+                    bestDistance = currentDistance;
+                    bestCombination = bestNodes[i];
+                }
+            }
+//            final double distance = mainDepots.getAttributes().getTotalDistance();
+//            final double demand = mainDepots.getAttributes().getTotalDemand();
+
+            for(int j = 0; j < bestNodes[i].length; j++){
+                if(bestNodes[i][j] != null){
+                    if(bestNodes[i][j].getNext().getShipment() == theShipment) {
+                        bestNodes[i][j].getNext().removeThisObject();
+                    }
+                    else{
+                        int a = 5;
+                    }
+                }
+            }
+
+            TRProblemInfo.depotLLLevelCostF.setTotalDemand(mainDepots);
+            TRProblemInfo.depotLLLevelCostF.setTotalDistance(mainDepots);
+        }
+
+        return bestCombination;
+    }
+
+
 
     public boolean getInsertShipment(final TRDepotsList mainDepots, final TRShipment theShipment){
 
 //		private boolean insertAtLowestDistanceLast(final TRShipment theShipment){
         TRNode insertMe = new TRNode(theShipment);
 
-        final int[] combination = theShipment.getCurrentComb()[0];
-        TRNode[] bestNodes = new TRNode[combination.length];
+        final int numberCombinations = theShipment.getNoComb();
+        TRNode[][] bestNodes = new TRNode[numberCombinations][theShipment.getCurrentComb()[0].length];
 
-        for(int i = 0; i < combination.length; i++){
-            double bestDistance = 999999999;
-            double currentDistance = -1;
 
-            if(combination[i] == 1){
+        for(int h = 0; h < numberCombinations; h++) {
+            final int[] combination = theShipment.getCurrentComb()[h];
 
-                TRDepot theDepot = mainDepots.getFirst();
-                while(theDepot != mainDepots.getTail()){
-                    TRTrucksList trucksList = theDepot.getSubList();
-                    TRTruck theTruck = trucksList.getFirst();
+            for(int i = 0; i < combination.length; i++) {
+                double bestDistance = 999999999;
+                double currentDistance = -1;
 
-                    while(theTruck != trucksList.getTail()){
-                        TRDaysList daysList = theTruck.getSubList();
-                        TRDay theDay = daysList.getAtIndex(i);
-                        TRNodesList nodesList = theDay.getSubList();
+                if(combination[i] == 1) {
 
-                        TRNode theNode = nodesList.getFirst();
-                        while(theNode != nodesList.getTail()){
-                            currentDistance = findDistanceAtInsertionPoint(nodesList, theNode, theShipment);
+                    TRDepot theDepot = mainDepots.getFirst();
+                    while(theDepot != mainDepots.getTail()) {
+                        TRTrucksList trucksList = theDepot.getSubList();
+                        TRTruck theTruck = trucksList.getFirst();
 
-                            if(currentDistance < bestDistance){
-                                bestDistance = currentDistance;
-                                bestNodes[i] = theNode;
+                        while(theTruck != trucksList.getTail()) {
+                            TRDaysList daysList = theTruck.getSubList();
+                            TRDay theDay = daysList.getAtIndex(i);
+                            TRNodesList nodesList = theDay.getSubList();
+
+                            TRNode theNode = nodesList.getFirst();
+                            while(theNode != nodesList.getTail()) {
+                                currentDistance = findDistanceAtInsertionPoint(nodesList, theNode, theShipment);
+
+                                if(currentDistance < bestDistance) {
+                                    bestDistance = currentDistance;
+                                    bestNodes[h][i] = theNode;
+                                }
+                                theNode = theNode.getNext();
                             }
-                            theNode = theNode.getNext();
+
+                            theTruck = theTruck.getNext();
                         }
 
-
-//                        TRNode bestNode = null;
-
-//                        currentDistance = cycleThroughInsertionPoints(nodesList, bestNode, insertMe);
-//
-//                        if(currentDistance < bestDistance){
-//                            bestDistance = currentDistance;
-//                            bestNodes[i] = bestNode;
-//                        }
-                        theTruck = theTruck.getNext();
+                        theDepot = theDepot.getNext();
                     }
-
-                    theDepot = theDepot.getNext();
                 }
             }
         }
+//
+        TRNode[] bestCombination = findBestCombination(theShipment, bestNodes, mainDepots);
 
-
-        for(int i = 0; i < bestNodes.length; i++){
-            if(bestNodes[i] != null){
-                if(!bestNodes[i].insertAfterCurrent(new TRNode(theShipment))){
+        for(int i = 0; i < bestCombination.length; i++){
+            if(bestCombination[i] != null){
+                if(!bestCombination[i].insertAfterCurrent(new TRNode(theShipment))){
                     return false;
                 }
-//                TRProblemInfo.nodesLLLevelCostF.setTotalDemand(bestNodes[i]);
-//                TRProblemInfo.nodesLLLevelCostF.setTotalDistance(bestNodes[i]);
-
             }
+
         }
 
+        TRProblemInfo.depotLLLevelCostF.setTotalDemand(mainDepots);
+        TRProblemInfo.depotLLLevelCostF.setTotalDistance(mainDepots);
 
+//
+//
+////
+//        for(int i = 0; i < bestNodes[0].length; i++){
+//            if(bestNodes[6][i] != null){
+//                if(!bestNodes[6][i].insertAfterCurrent(new TRNode(theShipment))){
+//                    return false;
+//                }
+//
+//
+//            }
+//        }
+
+//                TRProblemInfo.nodesLLLevelCostF.setTotalDemand(bestNodes[i]);
+//                TRProblemInfo.nodesLLLevelCostF.setTotalDistance(bestNodes[i]);
 
 
         return true;
