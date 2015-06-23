@@ -129,32 +129,32 @@ public class TRLowestDistanceInsertionExhaustive {
             }
         }
 //
-        TRNode[] bestCombination = findBestCombination(theShipment, bestNodes, mainDepots);
-
-        for(int i = 0; i < bestCombination.length; i++){
-            if(bestCombination[i] != null){
-                if(!bestCombination[i].insertAfterCurrent(new TRNode(theShipment))){
-                    return false;
-                }
-            }
-
-        }
-
-        TRProblemInfo.depotLLLevelCostF.setTotalDemand(mainDepots);
-        TRProblemInfo.depotLLLevelCostF.setTotalDistance(mainDepots);
-
+//        TRNode[] bestCombination = findBestCombination(theShipment, bestNodes, mainDepots);
 //
-//
-////
-//        for(int i = 0; i < bestNodes[0].length; i++){
-//            if(bestNodes[6][i] != null){
-//                if(!bestNodes[6][i].insertAfterCurrent(new TRNode(theShipment))){
+//        for(int i = 0; i < bestCombination.length; i++){
+//            if(bestCombination[i] != null){
+//                if(!bestCombination[i].insertAfterCurrent(new TRNode(theShipment))){
 //                    return false;
 //                }
-//
-//
 //            }
+//
 //        }
+//
+//        TRProblemInfo.depotLLLevelCostF.setTotalDemand(mainDepots);
+//        TRProblemInfo.depotLLLevelCostF.setTotalDistance(mainDepots);
+
+
+
+//
+        for(int i = 0; i < bestNodes[0].length; i++){
+            if(bestNodes[6][i] != null){
+                if(!bestNodes[6][i].insertAfterCurrent(new TRNode(theShipment))){
+                    return false;
+                }
+
+
+            }
+        }
 
 //                TRProblemInfo.nodesLLLevelCostF.setTotalDemand(bestNodes[i]);
 //                TRProblemInfo.nodesLLLevelCostF.setTotalDistance(bestNodes[i]);

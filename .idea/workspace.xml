@@ -2,21 +2,176 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="427f608e-7f95-4a29-8cf7-159527e366d2" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\jks1010\Documents\GitHub\Zeus_TR\classes\edu\sru\thangiah\zeus\tr\TR.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\jks1010\Documents\GitHub\Zeus_TR\classes\edu\sru\thangiah\zeus\tr\TRFeasibility.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\jks1010\Documents\GitHub\Zeus_TR\classes\edu\sru\thangiah\zeus\tr\TRRoot.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\jks1010\Documents\GitHub\Zeus_TR\classes\edu\sru\thangiah\zeus\tr\TRSolutionHierarchy\GenericCompositions\DoublyLinkedList.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\jks1010\Documents\GitHub\Zeus_TR\classes\edu\sru\thangiah\zeus\tr\TRSolutionHierarchy\Heuristics\Insertion\TRLowestDistanceInsertion.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\jks1010\Documents\GitHub\Zeus_TR\classes\edu\sru\thangiah\zeus\tr\TRSolutionHierarchy\Heuristics\Selection\TRClosestDistanceToDepot.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\jks1010\Documents\GitHub\Zeus_TR\classes\edu\sru\thangiah\zeus\tr\TRSolutionHierarchy\Heuristics\Selection\TRSmallestAngleClosestDistanceToDepot.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\jks1010\Documents\GitHub\Zeus_TR\classes\edu\sru\thangiah\zeus\tr\TRSolutionHierarchy\Heuristics\Selection\TRSmallestAngleToDepot.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\jks1010\Documents\GitHub\Zeus_TR\classes\edu\sru\thangiah\zeus\tr\TRSolutionHierarchy\TRTrucksList.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\jks1010\Documents\GitHub\Zeus_TR\classes\edu\sru\thangiah\zeus\tr\trCostFunctions\TRNodesListCost.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\jks1010\Documents\GitHub\Zeus_TR\classes\edu\sru\thangiah\zeus\tr\trQualityAssurance\TRQADay.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\jks1010\Documents\GitHub\Zeus_TR\classes\edu\sru\thangiah\zeus\tr\trQualityAssurance\TRQAShipmentsList.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\jks1010\Documents\GitHub\Zeus_TR\classes\edu\sru\thangiah\zeus\tr\trReadFile\ReadFormat.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\jks1010\Documents\GitHub\Zeus_TR\classes\edu\sru\thangiah\zeus\tr\trWriteFile\PVRPWriteFormat.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/AboutFrame$1.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/AboutFrame$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/AboutFrame.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/AboutFrame.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/checkboxtree/CheckTreeCellEditor.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/checkboxtree/CheckTreeCellEditor.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/checkboxtree/CheckTreeCellRenderer$1.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/checkboxtree/CheckTreeCellRenderer$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/checkboxtree/CheckTreeCellRenderer.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/checkboxtree/CheckTreeCellRenderer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/checkboxtree/CheckTreeNode.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/checkboxtree/CheckTreeNode.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/ClosestEuclideanDistToDepot.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/ClosestEuclideanDistToDepot.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/ContainsSubObject.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/ContainsSubObject.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/ContainsSubObjectInterface.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/ContainsSubObjectInterface.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/CustomCellRenderer.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/CustomCellRenderer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$1.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$10.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$10.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$11.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$11.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$2.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$3.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$4.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$5.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$6.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$7.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$7.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$8.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$8.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$9.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$9.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/DoublyLinkedListCoreInterface.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/DoublyLinkedListCoreInterface.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/DoublyLinkedListInterface.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/DoublyLinkedListInterface.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/FeatureFrame.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/FeatureFrame.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/InfoFrame.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/InfoFrame.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/checkboxtree/JCheckTree.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/checkboxtree/JCheckTree.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/LinearGreedyInsertShipment.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/LinearGreedyInsertShipment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$1.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$2.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$3.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$4.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$5.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$6.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$7.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$7.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$8.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$8.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/ObjectInList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/ObjectInList.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/ObjectInListCoreInterface.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/ObjectInListCoreInterface.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/ObjectInListInterface.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/ObjectInListInterface.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptLoopConfig.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptLoopConfig.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationFrame$OptButtonListener.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationFrame$OptButtonListener.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationFrame.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationFrame.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$1.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$10.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$10.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$2.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$3.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$4.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$5.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$6.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$7.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$7.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$8.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$8.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$9.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$9.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRP.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRP.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPAbstractCostFunctions.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPAbstractCostFunctions.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPAttributes.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPAttributes.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPClosestEuclideanDistToDepot.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPClosestEuclideanDistToDepot.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPDay.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPDay.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPDayLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPDayLinkedList.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPDaysCostFunctions.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPDaysCostFunctions.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPDaysLLCostFunctions.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPDaysLLCostFunctions.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPDepot.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPDepot.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPDepotCostFunctions.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPDepotCostFunctions.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPDepotLLCostFunctions.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPDepotLLCostFunctions.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPDepotLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPDepotLinkedList.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPFeasibility.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPFeasibility.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPLinearGreedyInsertShipment.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPLinearGreedyInsertShipment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpAbstractHierarchy/PVRPLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpAbstractHierarchy/PVRPLinkedList.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPNodes.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPNodes.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPNodesLLCostFunctions.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPNodesLLCostFunctions.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPNodesLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPNodesLinkedList.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpAbstractHierarchy/PVRPObject.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpAbstractHierarchy/PVRPObject.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPProblemInfo.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPProblemInfo.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQADay.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQADay.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQADayLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQADayLinkedList.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQADepot.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQADepot.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQADepotLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQADepotLinkedList.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQANode.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQANode.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQANodesLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQANodesLinkedList.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQAShipment.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQAShipment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQAShipmentLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQAShipmentLinkedList.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQATruck.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQATruck.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQATruckLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQATruckLinkedList.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQualityAssurance.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQualityAssurance.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trReadFile/PVRPReadFormat.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trReadFile/PVRPReadFormat.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPRoot.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPRoot.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPShipment.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPShipment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPShipmentLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPShipmentLinkedList.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPSmallestPolarAngleShortestDistToDepot.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPSmallestPolarAngleShortestDistToDepot.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPSmallestPolarAngleToDepot.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPSmallestPolarAngleToDepot.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPTruck.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPTruck.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPTruckCostFunctions.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPTruckCostFunctions.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPTruckLLCostFunctions.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPTruckLLCostFunctions.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPTruckLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPTruckLinkedList.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPTruckType.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPTruckType.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/TR/results/PVRP_All_Long_Solutions.xlsx" afterPath="$PROJECT_DIR$/data/TR/results/PVRP_All_Long_Solutions.xlsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/TR/results/PVRP_All_Short_Solutions.xlsx" afterPath="$PROJECT_DIR$/data/TR/results/PVRP_All_Short_Solutions.xlsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/TR/results/PVRP_Comparison_Results.xlsx" afterPath="$PROJECT_DIR$/data/TR/results/PVRP_Comparison_Results.xlsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trReadFile/ReadFormatInterface.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trReadFile/ReadFormatInterface.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/RunOptLoopThread.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/RunOptLoopThread.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/RunOptPanel.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/RunOptPanel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/RunningOptPanel.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/RunningOptPanel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/SBVRPGUI.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/SBVRPGUI.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/ShipmentFrame.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/ShipmentFrame.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/SmallestPolarAngleShortestDistToDepot.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/SmallestPolarAngleShortestDistToDepot.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/SmallestPolarAngleToDepot.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/SmallestPolarAngleToDepot.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/checkboxtree/SwingEventMulticaster.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/checkboxtree/SwingEventMulticaster.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trCostFunctions/TRAbstractCost.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trCostFunctions/TRAbstractCost.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRAttributes.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRAttributes.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRCoordinates.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRCoordinates.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trCostFunctions/TRDayCost.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trCostFunctions/TRDayCost.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trCostFunctions/TRDaysListCost.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trCostFunctions/TRDaysListCost.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRDelayType.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRDelayType.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trCostFunctions/TRDepotsListCost.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trCostFunctions/TRDepotsListCost.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/Heuristics/Insertion/TRLowestDistanceInsertionExhaustive.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/Heuristics/Insertion/TRLowestDistanceInsertionExhaustive.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRPenalty.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRPenalty.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRProblemInfo.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRProblemInfo.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQADaysList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQADaysList.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQADepot.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQADepot.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQADepotsList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQADepotsList.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQANode.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQANode.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQANodesList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQANodesList.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQAShipment.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQAShipment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQATrucksList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQATrucksList.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trReadFile/TRReadFormat.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trReadFile/TRReadFormat.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trCostFunctions/TRTruckCost.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trCostFunctions/TRTruckCost.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRTruckType.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRTruckType.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temp/Temp_PVRP_Shipments.xlsx" afterPath="$PROJECT_DIR$/temp/Temp_PVRP_Shipments.xlsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temp/Temp_PVRP_Solutions.xlsx" afterPath="$PROJECT_DIR$/temp/Temp_PVRP_Solutions.xlsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/TextToXLXS.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/TextToXLXS.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TextToXLXS.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TextToXLXS.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRP.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRP.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpcostfunctions/VRPAbstractCostFunctions.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpcostfunctions/VRPAbstractCostFunctions.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPAttributes.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPAttributes.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPDepot.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPDepot.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpcostfunctions/VRPDepotCostFunctions.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpcostfunctions/VRPDepotCostFunctions.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpcostfunctions/VRPDepotLLCostFunctions.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpcostfunctions/VRPDepotLLCostFunctions.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPDepotLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPDepotLinkedList.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPExcelSupport_OLD.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPExcelSupport_OLD.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPFeasibility.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPFeasibility.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPNodes.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPNodes.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpcostfunctions/VRPNodesLLCostFunctions.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpcostfunctions/VRPNodesLLCostFunctions.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPNodesLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPNodesLinkedList.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPProblemInfo.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPProblemInfo.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQADepot.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQADepot.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQADepotLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQADepotLinkedList.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQANode.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQANode.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQANodesLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQANodesLinkedList.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQAShipment.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQAShipment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQAShipmentLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQAShipmentLinkedList.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQATruck.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQATruck.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQATruckLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQATruckLinkedList.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQualityAssurance.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQualityAssurance.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPRoot.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPRoot.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPShipment.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPShipment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPShipmentLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPShipmentLinkedList.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPTruck.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPTruck.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpcostfunctions/VRPTruckCostFunctions.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpcostfunctions/VRPTruckCostFunctions.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpcostfunctions/VRPTruckLLCostFunctions.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpcostfunctions/VRPTruckLLCostFunctions.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPTruckLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPTruckLinkedList.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPTruckType.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPTruckType.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trWriteFile/WriteFormat.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trWriteFile/WriteFormat.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trWriteFile/WriteFormatInterface.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trWriteFile/WriteFormatInterface.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/ZeusGraph.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/ZeusGraph.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/ZeusGui.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/ZeusGui.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/ZeusGuiInfo.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/ZeusGuiInfo.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRFeasibility.java" afterPath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRFeasibility.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/Heuristics/Insertion/TRLowestDistanceInsertionExhaustive.java" afterPath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/Heuristics/Insertion/TRLowestDistanceInsertionExhaustive.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRRoot.java" afterPath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRRoot.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Zeus_TR.iws" />
@@ -79,26 +234,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TRShipment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRShipment.java">
+      <file leaf-file-name="TRRoot.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRRoot.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+              <caret line="114" column="8" selection-start-line="114" selection-start-column="8" selection-end-line="114" selection-end-column="8" />
               <folding>
-                <element signature="e#4070#4071#0" expanded="true" />
+                <element signature="method#TRFormat#0;class#TRRoot#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TRRoot.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRRoot.java">
+      <file leaf-file-name="TRLowestDistanceInsertionExhaustive.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/Heuristics/Insertion/TRLowestDistanceInsertionExhaustive.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.49019608">
-              <caret line="112" column="4" selection-start-line="112" selection-start-column="4" selection-end-line="112" selection-end-column="4" />
-              <folding>
-                <element signature="method#TRFormat#0;class#TRRoot#0" expanded="false" />
-              </folding>
+            <state vertical-scroll-proportion="0.61421317">
+              <caret line="154" column="0" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -107,8 +260,11 @@
         <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRFeasibility.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="120" column="112" selection-start-line="120" selection-start-column="112" selection-end-line="120" selection-end-column="112" />
-              <folding />
+              <caret line="121" column="0" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
+              <folding>
+                <element signature="e#3245#3246#0" expanded="true" />
+                <element signature="e#3272#3273#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -187,7 +343,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/SubListInterface.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/SubObject.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/ContainsContainsSubObject.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/ContainsSubObject.java" />
@@ -235,9 +390,10 @@
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TR.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/Zeus.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trReadFile/PVRPReadFormat.java" />
-        <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRRoot.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRTrucksList.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRFeasibility.java" />
+        <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRRoot.java" />
+        <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/Heuristics/Insertion/TRLowestDistanceInsertionExhaustive.java" />
       </list>
     </option>
   </component>
@@ -296,6 +452,27 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Zeus_TR" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Zeus_TR" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Zeus_TR" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -380,6 +557,62 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="TRSolutionHierarchy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Heuristics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Zeus_TR" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Zeus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edu.sru.thangiah.zeus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tr" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TRSolutionHierarchy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Heuristics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Insertion" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Zeus_TR" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Zeus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edu.sru.thangiah.zeus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tr" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="trReadFile" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
@@ -409,27 +642,6 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Zeus_TR" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Zeus_TR" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Zeus_TR" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -640,13 +852,13 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2171767" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2171767" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36302084" sideWeight="0.21743697" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30572918" sideWeight="0.50625" order="8" side_tool="true" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30572918" sideWeight="0.50625" order="8" side_tool="true" content_ui="combo" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13645834" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" x="898" y="500" width="124" height="40" />
@@ -763,13 +975,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQA.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="132" column="9" selection-start-line="132" selection-start-column="9" selection-end-line="132" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRDepot.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -888,7 +1093,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="652" column="64" selection-start-line="652" selection-start-column="64" selection-end-line="652" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -911,7 +1115,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="229" column="5" selection-start-line="229" selection-start-column="5" selection-end-line="229" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -933,9 +1136,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="37" column="36" selection-start-line="37" selection-start-column="36" selection-end-line="37" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1178,18 +1378,29 @@
     <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRFeasibility.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="120" column="112" selection-start-line="120" selection-start-column="112" selection-end-line="120" selection-end-column="112" />
-          <folding />
+          <caret line="121" column="0" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
+          <folding>
+            <element signature="e#3245#3246#0" expanded="true" />
+            <element signature="e#3272#3273#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRRoot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49019608">
-          <caret line="112" column="4" selection-start-line="112" selection-start-column="4" selection-end-line="112" selection-end-column="4" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="114" column="8" selection-start-line="114" selection-start-column="8" selection-end-line="114" selection-end-column="8" />
           <folding>
             <element signature="method#TRFormat#0;class#TRRoot#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/Heuristics/Insertion/TRLowestDistanceInsertionExhaustive.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.61421317">
+          <caret line="154" column="0" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -110,11 +110,11 @@ public class TRRoot {
         TRProblemInfo.problemFileName = "p9.xlsx";
         TRProblemInfo.problemFormatType = "PVRP";
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
         new TR(/*"TrashRoutes-Frequency.xlsx", */false, TRClosestDistanceToDepot.class, TRGreedyInsertion.class, PVRPReadFormat.class, PVRPWriteFormat.class);
-=======
+//=======
         new TR(/*"TrashRoutes-Frequency.xlsx", */false, TRSmallestAngleClosestDistanceToDepot.class, TRGreedyInsertion.class, PVRPReadFormat.class, PVRPWriteFormat.class);
->>>>>>> origin/master
+//>>>>>>> origin/master
 //        new TR(/*"TrashRoutes-Frequency.xlsx", */false, TRClosestDistanceToDepot.class, TRGreedyInsertion.class, PVRPReadFormat.class, PVRPWriteFormat.class);
 //
 //        for(int i = 1; i <= 32; i++) {
