@@ -119,6 +119,7 @@ public class TR {
 
         TRProblemInfo.selectShipType = selectionTypeObject.newInstance();
         TRProblemInfo.insertShipType = insertionTypeObject.newInstance();
+//        TRProblemInfo.insertShipType = insertionTypeObject.newInstance();
 
 
 

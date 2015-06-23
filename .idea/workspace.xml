@@ -2,175 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="427f608e-7f95-4a29-8cf7-159527e366d2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/AboutFrame$1.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/AboutFrame$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/AboutFrame.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/AboutFrame.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/checkboxtree/CheckTreeCellEditor.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/checkboxtree/CheckTreeCellEditor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/checkboxtree/CheckTreeCellRenderer$1.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/checkboxtree/CheckTreeCellRenderer$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/checkboxtree/CheckTreeCellRenderer.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/checkboxtree/CheckTreeCellRenderer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/checkboxtree/CheckTreeNode.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/checkboxtree/CheckTreeNode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/ClosestEuclideanDistToDepot.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/ClosestEuclideanDistToDepot.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/ContainsSubObject.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/ContainsSubObject.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/ContainsSubObjectInterface.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/ContainsSubObjectInterface.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/CustomCellRenderer.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/CustomCellRenderer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$1.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$10.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$10.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$11.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$11.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$2.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$3.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$4.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$5.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$6.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$7.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$8.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$8.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$9.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar$9.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/DesktopMenuBar.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/DoublyLinkedListCoreInterface.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/DoublyLinkedListCoreInterface.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/DoublyLinkedListInterface.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/DoublyLinkedListInterface.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/FeatureFrame.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/FeatureFrame.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/InfoFrame.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/InfoFrame.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/checkboxtree/JCheckTree.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/checkboxtree/JCheckTree.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/LinearGreedyInsertShipment.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/LinearGreedyInsertShipment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$1.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$2.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$3.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$4.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$5.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$6.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$7.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$8.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame$8.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/MainFrame.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/ObjectInList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/ObjectInList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/ObjectInListCoreInterface.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/ObjectInListCoreInterface.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/ObjectInListInterface.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/ObjectInListInterface.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptLoopConfig.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptLoopConfig.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationFrame$OptButtonListener.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationFrame$OptButtonListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationFrame.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationFrame.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$1.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$10.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$10.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$2.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$3.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$4.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$5.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$6.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$7.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$8.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$8.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$9.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel$9.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/OptimizationPanel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRP.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRP.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPAbstractCostFunctions.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPAbstractCostFunctions.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPAttributes.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPAttributes.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPClosestEuclideanDistToDepot.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPClosestEuclideanDistToDepot.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPDay.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPDay.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPDayLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPDayLinkedList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPDaysCostFunctions.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPDaysCostFunctions.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPDaysLLCostFunctions.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPDaysLLCostFunctions.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPDepot.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPDepot.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPDepotCostFunctions.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPDepotCostFunctions.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPDepotLLCostFunctions.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPDepotLLCostFunctions.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPDepotLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPDepotLinkedList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPFeasibility.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPFeasibility.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPLinearGreedyInsertShipment.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPLinearGreedyInsertShipment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpAbstractHierarchy/PVRPLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpAbstractHierarchy/PVRPLinkedList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPNodes.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPNodes.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPNodesLLCostFunctions.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPNodesLLCostFunctions.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPNodesLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPNodesLinkedList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpAbstractHierarchy/PVRPObject.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpAbstractHierarchy/PVRPObject.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPProblemInfo.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPProblemInfo.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQADay.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQADay.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQADayLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQADayLinkedList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQADepot.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQADepot.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQADepotLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQADepotLinkedList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQANode.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQANode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQANodesLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQANodesLinkedList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQAShipment.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQAShipment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQAShipmentLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQAShipmentLinkedList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQATruck.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQATruck.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQATruckLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQATruckLinkedList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQualityAssurance.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpqualityassurance/PVRPQualityAssurance.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trReadFile/PVRPReadFormat.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trReadFile/PVRPReadFormat.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPRoot.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPRoot.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPShipment.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPShipment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPShipmentLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPShipmentLinkedList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPSmallestPolarAngleShortestDistToDepot.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPSmallestPolarAngleShortestDistToDepot.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPSmallestPolarAngleToDepot.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPSmallestPolarAngleToDepot.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPTruck.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPTruck.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPTruckCostFunctions.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPTruckCostFunctions.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPTruckLLCostFunctions.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/pvrpcostfunctions/PVRPTruckLLCostFunctions.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPTruckLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPTruckLinkedList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPTruckType.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/PVRPTruckType.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/TR/results/PVRP_All_Long_Solutions.xlsx" afterPath="$PROJECT_DIR$/data/TR/results/PVRP_All_Long_Solutions.xlsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/TR/results/PVRP_All_Short_Solutions.xlsx" afterPath="$PROJECT_DIR$/data/TR/results/PVRP_All_Short_Solutions.xlsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/TR/results/PVRP_Comparison_Results.xlsx" afterPath="$PROJECT_DIR$/data/TR/results/PVRP_Comparison_Results.xlsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trReadFile/ReadFormatInterface.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trReadFile/ReadFormatInterface.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/RunOptLoopThread.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/RunOptLoopThread.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/RunOptPanel.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/RunOptPanel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/RunningOptPanel.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/RunningOptPanel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/SBVRPGUI.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/SBVRPGUI.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/ShipmentFrame.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/ShipmentFrame.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/SmallestPolarAngleShortestDistToDepot.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/SmallestPolarAngleShortestDistToDepot.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/SmallestPolarAngleToDepot.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/SmallestPolarAngleToDepot.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/checkboxtree/SwingEventMulticaster.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/checkboxtree/SwingEventMulticaster.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trCostFunctions/TRAbstractCost.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trCostFunctions/TRAbstractCost.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TR.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TR.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRAttributes.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRAttributes.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRCoordinates.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRCoordinates.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trCostFunctions/TRDayCost.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trCostFunctions/TRDayCost.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trCostFunctions/TRDaysListCost.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trCostFunctions/TRDaysListCost.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRDelayType.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRDelayType.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trCostFunctions/TRDepotsListCost.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trCostFunctions/TRDepotsListCost.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRFeasibility.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRFeasibility.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/Heuristics/Insertion/TRLowestDistanceInsertionExhaustive.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/Heuristics/Insertion/TRLowestDistanceInsertionExhaustive.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRPenalty.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRPenalty.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRProblemInfo.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRProblemInfo.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQADaysList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQADaysList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQADepot.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQADepot.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQADepotsList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQADepotsList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQANode.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQANode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQANodesList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQANodesList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQAShipment.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQAShipment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQATrucksList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQATrucksList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trReadFile/TRReadFormat.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trReadFile/TRReadFormat.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trCostFunctions/TRTruckCost.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trCostFunctions/TRTruckCost.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRTruckType.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRTruckType.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trCostFunctions/TRNodesListCost.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trCostFunctions/TRNodesListCost.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQA.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQA.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQADay.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQADay.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRRoot.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TRRoot.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temp/Temp_PVRP_Shipments.xlsx" afterPath="$PROJECT_DIR$/temp/Temp_PVRP_Shipments.xlsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temp/Temp_PVRP_Solutions.xlsx" afterPath="$PROJECT_DIR$/temp/Temp_PVRP_Solutions.xlsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/TextToXLXS.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/pvrp/TextToXLXS.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TextToXLXS.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/TextToXLXS.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRP.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRP.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpcostfunctions/VRPAbstractCostFunctions.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpcostfunctions/VRPAbstractCostFunctions.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPAttributes.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPAttributes.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPDepot.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPDepot.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpcostfunctions/VRPDepotCostFunctions.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpcostfunctions/VRPDepotCostFunctions.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpcostfunctions/VRPDepotLLCostFunctions.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpcostfunctions/VRPDepotLLCostFunctions.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPDepotLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPDepotLinkedList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPExcelSupport_OLD.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPExcelSupport_OLD.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPFeasibility.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPFeasibility.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPNodes.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPNodes.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpcostfunctions/VRPNodesLLCostFunctions.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpcostfunctions/VRPNodesLLCostFunctions.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPNodesLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPNodesLinkedList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPProblemInfo.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPProblemInfo.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQADepot.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQADepot.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQADepotLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQADepotLinkedList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQANode.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQANode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQANodesLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQANodesLinkedList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQAShipment.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQAShipment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQAShipmentLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQAShipmentLinkedList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQATruck.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQATruck.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQATruckLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQATruckLinkedList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQualityAssurance.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpqualityassurance/VRPQualityAssurance.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPRoot.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPRoot.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPShipment.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPShipment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPShipmentLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPShipmentLinkedList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPTruck.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPTruck.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpcostfunctions/VRPTruckCostFunctions.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpcostfunctions/VRPTruckCostFunctions.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpcostfunctions/VRPTruckLLCostFunctions.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/vrpcostfunctions/VRPTruckLLCostFunctions.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPTruckLinkedList.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPTruckLinkedList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPTruckType.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/vrp/VRPTruckType.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trWriteFile/WriteFormat.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trWriteFile/WriteFormat.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trWriteFile/WriteFormatInterface.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/tr/trWriteFile/WriteFormatInterface.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/ZeusGraph.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/ZeusGraph.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/ZeusGui.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/ZeusGui.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/ZeusGuiInfo.class" afterPath="$PROJECT_DIR$/classes/edu/sru/thangiah/zeus/gui/ZeusGuiInfo.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TR.java" afterPath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TR.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRAttributes.java" afterPath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRAttributes.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRFeasibility.java" afterPath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRFeasibility.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/Heuristics/Insertion/TRLowestDistanceInsertionExhaustive.java" afterPath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/Heuristics/Insertion/TRLowestDistanceInsertionExhaustive.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trCostFunctions/TRNodesListCost.java" afterPath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trCostFunctions/TRNodesListCost.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQA.java" afterPath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQA.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQADay.java" afterPath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQADay.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRRoot.java" afterPath="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRRoot.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -200,11 +51,43 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="TRDay.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRDay.java">
+      <file leaf-file-name="TRRoot.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRRoot.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="144" column="15" selection-start-line="144" selection-start-column="15" selection-end-line="144" selection-end-column="15" />
+              <caret line="109" column="45" selection-start-line="109" selection-start-column="45" selection-end-line="109" selection-end-column="45" />
+              <folding>
+                <element signature="method#TRFormat#0;class#TRRoot#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TRLowestDistanceInsertionExhaustive.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/Heuristics/Insertion/TRLowestDistanceInsertionExhaustive.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-13.814815">
+              <caret line="107" column="9" selection-start-line="107" selection-start-column="9" selection-end-line="107" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TRNode.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRNode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TRNodesList.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRNodesList.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="119" column="15" selection-start-line="119" selection-start-column="15" selection-end-line="119" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -214,44 +97,10 @@
         <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TR.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="232" column="0" selection-start-line="232" selection-start-column="0" selection-end-line="232" selection-end-column="0" />
+              <caret line="258" column="0" selection-start-line="258" selection-start-column="0" selection-end-line="258" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PVRPReadFormat.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trReadFile/PVRPReadFormat.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="327" column="0" selection-start-line="327" selection-start-column="0" selection-end-line="327" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TRRoot.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRRoot.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="114" column="8" selection-start-line="114" selection-start-column="8" selection-end-line="114" selection-end-column="8" />
-              <folding>
-                <element signature="method#TRFormat#0;class#TRRoot#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TRLowestDistanceInsertionExhaustive.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/Heuristics/Insertion/TRLowestDistanceInsertionExhaustive.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.61421317">
-              <caret line="154" column="0" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -260,62 +109,47 @@
         <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRFeasibility.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="121" column="0" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
-              <folding>
-                <element signature="e#3245#3246#0" expanded="true" />
-                <element signature="e#3272#3273#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TRGreedyInsertion.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/Heuristics/Insertion/TRGreedyInsertion.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="113" column="0" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TRTrucksList.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRTrucksList.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="560" column="0" selection-start-line="560" selection-start-column="0" selection-end-line="560" selection-end-column="0" />
-              <folding>
-                <element signature="method#findLowestDemandCombination#0;class#TRTrucksList#0" expanded="false" />
-                <element signature="method#findLowestDistanceCombination#0;class#TRTrucksList#0" expanded="false" />
-                <element signature="method#createProperVisitationFormat#0;class#TRTrucksList#0" expanded="false" />
-                <element signature="method#insertByDistance#0;class#TRTrucksList#0" expanded="false" />
-                <element signature="method#insertByDemandBruteForce#0;class#TRTrucksList#0" expanded="false" />
-                <element signature="method#insertByDistanceBruteForce#0;class#TRTrucksList#0" expanded="false" />
-                <element signature="method#calculateRelativeDemand#0;class#TRTrucksList#0" expanded="false" />
-                <element signature="method#calculateRelativeDistance#0;class#TRTrucksList#0" expanded="false" />
-                <element signature="method#findLowestDemandDistanceDays#0;class#TRTrucksList#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReadFormat.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trReadFile/ReadFormat.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+              <caret line="123" column="0" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BigDecimal.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_45/src.zip!/java/math/BigDecimal.java">
+      <file leaf-file-name="CostFunctions.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/Libraries/zeuscore.jar!/edu/sru/thangiah/zeus/core/CostFunctions.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.6666665">
+              <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TRQA.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQA.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="1285" column="22" selection-start-line="1285" selection-start-column="22" selection-end-line="1285" selection-end-column="22" />
+              <caret line="487" column="50" selection-start-line="487" selection-start-column="50" selection-end-line="487" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TRGreedyInsertion.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/Heuristics/Insertion/TRGreedyInsertion.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.39694658">
+              <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TRQADepotsList.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQADepotsList.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="53" column="15" selection-start-line="53" selection-start-column="15" selection-end-line="53" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -343,8 +177,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/SubObject.java" />
-        <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/ContainsContainsSubObject.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/ContainsSubObject.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/ContainsSubList.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/CoreDoublyLinkedListInterface.java" />
@@ -356,12 +188,10 @@
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/ObjectInListCoreInterface.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/GenericCompositions/DoublyLinkedListCoreInterface.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trReadFile/readFormat.java" />
-        <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQA.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRDepotsList.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRNodesList.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trCostFunctions/TRTrucksListCost.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trCostFunctions/TRTruckCost.java" />
-        <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trCostFunctions/TRNodesListCost.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trCostFunctions/TRDepotCost.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trCostFunctions/TRDaysListCost.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trCostFunctions/TRDayCost.java" />
@@ -387,13 +217,17 @@
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRTruck.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/Heuristics/Insertion/TRChooseByHighestDemand.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/Heuristics/Selection/TRChooseByHighestDemand.java" />
-        <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TR.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/Zeus.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trReadFile/PVRPReadFormat.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRTrucksList.java" />
+        <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRAttributes.java" />
+        <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trCostFunctions/TRNodesListCost.java" />
+        <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQADay.java" />
+        <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQA.java" />
+        <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TR.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRFeasibility.java" />
-        <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRRoot.java" />
         <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/Heuristics/Insertion/TRLowestDistanceInsertionExhaustive.java" />
+        <option value="$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRRoot.java" />
       </list>
     </option>
   </component>
@@ -408,10 +242,10 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1916" />
-    <option name="y" value="-4" />
+    <option name="x" value="-256" />
+    <option name="y" value="272" />
     <option name="width" value="1928" />
-    <option name="height" value="1088" />
+    <option name="height" value="1048" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -592,50 +426,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Insertion" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Zeus_TR" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Zeus" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="edu.sru.thangiah.zeus" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tr" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="trReadFile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Zeus_TR" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Zeus" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="edu.sru.thangiah.zeus" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tr" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="trCostFunctions" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -847,7 +637,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1916" y="-4" width="1928" height="1088" extended-state="6" />
+    <frame x="-256" y="272" width="1928" height="1048" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -858,22 +648,22 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30572918" sideWeight="0.50625" order="8" side_tool="true" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25520834" sideWeight="0.50625" order="8" side_tool="true" content_ui="combo" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13645834" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" x="898" y="500" width="124" height="40" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1828125" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" x="898" y="500" width="124" height="40" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22211254" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21068859" sideWeight="0.49375" order="9" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29804727" sideWeight="0.49375" order="9" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32887974" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -946,23 +736,35 @@
           <properties />
           <option name="timeStamp" value="126" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRFeasibility.java</url>
           <line>131</line>
           <properties />
           <option name="timeStamp" value="130" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRFeasibility.java</url>
           <line>128</line>
           <properties />
           <option name="timeStamp" value="131" />
         </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRFeasibility.java</url>
+          <line>123</line>
+          <properties />
+          <option name="timeStamp" value="133" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/Heuristics/Insertion/TRLowestDistanceInsertionExhaustive.java</url>
+          <line>110</line>
+          <properties />
+          <option name="timeStamp" value="134" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="132" />
+      <option name="time" value="136" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -975,63 +777,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRDepot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="107" column="38" selection-start-line="107" selection-start-column="38" selection-end-line="107" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/Libraries/zeuscore.jar!/edu/sru/thangiah/zeus/core/Nodes.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.259259">
-          <caret line="34" column="15" selection-start-line="34" selection-start-column="15" selection-end-line="34" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/Libraries/zeuscore.jar!/edu/sru/thangiah/zeus/core/TruckType.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-74.07407">
-          <caret line="139" column="18" selection-start-line="139" selection-start-column="18" selection-end-line="139" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/Libraries/zeuscore.jar!/edu/sru/thangiah/zeus/core/Day.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.4444447">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/Libraries/zeuscore.jar!/edu/sru/thangiah/zeus/core/DaysLinkedList.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.4444447">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/package.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/Libraries/XML File Reader/poi-ooxml-3.10-FINAL-20140208.jar!/org/apache/poi/xssf/usermodel/XSSFCell.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.6666665">
-          <caret line="109" column="0" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/Libraries/zeuscore.jar!/edu/sru/thangiah/zeus/core/CostFunctions.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.740741">
-          <caret line="26" column="39" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trCostFunctions/TRTrucksListCost.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1075,24 +820,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trCostFunctions/TRNodesListCost.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="227" column="0" selection-start-line="227" selection-start-column="0" selection-end-line="227" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trCostFunctions/TRDepotsListCost.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="117" column="0" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trWriteFile/TRWriteFormat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="652" column="64" selection-start-line="652" selection-start-column="64" selection-end-line="652" selection-end-column="64" />
         </state>
       </provider>
     </entry>
@@ -1115,13 +846,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="229" column="5" selection-start-line="229" selection-start-column="5" selection-end-line="229" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="141" column="37" selection-start-line="141" selection-start-column="37" selection-end-line="141" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1136,6 +861,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="37" column="36" selection-start-line="37" selection-start-column="36" selection-end-line="37" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1244,16 +972,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRNodesList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="220" column="0" selection-start-line="220" selection-start-column="0" selection-end-line="220" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/Heuristics/Selection/TRClosestDistanceToDepot.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1279,9 +997,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="32" column="120" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="120" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1298,7 +1014,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
           <folding>
-            <element signature="e#4070#4071#0" expanded="true" />
+            <element signature="e#4070#4071#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1307,9 +1023,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="327" column="0" selection-start-line="327" selection-start-column="0" selection-end-line="327" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1333,26 +1047,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TR.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="232" column="0" selection-start-line="232" selection-start-column="0" selection-end-line="232" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/Heuristics/Insertion/TRGreedyInsertion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="113" column="0" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1405#1406#0" expanded="false" />
+            <element signature="e#1428#1429#0" expanded="false" />
+            <element signature="e#1484#1485#0" expanded="false" />
+            <element signature="e#1519#1520#0" expanded="false" />
+            <element signature="e#1557#1558#0" expanded="false" />
+            <element signature="e#1584#1585#0" expanded="false" />
+            <element signature="e#1648#1649#0" expanded="false" />
+            <element signature="e#1691#1692#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1362,6 +1066,51 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="560" column="0" selection-start-line="560" selection-start-column="0" selection-end-line="560" selection-end-column="0" />
           <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1305#1306#0" expanded="false" />
+            <element signature="e#1342#1343#0" expanded="false" />
+            <element signature="e#1379#1380#0" expanded="false" />
+            <element signature="e#1416#1417#0" expanded="false" />
+            <element signature="e#1469#1470#0" expanded="false" />
+            <element signature="e#1493#1494#0" expanded="false" />
+            <element signature="e#1546#1547#0" expanded="false" />
+            <element signature="e#1570#1571#0" expanded="false" />
+            <element signature="e#1860#1861#0" expanded="false" />
+            <element signature="e#1907#1908#0" expanded="false" />
+            <element signature="e#1931#1932#0" expanded="false" />
+            <element signature="e#1969#1970#0" expanded="false" />
+            <element signature="e#2018#2019#0" expanded="false" />
+            <element signature="e#2066#2067#0" expanded="false" />
+            <element signature="e#2147#2148#0" expanded="false" />
+            <element signature="e#2183#2184#0" expanded="false" />
+            <element signature="e#2222#2223#0" expanded="false" />
+            <element signature="e#2261#2262#0" expanded="false" />
+            <element signature="e#2433#2434#0" expanded="false" />
+            <element signature="e#2471#2472#0" expanded="false" />
+            <element signature="e#2512#2513#0" expanded="false" />
+            <element signature="e#2553#2554#0" expanded="false" />
+            <element signature="e#2595#2596#0" expanded="false" />
+            <element signature="e#2637#2638#0" expanded="false" />
+            <element signature="e#2700#2701#0" expanded="false" />
+            <element signature="e#2753#2754#0" expanded="false" />
+            <element signature="e#2799#2800#0" expanded="false" />
+            <element signature="e#2845#2846#0" expanded="false" />
+            <element signature="e#2904#2905#0" expanded="false" />
+            <element signature="e#2953#2954#0" expanded="false" />
+            <element signature="e#2999#3000#0" expanded="false" />
+            <element signature="e#3049#3050#0" expanded="false" />
+            <element signature="e#3077#3078#0" expanded="false" />
+            <element signature="e#3115#3116#0" expanded="false" />
+            <element signature="e#3180#3181#0" expanded="false" />
+            <element signature="e#3231#3232#0" expanded="false" />
+            <element signature="e#3435#3436#0" expanded="false" />
+            <element signature="e#3481#3482#0" expanded="false" />
+            <element signature="e#3702#3703#0" expanded="false" />
+            <element signature="e#3758#3759#0" expanded="false" />
+            <element signature="e#3822#3823#0" expanded="false" />
+            <element signature="e#3872#3873#0" expanded="false" />
+            <element signature="e#3944#3945#0" expanded="false" />
+            <element signature="e#4002#4003#0" expanded="false" />
             <element signature="method#findLowestDemandCombination#0;class#TRTrucksList#0" expanded="false" />
             <element signature="method#findLowestDistanceCombination#0;class#TRTrucksList#0" expanded="false" />
             <element signature="method#createProperVisitationFormat#0;class#TRTrucksList#0" expanded="false" />
@@ -1375,31 +1124,145 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRAttributes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="50" column="40" selection-start-line="50" selection-start-column="40" selection-end-line="50" selection-end-column="40" />
+          <folding>
+            <element signature="e#1559#1560#0" expanded="true" />
+            <element signature="e#1598#1599#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/index-all.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.206897">
+          <caret line="3347" column="13" selection-start-line="3347" selection-start-column="13" selection-end-line="3347" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trCostFunctions/TRNodesListCost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-23.11111">
+          <caret line="221" column="30" selection-start-line="221" selection-start-column="30" selection-end-line="221" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trWriteFile/PVRPWriteFormat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="949" column="24" selection-start-line="949" selection-start-column="24" selection-end-line="949" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trWriteFile/TRWriteFormat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="269" column="58" selection-start-line="269" selection-start-column="58" selection-end-line="269" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQATruck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="98" column="33" selection-start-line="98" selection-start-column="33" selection-end-line="98" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQADay.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="321" column="34" selection-start-line="321" selection-start-column="34" selection-end-line="321" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQADepotsList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="53" column="15" selection-start-line="53" selection-start-column="15" selection-end-line="53" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/trQualityAssurance/TRQA.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="487" column="50" selection-start-line="487" selection-start-column="50" selection-end-line="487" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TR.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="258" column="0" selection-start-line="258" selection-start-column="0" selection-end-line="258" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/TRNodesList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="119" column="15" selection-start-line="119" selection-start-column="15" selection-end-line="119" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/Libraries/zeuscore.jar!/edu/sru/thangiah/zeus/core/CostFunctions.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.6666665">
+          <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRFeasibility.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="121" column="0" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
-          <folding>
-            <element signature="e#3245#3246#0" expanded="true" />
-            <element signature="e#3272#3273#0" expanded="true" />
-          </folding>
+          <caret line="123" column="0" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/Heuristics/Insertion/TRLowestDistanceInsertionExhaustive.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.814815">
+          <caret line="107" column="9" selection-start-line="107" selection-start-column="9" selection-end-line="107" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRRoot.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="114" column="8" selection-start-line="114" selection-start-column="8" selection-end-line="114" selection-end-column="8" />
+          <caret line="109" column="45" selection-start-line="109" selection-start-column="45" selection-end-line="109" selection-end-column="45" />
           <folding>
             <element signature="method#TRFormat#0;class#TRRoot#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/Heuristics/Insertion/TRLowestDistanceInsertionExhaustive.java">
+    <entry file="file://$PROJECT_DIR$/src/edu/sru/thangiah/zeus/tr/TRSolutionHierarchy/Heuristics/Insertion/TRGreedyInsertion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.61421317">
-          <caret line="154" column="0" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.39694658">
+          <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
           <folding />
         </state>
       </provider>

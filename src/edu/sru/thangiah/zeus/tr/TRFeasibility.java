@@ -125,12 +125,12 @@ public boolean isFeasible() {
 //>>>>>>> origin/master
 		return true;
 	}
-	if(currentDistance > maxDistance){
-		System.out.println("MAX DISTANCE PROBLEM");
-	}
-	if(currentDemand > maxCapacity){
-		System.out.println("MAX CAPACITY PROBLEM");
-	}
+//	if(currentDistance > maxDistance){
+//		System.out.println("MAX DISTANCE PROBLEM");
+//	}
+//	if(currentDemand > maxCapacity){
+//		System.out.println("MAX CAPACITY PROBLEM");
+//	}
 	return false;
 
 //	return true;

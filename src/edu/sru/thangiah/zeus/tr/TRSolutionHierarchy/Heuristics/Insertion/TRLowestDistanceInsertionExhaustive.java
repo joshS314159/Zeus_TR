@@ -12,10 +12,18 @@ public class TRLowestDistanceInsertionExhaustive {
 
     private double findDistanceAtInsertionPoint(final TRNodesList nodesList, final TRNode insertAfter, final TRShipment insertMe){
         TRNode insertNode = new TRNode(insertMe);
+        boolean isFeasible = false;
         nodesList.insertAfterObject(insertNode, insertAfter);
+
+        nodesList.getFeasibility().setRoute(nodesList);
+        isFeasible = nodesList.getFeasibility().isFeasible();
+
+
 //        nodesList.insertAfterLastIndex(insertMe);
-        TRProblemInfo.nodesLLLevelCostF.setTotalDemand(nodesList);
-        TRProblemInfo.nodesLLLevelCostF.setTotalDistance(nodesList);
+//        TRProblemInfo.nodesLLLevelCostF.setTotalDemand(nodesList);
+//        TRProblemInfo.nodesLLLevelCostF.setTotalDistance(nodesList);
+
+
 
         final double distance = nodesList.getAttributes().getTotalDistance();
 
@@ -23,71 +31,20 @@ public class TRLowestDistanceInsertionExhaustive {
         TRProblemInfo.nodesLLLevelCostF.setTotalDemand(nodesList);
         TRProblemInfo.nodesLLLevelCostF.setTotalDistance(nodesList);
 
+        if(!isFeasible){ return 999999999; }
         return distance;
     }
-
-    private TRNode[] findBestCombination(final TRShipment theShipment, final TRNode[][] bestNodes, final
-                                              TRDepotsList mainDepots){
-//        TRNode[][] sortedBest = bestNodes;
-        final TRNode insertMe = new TRNode(theShipment);
-
-        double bestDistance = 999999999;
-        TRNode[] bestCombination = null;
-        double currentDistance = 999999999;
-
-
-        for(int i = 0; i < bestNodes.length; i++){
-            boolean isSuccessful = true;
-            for(int j = 0; j < bestNodes[i].length; j++){
-                if(bestNodes[i][j] != null) {
-                    if(!bestNodes[i][j].insertAfterCurrent(new TRNode(theShipment))){
-                        isSuccessful = false;
-                    }
-                }
-            }
-
-            if(isSuccessful) {
-                TRProblemInfo.depotLLLevelCostF.setTotalDemand(mainDepots);
-                TRProblemInfo.depotLLLevelCostF.setTotalDistance(mainDepots);
-
-
-//                currentDistance = mainDepots.getAttributes().getTotalDistance();
-                currentDistance =  TRProblemInfo.depotLLLevelCostF.getTotalDistance(mainDepots);
-                if(currentDistance < bestDistance) {
-                    bestDistance = currentDistance;
-                    bestCombination = bestNodes[i];
-                }
-            }
-//            final double distance = mainDepots.getAttributes().getTotalDistance();
-//            final double demand = mainDepots.getAttributes().getTotalDemand();
-
-            for(int j = 0; j < bestNodes[i].length; j++){
-                if(bestNodes[i][j] != null){
-                    if(bestNodes[i][j].getNext().getShipment() == theShipment) {
-                        bestNodes[i][j].getNext().removeThisObject();
-                    }
-                    else{
-                        int a = 5;
-                    }
-                }
-            }
-
-            TRProblemInfo.depotLLLevelCostF.setTotalDemand(mainDepots);
-            TRProblemInfo.depotLLLevelCostF.setTotalDistance(mainDepots);
-        }
-
-        return bestCombination;
-    }
-
 
 
     public boolean getInsertShipment(final TRDepotsList mainDepots, final TRShipment theShipment){
 
 //		private boolean insertAtLowestDistanceLast(final TRShipment theShipment){
         TRNode insertMe = new TRNode(theShipment);
+        boolean isSolution = false;
 
         final int numberCombinations = theShipment.getNoComb();
         TRNode[][] bestNodes = new TRNode[numberCombinations][theShipment.getCurrentComb()[0].length];
+        double[][] distances = new double[numberCombinations][theShipment.getCurrentComb()[0].length];
 
 
         for(int h = 0; h < numberCombinations; h++) {
@@ -112,9 +69,11 @@ public class TRLowestDistanceInsertionExhaustive {
                             TRNode theNode = nodesList.getFirst();
                             while(theNode != nodesList.getTail()) {
                                 currentDistance = findDistanceAtInsertionPoint(nodesList, theNode, theShipment);
-
+//                                boolean isValidRouteFound = false;
                                 if(currentDistance < bestDistance) {
+//                                    isValidRouteFound = true;
                                     bestDistance = currentDistance;
+                                    distances[h][i] = bestDistance;
                                     bestNodes[h][i] = theNode;
                                 }
                                 theNode = theNode.getNext();
@@ -130,15 +89,36 @@ public class TRLowestDistanceInsertionExhaustive {
         }
 //
 //        TRNode[] bestCombination = findBestCombination(theShipment, bestNodes, mainDepots);
-//
-//        for(int i = 0; i < bestCombination.length; i++){
-//            if(bestCombination[i] != null){
-//                if(!bestCombination[i].insertAfterCurrent(new TRNode(theShipment))){
-//                    return false;
-//                }
-//            }
-//
-//        }
+
+//        if(isSolution)
+        int bestCombinationNumber = -1;
+        double bestDistance = 999999999;
+        for(int i = 0; i < distances.length; i++){
+            double currentDistance = 0;
+            for(int j = 0; j < distances[i].length; j++){
+                currentDistance += distances[i][j];
+            }
+
+
+
+            if(currentDistance < bestDistance && doCombinationsMatch(theShipment.getCurrentComb()[i], bestNodes[i])){
+                bestDistance = currentDistance;
+                bestCombinationNumber = i;
+            }
+        }
+
+        if(bestCombinationNumber == -1){
+            System.out.println("better algorithm needed");
+            System.exit(1);
+        }
+        TRNode[] bestCombination = bestNodes[bestCombinationNumber];
+        for(int i = 0; i < bestCombination.length; i++){
+            if(bestCombination[i] != null){
+                if(!bestCombination[i].insertAfterCurrent(new TRNode(theShipment))){
+                    return false;
+                }
+            }
+        }
 //
 //        TRProblemInfo.depotLLLevelCostF.setTotalDemand(mainDepots);
 //        TRProblemInfo.depotLLLevelCostF.setTotalDistance(mainDepots);
@@ -146,15 +126,15 @@ public class TRLowestDistanceInsertionExhaustive {
 
 
 //
-        for(int i = 0; i < bestNodes[0].length; i++){
-            if(bestNodes[6][i] != null){
-                if(!bestNodes[6][i].insertAfterCurrent(new TRNode(theShipment))){
-                    return false;
-                }
-
-
-            }
-        }
+//        for(int i = 0; i < bestNodes[0].length; i++){
+//            if(bestNodes[6][i] != null){
+//                if(!bestNodes[6][i].insertAfterCurrent(new TRNode(theShipment))){
+//                    return false;
+//                }
+//
+//
+//            }
+//        }
 
 //                TRProblemInfo.nodesLLLevelCostF.setTotalDemand(bestNodes[i]);
 //                TRProblemInfo.nodesLLLevelCostF.setTotalDistance(bestNodes[i]);
@@ -163,5 +143,32 @@ public class TRLowestDistanceInsertionExhaustive {
         return true;
 //		}
 
+    }
+
+    private boolean doCombinationsMatch(final int[] theCombination, final TRNode[] assessedCombination){
+        if(theCombination.length != assessedCombination.length){
+            return false;
+        }
+
+        final int visitedDay = 1;
+        final int nonVisitedDay = 0;
+
+        int[] formattedAssessedCombination = new int[assessedCombination.length];
+        for(int i = 0; i < assessedCombination.length; i++){
+            if(assessedCombination[i] != null){
+                formattedAssessedCombination[i] = visitedDay;
+            }
+            else{
+                formattedAssessedCombination[i] = nonVisitedDay;
+            }
+        }
+
+
+        for(int i = 0; i < formattedAssessedCombination.length; i++){
+            if(formattedAssessedCombination[i] != theCombination[i]){
+                return false;
+            }
+        }
+        return true;
     }
 }

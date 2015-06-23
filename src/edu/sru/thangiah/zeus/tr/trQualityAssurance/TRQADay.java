@@ -168,10 +168,10 @@ public boolean checkDistanceConstraint(TRQADay day) {
 		distance = firstPoint.calculateDistanceThisMiles(secondPoint);
 
 		totalDistance += distance;
-		if (isDiagnostic) {
-			System.out.println("    Distance from " + nodeOne.getIndex() + " to " +
-					nodeTwo.getIndex() + " = " + distance);
-		}
+//		if (isDiagnostic) {
+//			System.out.println("    Distance from " + nodeOne.getIndex() + " to " +
+//					nodeTwo.getIndex() + " = " + distance);
+//		}
 		nodeOne = nodeTwo;
 	}
 
@@ -315,10 +315,10 @@ public boolean checkCapacityConstraint(TRQADay day) {
 	for(int i = 1; i < getNodes().size() - 1; i++) {
 		node = (TRQANode) getNodes().elementAt(i);
 		capacity = node.getDemand();
-		if(isDiagnostic) {
-			System.out.println("    Node " + node.getIndex() + " demand: " +
-							   +capacity);
-		}
+//		if(isDiagnostic) {
+//			System.out.println("    Node " + node.getIndex() + " demand: " +
+//							   +capacity);
+//		}
 		totalCapacity += capacity;
 	}
 

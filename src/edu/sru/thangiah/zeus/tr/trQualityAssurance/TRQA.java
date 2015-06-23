@@ -143,7 +143,7 @@ public void writeTempFiles() {
 public void readShipmentFile()
 		throws IOException {
 	//VARIABLES
-    System.out.println(String.valueOf(shipmentFile) + "\t\t$#T^$%YH$%%^UY$%^HUY$^%UY%&^U$%^UJ%^HJU%^&JU%^&YHJU%^");
+    System.out.println(String.valueOf(shipmentFile));
 	FileInputStream file = new FileInputStream(new File(String.valueOf(shipmentFile)));
 	XSSFWorkbook workbook = new XSSFWorkbook(file);        //create a workbook
 	XSSFSheet sheet = workbook.getSheetAt(0);            //get a worksheet

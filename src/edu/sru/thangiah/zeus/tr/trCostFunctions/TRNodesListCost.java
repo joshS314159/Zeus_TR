@@ -180,8 +180,10 @@ public void setTotalDistance(Object o) {
         int startTimeInMinutes = (TRProblemInfo.startHour * 60) + TRProblemInfo.startMinute;
         int endTimeInMinutes = startTimeInMinutes + totalTravelTime + totalDelay;
 
-        System.out.println("Total travel time without time-range penalties and delays:\t" + (totalTravelTime) + " minutes");
-        System.out.println("Total travel time without time-range penalties:\t" + (endTimeInMinutes - startTimeInMinutes) + " minutes");
+        nodesList.getAttributes().setTotalUnadjustedTravelTime(totalTravelTime);
+
+//        System.out.println("Total travel time without time-range penalties and delays:\t" + (totalTravelTime) + " minutes");
+//        System.out.println("Total travel time without time-range penalties:\t" + (endTimeInMinutes - startTimeInMinutes) + " minutes");
 
         int endHourTime = endTimeInMinutes / 60;
         int endMinuteTime = endTimeInMinutes % 60;
@@ -216,7 +218,7 @@ public void setTotalDistance(Object o) {
         totalTravelTime = endTimeInMinutes - startTimeInMinutes;
 
 
-        System.out.println("Total travel time:\t" + totalTravelTime + " minutes");
+//        System.out.println("Total travel time:\t" + totalTravelTime + " minutes");
         nodesList.getAttributes().setTotalTravelTime(totalTravelTime);
 
 

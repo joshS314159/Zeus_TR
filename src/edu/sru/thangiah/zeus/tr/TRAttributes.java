@@ -39,7 +39,8 @@ public class TRAttributes
 		implements java.io.Serializable, Cloneable {
 
 
-private int totalPenaltiesTime;
+//private int totalPenaltiesTime;
+private int totalUnadjustedTravelTime;
 private int maxDistance;
 private int maxDemand;
 private int maxCost;
@@ -51,9 +52,19 @@ public TRAttributes(final TRAttributes copyMe) {
 	setTotalTravelTime(copyMe.getTotalTravelTime());
 	setMaxTravelTime(copyMe.getMaxTravelTime());
 	setAvgTravelTime(copyMe.getAvgTravelTime());
+	setTotalUnadjustedTravelTime(copyMe.getTotalUnadjustedTravelTime());
 }
 
-public TRAttributes() {
+
+	public int getTotalUnadjustedTravelTime() {
+		return totalUnadjustedTravelTime;
+	}
+
+	public void setTotalUnadjustedTravelTime(final int totalUnadjustedTravelTime) {
+		this.totalUnadjustedTravelTime = totalUnadjustedTravelTime;
+	}
+
+	public TRAttributes() {
 }
 
 public int getMaxCost() {
@@ -79,18 +90,18 @@ public int getMaxDemand() {
 public void setMaxDemand(final int maxDemand) {
 	this.maxDemand = maxDemand;
 }
-
-public boolean setTotalPenaltiesTime(final int totalPenaltiesTime) {
-	if(totalPenaltiesTime >= 0) {
-		this.totalPenaltiesTime = totalPenaltiesTime;
-		return true;
-	}
-	return false;
-}
-
-public int getTotalPenaltiesTime() {
-	return totalPenaltiesTime;
-}
+//
+//public boolean setTotalPenaltiesTime(final int totalPenaltiesTime) {
+//	if(totalPenaltiesTime >= 0) {
+//		this.totalPenaltiesTime = totalPenaltiesTime;
+//		return true;
+//	}
+//	return false;
+//}
+//
+//public int getTotalPenaltiesTime() {
+//	return totalPenaltiesTime;
+//}
 
 
 
