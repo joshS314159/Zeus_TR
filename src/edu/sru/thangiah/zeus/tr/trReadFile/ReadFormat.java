@@ -5,7 +5,7 @@ import edu.sru.thangiah.zeus.tr.TRProblemInfo;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.*;
 import edu.sru.thangiah.zeus.tr.TRTruckType;
 
-import java.util.IntSummaryStatistics;
+//import java.util.IntSummaryStatistics;
 
 /**
  * Created by library-tlc on 5/26/15.
@@ -83,6 +83,7 @@ public void createHierarchy(){
 		TRTruckType tempTruckType = new TRTruckType(maxDayDistance, maxDayDemand);
 		for(int i = 0; i < numberDepotsToMake; i++){
 			mainDepots.insertAfterLastIndex(new TRDepot(depotCoordinates));
+			mainDepots.getLast().setDepotNum(i);
 			mainDepots.getAttributes().setMaxDemand(maxDepotDemand);
 			mainDepots.getAttributes().setMaxDistance(maxDepotDistance);
 
@@ -91,6 +92,7 @@ public void createHierarchy(){
 			for(int j = 0; j < numberTrucksToMake; j++){
 				trucksList.insertAfterLastIndex(new TRTruck());
 				trucksList.getLast().setTruckType(tempTruckType);
+				trucksList.getLast().setTruckNum(j);
 				trucksList.getAttributes().setMaxDemand(maxTruckDemand);
 				trucksList.getAttributes().setMaxDistance(maxTruckDistance);
 
@@ -98,6 +100,7 @@ public void createHierarchy(){
 
 				for(int k = 0; k < numberDaysToMake; k++){
 					daysList.insertAfterLastIndex(new TRDay());
+					daysList.getLast().setDayNumber(k);
 					daysList.getAttributes().setMaxDistance(maxDayDistance);
 					daysList.getAttributes().setMaxDemand(maxDayDemand);
 					daysList.getLast().getSubList().setStartEndPoints(depotCoordinates, depotCoordinates);

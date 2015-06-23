@@ -125,6 +125,11 @@ public void setTotalDistance(Object o) {
 		System.out.println();
 	}
 
+    if(nodesList.isEmpty()){
+        nodesList.getAttributes().setTotalDistance(0);
+        return;
+    }
+
     float distance = 0;
 
     while(rightNode != null){

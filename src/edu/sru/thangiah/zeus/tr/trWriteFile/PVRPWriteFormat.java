@@ -866,10 +866,10 @@ public void writeLongSolution()
 
 			//then we need to add header information regarding our problem
 			outputCell = outputRow.createCell(outputRow.getPhysicalNumberOfCells() + 1);
-			outputCell.setCellValue("CPSC_464");
+			outputCell.setCellValue("ZEUS");
 
 			outputCell = outputRow.createCell(outputRow.getPhysicalNumberOfCells() + 1);
-			outputCell.setCellValue("%_Worse");
+			outputCell.setCellValue("%Difference_Best");
 
 			for(int x = 2; x < inputSheet.getPhysicalNumberOfRows(); x++) {
 				//this for loop here cycles through everything else
@@ -960,7 +960,8 @@ public void writeLongSolution()
 		outputCell = outputRow.createCell(THIS_PERCENTAGE_COLUMN);
 		//create cell at specific column number
 		outputCell.setCellType(TYPE_NUMERIC);
-		outputCell.setCellValue(((thisDistance / bestDistance) * 100) - 100);
+		int percentDifference = (int) (((thisDistance - bestDistance) / bestDistance) * 100);
+		outputCell.setCellValue(percentDifference);
 		//prints our percentage under/over the best solution
 		//thus far we have always been over (+ value)
 

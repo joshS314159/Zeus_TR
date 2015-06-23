@@ -9,6 +9,7 @@ import edu.sru.thangiah.zeus.gui.ZeusGui;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Insertion.TRGreedyInsertion;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.*;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Insertion.TRLowestDistanceInsertion;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Insertion.TRLowestDistanceInsertionExhaustive;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Selection.TRChooseByHighestDemand;
 import edu.sru.thangiah.zeus.tr.trQualityAssurance.TRQA;
 import edu.sru.thangiah.zeus.tr.trReadFile.PVRPReadFormat;
@@ -102,8 +103,8 @@ public class TR {
         //READ DATA
 
         printDataToConsole();
-        System.out.println("reading penalties/delays/nodes");
-        System.out.println("reading delays");
+//        System.out.println("reading penalties/delays/nodes");
+//        System.out.println("reading delays");
         Settings.printDebug(Settings.COMMENT,
                 "Read Data File: " + TRProblemInfo.inputPath + TRProblemInfo.problemFileName);    //store some debug data;
 		mainReader.readFiles();
@@ -128,7 +129,8 @@ public class TR {
 
         //PROCESSING
         createInitialRoutes();
-        printRoutesToConsole();
+
+//        printRoutesToConsole();
         //this creates our initial solution routes
         //although this code doesn't have it, local optimization
         //would improve upon the initial routes created here
@@ -153,7 +155,7 @@ public class TR {
         }
 
         long endTime = System.currentTimeMillis();
-        System.out.println(">>>>>>>>>>>>>>>>>>> RUN TIME\t" + (endTime - startTime) );
+//        System.out.println(">>>>>>>>>>>>>>>>>>> RUN TIME\t" + (endTime - startTime) );
         //Check for the quality and integrity of the solution
 
         System.out.println("Routes that cannot be routed due to lack of local optimization:");
@@ -169,7 +171,7 @@ public class TR {
         System.out.println("\nWRITING SOLUTION AND COMPARISON FILES\n");
         mainWriter.writeAll();
 
-		mainWriter.writeComparisonResults();
+//		mainWriter.writeComparisonResults();
         //writes an Excel file that compares our results to some results
         //from various research papers
 
@@ -251,7 +253,9 @@ public class TR {
             }
 
 
-                if (!mainDepots.insertShipment(theShipment)) {
+//                if (!mainDepots.insertShipment(theShipment)) {
+//                if(!insertAtLowestDistanceLast(theShipment)){
+            if(!(new TRLowestDistanceInsertionExhaustive().getInsertShipment(mainDepots, theShipment))){
                     //The selected shipment couldn't be inserted in the selected location
                     Settings.printDebug(Settings.COMMENT, "The Shipment: <" + theShipment.getNodeNumber() +
                             "> cannot be routed " +
@@ -260,8 +264,8 @@ public class TR {
                     theShipment.setIsAssigned(false);
 
                 } else {
-                    Settings.printDebug(Settings.COMMENT, "The Shipment: <" + theShipment.getNodeNumber() +// " " + theShipment +
-                            "> was routed");
+//                    Settings.printDebug(Settings.COMMENT, "The Shipment: <" + theShipment.getNodeNumber() +// " " + theShipment +
+//                            "> was routed");
                     theShipment.setIsAssigned(true);    //this shipment has been assigned and we won't go back to it
                     theShipment.setCanBeRouted(true);
                 }
@@ -274,6 +278,9 @@ public class TR {
         //	calculate all the cost, distance, demand, etc. information related to the solution we just created
     }//CREATE INITIAL ROUTES ENDS
 // HERE*********<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
 
 
     public void printRoutesToConsole(){

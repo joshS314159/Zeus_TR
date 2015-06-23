@@ -190,10 +190,10 @@ public boolean checkDistanceConstraint(TRQADay day) {
 	distanceTwo = (int) (totalDistance);
 
 	if (isDiagnostic) {
-		//System.out.println("    Distance from " + node1.getIndex() + " to " +
-		//                   node2.getIndex() + " = " + truck.getDistance());
+//		System.out.println("    Distance from " + node1.getIndex() + " to " +
+//		                   node2.getIndex() + " = " + truck.getDistance());
 		System.out.println("   Truck distance " + day.getDistance() +
-				" : Computed distance " + totalDistance);
+				" : Computed distance " + totalDistance + " : MaxDistance " + day.getMaxDistance());
 
 	}
 
@@ -333,7 +333,7 @@ public boolean checkCapacityConstraint(TRQADay day) {
 
 	if(isDiagnostic) {
 		System.out.println("   Truck capacity " + day.getDemand() +
-						   " : Computed capacity " + totalCapacity);
+						   " : Computed capacity " + totalCapacity + " : MaxCapacity" + day.getMaxDemand());
 	}
 
 
