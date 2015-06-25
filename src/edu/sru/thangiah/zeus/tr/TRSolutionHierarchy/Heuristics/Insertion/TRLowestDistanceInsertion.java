@@ -1,100 +1,71 @@
 package edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Insertion;
 
 import edu.sru.thangiah.zeus.tr.TRProblemInfo;
-import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.*;
-import org.apache.xmlbeans.impl.xb.xmlconfig.Extensionconfig;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRDay;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRNode;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRNodesList;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRShipment;
 
 /**
- * Created by jks1010 on 6/3/2015.
+ * Created by jks1010 on 6/25/2015.
  */
-public class TRLowestDistanceInsertion //extends TRNodesList //implements InterfaceInsertion
- {
-//	@Override
+public class TRLowestDistanceInsertion extends TRNodesList {
+
 	public static String WhoAmI() {
-		return ("TRLowestDistanceInsertion (Greedy, revised)");
+		return ("Insertion Type: LowestDistance insertion heuristic");
+	}//END WHO_AM_I *******************<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+	private double findDistanceAtInsertionPoint(final TRNodesList nodesList, final TRNode insertAfter, final TRShipment insertMe){
+		TRNode insertNode = new TRNode(insertMe);
+		boolean isFeasible = false;
+		nodesList.insertAfterObject(insertNode, insertAfter);
+
+		nodesList.getFeasibility().setRoute(nodesList);
+		isFeasible = nodesList.getFeasibility().isFeasible();
+
+
+//        nodesList.insertAfterLastIndex(insertMe);
+//        TRProblemInfo.nodesLLLevelCostF.setTotalDemand(nodesList);
+//        TRProblemInfo.nodesLLLevelCostF.setTotalDistance(nodesList);
+
+
+
+		final double distance = nodesList.getAttributes().getTotalDistance();
+
+		nodesList.removeByObject(insertNode);
+		TRProblemInfo.nodesLLLevelCostF.setTotalDemand(nodesList);
+		TRProblemInfo.nodesLLLevelCostF.setTotalDistance(nodesList);
+
+		if(!isFeasible){ return 999999999; }
+		return distance;
 	}
 
-	 private double findDistanceAtInsertionPoint(final TRNodesList nodesList, final TRNode insertMe){
-		 nodesList.insertNode(insertMe);
-		 TRProblemInfo.nodesLLLevelCostF.calculateTotalsStats(nodesList);
+	public boolean getInsertShipment(final TRNodesList currentNodeLL, final TRShipment theShipment) {
+		TRNode insertAfter = currentNodeLL.getHead();
+		double currentDistance = -1;
+		double bestDistance = 999999999;
+		TRNode bestInsertAfter = null;
 
-		 final double distance = nodesList.getAttributes().getTotalDistance();
+		while(insertAfter != currentNodeLL.getTail()){
+			currentDistance = findDistanceAtInsertionPoint(currentNodeLL, insertAfter, theShipment);
 
-		 nodesList.removeByObject(insertMe);
-		 TRProblemInfo.nodesLLLevelCostF.calculateTotalsStats(nodesList);
-
-		 return distance;
-
-	 }
-
-	 private double findDistanceAtLastPoint(final TRNodesList nodesList, final TRNode insertMe){
-		 nodesList.insertAfterLastIndex(insertMe);
-		 TRProblemInfo.nodesLLLevelCostF.setTotalDemand(nodesList);
-		 TRProblemInfo.nodesLLLevelCostF.setTotalDistance(nodesList);
-
-		 final double distance = nodesList.getAttributes().getTotalDistance();
-
-		 nodesList.removeByObject(insertMe);
-		 TRProblemInfo.nodesLLLevelCostF.setTotalDemand(nodesList);
-		 TRProblemInfo.nodesLLLevelCostF.setTotalDistance(nodesList);
-
-		 return distance;
-
-	 }
-
-	public boolean getInsertShipment(final TRDepotsList mainDepots, final TRShipment theShipment){
-
-//		private boolean insertAtLowestDistanceLast(final TRShipment theShipment){
-			TRNode insertMe = new TRNode(theShipment);
-
-			final int[] combination = theShipment.getCurrentComb()[0];
-			TRNodesList[] bestNodes = new TRNodesList[combination.length];
-
-			for(int i = 0; i < combination.length; i++){
-				double bestDistance = 999999999;
-				double currentDistance = -1;
-
-				if(combination[i] == 1){
-
-					TRDepot theDepot = mainDepots.getFirst();
-					while(theDepot != mainDepots.getTail()){
-						TRTrucksList trucksList = theDepot.getSubList();
-						TRTruck theTruck = trucksList.getFirst();
-
-						while(theTruck != trucksList.getTail()){
-							TRDaysList daysList = theTruck.getSubList();
-							TRDay theDay = daysList.getAtIndex(i);
-							TRNodesList nodesList = theDay.getSubList();
-
-							currentDistance = findDistanceAtLastPoint(nodesList, insertMe);
-
-							if(currentDistance < bestDistance){
-								bestDistance = currentDistance;
-								bestNodes[i] = nodesList;
-							}
-							theTruck = theTruck.getNext();
-						}
-
-						theDepot = theDepot.getNext();
-					}
-				}
+			if(currentDistance < bestDistance){
+				bestDistance = currentDistance;
+				bestInsertAfter = insertAfter;
 			}
 
+			insertAfter = insertAfter.getNext();
+		}
 
-			for(int i = 0; i < bestNodes.length; i++){
-				if(bestNodes[i] != null){
-					bestNodes[i].insertAfterLastIndex(new TRNode(theShipment));
-					TRProblemInfo.nodesLLLevelCostF.setTotalDemand(bestNodes[i]);
-					TRProblemInfo.nodesLLLevelCostF.setTotalDistance(bestNodes[i]);
-
-				}
-			}
-
-
-
-
+		if(bestInsertAfter != null) {
+			currentNodeLL.insertAfterObject(new TRNode(theShipment), bestInsertAfter);
+//			insertAfter.insertAfterCurrent(new TRNode(theShipment));
+			TRProblemInfo.nodesLLLevelCostF.setTotalDemand(currentNodeLL);
+			TRProblemInfo.nodesLLLevelCostF.setTotalDistance(currentNodeLL);
 			return true;
-//		}
+		}
 
+		return false;
 	}
+
 }

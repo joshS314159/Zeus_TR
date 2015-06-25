@@ -1,4 +1,4 @@
-package edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Insertion;
+package edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.UpperLevelInsertion;
 
 import edu.sru.thangiah.zeus.tr.TRProblemInfo;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.*;
@@ -44,7 +44,10 @@ public class TRLowestDistanceInsertionExhaustive {
 
         final int numberCombinations = theShipment.getNoComb();
         TRNode[][] bestNodes = new TRNode[numberCombinations][theShipment.getCurrentComb()[0].length];
+        TRNodesList[][] bestNodesList = new TRNodesList[numberCombinations][theShipment.getCurrentComb()[0].length];
         double[][] distances = new double[numberCombinations][theShipment.getCurrentComb()[0].length];
+
+        boolean isOldWay = false;
 
 
         for(int h = 0; h < numberCombinations; h++) {
@@ -65,19 +68,37 @@ public class TRLowestDistanceInsertionExhaustive {
                             TRDaysList daysList = theTruck.getSubList();
                             TRDay theDay = daysList.getAtIndex(i);
                             TRNodesList nodesList = theDay.getSubList();
-
                             TRNode theNode = nodesList.getFirst();
-                            while(theNode != nodesList.getTail()) {
-                                currentDistance = findDistanceAtInsertionPoint(nodesList, theNode, theShipment);
+//                            TRNode insertNode = new TRNode(insertMe);
+
+                            if(isOldWay) {
+                                while(theNode != nodesList.getTail()) {
+                                    currentDistance = findDistanceAtInsertionPoint(nodesList, theNode, theShipment);
 //                                boolean isValidRouteFound = false;
-                                if(currentDistance < bestDistance) {
+                                    if(currentDistance < bestDistance) {
 //                                    isValidRouteFound = true;
-                                    bestDistance = currentDistance;
-                                    distances[h][i] = bestDistance;
-                                    bestNodes[h][i] = theNode;
+                                        bestDistance = currentDistance;
+                                        distances[h][i] = bestDistance;
+                                        bestNodes[h][i] = theNode;
+                                    }
+                                    theNode = theNode.getNext();
                                 }
-                                theNode = theNode.getNext();
                             }
+                            else {
+                                if(nodesList.insertShipment(theShipment)){
+                                    currentDistance =  TRProblemInfo.nodesLLLevelCostF.getTotalDistance(nodesList);
+
+                                    if(currentDistance < bestDistance) {
+                                        bestDistance = currentDistance;
+                                        distances[h][i] = bestDistance;
+                                        bestNodesList[h][i] = nodesList;
+                                    }
+
+                                    nodesList.removeByShipment(theShipment);
+                                    TRProblemInfo.nodesLLLevelCostF.setTotalDistance(nodesList);
+                                }
+                            }
+
 
                             theTruck = theTruck.getNext();
                         }
@@ -87,10 +108,7 @@ public class TRLowestDistanceInsertionExhaustive {
                 }
             }
         }
-//
-//        TRNode[] bestCombination = findBestCombination(theShipment, bestNodes, mainDepots);
 
-//        if(isSolution)
         int bestCombinationNumber = -1;
         double bestDistance = 999999999;
         for(int i = 0; i < distances.length; i++){
@@ -100,10 +118,17 @@ public class TRLowestDistanceInsertionExhaustive {
             }
 
 
-
-            if(currentDistance < bestDistance && doCombinationsMatch(theShipment.getCurrentComb()[i], bestNodes[i])){
-                bestDistance = currentDistance;
-                bestCombinationNumber = i;
+            if(isOldWay) {
+                if (currentDistance < bestDistance && doCombinationsMatch(theShipment.getCurrentComb()[i], bestNodes[i])) {
+                    bestDistance = currentDistance;
+                    bestCombinationNumber = i;
+                }
+            }
+            else{
+                if (currentDistance < bestDistance && doCombinationsMatch(theShipment.getCurrentComb()[i], bestNodesList[i])) {
+                    bestDistance = currentDistance;
+                    bestCombinationNumber = i;
+                }
             }
         }
 
@@ -111,41 +136,34 @@ public class TRLowestDistanceInsertionExhaustive {
             System.out.println("better algorithm needed");
             System.exit(1);
         }
-        TRNode[] bestCombination = bestNodes[bestCombinationNumber];
-        for(int i = 0; i < bestCombination.length; i++){
-            if(bestCombination[i] != null){
-                if(!bestCombination[i].insertAfterCurrent(new TRNode(theShipment))){
-                    return false;
+
+        if(isOldWay) {
+            TRNode[] bestCombination = bestNodes[bestCombinationNumber];
+            for (int i = 0; i < bestCombination.length; i++) {
+                if (bestCombination[i] != null) {
+                    if (!bestCombination[i].insertAfterCurrent(new TRNode(theShipment))) {
+                        return false;
+                    }
                 }
             }
         }
-//
-//        TRProblemInfo.depotLLLevelCostF.setTotalDemand(mainDepots);
-//        TRProblemInfo.depotLLLevelCostF.setTotalDistance(mainDepots);
-
-
-
-//
-//        for(int i = 0; i < bestNodes[0].length; i++){
-//            if(bestNodes[6][i] != null){
-//                if(!bestNodes[6][i].insertAfterCurrent(new TRNode(theShipment))){
-//                    return false;
-//                }
-//
-//
-//            }
-//        }
-
-//                TRProblemInfo.nodesLLLevelCostF.setTotalDemand(bestNodes[i]);
-//                TRProblemInfo.nodesLLLevelCostF.setTotalDistance(bestNodes[i]);
-
+        else{
+            TRNodesList[] bestCombination = bestNodesList[bestCombinationNumber];
+            for (int i = 0; i < bestCombination.length; i++) {
+                if (bestCombination[i] != null) {
+                    if (!bestCombination[i].getInsertShipment(bestCombination[i], (theShipment))) {
+                        return false;
+                    }
+                }
+            }
+        }
 
         return true;
 //		}
 
     }
 
-    private boolean doCombinationsMatch(final int[] theCombination, final TRNode[] assessedCombination){
+    private boolean doCombinationsMatch(final int[] theCombination, final Object[] assessedCombination){
         if(theCombination.length != assessedCombination.length){
             return false;
         }

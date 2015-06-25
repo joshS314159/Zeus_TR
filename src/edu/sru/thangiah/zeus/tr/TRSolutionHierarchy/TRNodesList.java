@@ -44,9 +44,11 @@ public void removeByShipment(final TRShipment theShipment){
 	TRNode theNode = this.getFirst();
 	while(theNode != this.getTail()){
 		if(theNode.getShipment() == theShipment){
-			theNode.getShipment().removeThisObject();
+//			theNode.getShipment().removeThisObject();
+			theNode.removeThisObject();
 			return;
 		}
+		theNode = theNode.getNext();
 	}
 }
 

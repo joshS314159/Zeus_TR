@@ -3,36 +3,18 @@ package edu.sru.thangiah.zeus.tr;
 //IMPORTS
 
 
-import edu.sru.thangiah.zeus.core.ProblemInfo;
 import edu.sru.thangiah.zeus.core.Settings;
-import edu.sru.thangiah.zeus.gui.ZeusGui;
-import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Insertion.TRGreedyInsertion;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.*;
-import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Insertion.TRLowestDistanceInsertion;
-import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Insertion.TRLowestDistanceInsertionExhaustive;
-import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.Selection.TRChooseByHighestDemand;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.UpperLevelInsertion.TRLowestDistanceInsertionExhaustive;
 import edu.sru.thangiah.zeus.tr.trQualityAssurance.TRQA;
-import edu.sru.thangiah.zeus.tr.trReadFile.PVRPReadFormat;
 import edu.sru.thangiah.zeus.tr.trReadFile.ReadFormat;
-import edu.sru.thangiah.zeus.tr.trReadFile.TRReadFormat;
-import edu.sru.thangiah.zeus.tr.trWriteFile.PVRPWriteFormat;
-import edu.sru.thangiah.zeus.tr.trWriteFile.TRWriteFormat;
 import edu.sru.thangiah.zeus.tr.trWriteFile.WriteFormat;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.text.DecimalFormat;
-import java.util.Iterator;
 import java.util.Vector;
-
-import static java.lang.StrictMath.atan2;
-import static java.lang.StrictMath.sqrt;
 
 
 /**
