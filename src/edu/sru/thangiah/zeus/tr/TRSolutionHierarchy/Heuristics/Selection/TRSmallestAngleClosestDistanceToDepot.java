@@ -11,7 +11,7 @@ import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRShipmentsList;
  * Created by joshuasarver on 1/14/15.
  */
 public class TRSmallestAngleClosestDistanceToDepot
-		extends TRShipmentsList {
+		extends TRShipmentsList implements SelectionInterface{
 
 
 //The WhoAmI methods gives the id of the assigned object

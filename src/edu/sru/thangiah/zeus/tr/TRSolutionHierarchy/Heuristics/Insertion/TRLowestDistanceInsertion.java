@@ -9,7 +9,7 @@ import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRShipment;
 /**
  * Created by jks1010 on 6/25/2015.
  */
-public class TRLowestDistanceInsertion extends TRNodesList {
+public class TRLowestDistanceInsertion extends TRNodesList implements InsertionInterface{
 
 	public static String WhoAmI() {
 		return ("Insertion Type: LowestDistance insertion heuristic");
@@ -23,13 +23,6 @@ public class TRLowestDistanceInsertion extends TRNodesList {
 		nodesList.getFeasibility().setRoute(nodesList);
 		isFeasible = nodesList.getFeasibility().isFeasible();
 
-
-//        nodesList.insertAfterLastIndex(insertMe);
-//        TRProblemInfo.nodesLLLevelCostF.setTotalDemand(nodesList);
-//        TRProblemInfo.nodesLLLevelCostF.setTotalDistance(nodesList);
-
-
-
 		final double distance = nodesList.getAttributes().getTotalDistance();
 
 		nodesList.removeByObject(insertNode);
@@ -40,32 +33,25 @@ public class TRLowestDistanceInsertion extends TRNodesList {
 		return distance;
 	}
 
-	public boolean getInsertShipment(final TRNodesList currentNodeLL, final TRShipment theShipment) {
-		TRNode insertAfter = currentNodeLL.getHead();
-		double currentDistance = -1;
+
+	public boolean getInsertShipment(final TRNodesList nodesList, final TRShipment theShipment) {
 		double bestDistance = 999999999;
-		TRNode bestInsertAfter = null;
+		double currentDistance = -1;
+		TRNode theNode = nodesList.getFirst();
+		TRNode bestNode = null;
 
-		while(insertAfter != currentNodeLL.getTail()){
-			currentDistance = findDistanceAtInsertionPoint(currentNodeLL, insertAfter, theShipment);
-
-			if(currentDistance < bestDistance){
+		while(theNode != nodesList.getTail()) {
+			currentDistance = findDistanceAtInsertionPoint(nodesList, theNode, theShipment);
+			if(currentDistance < bestDistance) {
 				bestDistance = currentDistance;
-				bestInsertAfter = insertAfter;
+//				distances[h][i] = bestDistance;
+				bestNode = theNode;
 			}
-
-			insertAfter = insertAfter.getNext();
+			theNode = theNode.getNext();
 		}
 
-		if(bestInsertAfter != null) {
-			currentNodeLL.insertAfterObject(new TRNode(theShipment), bestInsertAfter);
-//			insertAfter.insertAfterCurrent(new TRNode(theShipment));
-			TRProblemInfo.nodesLLLevelCostF.setTotalDemand(currentNodeLL);
-			TRProblemInfo.nodesLLLevelCostF.setTotalDistance(currentNodeLL);
-			return true;
-		}
+		return nodesList.insertAfterObject(new TRNode(theShipment), bestNode);
 
-		return false;
 	}
 
 }

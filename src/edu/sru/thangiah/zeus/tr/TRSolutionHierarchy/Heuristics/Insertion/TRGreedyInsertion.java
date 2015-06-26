@@ -11,7 +11,7 @@ import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRShipment;
  * Created by joshuasarver on 1/14/15.
  */
 public class TRGreedyInsertion
-		extends TRNodesList {
+		extends TRNodesList implements InsertionInterface {
 
 final double MAX_DOUBLE = 999999999;
 //METHOD
@@ -32,22 +32,6 @@ public static String WhoAmI() {
  * @aaron comment
  */
 public boolean getInsertShipment(TRNodesList currentNodeLL, TRShipment theShipment) {
-	//currentNodeLL is the reference to the current node linked list being considered for insertion
-	//theShipment is the shipment to be inserted
-//	int test = 5;
-//	if(test == 5) {
-//		currentNodeLL.insertShipmentLast(theShipment);
-//		if(theShipment.getNodeNumber() == 4) {
-//			return true;
-//		}
-//		return true;
-//	}
-//
-//
-
-
-
-
 
 	TRNode nodeToInsert = new TRNode(theShipment);
 

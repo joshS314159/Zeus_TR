@@ -110,14 +110,14 @@ public class TRRoot {
 
         new TR(/*"TrashRoutes-Frequency.xlsx", */false, TRClosestDistanceToDepot.class, TRLowestDistanceInsertion.class, PVRPReadFormat.class, PVRPWriteFormat.class);
 
-
+//
 //        for(int i = 1; i <= 32; i++) {
 //            TRProblemInfo.problemFileName = "p" + i + ".xlsx";
 //            new TR(/*"TrashRoutes-Frequency.xlsx", */false, TRChooseByHighestDemand.class, TRGreedyInsertion.class, PVRPReadFormat.class, PVRPWriteFormat.class);
 //        }
 //        for(int i = 1; i <= 10; i++){
 //            TRProblemInfo.problemFileName = "pr" + i + ".xlsx";
-//            new TR(/*"TrashRoutes-Frequency.xlsx", */false, TRChooseByHighestDemand.class, TRGreedyInsertion.class, PVRPReadFormat.class, PVRPWriteFormat.class);
+//            new TR(/*"TrashRoutes-Frequency.xlsx", */false, TRChooseByHighestDemand.class, TRLowestDistanceInsertion.class, PVRPReadFormat.class, PVRPWriteFormat.class);
 //        }
     }
 

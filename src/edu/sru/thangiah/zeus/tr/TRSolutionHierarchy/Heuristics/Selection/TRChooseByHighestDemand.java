@@ -5,7 +5,7 @@ import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.*;
 /**
  * Created by jks1010 on 6/8/2015.
  */
-public class TRChooseByHighestDemand extends TRShipmentsList {
+public class TRChooseByHighestDemand extends TRShipmentsList implements SelectionInterface {
 
 	public TRShipment getSelectShipment(final TRDepotsList depotsList, final TRDepot theDepot,
 	                                    final TRShipmentsList shipmentsList, final TRShipment theShipment) {

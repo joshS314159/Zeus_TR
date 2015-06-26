@@ -5,7 +5,7 @@ package edu.sru.thangiah.zeus.tr;
 
 import edu.sru.thangiah.zeus.core.Settings;
 import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.*;
-import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.UpperLevelInsertion.TRLowestDistanceInsertionExhaustive;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.Heuristics.UpperLevelInsertion.TRUpperLevelLowestDistance;
 import edu.sru.thangiah.zeus.tr.trQualityAssurance.TRQA;
 import edu.sru.thangiah.zeus.tr.trReadFile.ReadFormat;
 import edu.sru.thangiah.zeus.tr.trWriteFile.WriteFormat;
@@ -238,7 +238,7 @@ public class TR {
 
 //                if (!mainDepots.insertShipment(theShipment)) {
 //                if(!insertAtLowestDistanceLast(theShipment)){
-            if(!(new TRLowestDistanceInsertionExhaustive().getInsertShipment(mainDepots, theShipment))){
+            if(!(new TRUpperLevelLowestDistance().insertShipmentHeuristic(mainDepots, theShipment))){
                     //The selected shipment couldn't be inserted in the selected location
                     Settings.printDebug(Settings.COMMENT, "The Shipment: <" + theShipment.getNodeNumber() +
                             "> cannot be routed " +

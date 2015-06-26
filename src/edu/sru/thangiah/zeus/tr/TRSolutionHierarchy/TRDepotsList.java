@@ -198,27 +198,27 @@ public TRDepotsList(final TRDepotsList copyMe) throws InstantiationException, Il
 //METHOD
 //inserts a shipment
 //@Override
-public boolean insertShipment(final TRShipment theShipment) {
-	boolean status = false;
-
-	TRDepot depot = this.getFirst();
-	TRTrucksList truckLL = null;
-
-	while(depot != this.getTail() && !status) {
-		//Get truck to insert the shipment
-		//while we have more depots
-
-
-		truckLL = depot.getSubList();
-		//get the trucks linked ist
-
-		status = truckLL.insertShipment(theShipment);
-		//insert the shipment into the trucks linked list
-		depot = depot.getNext();
-	}
-	return status;    //return true if inserted OK
-
-}//END INSERT_SHIPMENT *********<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//public boolean insertShipment(final TRShipment theShipment) {
+//	boolean status = false;
+//
+//	TRDepot depot = this.getFirst();
+//	TRTrucksList truckLL = null;
+//
+//	while(depot != this.getTail() && !status) {
+//		//Get truck to insert the shipment
+//		//while we have more depots
+//
+//
+//		truckLL = depot.getSubList();
+//		//get the trucks linked ist
+//
+//		status = truckLL.insertShipment(theShipment);
+//		//insert the shipment into the trucks linked list
+//		depot = depot.getNext();
+//	}
+//	return status;    //return true if inserted OK
+//
+//}//END INSERT_SHIPMENT *********<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 //METHOD
 //

@@ -89,12 +89,12 @@ public class TRDepot
     }
 
 
-    public boolean insertShipment(final TRShipment theShipment) {
-        boolean status = false;
-
-        return this.getSubList().insertShipment(theShipment);
-    }//END INSERT_SHIPMENT *********<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
+//    public boolean insertShipment(final TRShipment theShipment) {
+//        boolean status = false;
+//
+//        return this.getSubList().insertShipment(theShipment);
+//    }//END INSERT_SHIPMENT *********<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//
 
     public TRDepot getNext() {
         return (TRDepot) super.getNext();

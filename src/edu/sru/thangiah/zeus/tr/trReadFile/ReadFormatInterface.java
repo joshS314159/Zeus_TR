@@ -1,6 +1,8 @@
 package edu.sru.thangiah.zeus.tr.trReadFile;
 
-import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRShipmentsList;
+import edu.sru.thangiah.zeus.tr.TRProblemInfo;
+import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.*;
+import edu.sru.thangiah.zeus.tr.TRTruckType;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import java.io.IOException;
@@ -23,4 +25,7 @@ public void readDataFromFile() throws IOException, InvalidFormatException, Insta
 
 	void setProblemFileName(final String problemFileName);
 
+	void createHierarchy();
 }
+
+

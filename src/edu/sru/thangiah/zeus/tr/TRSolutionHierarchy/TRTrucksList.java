@@ -182,397 +182,397 @@ public TRTrucksList(final TRTrucksList copyMe) throws InstantiationException, Il
 		newDepot = newDepot.getNext();
 	}
 }
-
-private TRDay[][] findLowestDemandDays(final TRShipment theShipment){
-	final int numberCombinations = theShipment.getNoComb();
-	int[] currentCombination;
-	final int numberDays = TRProblemInfo.noOfDays;
-	final int scheduledDay = 1;
-	TRDay[][] bestDayCombinations = new TRDay[numberCombinations][numberDays];
-
-
-	for(int combinationStepper = 0; combinationStepper < numberCombinations; combinationStepper++){
-		currentCombination = theShipment.getCurrentComb()[combinationStepper];
-
-		for(int dayNumberStepper = 0; dayNumberStepper < numberDays; dayNumberStepper++){
-			if(currentCombination[dayNumberStepper] == scheduledDay){
-				int bestDemand = 999999999;
-				TRDay bestDay = null;
-
-				for(int truckStepper = 0; truckStepper < this.getSize(); truckStepper++){
-					TRTruck currentTruck = (TRTruck) this.getAtIndex(truckStepper);
-					TRDaysList daysList = currentTruck.getSubList();
-					TRDay currentDay = (TRDay) daysList.getAtIndex(dayNumberStepper);
-					int currentDemand = (int) currentDay.getDemand();
-
-					if(currentDemand < bestDemand){
-						bestDemand = currentDemand;
-						bestDay = currentDay;
-					}
-				}
-				bestDayCombinations[combinationStepper][dayNumberStepper] = bestDay;
-			}
-		}
-	}
-	return bestDayCombinations;
-}
-
-private TRDay[][] findLowestDistanceDays(final TRShipment theShipment){
-	final int numberCombinations = theShipment.getNoComb();
-	int[] currentCombination;
-	final int numberDays = TRProblemInfo.noOfDays;
-	final int scheduledDay = 1;
-	TRDay[][] bestDayCombinations = new TRDay[numberCombinations][numberDays];
-
-
-	for(int combinationStepper = 0; combinationStepper < numberCombinations; combinationStepper++){
-		currentCombination = theShipment.getCurrentComb()[combinationStepper];
-
-		for(int dayNumberStepper = 0; dayNumberStepper < numberDays; dayNumberStepper++){
-			if(currentCombination[dayNumberStepper] == scheduledDay){
-				int bestDistance = 999999999;
-				TRDay bestDay = null;
-
-				for(int truckStepper = 0; truckStepper < this.getSize(); truckStepper++){
-					TRTruck currentTruck = (TRTruck) this.getAtIndex(truckStepper);
-					TRDaysList daysList = currentTruck.getSubList();
-					TRDay currentDay = (TRDay) daysList.getAtIndex(dayNumberStepper);
-					int currentDistance = (int) TRProblemInfo.daysLevelCostF.getTotalDistance(currentDay);//.getDemand();
-
-					if(currentDistance < bestDistance){
-						bestDistance = currentDistance;
-						bestDay = currentDay;
-					}
-				}
-				bestDayCombinations[combinationStepper][dayNumberStepper] = bestDay;
-			}
-		}
-	}
-	return bestDayCombinations;
-}
-
-
-
-private TRDay[] findLowestDemandCombination(final TRShipment theShipment, final TRDay[][] bestDaysForEachCombo){
-	int[] demandTotalForEachCombo = new int[bestDaysForEachCombo.length];
-	final int numberCombinations = theShipment.getNoComb();
-	final int numberDays = TRProblemInfo.noOfDays;
-
-	for(int i = 0; i < demandTotalForEachCombo.length; i++){
-		demandTotalForEachCombo[i] = 0;
-	}
-
-	for(int combinationStepper = 0; combinationStepper < numberCombinations; combinationStepper++){
-		for(int dayStepper = 0; dayStepper < numberDays; dayStepper++){
-			TRDay currentDay = bestDaysForEachCombo[combinationStepper][dayStepper];
-			if(currentDay != null){
-				demandTotalForEachCombo[combinationStepper] += currentDay.getDemand();
-			}
-		}
-	}
-
-	int bestDemand = 999999999;
-	TRDay[] bestCombination = null;
-	for(int i = 0; i < demandTotalForEachCombo.length; i++){
-		if(demandTotalForEachCombo[i] < bestDemand){
-			bestDemand = demandTotalForEachCombo[i];
-			bestCombination = bestDaysForEachCombo[i];
-		}
-	}
-	return bestCombination;
-}
-
-private TRDay[] findLowestDistanceCombination(final TRShipment theShipment, final TRDay[][] bestDaysForEachCombo){
-	int[] distanceTotalForEachCombo = new int[bestDaysForEachCombo.length];
-	final int numberCombinations = theShipment.getNoComb();
-	final int numberDays = TRProblemInfo.noOfDays;
-
-	for(int i = 0; i < distanceTotalForEachCombo.length; i++){
-		distanceTotalForEachCombo[i] = 0;
-	}
-
-	for(int combinationStepper = 0; combinationStepper < numberCombinations; combinationStepper++){
-		for(int dayStepper = 0; dayStepper < numberDays; dayStepper++){
-			TRDay currentDay = bestDaysForEachCombo[combinationStepper][dayStepper];
-			if(currentDay != null){
-				distanceTotalForEachCombo[combinationStepper] += TRProblemInfo.daysLevelCostF.getTotalDistance(currentDay);//
-				// .getDemand();
-			}
-		}
-	}
-
-	int bestDistance = 999999999;
-	TRDay[] bestCombination = null;
-	for(int i = 0; i < distanceTotalForEachCombo.length; i++){
-		if(distanceTotalForEachCombo[i] < bestDistance){
-			bestDistance = distanceTotalForEachCombo[i];
-			bestCombination = bestDaysForEachCombo[i];
-		}
-	}
-	return bestCombination;
-}
-
-private int[] createProperVisitationFormat(final TRDay[] bestCombination){
-	int[] schedule = new int[bestCombination.length];
-	for(int i = 0; i < schedule.length; i++){
-		if(bestCombination[i] == null){
-			schedule[i] = 0;
-		}
-		else{
-			schedule[i] = 1;
-		}
-	}
-	return schedule;
-}
-
-private boolean insertByDemand(final TRShipment theShipment){
-	TRDay[][] bestDayCombinations = findLowestDemandDays(theShipment);
-	TRDay[] bestCombination = findLowestDemandCombination(theShipment, bestDayCombinations);
-	int[] properFormatSchedule = createProperVisitationFormat(bestCombination);
-	boolean[] bruteForceDays = new boolean[TRProblemInfo.noOfDays];
-	theShipment.setVisitComb(properFormatSchedule);
-	boolean isInserted = true;
-
-	for(int i = 0; i < bruteForceDays.length; i++){
-		bruteForceDays[i] = false;
-	}
-
-	for (int i = 0; i < bestCombination.length; i++) {
-		if (bestCombination[i] != null) {
-			if(!bestCombination[i].insertShipment(theShipment)){
-				bruteForceDays[i] = true;
-				isInserted = false;
-			}
-//				status = status & bestCombination[i].insertShipment(theShipment);
-		}
-	}
-	if(!isInserted){
-		if(!insertByDemandBruteForce(theShipment, bruteForceDays)){
-			for(int i = 0; i < TRProblemInfo.noOfDays; i++){
-				if(bestCombination[i] != null) {
-					bestCombination[i].getSubList().removeByShipment(theShipment);
-				}
-			}
-			return false;
-		}
-		return true;
-	}
-	return isInserted;
-}
-
-private boolean insertByDistance(final TRShipment theShipment){
-	TRDay[][] bestDayCombinations = findLowestDistanceDays(theShipment);
-	TRDay[] bestCombination = findLowestDistanceCombination(theShipment, bestDayCombinations);
-	int[] properFormatSchedule = createProperVisitationFormat(bestCombination);
-	boolean[] bruteForceDays = new boolean[TRProblemInfo.noOfDays];
-	theShipment.setVisitComb(properFormatSchedule);
-	boolean isInserted = true;
-
-	for(int i = 0; i < bruteForceDays.length; i++){
-		bruteForceDays[i] = false;
-	}
-
-	for (int i = 0; i < bestCombination.length; i++) {
-		if (bestCombination[i] != null) {
-			if(!bestCombination[i].insertShipment(theShipment)){
-				bruteForceDays[i] = true;
-				isInserted = false;
-			}
-//				status = status & bestCombination[i].insertShipment(theShipment);
-		}
-	}
-	if(!isInserted){
-		if(!insertByDistanceBruteForce(theShipment, bruteForceDays)){
-			for(int i = 0; i < TRProblemInfo.noOfDays; i++){
-				if(bestCombination[i] != null) {
-					bestCombination[i].getSubList().removeByShipment(theShipment);
-				}
-			}
-			return false;
-		}
-		return true;
-	}
-	return isInserted;
-}
-
-private boolean insertByDemandBruteForce(final TRShipment theShipment, final boolean[] bruteForceDays){
-	boolean isInserted = true;
-	for(int i = 0; i < bruteForceDays.length; i++){
-		if(bruteForceDays[i]){
-			TRTruck currentTruck = this.getFirst();
-			while(currentTruck != this.getTail() && !isInserted){
-				TRDaysList daysList = currentTruck.getSubList();
-				TRDay currentDay = daysList.getAtIndex(i);
-				if(!currentDay.insertShipment(theShipment)){
-					isInserted = false;
-				}
-				currentTruck = currentTruck.getNext();
-			}
-		}
-	}
-
-	return isInserted;
-}
-
-private boolean insertByDistanceBruteForce(final TRShipment theShipment, final boolean[] bruteForceDays){
-	boolean isInserted = true;
-	for(int i = 0; i < bruteForceDays.length; i++){
-		if(bruteForceDays[i]){
-			TRTruck currentTruck = this.getFirst();
-			while(currentTruck != this.getTail() && !isInserted){
-				TRDaysList daysList = currentTruck.getSubList();
-				TRDay currentDay = daysList.getAtIndex(i);
-				if(!currentDay.insertShipment(theShipment)){
-					isInserted = false;
-				}
-				currentTruck = currentTruck.getNext();
-			}
-		}
-	}
-
-	return isInserted;
-}
-
-private double calculateRelativeDemand(final TRDay[] bestCombination){
-	double summationValue = 0;
-	double maxSummationValue = 0;
-	for(int i = 0; i < bestCombination.length; i++){
-		summationValue += TRProblemInfo.daysLLLevelCostF.getTotalDemand(bestCombination[i]);
-		maxSummationValue = bestCombination[i].getMaxDemand();
-	}
-	final double relativeValue = summationValue / maxSummationValue;
-	return relativeValue;
-}
-
-private double calculateRelativeDistance(final TRDay[] bestCombination){
-	double summationValue = 0;
-	double maxSummationValue = 0;
-	for(int i = 0; i < bestCombination.length; i++){
-		summationValue += TRProblemInfo.daysLevelCostF.getTotalDistance(bestCombination[i]);
-		maxSummationValue += bestCombination[i].getMaxDistance();
-	}
-	final double relativeValue = summationValue / maxSummationValue;
-	return relativeValue;
-}
-
-
-
-
-
-private TRDay[][] findLowestDemandDistanceDays(final TRShipment theShipment){
-	final int numberCombinations = theShipment.getNoComb();
-	int[] currentCombination;
-	final int numberDays = TRProblemInfo.noOfDays;
-	final int scheduledDay = 1;
-	TRDay[][] bestDayCombinations = new TRDay[numberCombinations][numberDays];
-
-
-	for(int combinationStepper = 0; combinationStepper < numberCombinations; combinationStepper++){
-		currentCombination = theShipment.getCurrentComb()[combinationStepper];
-
-		for(int dayNumberStepper = 0; dayNumberStepper < numberDays; dayNumberStepper++){
-			if(currentCombination[dayNumberStepper] == scheduledDay){
+//
+//private TRDay[][] findLowestDemandDays(final TRShipment theShipment){
+//	final int numberCombinations = theShipment.getNoComb();
+//	int[] currentCombination;
+//	final int numberDays = TRProblemInfo.noOfDays;
+//	final int scheduledDay = 1;
+//	TRDay[][] bestDayCombinations = new TRDay[numberCombinations][numberDays];
+//
+//
+//	for(int combinationStepper = 0; combinationStepper < numberCombinations; combinationStepper++){
+//		currentCombination = theShipment.getCurrentComb()[combinationStepper];
+//
+//		for(int dayNumberStepper = 0; dayNumberStepper < numberDays; dayNumberStepper++){
+//			if(currentCombination[dayNumberStepper] == scheduledDay){
 //				int bestDemand = 999999999;
-				double bestRelative = 999999999;
-				TRDay bestDay = null;
-
-				for(int truckStepper = 0; truckStepper < this.getSize(); truckStepper++){
-					TRTruck currentTruck = (TRTruck) this.getAtIndex(truckStepper);
-					TRDaysList daysList = currentTruck.getSubList();
-					TRDay currentDay = (TRDay) daysList.getAtIndex(dayNumberStepper);
-					double currentDemand = (double) TRProblemInfo.daysLevelCostF.getTotalDemand(currentDay);
-					double currentDistance = TRProblemInfo.daysLevelCostF.getTotalDistance(currentDay);
-
-					double maxDemand = currentDay.getMaxDemand();
-					double maxDistance = currentDay.getMaxDistance();
-
-					double relativeDemand = currentDemand / maxDemand;
-					double relativeDistance = currentDistance / maxDistance;
-
-					double relativeSum = relativeDemand + relativeDistance;
-
-					if(relativeSum < bestRelative){
-						bestRelative = relativeSum;
-						bestDay = currentDay;
-					}
-				}
-				bestDayCombinations[combinationStepper][dayNumberStepper] = bestDay;
-			}
-		}
-	}
-	return bestDayCombinations;
-}
-
-
-private TRDay[] findLowestDemandDistanceCombination(final TRShipment theShipment, final TRDay[][] bestDaysForEachCombo){
-	int[] demandTotalForEachCombo = new int[bestDaysForEachCombo.length];
-	double[] totalForEachCombo = new double[bestDaysForEachCombo.length];
-	double[] relativeTotalForEachCombo = new double[bestDaysForEachCombo.length];
-	final int numberCombinations = theShipment.getNoComb();
-	final int numberDays = TRProblemInfo.noOfDays;
-
-	for(int i = 0; i < relativeTotalForEachCombo.length; i++){
-		relativeTotalForEachCombo[i] = 0;
-	}
-
-	for(int combinationStepper = 0; combinationStepper < numberCombinations; combinationStepper++){
-		for(int dayStepper = 0; dayStepper < numberDays; dayStepper++){
-			TRDay currentDay = bestDaysForEachCombo[combinationStepper][dayStepper];
-			if(currentDay != null){
-				double distance = TRProblemInfo.daysLevelCostF.getTotalDistance(currentDay);
-				double demand = TRProblemInfo.daysLevelCostF.getTotalDemand(currentDay);
-
-				double maxDistance = currentDay.getMaxDistance();
-				double maxDemand = currentDay.getMaxDemand();
-
-				totalForEachCombo[combinationStepper] += (maxDemand + maxDistance);
-			}
-		}
-	}
-
-	int bestDemand = 999999999;
-	TRDay[] bestCombination = null;
-	for(int i = 0; i < demandTotalForEachCombo.length; i++){
-		if(demandTotalForEachCombo[i] < bestDemand){
-			bestDemand = demandTotalForEachCombo[i];
-			bestCombination = bestDaysForEachCombo[i];
-		}
-	}
-	return bestCombination;
-}
-
-
-
-
-public boolean insertShipment(final TRShipment theShipment) {
-//	TRDay[][] bestDayCombinations = findLowestDemandDistanceDays(theShipment);
-
-
-
+//				TRDay bestDay = null;
+//
+//				for(int truckStepper = 0; truckStepper < this.getSize(); truckStepper++){
+//					TRTruck currentTruck = (TRTruck) this.getAtIndex(truckStepper);
+//					TRDaysList daysList = currentTruck.getSubList();
+//					TRDay currentDay = (TRDay) daysList.getAtIndex(dayNumberStepper);
+//					int currentDemand = (int) currentDay.getDemand();
+//
+//					if(currentDemand < bestDemand){
+//						bestDemand = currentDemand;
+//						bestDay = currentDay;
+//					}
+//				}
+//				bestDayCombinations[combinationStepper][dayNumberStepper] = bestDay;
+//			}
+//		}
+//	}
+//	return bestDayCombinations;
+//}
+//
+//private TRDay[][] findLowestDistanceDays(final TRShipment theShipment){
+//	final int numberCombinations = theShipment.getNoComb();
+//	int[] currentCombination;
+//	final int numberDays = TRProblemInfo.noOfDays;
+//	final int scheduledDay = 1;
+//	TRDay[][] bestDayCombinations = new TRDay[numberCombinations][numberDays];
+//
+//
+//	for(int combinationStepper = 0; combinationStepper < numberCombinations; combinationStepper++){
+//		currentCombination = theShipment.getCurrentComb()[combinationStepper];
+//
+//		for(int dayNumberStepper = 0; dayNumberStepper < numberDays; dayNumberStepper++){
+//			if(currentCombination[dayNumberStepper] == scheduledDay){
+//				int bestDistance = 999999999;
+//				TRDay bestDay = null;
+//
+//				for(int truckStepper = 0; truckStepper < this.getSize(); truckStepper++){
+//					TRTruck currentTruck = (TRTruck) this.getAtIndex(truckStepper);
+//					TRDaysList daysList = currentTruck.getSubList();
+//					TRDay currentDay = (TRDay) daysList.getAtIndex(dayNumberStepper);
+//					int currentDistance = (int) TRProblemInfo.daysLevelCostF.getTotalDistance(currentDay);//.getDemand();
+//
+//					if(currentDistance < bestDistance){
+//						bestDistance = currentDistance;
+//						bestDay = currentDay;
+//					}
+//				}
+//				bestDayCombinations[combinationStepper][dayNumberStepper] = bestDay;
+//			}
+//		}
+//	}
+//	return bestDayCombinations;
+//}
+//
+//
+//
+//private TRDay[] findLowestDemandCombination(final TRShipment theShipment, final TRDay[][] bestDaysForEachCombo){
+//	int[] demandTotalForEachCombo = new int[bestDaysForEachCombo.length];
+//	final int numberCombinations = theShipment.getNoComb();
+//	final int numberDays = TRProblemInfo.noOfDays;
+//
+//	for(int i = 0; i < demandTotalForEachCombo.length; i++){
+//		demandTotalForEachCombo[i] = 0;
+//	}
+//
+//	for(int combinationStepper = 0; combinationStepper < numberCombinations; combinationStepper++){
+//		for(int dayStepper = 0; dayStepper < numberDays; dayStepper++){
+//			TRDay currentDay = bestDaysForEachCombo[combinationStepper][dayStepper];
+//			if(currentDay != null){
+//				demandTotalForEachCombo[combinationStepper] += currentDay.getDemand();
+//			}
+//		}
+//	}
+//
+//	int bestDemand = 999999999;
+//	TRDay[] bestCombination = null;
+//	for(int i = 0; i < demandTotalForEachCombo.length; i++){
+//		if(demandTotalForEachCombo[i] < bestDemand){
+//			bestDemand = demandTotalForEachCombo[i];
+//			bestCombination = bestDaysForEachCombo[i];
+//		}
+//	}
+//	return bestCombination;
+//}
+//
+//private TRDay[] findLowestDistanceCombination(final TRShipment theShipment, final TRDay[][] bestDaysForEachCombo){
+//	int[] distanceTotalForEachCombo = new int[bestDaysForEachCombo.length];
+//	final int numberCombinations = theShipment.getNoComb();
+//	final int numberDays = TRProblemInfo.noOfDays;
+//
+//	for(int i = 0; i < distanceTotalForEachCombo.length; i++){
+//		distanceTotalForEachCombo[i] = 0;
+//	}
+//
+//	for(int combinationStepper = 0; combinationStepper < numberCombinations; combinationStepper++){
+//		for(int dayStepper = 0; dayStepper < numberDays; dayStepper++){
+//			TRDay currentDay = bestDaysForEachCombo[combinationStepper][dayStepper];
+//			if(currentDay != null){
+//				distanceTotalForEachCombo[combinationStepper] += TRProblemInfo.daysLevelCostF.getTotalDistance(currentDay);//
+//				// .getDemand();
+//			}
+//		}
+//	}
+//
+//	int bestDistance = 999999999;
+//	TRDay[] bestCombination = null;
+//	for(int i = 0; i < distanceTotalForEachCombo.length; i++){
+//		if(distanceTotalForEachCombo[i] < bestDistance){
+//			bestDistance = distanceTotalForEachCombo[i];
+//			bestCombination = bestDaysForEachCombo[i];
+//		}
+//	}
+//	return bestCombination;
+//}
+//
+//private int[] createProperVisitationFormat(final TRDay[] bestCombination){
+//	int[] schedule = new int[bestCombination.length];
+//	for(int i = 0; i < schedule.length; i++){
+//		if(bestCombination[i] == null){
+//			schedule[i] = 0;
+//		}
+//		else{
+//			schedule[i] = 1;
+//		}
+//	}
+//	return schedule;
+//}
+//
+//private boolean insertByDemand(final TRShipment theShipment){
 //	TRDay[][] bestDayCombinations = findLowestDemandDays(theShipment);
 //	TRDay[] bestCombination = findLowestDemandCombination(theShipment, bestDayCombinations);
-//	final double relativeDemand = calculateRelativeDemand(bestCombination);
+//	int[] properFormatSchedule = createProperVisitationFormat(bestCombination);
+//	boolean[] bruteForceDays = new boolean[TRProblemInfo.noOfDays];
+//	theShipment.setVisitComb(properFormatSchedule);
+//	boolean isInserted = true;
+//
+//	for(int i = 0; i < bruteForceDays.length; i++){
+//		bruteForceDays[i] = false;
+//	}
+//
+//	for (int i = 0; i < bestCombination.length; i++) {
+//		if (bestCombination[i] != null) {
+//			if(!bestCombination[i].insertShipment(theShipment)){
+//				bruteForceDays[i] = true;
+//				isInserted = false;
+//			}
+////				status = status & bestCombination[i].insertShipment(theShipment);
+//		}
+//	}
+//	if(!isInserted){
+//		if(!insertByDemandBruteForce(theShipment, bruteForceDays)){
+//			for(int i = 0; i < TRProblemInfo.noOfDays; i++){
+//				if(bestCombination[i] != null) {
+//					bestCombination[i].getSubList().removeByShipment(theShipment);
+//				}
+//			}
+//			return false;
+//		}
+//		return true;
+//	}
+//	return isInserted;
+//}
+//
+//private boolean insertByDistance(final TRShipment theShipment){
+//	TRDay[][] bestDayCombinations = findLowestDistanceDays(theShipment);
+//	TRDay[] bestCombination = findLowestDistanceCombination(theShipment, bestDayCombinations);
+//	int[] properFormatSchedule = createProperVisitationFormat(bestCombination);
+//	boolean[] bruteForceDays = new boolean[TRProblemInfo.noOfDays];
+//	theShipment.setVisitComb(properFormatSchedule);
+//	boolean isInserted = true;
+//
+//	for(int i = 0; i < bruteForceDays.length; i++){
+//		bruteForceDays[i] = false;
+//	}
+//
+//	for (int i = 0; i < bestCombination.length; i++) {
+//		if (bestCombination[i] != null) {
+//			if(!bestCombination[i].insertShipment(theShipment)){
+//				bruteForceDays[i] = true;
+//				isInserted = false;
+//			}
+////				status = status & bestCombination[i].insertShipment(theShipment);
+//		}
+//	}
+//	if(!isInserted){
+//		if(!insertByDistanceBruteForce(theShipment, bruteForceDays)){
+//			for(int i = 0; i < TRProblemInfo.noOfDays; i++){
+//				if(bestCombination[i] != null) {
+//					bestCombination[i].getSubList().removeByShipment(theShipment);
+//				}
+//			}
+//			return false;
+//		}
+//		return true;
+//	}
+//	return isInserted;
+//}
+//
+//private boolean insertByDemandBruteForce(final TRShipment theShipment, final boolean[] bruteForceDays){
+//	boolean isInserted = true;
+//	for(int i = 0; i < bruteForceDays.length; i++){
+//		if(bruteForceDays[i]){
+//			TRTruck currentTruck = this.getFirst();
+//			while(currentTruck != this.getTail() && !isInserted){
+//				TRDaysList daysList = currentTruck.getSubList();
+//				TRDay currentDay = daysList.getAtIndex(i);
+//				if(!currentDay.insertShipment(theShipment)){
+//					isInserted = false;
+//				}
+//				currentTruck = currentTruck.getNext();
+//			}
+//		}
+//	}
+//
+//	return isInserted;
+//}
+//
+//private boolean insertByDistanceBruteForce(final TRShipment theShipment, final boolean[] bruteForceDays){
+//	boolean isInserted = true;
+//	for(int i = 0; i < bruteForceDays.length; i++){
+//		if(bruteForceDays[i]){
+//			TRTruck currentTruck = this.getFirst();
+//			while(currentTruck != this.getTail() && !isInserted){
+//				TRDaysList daysList = currentTruck.getSubList();
+//				TRDay currentDay = daysList.getAtIndex(i);
+//				if(!currentDay.insertShipment(theShipment)){
+//					isInserted = false;
+//				}
+//				currentTruck = currentTruck.getNext();
+//			}
+//		}
+//	}
+//
+//	return isInserted;
+//}
+//
+//private double calculateRelativeDemand(final TRDay[] bestCombination){
+//	double summationValue = 0;
+//	double maxSummationValue = 0;
+//	for(int i = 0; i < bestCombination.length; i++){
+//		summationValue += TRProblemInfo.daysLLLevelCostF.getTotalDemand(bestCombination[i]);
+//		maxSummationValue = bestCombination[i].getMaxDemand();
+//	}
+//	final double relativeValue = summationValue / maxSummationValue;
+//	return relativeValue;
+//}
+//
+//private double calculateRelativeDistance(final TRDay[] bestCombination){
+//	double summationValue = 0;
+//	double maxSummationValue = 0;
+//	for(int i = 0; i < bestCombination.length; i++){
+//		summationValue += TRProblemInfo.daysLevelCostF.getTotalDistance(bestCombination[i]);
+//		maxSummationValue += bestCombination[i].getMaxDistance();
+//	}
+//	final double relativeValue = summationValue / maxSummationValue;
+//	return relativeValue;
+//}
 //
 //
-//	bestDayCombinations = findLowestDistanceDays(theShipment);
-//	bestCombination = findLowestDistanceCombination(theShipment, bestDayCombinations);
-//	final double relativeDistance = calculateRelativeDistance(bestCombination);
-
-
-
-
 //
-	if(!insertByDemand(theShipment)){
-		return insertByDistance(theShipment);
-	}
-	return true;
-
-
-
-
-
-
-}
+//
+//
+//private TRDay[][] findLowestDemandDistanceDays(final TRShipment theShipment){
+//	final int numberCombinations = theShipment.getNoComb();
+//	int[] currentCombination;
+//	final int numberDays = TRProblemInfo.noOfDays;
+//	final int scheduledDay = 1;
+//	TRDay[][] bestDayCombinations = new TRDay[numberCombinations][numberDays];
+//
+//
+//	for(int combinationStepper = 0; combinationStepper < numberCombinations; combinationStepper++){
+//		currentCombination = theShipment.getCurrentComb()[combinationStepper];
+//
+//		for(int dayNumberStepper = 0; dayNumberStepper < numberDays; dayNumberStepper++){
+//			if(currentCombination[dayNumberStepper] == scheduledDay){
+////				int bestDemand = 999999999;
+//				double bestRelative = 999999999;
+//				TRDay bestDay = null;
+//
+//				for(int truckStepper = 0; truckStepper < this.getSize(); truckStepper++){
+//					TRTruck currentTruck = (TRTruck) this.getAtIndex(truckStepper);
+//					TRDaysList daysList = currentTruck.getSubList();
+//					TRDay currentDay = (TRDay) daysList.getAtIndex(dayNumberStepper);
+//					double currentDemand = (double) TRProblemInfo.daysLevelCostF.getTotalDemand(currentDay);
+//					double currentDistance = TRProblemInfo.daysLevelCostF.getTotalDistance(currentDay);
+//
+//					double maxDemand = currentDay.getMaxDemand();
+//					double maxDistance = currentDay.getMaxDistance();
+//
+//					double relativeDemand = currentDemand / maxDemand;
+//					double relativeDistance = currentDistance / maxDistance;
+//
+//					double relativeSum = relativeDemand + relativeDistance;
+//
+//					if(relativeSum < bestRelative){
+//						bestRelative = relativeSum;
+//						bestDay = currentDay;
+//					}
+//				}
+//				bestDayCombinations[combinationStepper][dayNumberStepper] = bestDay;
+//			}
+//		}
+//	}
+//	return bestDayCombinations;
+//}
+//
+//
+//private TRDay[] findLowestDemandDistanceCombination(final TRShipment theShipment, final TRDay[][] bestDaysForEachCombo){
+//	int[] demandTotalForEachCombo = new int[bestDaysForEachCombo.length];
+//	double[] totalForEachCombo = new double[bestDaysForEachCombo.length];
+//	double[] relativeTotalForEachCombo = new double[bestDaysForEachCombo.length];
+//	final int numberCombinations = theShipment.getNoComb();
+//	final int numberDays = TRProblemInfo.noOfDays;
+//
+//	for(int i = 0; i < relativeTotalForEachCombo.length; i++){
+//		relativeTotalForEachCombo[i] = 0;
+//	}
+//
+//	for(int combinationStepper = 0; combinationStepper < numberCombinations; combinationStepper++){
+//		for(int dayStepper = 0; dayStepper < numberDays; dayStepper++){
+//			TRDay currentDay = bestDaysForEachCombo[combinationStepper][dayStepper];
+//			if(currentDay != null){
+//				double distance = TRProblemInfo.daysLevelCostF.getTotalDistance(currentDay);
+//				double demand = TRProblemInfo.daysLevelCostF.getTotalDemand(currentDay);
+//
+//				double maxDistance = currentDay.getMaxDistance();
+//				double maxDemand = currentDay.getMaxDemand();
+//
+//				totalForEachCombo[combinationStepper] += (maxDemand + maxDistance);
+//			}
+//		}
+//	}
+//
+//	int bestDemand = 999999999;
+//	TRDay[] bestCombination = null;
+//	for(int i = 0; i < demandTotalForEachCombo.length; i++){
+//		if(demandTotalForEachCombo[i] < bestDemand){
+//			bestDemand = demandTotalForEachCombo[i];
+//			bestCombination = bestDaysForEachCombo[i];
+//		}
+//	}
+//	return bestCombination;
+//}
+//
+//
+//
+//
+//public boolean insertShipment(final TRShipment theShipment) {
+////	TRDay[][] bestDayCombinations = findLowestDemandDistanceDays(theShipment);
+//
+//
+//
+////	TRDay[][] bestDayCombinations = findLowestDemandDays(theShipment);
+////	TRDay[] bestCombination = findLowestDemandCombination(theShipment, bestDayCombinations);
+////	final double relativeDemand = calculateRelativeDemand(bestCombination);
+////
+////
+////	bestDayCombinations = findLowestDistanceDays(theShipment);
+////	bestCombination = findLowestDistanceCombination(theShipment, bestDayCombinations);
+////	final double relativeDistance = calculateRelativeDistance(bestCombination);
+//
+//
+//
+//
+////
+//	if(!insertByDemand(theShipment)){
+//		return insertByDistance(theShipment);
+//	}
+//	return true;
+//
+//
+//
+//
+//
+//
+//}
 
 //METHOD
 //used by the gui to show problem information

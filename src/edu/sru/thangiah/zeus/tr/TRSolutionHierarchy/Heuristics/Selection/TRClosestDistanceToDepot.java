@@ -11,7 +11,7 @@ import edu.sru.thangiah.zeus.tr.TRSolutionHierarchy.TRShipmentsList;
  * Created by joshuasarver on 1/14/15.
  */
 public class TRClosestDistanceToDepot
-		extends TRShipmentsList {
+		extends TRShipmentsList implements SelectionInterface{
 
 public TRShipment getSelectShipment(final TRDepotsList depotsList, final TRDepot theDepot,
 									final TRShipmentsList shipmentsList, final TRShipment theShipment) {
