@@ -67,7 +67,7 @@ public class TRRoot {
     private       String  userInput          = "";
     private Object selectionTypeObject;
 
-//allows us to work with DOS based or Unix/Unix-like systems automagically
+//allows us to work with DOS based or Unix/Unix-like systems automatically
 
 
 
