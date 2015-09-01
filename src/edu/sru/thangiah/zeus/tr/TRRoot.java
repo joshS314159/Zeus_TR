@@ -105,20 +105,20 @@ public class TRRoot {
         TRProblemInfo.comparisonOutputFile = "PVRP_Comparison_Results.xlsx";
         TRProblemInfo.longSolutionOutputFile = "PVRP_All_Long_Solutions.xlsx";
         TRProblemInfo.shortSolutionOutputFile = "PVRP_All_Short_Solutions.xlsx";
-        TRProblemInfo.problemFileName = "p2.xlsx";
+        TRProblemInfo.problemFileName = "p10.xlsx";
         TRProblemInfo.problemFormatType = "PVRP";
 
-        new TR(/*"TrashRoutes-Frequency.xlsx", */false, TRClosestDistanceToDepot.class, TRLowestDistanceInsertion.class, PVRPReadFormat.class, PVRPWriteFormat.class);
+//        new TR(/*"TrashRoutes-Frequency.xlsx", */false, TRClosestDistanceToDepot.class, TRLowestDistanceInsertion.class, PVRPReadFormat.class, PVRPWriteFormat.class);
 
 //
-//        for(int i = 1; i <= 32; i++) {
-//            TRProblemInfo.problemFileName = "p" + i + ".xlsx";
-//            new TR(/*"TrashRoutes-Frequency.xlsx", */false, TRChooseByHighestDemand.class, TRGreedyInsertion.class, PVRPReadFormat.class, PVRPWriteFormat.class);
-//        }
-//        for(int i = 1; i <= 10; i++){
-//            TRProblemInfo.problemFileName = "pr" + i + ".xlsx";
-//            new TR(/*"TrashRoutes-Frequency.xlsx", */false, TRChooseByHighestDemand.class, TRLowestDistanceInsertion.class, PVRPReadFormat.class, PVRPWriteFormat.class);
-//        }
+        for(int i = 1; i <= 32; i++) {
+            TRProblemInfo.problemFileName = "p" + i + ".xlsx";
+            new TR(/*"TrashRoutes-Frequency.xlsx", */false, TRChooseByHighestDemand.class, TRGreedyInsertion.class, PVRPReadFormat.class, PVRPWriteFormat.class);
+        }
+        for(int i = 10; i <= 10; i++){
+            TRProblemInfo.problemFileName = "pr" + i + ".xlsx";
+            new TR(/*"TrashRoutes-Frequency.xlsx", */false, TRChooseByHighestDemand.class, TRLowestDistanceInsertion.class, PVRPReadFormat.class, PVRPWriteFormat.class);
+        }
     }
 
     public void TRFormat() throws IllegalAccessException, InvalidFormatException, IOException, InstantiationException, NoSuchMethodException, InvocationTargetException {
